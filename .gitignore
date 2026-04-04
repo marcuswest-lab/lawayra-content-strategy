@@ -1,0 +1,24 @@
+# Deny everything
+*
+
+# Allow strategy reports (HTML)
+!lawayra-instagram-research-report.html
+!lawayra-content-strategy-report.html
+!lawayra-content-calendar-report.html
+!lawayra-execution-kit-report.html
+!lawayra-sales-tracking-report.html
+
+# Allow strategy reports (Markdown)
+!lawayra-instagram-research.md
+!lawayra-content-strategy.md
+!lawayra-content-calendar.md
+!lawayra-execution-kit.md
+!lawayra-sales-tracking.md
+
+# Allow supporting docs
+!lawayra-unified-content-strategy.md
+!lawayra-project-brief.md
+
+# Allow repo files
+!.gitignore
+!README.md

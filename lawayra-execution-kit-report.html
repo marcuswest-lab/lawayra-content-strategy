@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaWayra Execution Kit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #1a3a2a;
+    --primary-light: #2d5e42;
+    --accent: #c8956c;
+    --accent-light: #e8c9a8;
+    --accent-glow: #d4a574;
+    --bg: #0f1710;
+    --bg-card: #151e17;
+    --bg-card-hover: #1a2a1e;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --text-dim: #6b6560;
+    --border: #2a3a2e;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 60px 80px;
+    background: linear-gradient(165deg, #0f1710 0%, #1a3a2a 40%, #2d5e42 70%, #1a3a2a 100%);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,149,108,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(45,94,66,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    max-width: 750px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+  .hero-meta strong { color: var(--text); font-weight: 500; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin-bottom: 50px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 40px 0 16px;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 30px 0 12px;
+  }
+  p { margin-bottom: 16px; color: var(--text); font-size: 15px; }
+  strong { color: #fff; font-weight: 600; }
+
+  /* Script Cards */
+  .script-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 30px 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .script-card:hover {
+    border-color: rgba(200,149,108,0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+  .script-header {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .script-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .script-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .script-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .tag-format { background: rgba(96,165,250,0.1); color: var(--blue); }
+  .tag-duration { background: rgba(200,149,108,0.1); color: var(--accent); }
+  .tag-pillar-educate { background: rgba(74,222,128,0.1); color: var(--success); }
+  .tag-pillar-show { background: rgba(96,165,250,0.1); color: var(--blue); }
+  .tag-pillar-prove { background: rgba(200,149,108,0.1); color: var(--accent); }
+  .script-body { padding: 24px 28px; }
+  .script-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .script-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  .script-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .script-table tr:last-child td { border-bottom: none; }
+  .script-table td:first-child {
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    width: 80px;
+  }
+  .script-table td:nth-child(2) {
+    color: var(--text-muted);
+    font-style: italic;
+    width: 35%;
+  }
+  .script-notes {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+  }
+  .script-notes-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .script-notes p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .script-notes p:last-child { margin-bottom: 0; }
+  .text-overlay-list {
+    list-style: none;
+    margin: 12px 0;
+  }
+  .text-overlay-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .text-overlay-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+  .text-overlay-list code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    background: rgba(200,149,108,0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* B-Roll */
+  .broll-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .broll-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: all 0.3s ease;
+  }
+  .broll-item:hover {
+    border-color: rgba(200,149,108,0.3);
+    transform: translateY(-1px);
+  }
+  .broll-id {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .broll-desc {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .broll-detail {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .broll-used {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  .category-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin: 40px 0 16px;
+    padding: 10px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .category-count {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(200,149,108,0.1);
+    padding: 2px 10px;
+    border-radius: 20px;
+  }
+
+  /* Stories */
+  .week-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+  .week-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .week-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .day-block {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding: 18px 28px;
+  }
+  .day-block:last-child { border-bottom: none; }
+  .day-name {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .day-post-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(74,222,128,0.15);
+    color: var(--success);
+  }
+  .story-item {
+    padding: 8px 0 8px 16px;
+    border-left: 2px solid var(--border);
+    margin: 8px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .story-visual {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+  .story-sticker {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(167,139,250,0.1);
+    color: var(--purple);
+    margin-top: 4px;
+  }
+
+  /* DM Sequences */
+  .dm-sequence {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+  .dm-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .dm-trigger {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .dm-trigger-badge {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 6px;
+    background: rgba(200,149,108,0.15);
+    color: var(--accent);
+    border: 1px solid rgba(200,149,108,0.2);
+  }
+  .dm-context {
+    padding: 12px 28px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .dm-message {
+    padding: 18px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .dm-message:last-child { border-bottom: none; }
+  .dm-message-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .dm-message-timing {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .dm-message-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+    padding: 14px 18px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    border-left: 3px solid var(--blue);
+    white-space: pre-line;
+  }
+
+  .quick-reply {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 12px 0;
+    transition: all 0.3s ease;
+  }
+  .quick-reply:hover { border-color: rgba(200,149,108,0.3); }
+  .quick-reply-q {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .quick-reply-a {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding: 12px 16px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    white-space: pre-line;
+  }
+
+  /* Schedule */
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .schedule-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-card);
+  }
+  .schedule-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .schedule-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .schedule-table td:first-child { font-weight: 600; color: #fff; }
+
+  .checklist {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .checklist li {
+    padding: 10px 0 10px 32px;
+    position: relative;
+    font-size: 14px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+  }
+
+  /* Analytics */
+  .tracker-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .tracker-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-card);
+  }
+  .tracker-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .tracker-table td:first-child,
+  .tracker-table td:nth-child(2) { text-align: left; color: var(--text); }
+  .tracker-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .grade-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .grade-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .grade-letter {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .grade-a .grade-letter { color: var(--success); }
+  .grade-b .grade-letter { color: var(--warning); }
+  .grade-c .grade-letter { color: var(--danger); }
+  .grade-a { border-top: 3px solid var(--success); }
+  .grade-b { border-top: 3px solid var(--warning); }
+  .grade-c { border-top: 3px solid var(--danger); }
+  .grade-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .grade-criteria {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .grade-action {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .decision-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 12px 0;
+    transition: all 0.3s ease;
+  }
+  .decision-card:hover { border-color: rgba(200,149,108,0.3); }
+  .decision-if {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .decision-then {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding-left: 16px;
+    border-left: 2px solid var(--border);
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+  .stat-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .footer {
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer p {
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .footer strong { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px 50px; }
+    .hero h1 { font-size: 32px; }
+    .container { padding: 0 20px; }
+    .section { padding: 50px 0; }
+    .section h2 { font-size: 28px; }
+    .script-table { font-size: 12px; }
+    .script-table td:first-child { width: auto; }
+    .script-table td:nth-child(2) { width: auto; }
+    .broll-grid { grid-template-columns: 1fr; }
+    .grade-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .script-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Phase 4 of 4 &mdash; LaWayra Instagram</div>
+  <h1>Full <span>Execution Kit</span></h1>
+  <p class="hero-subtitle">Everything you need to film, post, and convert. Word-for-word scripts, shot lists, Stories copy, DM templates, and operational guides. Open this, hit record, and start building.</p>
+  <div class="hero-meta">
+    <span><strong>12</strong> Video Scripts</span>
+    <span><strong>34</strong> B-Roll Shots</span>
+    <span><strong>50+</strong> Stories</span>
+    <span><strong>4</strong> DM Sequences</span>
+    <span><strong>7</strong> Sections</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- SECTION 1: VIDEO SCRIPTS -->
+<div class="section">
+  <div class="section-number">Section 01</div>
+  <h2>Full Video Scripts</h2>
+  <p class="section-subtitle">Each script includes exact dialogue, timestamps, on-screen text cues, and B-roll insert moments. Scripts are designed for 20-35 second Reels.</p>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-number">12</div><div class="stat-label">Total Scripts</div></div>
+    <div class="stat-box"><div class="stat-number">25-35s</div><div class="stat-label">Reel Duration</div></div>
+    <div class="stat-box"><div class="stat-number">4</div><div class="stat-label">Content Pillars</div></div>
+    <div class="stat-box"><div class="stat-number">3x</div><div class="stat-label">Posts Per Week</div></div>
+  </div>
+
+  <!-- POST 1 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 1 &mdash; "Watch this before your first ayahuasca ceremony"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Face-to-Camera</span>
+        <span class="script-tag tag-duration">25 sec</span>
+        <span class="script-tag tag-pillar-educate">Educate &amp; Warn</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Dialogue</th></tr>
+        <tr><td>0:00-0:03</td><td>You, eye contact. TEXT: WATCH THIS BEFORE YOUR FIRST CEREMONY</td><td>"Watch this before your first ayahuasca ceremony."</td></tr>
+        <tr><td>0:03-0:07</td><td>You talking. CUT TO: B-roll ceremony space (candles, mats) at 0:05</td><td>"Ayahuasca isn't a party drug. It's a sacred indigenous medicine that's been used for thousands of years."</td></tr>
+        <tr><td>0:07-0:12</td><td>Back to you. TEXT: 4-8 HOURS IN DARKNESS</td><td>"The ceremony lasts four to eight hours, in complete darkness, guided by a shaman singing ancient healing songs."</td></tr>
+        <tr><td>0:12-0:17</td><td>You talking. CUT TO: B-roll nature/mountains at 0:14</td><td>"You will face your deepest fears. Your traumas. The things you've been running from. That's the medicine working."</td></tr>
+        <tr><td>0:17-0:21</td><td>Back to you. TEXT: PREPARATION = TRANSFORMATION</td><td>"But preparation is everything. Diet. Mindset. And choosing a retreat with real indigenous shamans &mdash; not a tourist operation."</td></tr>
+        <tr><td>0:21-0:25</td><td>Direct eye contact, slow delivery</td><td>"The people who come prepared, transform. The ones who don't, waste the opportunity. Now you know the difference."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">On-Screen Text Sequence</div>
+        <ul class="text-overlay-list">
+          <li><code>WATCH THIS BEFORE YOUR FIRST CEREMONY</code> (0:00-0:03)</li>
+          <li><code>4-8 HOURS IN DARKNESS</code> (0:07-0:12)</li>
+          <li><code>PREPARATION = TRANSFORMATION</code> (0:17-0:21)</li>
+        </ul>
+      </div>
+      <div class="script-notes" style="margin-top:12px">
+        <div class="script-notes-title">B-Roll Inserts</div>
+        <p>0:05-0:07 &rarr; Ceremony space (candles, mats in circle)</p>
+        <p>0:14-0:16 &rarr; Mountains/nature establishing shot</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 2 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 2 &mdash; "This is what the first 24 hours at LaWayra look like"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">POV Tour + Voiceover</span>
+        <span class="script-tag tag-duration">35 sec</span>
+        <span class="script-tag tag-pillar-show">Show &amp; Immerse</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Voiceover</th></tr>
+        <tr><td>0:00-0:03</td><td>Car window POV &mdash; mountains passing. TEXT: YOUR FIRST 24 HOURS AT LAWAYRA</td><td>"This is what the first 24 hours at LaWayra look like."</td></tr>
+        <tr><td>0:03-0:08</td><td>Walking through gate, first view of property &mdash; wide shot</td><td>"You arrive through the mountains outside Medellin. The air changes. The noise fades."</td></tr>
+        <tr><td>0:08-0:13</td><td>Entering room &mdash; slow pan across bed, window view</td><td>"You're shown to your room. And for the first time in maybe years &mdash; you exhale."</td></tr>
+        <tr><td>0:13-0:18</td><td>Kitchen &mdash; food prep, colorful fruits, close-up of meal</td><td>"Your first meal is plant-based, prepared with intention."</td></tr>
+        <tr><td>0:18-0:23</td><td>Common area &mdash; people sitting together, group circle</td><td>"You sit with other guests who came here for the same reason you did."</td></tr>
+        <tr><td>0:23-0:28</td><td>Sunset from property &mdash; golden, mountains in background</td><td>"By sunset, the shaman explains what to expect. And something has already started to shift."</td></tr>
+        <tr><td>0:28-0:35</td><td>Candlelit ceremony space &mdash; slow reveal. TEXT: YOUR JOURNEY STARTS HERE</td><td>"By the time the sun sets on your first day, you'll already feel it."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">Shooting Sequence</div>
+        <p>1. Car ride (phone against window) &rarr; 2. Walk through gate (chest height) &rarr; 3. Room reveal (left-to-right pan) &rarr; 4. Kitchen (3 close-ups) &rarr; 5. Common area (wide from doorway) &rarr; 6. Sunset (static tripod) &rarr; 7. Ceremony space (slow dolly-in)</p>
+        <p><strong>Audio:</strong> Voiceover recorded separately. Layer soft ambient music underneath.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 3 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 3 &mdash; "Why 500+ people gave us 5 stars"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Review Compilation</span>
+        <span class="script-tag tag-duration">25 sec</span>
+        <span class="script-tag tag-pillar-prove">Prove &amp; Trust</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Voiceover</th></tr>
+        <tr><td>0:00-0:03</td><td>"500+" zooms out to reveal nature. TEXT: WHY 500+ PEOPLE GAVE US 5 STARS</td><td>"Why 500+ people gave us 5 stars."</td></tr>
+        <tr><td>0:03-0:06</td><td>Review screenshot #1. B-roll: sunrise</td><td>"Life-changing. That's the word that comes up the most."</td></tr>
+        <tr><td>0:06-0:09</td><td>Review screenshot #2. B-roll: ceremony candles</td><td>"Authentic shamans. Felt completely safe. Best decision of my life."</td></tr>
+        <tr><td>0:09-0:12</td><td>Review screenshot #3. B-roll: guests at meal</td><td>"People from every country, every background &mdash; all saying the same thing."</td></tr>
+        <tr><td>0:12-0:16</td><td>Review #4 + #5 rapid flash. B-roll: nature</td><td>"Finally let go. Healed my depression. I wish I'd come sooner."</td></tr>
+        <tr><td>0:16-0:20</td><td>Text card: "500+ Reviews. 2,500+ Lives."</td><td>"500 people can't all be wrong."</td></tr>
+        <tr><td>0:20-0:25</td><td>Final: @lawayra_retreat. B-roll: sunset</td><td>"But don't take their word for it. Come see for yourself."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">Production Notes</div>
+        <p>80% editing, 20% filming. Screen-record reviews, design text cards in Canva/CapCut, layer over existing B-roll.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 4 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 4 &mdash; "Watch this if therapy hasn't been enough"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Face-to-Camera</span>
+        <span class="script-tag tag-duration">30 sec</span>
+        <span class="script-tag tag-pillar-educate">Educate &amp; Warn</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Dialogue</th></tr>
+        <tr><td>0:00-0:03</td><td>TEXT: WATCH THIS IF THERAPY HASN'T BEEN ENOUGH</td><td>"Watch this if therapy hasn't been enough."</td></tr>
+        <tr><td>0:03-0:08</td><td>Seated outdoors. Warm, empathetic tone</td><td>"I'm not anti-therapy. Therapy is incredible. But some wounds live deeper than words can reach."</td></tr>
+        <tr><td>0:08-0:14</td><td>CUT TO: B-roll hands on chest. TEXT: SUBCONSCIOUS. BODY. NERVOUS SYSTEM.</td><td>"Talk therapy works with your conscious mind. But the patterns running your life? They often live in your subconscious. In your body. In your nervous system."</td></tr>
+        <tr><td>0:14-0:19</td><td>Back to you. TEXT: THE ROOT, NOT THE SYMPTOMS</td><td>"Plant medicine like ayahuasca accesses those deeper layers. It works on the root &mdash; not just the symptoms."</td></tr>
+        <tr><td>0:19-0:24</td><td>You, leaning in slightly</td><td>"This isn't about replacing therapy. It's about going deeper when you've hit a ceiling."</td></tr>
+        <tr><td>0:24-0:30</td><td>Slow delivery. Hold eye contact</td><td>"If you've done the work and you're still stuck &mdash; maybe the work just wasn't going deep enough. There's another way."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">Delivery Direction</div>
+        <p>Most emotionally sensitive post. Speak like you're talking to a friend who's been struggling. Gentle. No hard sell. Pure empathy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 5 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 5 &mdash; "What does an authentic ceremony actually look like?"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">B-Roll + Voiceover</span>
+        <span class="script-tag tag-duration">35 sec</span>
+        <span class="script-tag tag-pillar-show">Show &amp; Immerse</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Voiceover</th></tr>
+        <tr><td>0:00-0:03</td><td>Ceremony space daylight. TEXT: WHAT AN AUTHENTIC CEREMONY ACTUALLY LOOKS LIKE</td><td>"What does an authentic ayahuasca ceremony actually look like?"</td></tr>
+        <tr><td>0:03-0:08</td><td>Shaman's hands with palo santo. Smoke. Altar items</td><td>"The shaman prepares the space hours before you arrive. Palo santo. Tobacco. Prayers passed down through generations."</td></tr>
+        <tr><td>0:08-0:13</td><td>Mattresses in circle. Slow pan</td><td>"Mattresses in a circle. Total darkness. No phones. No distractions. Just you and the medicine."</td></tr>
+        <tr><td>0:13-0:19</td><td>Shaman singing (silhouette). Candles. Mapacho</td><td>"The shaman begins singing icaros &mdash; ancient healing songs. These aren't for show. They guide the medicine through your body."</td></tr>
+        <tr><td>0:19-0:25</td><td>Fade darkness &rarr; morning light. Sunrise</td><td>"The ceremony lasts four to six hours. Moments of intensity. Moments of peace. Moments of clarity you've never experienced."</td></tr>
+        <tr><td>0:25-0:30</td><td>Morning light in ceremony space. Empty mats</td><td>"By morning, you emerge changed. Not in a dramatic Hollywood way. But something inside has shifted."</td></tr>
+        <tr><td>0:30-0:35</td><td>Person looking at mountains. TEXT: MORE POWERFUL THAN YOU CAN IMAGINE</td><td>"It doesn't look like anything you've seen on Netflix. It looks like this. And it's more powerful than you can imagine."</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- POST 6 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 6 &mdash; "3 red flags that expose a fake ayahuasca retreat"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Face-to-Camera + Walking</span>
+        <span class="script-tag tag-duration">30 sec</span>
+        <span class="script-tag tag-pillar-prove">Prove &amp; Trust</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Dialogue</th></tr>
+        <tr><td>0:00-0:03</td><td>TEXT: 3 RED FLAGS. Walking through grounds</td><td>"Three red flags that expose a fake ayahuasca retreat."</td></tr>
+        <tr><td>0:03-0:10</td><td>TEXT: RED FLAG #1: NO INDIGENOUS SHAMAN. Hold up 1 finger</td><td>"No indigenous shaman. If the person leading your ceremony took a weekend course and calls themselves a facilitator &mdash; run."</td></tr>
+        <tr><td>0:10-0:18</td><td>TEXT: RED FLAG #2: NO MEDICAL SCREENING. Hold up 2 fingers</td><td>"No medical screening. Any retreat that lets you sign up without asking about your medications and mental health history is cutting corners."</td></tr>
+        <tr><td>0:18-0:25</td><td>TEXT: RED FLAG #3: PARTY VIBES. Hold up 3 fingers</td><td>"Party vibes. If there's a pool party the day after ceremony, the medicine isn't being treated as sacred."</td></tr>
+        <tr><td>0:25-0:30</td><td>Stop walking. Face camera. Confident close</td><td>"The retreat you choose could change your life &mdash; or put it at risk. Ask these questions before you book anywhere."</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- POST 7 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 7 &mdash; "What if you could heal in 2 weeks what therapy couldn't in 2 years?"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Face-to-Camera</span>
+        <span class="script-tag tag-duration">28 sec</span>
+        <span class="script-tag tag-pillar-educate">Educate &amp; Warn</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Dialogue</th></tr>
+        <tr><td>0:00-0:03</td><td>TEXT: WHAT IF 2 WEEKS COULD DO WHAT 2 YEARS COULDN'T?</td><td>"What if you could heal in two weeks what therapy couldn't in two years?"</td></tr>
+        <tr><td>0:03-0:08</td><td>You, golden hour, warm light</td><td>"This isn't a sales pitch. It's a real question. Because we see it happen here every single week."</td></tr>
+        <tr><td>0:08-0:13</td><td>CUT TO: B-roll someone walking path</td><td>"People come to LaWayra after years of therapy, medication, self-help books &mdash; feeling like they've tried everything."</td></tr>
+        <tr><td>0:13-0:18</td><td>Back to you. TEXT: 7-14 DAYS</td><td>"In seven to fourteen days, something unlocks that years of conventional treatment couldn't reach."</td></tr>
+        <tr><td>0:18-0:23</td><td>Slow, deliberate delivery</td><td>"It's not magic. It's accessing the deeper layers &mdash; the subconscious patterns, the stored trauma, the stories you've been telling yourself for decades."</td></tr>
+        <tr><td>0:23-0:28</td><td>Hold eye contact. TEXT: 2,500+ LIVES TRANSFORMED</td><td>"Twenty-five hundred people have sat in ceremony with us. Most came as a last resort. Most wish they'd come sooner."</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- POST 8 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 8 &mdash; "This is how indigenous shamans prepare for ceremony"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">B-Roll + Voiceover</span>
+        <span class="script-tag tag-duration">30 sec</span>
+        <span class="script-tag tag-pillar-show">Show &amp; Immerse</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Voiceover</th></tr>
+        <tr><td>0:00-0:03</td><td>Shaman in morning light. TEXT: HOW INDIGENOUS SHAMANS PREPARE</td><td>"This is how indigenous shamans prepare for ceremony."</td></tr>
+        <tr><td>0:03-0:08</td><td>Shaman alone &mdash; meditating</td><td>"Days before ceremony, the shaman enters dieta. Fasting. Isolation. Prayer."</td></tr>
+        <tr><td>0:08-0:13</td><td>Hands preparing medicine &mdash; steam rising</td><td>"The medicine is prepared over hours, with specific songs and prayers. Each batch is cooked with intention."</td></tr>
+        <tr><td>0:13-0:18</td><td>Palo santo smoke. Sacred objects close-up</td><td>"The space is cleansed with palo santo and tobacco. These aren't rituals for show &mdash; they're protective practices passed down through generations."</td></tr>
+        <tr><td>0:18-0:24</td><td>Shaman arranging ceremony space</td><td>"By the time you sit in ceremony, the shaman has already been doing healing work for days &mdash; for you."</td></tr>
+        <tr><td>0:24-0:30</td><td>Shaman silhouette against light</td><td>"When a real indigenous shaman leads your ceremony, you're entering a tradition that's been healing people for thousands of years."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">Filming Note</div>
+        <p>Film authentically &mdash; do NOT stage or direct. Observe and capture. Get permission before filming. These moments are sacred.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 9 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 9 &mdash; "2,500 lives transformed. Here's what they said."</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Rapid-fire Review</span>
+        <span class="script-tag tag-duration">25 sec</span>
+        <span class="script-tag tag-pillar-prove">Prove &amp; Trust</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Voiceover / Text</th></tr>
+        <tr><td>0:00-0:03</td><td>"2,500+" animating. TEXT: 2,500 LIVES TRANSFORMED</td><td>"Twenty-five hundred lives transformed."</td></tr>
+        <tr><td>0:03-0:05</td><td>Review #1 over sunset</td><td>TEXT: "HEALED MY DEPRESSION"</td></tr>
+        <tr><td>0:05-0:07</td><td>Review #2 over ceremony</td><td>TEXT: "FINALLY LET GO OF CHILDHOOD TRAUMA"</td></tr>
+        <tr><td>0:07-0:09</td><td>Review #3 over nature</td><td>TEXT: "BEST DECISION OF MY LIFE"</td></tr>
+        <tr><td>0:09-0:11</td><td>Review #4 over food/community</td><td>TEXT: "THE SHAMAN WAS INCREDIBLE"</td></tr>
+        <tr><td>0:11-0:13</td><td>Review #5 over mountains</td><td>TEXT: "I FELT COMPLETELY SAFE"</td></tr>
+        <tr><td>0:13-0:15</td><td>Review #6 over sunrise</td><td>TEXT: "I CAN'T BELIEVE I WAITED SO LONG"</td></tr>
+        <tr><td>0:15-0:20</td><td>3-4 more quotes rapid-fire</td><td>Music crescendo</td></tr>
+        <tr><td>0:20-0:25</td><td>"Your story could be next." @lawayra_retreat</td><td>"Your story could be next."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">Production</div>
+        <p>90% editing. Source 8-10 strongest review quotes. Animate text over existing B-roll. Add emotional/cinematic music.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 10 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 10 &mdash; "If you're a high-achiever who feels empty inside"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Face-to-Camera, Intimate</span>
+        <span class="script-tag tag-duration">32 sec</span>
+        <span class="script-tag tag-pillar-educate">Educate &amp; Warn</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Dialogue</th></tr>
+        <tr><td>0:00-0:03</td><td>Close-up. TEXT: HIGH-ACHIEVER WHO FEELS EMPTY INSIDE</td><td>"If you're a high-achiever who feels empty inside... this is for you."</td></tr>
+        <tr><td>0:03-0:08</td><td>Tight framing. Blurred background</td><td>"You've done everything right. The career. The accomplishments. The validation. But there's a hollowness you can't shake."</td></tr>
+        <tr><td>0:08-0:14</td><td>CUT TO: B-roll empty chair overlooking mountains</td><td>"You meditate, you journal, you optimize everything. And still &mdash; something's missing."</td></tr>
+        <tr><td>0:14-0:20</td><td>TEXT: THE ARMOR THAT HELPED YOU SUCCEED IS SUFFOCATING YOU</td><td>"Here's what nobody tells high-achievers: the coping mechanisms that helped you succeed are the same ones keeping you from feeling alive."</td></tr>
+        <tr><td>0:20-0:26</td><td>Pause after each phrase</td><td>"Ayahuasca strips away the armor. Not the strength &mdash; the armor."</td></tr>
+        <tr><td>0:26-0:32</td><td>TEXT: NOT WEAKNESS. RELEASE.</td><td>"I've watched CEOs and doctors sit in ceremony and cry for the first time in decades. Not because they were weak. Because they finally let go."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">Delivery</div>
+        <p>PRIVATE CONVERSATION with the viewer. Quiet. No performance energy. Speak like you're sitting across from them at 2am.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 11 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 11 &mdash; "Ayahuasca will break you before it heals you"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Face-to-Camera, Raw</span>
+        <span class="script-tag tag-duration">28 sec</span>
+        <span class="script-tag tag-pillar-educate">Educate &amp; Warn</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Dialogue</th></tr>
+        <tr><td>0:00-0:03</td><td>Moody lighting. TEXT: AYAHUASCA WILL BREAK YOU BEFORE IT HEALS YOU</td><td>"Ayahuasca will break you before it heals you."</td></tr>
+        <tr><td>0:03-0:08</td><td>Standing. Overcast or shade</td><td>"Everyone talks about the transformation. Nobody talks about what comes before it."</td></tr>
+        <tr><td>0:08-0:14</td><td>CUT TO: B-roll darkness, single candle</td><td>"The first ceremony often isn't bliss. It's confrontation &mdash; with every lie you've told yourself, every pain you've stuffed down, every pattern you keep repeating."</td></tr>
+        <tr><td>0:14-0:19</td><td>TEXT: THAT IS THE MEDICINE WORKING.</td><td>"That's not a side effect. That IS the medicine working."</td></tr>
+        <tr><td>0:19-0:23</td><td>Pause between sentences</td><td>"The breaking is the healing. You can't rebuild without first seeing what's broken."</td></tr>
+        <tr><td>0:23-0:28</td><td>TEXT: THE VERSION OF YOU THAT'S BEEN WAITING</td><td>"It's not gentle. But it's real. And on the other side of that breaking is the version of you that's been waiting to emerge."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">Delivery</div>
+        <p>Your most RAW post. No polish. Lean into the intensity. Film in shade or overcast for moody feel.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 12 -->
+  <div class="script-card">
+    <div class="script-header">
+      <div class="script-title">Post 12 &mdash; "3 questions to ask any retreat before booking"</div>
+      <div class="script-meta">
+        <span class="script-tag tag-format">Face-to-Camera + Walking</span>
+        <span class="script-tag tag-duration">32 sec</span>
+        <span class="script-tag tag-pillar-prove">Prove &amp; Trust</span>
+      </div>
+    </div>
+    <div class="script-body">
+      <table class="script-table">
+        <tr><th>Time</th><th>On Screen</th><th>Dialogue</th></tr>
+        <tr><td>0:00-0:03</td><td>TEXT: 3 QUESTIONS TO ASK BEFORE YOU BOOK. Walking</td><td>"Three questions to ask any ayahuasca retreat before you book."</td></tr>
+        <tr><td>0:03-0:10</td><td>TEXT: Q1: WHO LEADS THE CEREMONY? 1 finger</td><td>"Who leads the ceremony? You want indigenous shamans with years of real training &mdash; not Westerners who did a six-month apprenticeship."</td></tr>
+        <tr><td>0:10-0:18</td><td>TEXT: Q2: WHAT'S YOUR MEDICAL SCREENING? 2 fingers</td><td>"What's your medical screening? If they say 'just sign a waiver' &mdash; find somewhere else."</td></tr>
+        <tr><td>0:18-0:25</td><td>TEXT: Q3: WHAT'S YOUR INTEGRATION SUPPORT? 3 fingers</td><td>"What does integration support look like? Ceremony is day one. What happens after matters just as much."</td></tr>
+        <tr><td>0:25-0:32</td><td>Stop walking. Face camera. TEXT: LINK IN BIO</td><td>"Ask these questions everywhere. Including us. At LaWayra, we're proud of our answers. Link in bio to apply &mdash; spots are limited."</td></tr>
+      </table>
+      <div class="script-notes">
+        <div class="script-notes-title">Note</div>
+        <p>This is the month's ONLY hard CTA. Deliver the close with confidence &mdash; you've earned it over 11 posts.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 2: B-ROLL SHOT LIBRARY -->
+<div class="section">
+  <div class="section-number">Section 02</div>
+  <h2>B-Roll Shot Library</h2>
+  <p class="section-subtitle">34 reusable clips organized by location. Film during batch sessions and keep in a dedicated folder. They'll be used across multiple posts, Stories, and future content.</p>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-number">34</div><div class="stat-label">Unique Shots</div></div>
+    <div class="stat-box"><div class="stat-number">5</div><div class="stat-label">Categories</div></div>
+    <div class="stat-box"><div class="stat-number">8-10</div><div class="stat-label">Per Batch</div></div>
+    <div class="stat-box"><div class="stat-number">4</div><div class="stat-label">Weeks to Complete</div></div>
+  </div>
+
+  <div class="category-label">Ceremony Space <span class="category-count">8 shots</span></div>
+  <div class="broll-grid">
+    <div class="broll-item"><div class="broll-id">B1</div><div class="broll-desc">Wide shot &mdash; mats in circle, candles lit</div><div class="broll-detail">Eye level from doorway &bull; 5-8 sec</div><div class="broll-used">Posts 1, 5, 9</div></div>
+    <div class="broll-item"><div class="broll-id">B2</div><div class="broll-desc">Single candle flame flickering</div><div class="broll-detail">Macro, tripod &bull; 5 sec</div><div class="broll-used">Posts 5, 8, 11</div></div>
+    <div class="broll-item"><div class="broll-id">B3</div><div class="broll-desc">Slow pan across altar &mdash; objects, flowers, mapacho</div><div class="broll-detail">Left-to-right, close &bull; 6 sec</div><div class="broll-used">Posts 5, 8</div></div>
+    <div class="broll-item"><div class="broll-id">B4</div><div class="broll-desc">Palo santo smoke rising</div><div class="broll-detail">Close-up, backlit &bull; 4 sec</div><div class="broll-used">Posts 5, 8</div></div>
+    <div class="broll-item"><div class="broll-id">B5</div><div class="broll-desc">Empty ceremony space in morning light</div><div class="broll-detail">Wide, golden light &bull; 5 sec</div><div class="broll-used">Post 5</div></div>
+    <div class="broll-item"><div class="broll-id">B6</div><div class="broll-desc">Mattresses being arranged</div><div class="broll-detail">Medium, slightly above &bull; 4 sec</div><div class="broll-used">Post 5</div></div>
+    <div class="broll-item"><div class="broll-id">B7</div><div class="broll-desc">Ceremony space at dusk</div><div class="broll-detail">Wide, tripod &bull; 6 sec</div><div class="broll-used">Stories</div></div>
+    <div class="broll-item"><div class="broll-id">B8</div><div class="broll-desc">Single mat with blanket &mdash; detail</div><div class="broll-detail">Close-up, eye level &bull; 4 sec</div><div class="broll-used">Post 2</div></div>
+  </div>
+
+  <div class="category-label">Grounds &amp; Nature <span class="category-count">8 shots</span></div>
+  <div class="broll-grid">
+    <div class="broll-item"><div class="broll-id">B9</div><div class="broll-desc">Sunrise over mountains</div><div class="broll-detail">Tripod, wide &bull; 8 sec</div><div class="broll-used">Posts 2, 5, 9</div></div>
+    <div class="broll-item"><div class="broll-id">B10</div><div class="broll-desc">Mountain panorama &mdash; daytime</div><div class="broll-detail">Slow pan, tripod &bull; 6 sec</div><div class="broll-used">Posts 1, 7, 10</div></div>
+    <div class="broll-item"><div class="broll-id">B11</div><div class="broll-desc">Garden path &mdash; walking POV</div><div class="broll-detail">Chest height &bull; 5 sec</div><div class="broll-used">Post 7</div></div>
+    <div class="broll-item"><div class="broll-id">B12</div><div class="broll-desc">Flowers / plants close-up</div><div class="broll-detail">Macro, natural light &bull; 4 sec</div><div class="broll-used">Stories</div></div>
+    <div class="broll-item"><div class="broll-id">B13</div><div class="broll-desc">River or water feature</div><div class="broll-detail">Low angle, tripod &bull; 5 sec</div><div class="broll-used">Stories</div></div>
+    <div class="broll-item"><div class="broll-id">B14</div><div class="broll-desc">Birds / insects in nature</div><div class="broll-detail">Close-up &bull; 4 sec</div><div class="broll-used">Stories</div></div>
+    <div class="broll-item"><div class="broll-id">B15</div><div class="broll-desc">Mist in the mountains &mdash; morning</div><div class="broll-detail">Tripod, wide &bull; 6 sec</div><div class="broll-used">Stories</div></div>
+    <div class="broll-item"><div class="broll-id">B16</div><div class="broll-desc">Night sky / stars</div><div class="broll-detail">Tripod, long exposure &bull; 8 sec</div><div class="broll-used">Stories</div></div>
+  </div>
+
+  <div class="category-label">Facilities <span class="category-count">6 shots</span></div>
+  <div class="broll-grid">
+    <div class="broll-item"><div class="broll-id">B17</div><div class="broll-desc">Room reveal &mdash; bed, window, decor</div><div class="broll-detail">Slow pan, doorway &bull; 5 sec</div><div class="broll-used">Post 2</div></div>
+    <div class="broll-item"><div class="broll-id">B18</div><div class="broll-desc">Kitchen &mdash; food prep (chopping, plating)</div><div class="broll-detail">Close-up hands &bull; 5 sec</div><div class="broll-used">Post 2, Stories</div></div>
+    <div class="broll-item"><div class="broll-id">B19</div><div class="broll-desc">Communal dining</div><div class="broll-detail">Medium wide, warm &bull; 5 sec</div><div class="broll-used">Post 2, 9</div></div>
+    <div class="broll-item"><div class="broll-id">B20</div><div class="broll-desc">Common area / gathering space</div><div class="broll-detail">Wide, inviting &bull; 4 sec</div><div class="broll-used">Post 2</div></div>
+    <div class="broll-item"><div class="broll-id">B21</div><div class="broll-desc">Front gate / entrance</div><div class="broll-detail">Walking toward, POV &bull; 4 sec</div><div class="broll-used">Post 2</div></div>
+    <div class="broll-item"><div class="broll-id">B22</div><div class="broll-desc">Balcony overlooking nature</div><div class="broll-detail">Eye level, peaceful &bull; 5 sec</div><div class="broll-used">Post 10</div></div>
+  </div>
+
+  <div class="category-label">People &amp; Shaman <span class="category-count">6 shots</span></div>
+  <div class="broll-grid">
+    <div class="broll-item"><div class="broll-id">B23</div><div class="broll-desc">Shaman's hands preparing mapacho</div><div class="broll-detail">Close-up &bull; 4 sec</div><div class="broll-used">Post 8</div></div>
+    <div class="broll-item"><div class="broll-id">B24</div><div class="broll-desc">Shaman in meditation</div><div class="broll-detail">Medium, respectful distance &bull; 5 sec</div><div class="broll-used">Post 8</div></div>
+    <div class="broll-item"><div class="broll-id">B25</div><div class="broll-desc">Shaman arranging ceremony space</div><div class="broll-detail">Medium wide &bull; 5 sec</div><div class="broll-used">Post 8</div></div>
+    <div class="broll-item"><div class="broll-id">B26</div><div class="broll-desc">Shaman silhouette against light</div><div class="broll-detail">Backlit, dramatic &bull; 4 sec</div><div class="broll-used">Post 8</div></div>
+    <div class="broll-item"><div class="broll-id">B27</div><div class="broll-desc">Guests arriving (silhouettes)</div><div class="broll-detail">Wide, from behind &bull; 4 sec</div><div class="broll-used">Post 2</div></div>
+    <div class="broll-item"><div class="broll-id">B28</div><div class="broll-desc">Group circle / orientation</div><div class="broll-detail">Wide, warm &bull; 5 sec</div><div class="broll-used">Post 2</div></div>
+  </div>
+
+  <div class="category-label">Detail Shots <span class="category-count">6 shots</span></div>
+  <div class="broll-grid">
+    <div class="broll-item"><div class="broll-id">B29</div><div class="broll-desc">Mapacho (tobacco) close-up</div><div class="broll-detail">Macro &bull; 3 sec</div><div class="broll-used">Posts 5, 8</div></div>
+    <div class="broll-item"><div class="broll-id">B30</div><div class="broll-desc">Ayahuasca brew / vessel</div><div class="broll-detail">Close-up, warm light &bull; 4 sec</div><div class="broll-used">Post 8</div></div>
+    <div class="broll-item"><div class="broll-id">B31</div><div class="broll-desc">Flowers arranged on altar</div><div class="broll-detail">Top-down or close &bull; 3 sec</div><div class="broll-used">Post 5</div></div>
+    <div class="broll-item"><div class="broll-id">B32</div><div class="broll-desc">Journal and pen</div><div class="broll-detail">Close-up, natural light &bull; 3 sec</div><div class="broll-used">Stories</div></div>
+    <div class="broll-item"><div class="broll-id">B33</div><div class="broll-desc">Hands holding a cup</div><div class="broll-detail">Close-up, moody &bull; 3 sec</div><div class="broll-used">Stories</div></div>
+    <div class="broll-item"><div class="broll-id">B34</div><div class="broll-desc">Morning coffee / tea ritual</div><div class="broll-detail">Close-up, steam visible &bull; 4 sec</div><div class="broll-used">Stories</div></div>
+  </div>
+</div>
+
+<!-- SECTION 3: STORIES -->
+<div class="section">
+  <div class="section-number">Section 03</div>
+  <h2>Stories Copy Bank</h2>
+  <p class="section-subtitle">Every Story fully scripted with exact text, visual direction, and sticker types. ~50 total across 4 weeks, averaging 2-3 per day.</p>
+
+  <div class="week-block">
+    <div class="week-header"><div class="week-title">Week 1</div></div>
+    <div class="day-block"><div class="day-name">Monday</div><div class="story-item"><span class="story-visual">Selfie video, casual</span><br>"First week of our new content journey starts tomorrow. Who's here for it?"<br><span class="story-sticker">POLL: Ready? &mdash; YES / LET'S GO</span></div></div>
+    <div class="day-block"><div class="day-name">Tuesday <span class="day-post-badge">Post #1</span></div><div class="story-item"><span class="story-visual">Sunrise scenic</span><br>"Good morning from the mountains of Colombia"<br><span class="story-sticker">LOCATION: Fredonia, Antioquia</span></div><div class="story-item"><span class="story-visual">Screenshot Post #1</span><br>"New Reel is live &mdash; watch this before your first ayahuasca ceremony."</div><div class="story-item"><span class="story-visual">Ceremony space photo</span><br><span class="story-sticker">POLL: Considered ayahuasca? &mdash; YES / NOT YET</span></div></div>
+    <div class="day-block"><div class="day-name">Wednesday</div><div class="story-item"><span class="story-visual">Kitchen food prep (B18)</span><br>"Everything here is prepared with intention. Even the food."</div><div class="story-item"><span class="story-visual">Ceremony space at dusk (B7)</span><br>"The quiet before ceremony. There's nothing like it."</div></div>
+    <div class="day-block"><div class="day-name">Thursday <span class="day-post-badge">Post #2</span></div><div class="story-item"><span class="story-visual">Mountain mist</span><br>"Good morning from Fredonia"</div><div class="story-item"><span class="story-visual">Screenshot Post #2</span><br>"POV: Your first 24 hours at LaWayra. New Reel is live."</div><div class="story-item"><span class="story-visual">Sunset</span><br>"This is the view waiting for you."<br><span class="story-sticker">SLIDER: fire emoji</span></div></div>
+    <div class="day-block"><div class="day-name">Friday</div><div class="story-item"><span class="story-visual">Nature close-up</span><br><span class="story-sticker">QUESTION: What do you want to know about ayahuasca?</span></div></div>
+    <div class="day-block"><div class="day-name">Saturday <span class="day-post-badge">Post #3</span></div><div class="story-item"><span class="story-visual">Morning meditation</span><br>"Saturday mornings at LaWayra"</div><div class="story-item"><span class="story-visual">Screenshot Post #3</span><br>"500+ 5-star reviews. New Reel breaks down why."</div></div>
+    <div class="day-block"><div class="day-name">Sunday</div><div class="story-item"><span class="story-visual">Peaceful nature</span><br>"Rest day. Recharging for next week."</div></div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-header"><div class="week-title">Week 2</div></div>
+    <div class="day-block"><div class="day-name">Monday</div><div class="story-item"><span class="story-visual">Text on dark nature</span><br>"Week 2. Going deeper this week."</div></div>
+    <div class="day-block"><div class="day-name">Tuesday <span class="day-post-badge">Post #4</span></div><div class="story-item"><span class="story-visual">Shaman morning ritual</span><br>"Every morning starts with intention here."</div><div class="story-item"><span class="story-visual">Dark background</span><br><span class="story-sticker">SLIDER: Therapy hit a ceiling? &mdash; no to absolutely</span></div><div class="story-item"><span class="story-visual">Screenshot Post #4</span><br>"If therapy hasn't been enough &mdash; this Reel is for you."</div></div>
+    <div class="day-block"><div class="day-name">Wednesday</div><div class="story-item"><span class="story-visual">Kitchen &mdash; colorful fruit</span><br>"The dieta is part of the preparation."</div><div class="story-item"><span class="story-visual">Ceremony at dusk</span><br><span class="story-sticker">QUESTION: What scares you most about ayahuasca?</span></div></div>
+    <div class="day-block"><div class="day-name">Thursday <span class="day-post-badge">Post #5</span></div><div class="story-item"><span class="story-visual">Palo santo smoke</span><br>"The shaman preparing for tonight"</div><div class="story-item"><span class="story-visual">Screenshot Post #5</span><br>"What does a real ceremony look like? New POV Reel."</div></div>
+    <div class="day-block"><div class="day-name">Friday</div><div class="story-item"><span class="story-visual">Nature detail</span><br>"Even the smallest things feel different here"</div><div class="story-item"><span class="story-visual">Dark background</span><br><span class="story-sticker">QUIZ: Ayahuasca is a drug in Colombia? &mdash; FALSE</span></div></div>
+    <div class="day-block"><div class="day-name">Saturday <span class="day-post-badge">Post #6</span></div><div class="story-item"><span class="story-visual">DM/review screenshot (blurred)</span><br>"Messages like this are why we do what we do."</div><div class="story-item"><span class="story-visual">Screenshot Post #6</span><br>"3 red flags that expose a fake retreat. Save this one."</div></div>
+    <div class="day-block"><div class="day-name">Sunday</div><div class="story-item"><span class="story-visual">Sunset B-roll</span><br>"Capturing footage for next week. Grateful."</div></div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-header"><div class="week-title">Week 3</div></div>
+    <div class="day-block"><div class="day-name">Monday</div><div class="story-item"><span class="story-visual">Text on mountains</span><br>"Halfway through month 1. The raw posts resonate most. Doubling down."</div></div>
+    <div class="day-block"><div class="day-name">Tuesday <span class="day-post-badge">Post #7</span></div><div class="story-item"><span class="story-visual">Golden hour sunrise</span><br>"Mornings like this make you question city life"</div><div class="story-item"><span class="story-visual">Behind the scenes filming</span><br>"Filming today's Reel hit different."</div><div class="story-item"><span class="story-visual">Screenshot Post #7</span><br>"What if 2 weeks could do what 2 years couldn't?"</div></div>
+    <div class="day-block"><div class="day-name">Wednesday</div><div class="story-item"><span class="story-visual">Shaman's altar close-up</span><br>"Every object has meaning. Nothing is decoration."</div><div class="story-item"><span class="story-visual">Mountains midday</span><br><span class="story-sticker">POLL: Fly to Colombia for healing? &mdash; IN A HEARTBEAT / NERVOUS BUT CURIOUS</span></div></div>
+    <div class="day-block"><div class="day-name">Thursday <span class="day-post-badge">Post #8</span></div><div class="story-item"><span class="story-visual">Morning mist (B15)</span><br>"When mist wraps the mountains, the shaman says the spirits are close."</div><div class="story-item"><span class="story-visual">Screenshot Post #8</span><br>"How our shaman prepares for ceremony &mdash; new Reel."</div></div>
+    <div class="day-block"><div class="day-name">Friday</div><div class="story-item"><span class="story-visual">Repost tagged Story</span><br>"This is why we show up every day."</div><div class="story-item"><span class="story-visual">Dark background</span><br><span class="story-sticker">QUESTION: If you could heal one thing, what would it be?</span></div></div>
+    <div class="day-block"><div class="day-name">Saturday <span class="day-post-badge">Post #9</span></div><div class="story-item"><span class="story-visual">Review design card</span><br>"One review. One story. This is what matters."</div><div class="story-item"><span class="story-visual">Screenshot Post #9</span><br>"2,500 lives. Their words, not ours."</div><div class="story-item"><span class="story-visual">Gratitude</span><br>"Thank you for being here. Week 3 done."</div></div>
+    <div class="day-block"><div class="day-name">Sunday</div><div class="story-item"><span class="story-visual">Hammock, garden</span><br>"Rest day. The best healing happens in stillness."</div></div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-header"><div class="week-title">Week 4</div></div>
+    <div class="day-block"><div class="day-name">Monday</div><div class="story-item"><span class="story-visual">Text on nature</span><br>"Final week of month 1. Three more Reels. Pushing boundaries."</div></div>
+    <div class="day-block"><div class="day-name">Tuesday <span class="day-post-badge">Post #10</span></div><div class="story-item"><span class="story-visual">Coffee, stillness (B34)</span><br>"This week's content is for those who have everything &mdash; except peace."</div><div class="story-item"><span class="story-visual">Screenshot Post #10</span><br>"If you're a high-achiever who feels empty inside."</div><div class="story-item"><span class="story-visual">Dark background</span><br><span class="story-sticker">SLIDER: Successful but empty? &mdash; never to always</span></div></div>
+    <div class="day-block"><div class="day-name">Wednesday</div><div class="story-item"><span class="story-visual">Screen recording editing</span><br>"Behind the scenes: CapCut + intention = magic"</div><div class="story-item"><span class="story-visual">Nature scene</span><br><span class="story-sticker">POLL: Which post resonated most? &mdash; Therapy / Ceremony / High-achiever / Red flags</span></div></div>
+    <div class="day-block"><div class="day-name">Thursday <span class="day-post-badge">Post #11</span></div><div class="story-item"><span class="story-visual">Before filming BTS</span><br>"The rawest thing I've filmed yet drops today."</div><div class="story-item"><span class="story-visual">Screenshot Post #11</span><br>"Ayahuasca will break you before it heals you."</div></div>
+    <div class="day-block"><div class="day-name">Friday</div><div class="story-item"><span class="story-visual">DM screenshot (blurred)</span><br>"Your messages keep me going."</div><div class="story-item"><span class="story-visual">Dark background</span><br><span class="story-sticker">QUESTION: What should I cover next month?</span></div></div>
+    <div class="day-block"><div class="day-name">Saturday <span class="day-post-badge">Post #12 &mdash; HARD CTA</span></div><div class="story-item"><span class="story-visual">Morning energy</span><br>"Last post of month 1. A big one."</div><div class="story-item"><span class="story-visual">Screenshot Post #12</span><br>"3 questions to ask ANY retreat. Go save it."</div><div class="story-item"><span class="story-visual">Direct CTA</span><br>"Ceremony dates are open. Spots limited. If something says 'it's time' &mdash; trust that."<br><span class="story-sticker">LINK to booking</span></div><div class="story-item"><span class="story-visual">Selfie video</span><br>"Month 1 complete. Thank you. This is just the beginning."</div></div>
+    <div class="day-block"><div class="day-name">Sunday</div><div class="story-item"><span class="story-visual">Stats screenshot</span><br>"Month 1 recap: [X] posts, [X] views, [X] new followers."</div><div class="story-item"><span class="story-visual">Sunset</span><br>"Month 2 starts next week. We're just getting started."</div></div>
+  </div>
+</div>
+
+<!-- SECTION 4: DM SEQUENCES -->
+<div class="section">
+  <div class="section-number">Section 04</div>
+  <h2>DM Response Sequences</h2>
+  <p class="section-subtitle">When someone DMs a trigger word, respond within 4 hours. Copy-paste and personalize the name.</p>
+
+  <div class="dm-sequence">
+    <div class="dm-header"><div class="dm-trigger">Trigger: "READY"</div><div class="dm-trigger-badge">"READY"</div></div>
+    <div class="dm-context">Used in Posts 2, 9. People interested in preparing for a retreat.</div>
+    <div class="dm-message"><div class="dm-message-label">Message 1</div><div class="dm-message-timing">Send immediately</div><div class="dm-message-text">Hey [Name]! So glad you reached out.
+
+Here's your free preparation guide &mdash; covers the dieta, mindset, what to pack:
+
+[LINK to preparation guide]
+
+Take your time. If questions come up, just reply here.</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 2</div><div class="dm-message-timing">24 hours later if no reply</div><div class="dm-message-text">Hey [Name] &mdash; checking in. Did you get a chance to look at the guide?
+
+A lot of people have questions after reading it (totally normal). I'm here.</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 3</div><div class="dm-message-timing">48 hours after Message 2 if engaged</div><div class="dm-message-text">If you're feeling called to explore further, our next ceremony dates are [DATES].
+
+No pressure. When the time is right, you'll know.
+
+Apply here: [BOOKING LINK]</div></div>
+  </div>
+
+  <div class="dm-sequence">
+    <div class="dm-header"><div class="dm-trigger">Trigger: "INFO"</div><div class="dm-trigger-badge">"INFO"</div></div>
+    <div class="dm-context">Used in Post 6. People wanting safety/logistics details.</div>
+    <div class="dm-message"><div class="dm-message-label">Message 1</div><div class="dm-message-timing">Send immediately</div><div class="dm-message-text">Hey [Name]! Here's what to know about LaWayra:
+
+&bull; Location: Fredonia, 1.5hrs from Medellin
+&bull; Ceremonies: Indigenous shaman, decades of experience
+&bull; Safety: Full medical screening every guest
+&bull; Duration: 7-14 day retreats
+&bull; Includes: Accommodation, meals, ceremonies, integration
+
+Want the full overview with dates and pricing?</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 2</div><div class="dm-message-timing">If they engage</div><div class="dm-message-text">Here you go: [LINK]
+
+Programs start at $545 &mdash; everything included.
+
+Next dates: [DATES]
+
+Any questions, I'm right here.</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 3</div><div class="dm-message-timing">48 hours if no reply</div><div class="dm-message-text">Hey [Name] &mdash; just circling back. Did the info answer your questions?
+
+I know it's a big decision. I can connect you with a past guest if that helps.</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 4</div><div class="dm-message-timing">If they express interest</div><div class="dm-message-text">Amazing. Application link: [BOOKING LINK]
+
+Takes 5 minutes. Team reaches out within 24 hours.
+
+Your journey starts with this step.</div></div>
+  </div>
+
+  <div class="dm-sequence">
+    <div class="dm-header"><div class="dm-trigger">Trigger: "BOOK"</div><div class="dm-trigger-badge">"BOOK"</div></div>
+    <div class="dm-context">Used in Post 12 (hard CTA). People ready to book.</div>
+    <div class="dm-message"><div class="dm-message-label">Message 1</div><div class="dm-message-timing">Send immediately</div><div class="dm-message-text">Yes! Apply here: [BOOKING LINK]
+
+Takes 5 minutes. You'll hear from us within 24 hours.
+
+Exciting times, [Name]. This could be the best decision you ever make.</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 2</div><div class="dm-message-timing">24 hours if no application</div><div class="dm-message-text">Hey [Name] &mdash; making sure the link worked. Next ceremony is [DATE] and spots fill up.
+
+Any last questions? Sometimes that hesitation just needs one more answer.</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 3</div><div class="dm-message-timing">After application submitted</div><div class="dm-message-text">Got your application, [Name]!
+
+Team will be in touch within 24 hours. Here's your free preparation guide: [LINK]
+
+Welcome to the LaWayra family.</div></div>
+  </div>
+
+  <div class="dm-sequence">
+    <div class="dm-header"><div class="dm-trigger">Trigger: "HEAL" or Generic</div><div class="dm-trigger-badge">"HEAL"</div></div>
+    <div class="dm-context">Catch-all for DMs without a specific keyword.</div>
+    <div class="dm-message"><div class="dm-message-label">Message 1</div><div class="dm-message-timing">Send immediately</div><div class="dm-message-text">Hey [Name]! Glad you're here.
+
+Quick question: are you researching retreats, or earlier in your journey &mdash; just curious?
+
+Either way, I've got you.</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 2a</div><div class="dm-message-timing">If researching</div><div class="dm-message-text">&rarr; Route to "INFO" sequence</div></div>
+    <div class="dm-message"><div class="dm-message-label">Message 2b</div><div class="dm-message-timing">If just curious</div><div class="dm-message-text">Totally get it. Here's a quick Reel on what ayahuasca is: [Post #1 link]
+
+And this one shows a real ceremony: [Post #5 link]
+
+Take your time. When you're ready, I'm here.</div></div>
+  </div>
+
+  <h3>Quick-Reply Templates</h3>
+  <div class="quick-reply"><div class="quick-reply-q">"Is it safe?"</div><div class="quick-reply-a">Safety is our #1 priority. Full medical screening, indigenous shaman with decades of experience, medical team on-site. We screen for medication interactions (SSRIs, MAOIs). Happy to send our full safety protocol.</div></div>
+  <div class="quick-reply"><div class="quick-reply-q">"How much does it cost?"</div><div class="quick-reply-a">Programs start at $545 &mdash; includes accommodation, meals, ceremonies, and integration support. I can send the full pricing breakdown if you're interested.</div></div>
+  <div class="quick-reply"><div class="quick-reply-q">"What should I bring?"</div><div class="quick-reply-a">Essentials: comfortable loose clothing, journal, toiletries, layers for cool mornings, open mind. We provide everything else. Want the full packing list?</div></div>
+  <div class="quick-reply"><div class="quick-reply-q">"How do I get there?"</div><div class="quick-reply-a">Fly into Medellin (Jose Maria Cordova). We arrange private transport to Fredonia &mdash; 1.5 hours through beautiful mountains. We handle all logistics.</div></div>
+  <div class="quick-reply"><div class="quick-reply-q">"I'm on medication &mdash; can I still come?"</div><div class="quick-reply-a">Some medications (SSRIs, MAOIs) need to be tapered off first &mdash; medical safety requirement. Consult your prescribing doctor. Our screening process covers everything in detail.</div></div>
+</div>
+
+<!-- SECTION 5: SCHEDULING -->
+<div class="section">
+  <div class="section-number">Section 05</div>
+  <h2>Scheduling &amp; Posting Guide</h2>
+  <p class="section-subtitle">Optimal posting times, weekly workflow, and publishing checklist.</p>
+
+  <h3>Optimal Posting Times</h3>
+  <p>Based on Colombia + US audience overlap:</p>
+  <table class="schedule-table">
+    <tr><th>Day</th><th>Best Time</th><th>Why</th></tr>
+    <tr><td>Tuesday</td><td>11:00 AM &ndash; 12:00 PM COT</td><td>US lunch break (12-1pm EST)</td></tr>
+    <tr><td>Thursday</td><td>11:00 AM &ndash; 12:00 PM COT</td><td>Midday engagement peak</td></tr>
+    <tr><td>Saturday</td><td>9:00 AM &ndash; 10:00 AM COT</td><td>Weekend morning scroll</td></tr>
+    <tr><td>Stories</td><td>8-9 AM + 6-7 PM COT</td><td>Morning + evening wind-down</td></tr>
+  </table>
+
+  <h3>Weekly Workflow</h3>
+  <table class="schedule-table">
+    <tr><th>Day</th><th>Task</th><th>Time</th></tr>
+    <tr><td>Sunday</td><td>Batch filming (2-2.5 hrs)</td><td>Morning</td></tr>
+    <tr><td>Monday</td><td>Edit 3 Reels + schedule in Meta Business Suite</td><td>2-3 hrs</td></tr>
+    <tr><td>Tuesday</td><td>Post live 11am. Monitor comments. Stories</td><td>30 min</td></tr>
+    <tr><td>Wednesday</td><td>Engage: comments, DMs, 10 niche accounts. Stories</td><td>30 min</td></tr>
+    <tr><td>Thursday</td><td>Post live 11am. Monitor. Stories</td><td>30 min</td></tr>
+    <tr><td>Friday</td><td>Engage: competitor accounts, DMs. Stories</td><td>30 min</td></tr>
+    <tr><td>Saturday</td><td>Post live 9am. Monitor. Stories. Weekly review</td><td>45 min</td></tr>
+  </table>
+  <p><strong>Total weekly: ~6-8 hours</strong></p>
+
+  <h3>Publishing Checklist</h3>
+  <ul class="checklist">
+    <li>Caption copy-pasted from execution kit</li>
+    <li>Hashtags included (13-15 per post)</li>
+    <li>Compelling cover image (text overlay, face visible)</li>
+    <li>Location tag: Fredonia, Antioquia or Medellin</li>
+    <li>Audio: original for face-to-camera, trending for B-roll</li>
+    <li>Alt text added for accessibility</li>
+    <li>"Share to Feed" toggled ON for Reels</li>
+    <li>Share to Stories immediately after posting</li>
+  </ul>
+
+  <h3>Link-in-Bio Structure</h3>
+  <ul class="checklist">
+    <li><strong>Apply for Next Ceremony</strong> &rarr; Booking page (top priority)</li>
+    <li><strong>Free Preparation Guide</strong> &rarr; PDF / landing page</li>
+    <li><strong>Our Story</strong> &rarr; ayahuascaincolombia.com</li>
+    <li><strong>Reviews</strong> &rarr; TripAdvisor / Google</li>
+    <li><strong>WhatsApp</strong> &rarr; +57 350 8449074</li>
+  </ul>
+</div>
+
+<!-- SECTION 6: ENGAGEMENT -->
+<div class="section">
+  <div class="section-number">Section 06</div>
+  <h2>Engagement Protocol</h2>
+  <p class="section-subtitle">Daily engagement checklist and community building rules. 20-30 minutes per day.</p>
+
+  <h3>Within 2 Hours of Posting</h3>
+  <ul class="checklist">
+    <li>Reply to every comment (heart + short reply)</li>
+    <li>Heart every comment</li>
+    <li>Answer questions genuinely + "DM me for more"</li>
+    <li>Share post to Stories with teaser</li>
+  </ul>
+
+  <h3>Daily Engagement</h3>
+  <ul class="checklist">
+    <li>Check DMs, reply within 4 hours</li>
+    <li>Engage with 10-15 niche accounts</li>
+    <li>Leave genuine 2+ sentence comments</li>
+    <li>Follow 3-5 relevant accounts daily</li>
+    <li>Reply to Stories with meaningful responses</li>
+    <li>Reply to every Story reaction / DM</li>
+  </ul>
+
+  <h3>Comment Templates</h3>
+  <div class="quick-reply"><div class="quick-reply-q">Someone shares their experience</div><div class="quick-reply-a">Thank you for sharing this. Your journey matters, and stories like yours remind us why we do this work.</div></div>
+  <div class="quick-reply"><div class="quick-reply-q">"How much does it cost?"</div><div class="quick-reply-a">Programs start at $545. DM me "INFO" and I'll send the full breakdown with dates!</div></div>
+  <div class="quick-reply"><div class="quick-reply-q">Someone tags a friend</div><div class="quick-reply-a">Love that you're sharing this. [Friend] &mdash; if you ever have questions, we're here.</div></div>
+  <div class="quick-reply"><div class="quick-reply-q">"I want to come"</div><div class="quick-reply-a">We'd love to have you! DM me "READY" and I'll send your free preparation guide.</div></div>
+
+  <h3>Community Rules</h3>
+  <div class="script-notes" style="margin-top:16px">
+    <p><strong>1.</strong> Never be salesy in comments. Trust first. DMs for conversion.</p>
+    <p><strong>2.</strong> Respond to negativity with grace. Never argue.</p>
+    <p><strong>3.</strong> Repost tagged content with a thank you.</p>
+    <p><strong>4.</strong> Create conversation, not announcements.</p>
+    <p><strong>5.</strong> Track super-fans &mdash; future testimonials and ambassadors.</p>
+  </div>
+</div>
+
+<!-- SECTION 7: ANALYTICS -->
+<div class="section">
+  <div class="section-number">Section 07</div>
+  <h2>Week 4 Analytics Tracker</h2>
+  <p class="section-subtitle">Track performance, grade every post, and use the decision framework to plan Month 2.</p>
+
+  <h3>Post Performance Tracker</h3>
+  <table class="tracker-table">
+    <tr><th>#</th><th>Hook</th><th>Views</th><th>Likes</th><th>Comments</th><th>Saves</th><th>Shares</th><th>DMs</th><th>Grade</th></tr>
+    <tr><td>1</td><td>Watch before ceremony</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>2</td><td>First 24 hours</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>3</td><td>500+ 5 stars</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>4</td><td>Therapy not enough</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>5</td><td>Authentic ceremony</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>6</td><td>3 red flags</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>7</td><td>Heal in 2 weeks</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>8</td><td>Shamans prepare</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>9</td><td>2,500 transformed</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>10</td><td>High-achiever empty</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>11</td><td>Break before heal</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>12</td><td>3 questions booking</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+  </table>
+
+  <h3>Grading System</h3>
+  <div class="grade-grid">
+    <div class="grade-card grade-a"><div class="grade-letter">A</div><div class="grade-label">Winner</div><div class="grade-criteria">3,000+ views &bull; 30+ saves</div><div class="grade-action">Film 3 variations. Make 30% of Month 2.</div></div>
+    <div class="grade-card grade-b"><div class="grade-letter">B</div><div class="grade-label">Performer</div><div class="grade-criteria">1K-3K views &bull; 15-29 saves</div><div class="grade-action">Reuse hook, optimize thumbnail/text.</div></div>
+    <div class="grade-card grade-c"><div class="grade-letter">C</div><div class="grade-label">Underperformer</div><div class="grade-criteria">&lt;1K views &bull; &lt;15 saves</div><div class="grade-action">Retire this hook type. Try new approach.</div></div>
+  </div>
+
+  <h3>Monthly Dashboard</h3>
+  <table class="tracker-table">
+    <tr><th>Metric</th><th style="text-align:center">Result</th><th style="text-align:center">Target</th></tr>
+    <tr><td>Total Reel views</td><td>&mdash;</td><td>12,000+</td></tr>
+    <tr><td>Avg views per Reel</td><td>&mdash;</td><td>1,000+</td></tr>
+    <tr><td>Top post</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>Lowest post</td><td>&mdash;</td><td>&mdash;</td></tr>
+    <tr><td>Profile visits</td><td>&mdash;</td><td>200+</td></tr>
+    <tr><td>New followers (net)</td><td>&mdash;</td><td>+50-100</td></tr>
+    <tr><td>DMs from CTAs</td><td>&mdash;</td><td>5+</td></tr>
+    <tr><td>Link-in-bio clicks</td><td>&mdash;</td><td>40+</td></tr>
+    <tr><td>Booking inquiries</td><td>&mdash;</td><td>1-3</td></tr>
+  </table>
+
+  <h3>Month 2 Decision Framework</h3>
+  <div class="decision-card"><div class="decision-if">If Command hooks won (Posts 1, 4):</div><div class="decision-then">"Watch this..." / "Stop doing..." format resonates. Film 4-5 Command hooks. Expand into Problem Aware topics.</div></div>
+  <div class="decision-card"><div class="decision-if">If Social Proof won (Posts 3, 9):</div><div class="decision-then">Audience trusts peer stories. Increase to 2 testimonial posts/week. Collect video testimonials.</div></div>
+  <div class="decision-card"><div class="decision-if">If Question hooks won (Posts 5, 7):</div><div class="decision-then">Curiosity drives your audience. Film "What if..." / "What does..." weekly. Add "Did you know..." patterns.</div></div>
+  <div class="decision-card"><div class="decision-if">If List hooks won (Posts 6, 12):</div><div class="decision-then">Save-worthy content wins. More "3 things..." / "5 signs..." Reels. Highest save rates.</div></div>
+  <div class="decision-card"><div class="decision-if">If Contrarian hook won (Post 11):</div><div class="decision-then">Raw honesty resonates. Push "uncomfortable truths" content. Builds massive trust.</div></div>
+  <div class="decision-card"><div class="decision-if">If Label hook won (Post 10):</div><div class="decision-then">Reaching beyond the niche. Expand "If you're a [identity]..." hooks to entrepreneurs, mothers, veterans, etc.</div></div>
+
+  <h3>Month 2 Increases</h3>
+  <div class="script-notes" style="margin-top:16px">
+    <p><strong>1.</strong> Go from 3x to 4x/week &mdash; add Monday or Wednesday</p>
+    <p><strong>2.</strong> Hormozi multiplication: 1 topic &rarr; 3 hooks &rarr; 3 Reels</p>
+    <p><strong>3.</strong> Add "Most Aware" content if 3+ CTA DMs received</p>
+    <p><strong>4.</strong> Shift to 30-40% Problem Aware to expand audience</p>
+    <p><strong>5.</strong> Start collecting video testimonials from guests</p>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  <div class="container">
+    <p><strong>LaWayra Retreat</strong> &mdash; Full Execution Kit</p>
+    <p style="margin-top:8px">Phase 4 of 4 &bull; Instagram Content Strategy &bull; @lawayra_retreat</p>
+  </div>
+</div>
+
+</body>
+</html>

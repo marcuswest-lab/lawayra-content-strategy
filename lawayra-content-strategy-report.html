@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaWayra Content Strategy Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #1a3a2a;
+    --primary-light: #2d5e42;
+    --accent: #c8956c;
+    --accent-light: #e8c9a8;
+    --accent-glow: #d4a574;
+    --bg: #0f1710;
+    --bg-card: #151e17;
+    --bg-card-hover: #1a2a1e;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --text-dim: #6b6560;
+    --border: #2a3a2e;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 100px 60px 80px;
+    background: linear-gradient(165deg, #0f1710 0%, #1a3a2a 40%, #2d5e42 70%, #1a3a2a 100%);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,149,108,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(45,94,66,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+  .hero-meta strong { color: var(--text); font-weight: 500; }
+
+  /* Layout */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  /* Section */
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin-bottom: 50px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 40px 0 16px;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 30px 0 12px;
+  }
+  p { margin-bottom: 16px; color: var(--text); font-size: 15px; }
+  strong { color: #fff; font-weight: 600; }
+
+  /* Pillar Cards */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+  }
+  .pillar-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .pillar-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+  .pillar-card.green { border-top: 3px solid var(--success); }
+  .pillar-card.green:hover { border-color: var(--success); }
+  .pillar-card.blue { border-top: 3px solid var(--blue); }
+  .pillar-card.blue:hover { border-color: var(--blue); }
+  .pillar-card.gold { border-top: 3px solid var(--accent); }
+  .pillar-card.gold:hover { border-color: var(--accent); }
+  .pillar-card.purple { border-top: 3px solid var(--purple); }
+  .pillar-card.purple:hover { border-color: var(--purple); }
+  .pillar-icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .pillar-icon.green { background: rgba(74,222,128,0.12); color: var(--success); }
+  .pillar-icon.blue { background: rgba(96,165,250,0.12); color: var(--blue); }
+  .pillar-icon.gold { background: rgba(200,149,108,0.12); color: var(--accent); }
+  .pillar-icon.purple { background: rgba(167,139,250,0.12); color: var(--purple); }
+  .pillar-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .pillar-purpose {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .pillar-meta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .pillar-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-muted);
+  }
+  .pillar-topics {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 4px;
+  }
+  .pillar-topics li {
+    padding: 5px 0 5px 16px;
+    position: relative;
+  }
+  .pillar-topics li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+  .pillar-card.green .pillar-topics li::before { background: var(--success); }
+  .pillar-card.blue .pillar-topics li::before { background: var(--blue); }
+  .pillar-card.gold .pillar-topics li::before { background: var(--accent); }
+  .pillar-card.purple .pillar-topics li::before { background: var(--purple); }
+
+  /* Hook Bank */
+  .hook-tabs {
+    display: flex;
+    gap: 6px;
+    margin: 30px 0 0;
+    flex-wrap: wrap;
+  }
+  .hook-tab {
+    padding: 10px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+  }
+  .hook-tab:hover { background: var(--bg-card-hover); color: var(--text); }
+  .hook-tab.active {
+    background: var(--bg-card-hover);
+    color: var(--accent);
+    border-color: var(--accent);
+    border-bottom-color: var(--bg-card-hover);
+  }
+  .hook-panel {
+    display: none;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0 12px 12px 12px;
+    padding: 24px;
+  }
+  .hook-panel.active { display: block; }
+  .hook-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hook-panel-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .hook-panel-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(200,149,108,0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .hook-item {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    gap: 14px;
+    align-items: start;
+  }
+  .hook-item:last-child { border-bottom: none; }
+  .hook-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-align: center;
+    padding-top: 2px;
+  }
+  .hook-content { display: flex; flex-direction: column; gap: 6px; }
+  .hook-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.4;
+  }
+  .hook-overlay {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-muted);
+    align-self: flex-start;
+    max-width: 100%;
+    word-break: break-word;
+  }
+  .hook-awareness {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .awareness-problem { background: rgba(74,222,128,0.1); color: var(--success); }
+  .awareness-solution { background: rgba(96,165,250,0.1); color: var(--blue); }
+  .awareness-product { background: rgba(200,149,108,0.1); color: var(--accent); }
+  .awareness-unaware { background: rgba(167,139,250,0.1); color: var(--purple); }
+  .awareness-most { background: rgba(248,113,113,0.1); color: var(--danger); }
+
+  /* Assembly Timeline */
+  .timeline {
+    display: flex;
+    gap: 0;
+    margin: 30px 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+  }
+  .timeline-step {
+    flex: 1;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+  .timeline-step:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .timeline-step + .timeline-step { margin-left: 16px; }
+  .timeline-duration {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .timeline-unit {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+  .timeline-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .timeline-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Reel Assembly Visual */
+  .reel-assembly {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .reel-assembly::before {
+    content: 'REEL TEMPLATE';
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: rgba(200,149,108,0.1);
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+  .reel-phase {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .reel-phase:last-child { border-bottom: none; }
+  .reel-time {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .reel-time.hook-time { color: var(--danger); }
+  .reel-time.meat-time { color: var(--blue); }
+  .reel-time.reward-time { color: var(--success); }
+  .reel-time-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .reel-details {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .reel-phase-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  /* Weekly Calendar */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 30px 0;
+  }
+  .week-day {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  .week-day:hover {
+    border-color: rgba(200,149,108,0.3);
+    background: var(--bg-card-hover);
+  }
+  .week-day-name {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .week-day-pillar {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .week-day-format {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .week-day-hook {
+    font-size: 11px;
+    color: var(--text-muted);
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Visual Standards */
+  .vis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+  }
+  .vis-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s ease;
+  }
+  .vis-card:hover {
+    border-color: rgba(200,149,108,0.3);
+    background: var(--bg-card-hover);
+  }
+  .vis-card.full { grid-column: span 2; }
+  .vis-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .vis-title-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: rgba(200,149,108,0.1);
+    color: var(--accent);
+  }
+  .vis-list {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .vis-list li {
+    padding: 6px 0 6px 16px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .vis-list li:last-child { border-bottom: none; }
+  .vis-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Hashtag Containers */
+  .hashtag-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .hashtag-group {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+  .hashtag-group:hover {
+    border-color: rgba(200,149,108,0.3);
+  }
+  .hashtag-group.core { border-left: 3px solid var(--success); }
+  .hashtag-group.reach { border-left: 3px solid var(--blue); }
+  .hashtag-group.niche { border-left: 3px solid var(--purple); }
+  .hashtag-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .hashtag-group.core .hashtag-label { color: var(--success); }
+  .hashtag-group.reach .hashtag-label { color: var(--blue); }
+  .hashtag-group.niche .hashtag-label { color: var(--purple); }
+  .hashtag-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .hashtag-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-muted);
+  }
+
+  /* CTA Section */
+  .cta-primary {
+    background: linear-gradient(135deg, rgba(200,149,108,0.08) 0%, rgba(200,149,108,0.02) 100%);
+    border: 1px solid rgba(200,149,108,0.3);
+    border-radius: 16px;
+    padding: 36px 32px;
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-primary::before {
+    content: 'PRIMARY CTA';
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: rgba(200,149,108,0.12);
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+  .cta-structure {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .cta-part {
+    text-align: center;
+    padding: 16px 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(200,149,108,0.15);
+  }
+  .cta-part-num {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .cta-part-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .cta-part-example {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* Flowchart */
+  .flow-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 30px 0;
+  }
+  .flow-root {
+    background: linear-gradient(135deg, rgba(200,149,108,0.15), rgba(200,149,108,0.05));
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+  }
+  .flow-connector {
+    width: 2px;
+    height: 24px;
+    background: var(--border);
+  }
+  .flow-branches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+  .flow-branch {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .flow-branch:hover {
+    border-color: rgba(200,149,108,0.3);
+  }
+  .flow-branch::before {
+    content: '';
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 12px;
+    background: var(--border);
+  }
+  .flow-branch-icon {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .flow-branch-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .flow-branch-dest {
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+
+  /* Story Highlights Row */
+  .highlights-row {
+    display: flex;
+    gap: 24px;
+    margin: 30px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .highlight-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .highlight-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: var(--bg-card);
+    transition: all 0.3s ease;
+  }
+  .highlight-circle:hover {
+    background: rgba(200,149,108,0.1);
+    transform: scale(1.05);
+  }
+  .highlight-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* DM Table */
+  .dm-table {
+    margin: 24px 0;
+  }
+
+  /* Funnel */
+  .funnel {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .funnel-level {
+    display: grid;
+    grid-template-columns: 160px 60px 1fr;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .funnel-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .funnel-pct {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--accent);
+    text-align: center;
+  }
+  .funnel-example {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .funnel-level.lvl-unaware { border-left: 3px solid var(--purple); }
+  .funnel-level.lvl-problem { border-left: 3px solid var(--success); }
+  .funnel-level.lvl-solution { border-left: 3px solid var(--blue); }
+  .funnel-level.lvl-product { border-left: 3px solid var(--accent); }
+  .funnel-level.lvl-most { border-left: 3px solid var(--danger); }
+
+  /* Callout Row */
+  .callout-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+  }
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .callout-number {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .callout-number.gold { color: var(--accent); }
+  .callout-number.green { color: var(--success); }
+  .callout-number.blue { color: var(--blue); }
+  .callout-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Insight Boxes */
+  .insight {
+    background: linear-gradient(135deg, rgba(200,149,108,0.06) 0%, rgba(200,149,108,0.02) 100%);
+    border: 1px solid rgba(200,149,108,0.2);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 24px 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .insight-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 24px 0;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: rgba(200,149,108,0.08);
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* Metrics Target Colors */
+  .target-green { color: var(--success); font-weight: 600; }
+  .target-gold { color: var(--accent); font-weight: 600; }
+  .target-blue { color: var(--blue); font-weight: 600; }
+
+  /* Roadmap */
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+  }
+  .roadmap-phase {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .roadmap-phase:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+  .roadmap-phase.phase-1 { border-top: 3px solid var(--success); }
+  .roadmap-phase.phase-2 { border-top: 3px solid var(--accent); }
+  .roadmap-phase.phase-3 { border-top: 3px solid var(--blue); }
+  .roadmap-phase-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .phase-1 .roadmap-phase-label { color: var(--success); }
+  .phase-2 .roadmap-phase-label { color: var(--accent); }
+  .phase-3 .roadmap-phase-label { color: var(--blue); }
+  .roadmap-phase-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .roadmap-cadence {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .roadmap-weeks {
+    font-size: 13px;
+    color: var(--text-muted);
+    list-style: none;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .roadmap-weeks li {
+    padding: 6px 0 6px 16px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .roadmap-weeks li:last-child { border-bottom: none; }
+  .roadmap-weeks li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+  .phase-1 .roadmap-weeks li::before { background: var(--success); }
+  .phase-2 .roadmap-weeks li::before { background: var(--accent); }
+  .phase-3 .roadmap-weeks li::before { background: var(--blue); }
+  .roadmap-checkpoint {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .checkpoint-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .checkpoint-list {
+    list-style: none;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .checkpoint-list li {
+    padding: 3px 0 3px 18px;
+    position: relative;
+  }
+  .checkpoint-list li::before {
+    content: '\2610';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  /* Soft CTA Table */
+  .soft-cta-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  /* Footer Formula */
+  .formula-footer {
+    background: linear-gradient(165deg, #0f1710 0%, #1a3a2a 50%, #2d5e42 100%);
+    padding: 60px 40px;
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .formula-footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(200,149,108,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .formula-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .formula-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .formula-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .formula-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+  }
+  .formula-step-num {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .formula-step-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .formula-step-text strong { color: var(--text); font-size: 12px; }
+  .footer-credits {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 30px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero { padding: 60px 30px; }
+    .hero h1 { font-size: 32px; }
+    .container { padding: 0 20px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; }
+    .timeline::before { display: none; }
+    .timeline-step + .timeline-step { margin-left: 0; margin-top: 12px; }
+    .week-grid { grid-template-columns: repeat(2, 1fr); }
+    .vis-grid { grid-template-columns: 1fr; }
+    .vis-card.full { grid-column: span 1; }
+    .hashtag-row { grid-template-columns: 1fr; }
+    .callout-row { grid-template-columns: 1fr; }
+    .cta-structure { grid-template-columns: repeat(2, 1fr); }
+    .flow-branches { grid-template-columns: repeat(2, 1fr); }
+    .roadmap { grid-template-columns: 1fr; }
+    .formula-steps { grid-template-columns: 1fr; }
+    .funnel-level { grid-template-columns: 120px 50px 1fr; }
+    .hook-tabs { gap: 4px; }
+    .hook-tab { padding: 8px 12px; font-size: 10px; }
+    .soft-cta-row { grid-template-columns: 1fr; }
+    .highlights-row { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">Instagram Content Strategy</div>
+  <h1>LaWayra <span>Retreat</span><br>Content Strategy</h1>
+  <p class="hero-subtitle">Solo Creator Playbook &middot; 3-4 Posts/Week &middot; Hormozi-Powered</p>
+  <div class="hero-meta">
+    <span><strong>Prepared:</strong> February 2026</span>
+    <span><strong>Cadence:</strong> 3-4 posts/week</span>
+    <span><strong>Hooks Ready:</strong> 55 pre-written</span>
+    <span><strong>Framework:</strong> Hormozi Organic Growth</span>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ================================================================ -->
+<!-- SECTION 01: Content Pillars                                      -->
+<!-- ================================================================ -->
+<section class="section">
+  <div class="section-number">Section 01</div>
+  <h2>Content Pillars</h2>
+  <p class="section-subtitle">Four pillars that cover the full buyer journey &mdash; from "never heard of ayahuasca" to "ready to book."</p>
+
+  <div class="pillar-grid">
+
+    <!-- Pillar 1: Educate & Warn -->
+    <div class="pillar-card green">
+      <div class="pillar-icon green">&#9888;</div>
+      <div class="pillar-name">Educate &amp; Warn</div>
+      <div class="pillar-purpose">Reach new audiences, build authority, go viral. Warning/educational Reels get 10-20x more views than any other content type. This is LaWayra's growth engine.</div>
+      <div class="pillar-meta">
+        <span class="pillar-tag">1-2x / week</span>
+        <span class="pillar-tag">Reels (face-to-camera)</span>
+      </div>
+      <ul class="pillar-topics">
+        <li>"Watch this before your first ayahuasca ceremony"</li>
+        <li>"How ayahuasca actually works in the brain"</li>
+        <li>"3 red flags that expose a fake retreat"</li>
+      </ul>
+    </div>
+
+    <!-- Pillar 2: Show & Immerse -->
+    <div class="pillar-card blue">
+      <div class="pillar-icon blue">&#9655;</div>
+      <div class="pillar-name">Show &amp; Immerse</div>
+      <div class="pillar-purpose">Let people experience the retreat before booking. POV facility tours hit 220K views for a 49K-follower competitor. Highest viral ceiling with the lowest creative effort.</div>
+      <div class="pillar-meta">
+        <span class="pillar-tag">1x / week</span>
+        <span class="pillar-tag">Reels (POV tours, B-roll)</span>
+      </div>
+      <ul class="pillar-topics">
+        <li>POV walkthrough: arrival to ceremony space</li>
+        <li>Day in the life at LaWayra (sunrise to sunset)</li>
+        <li>The ceremony space at night (atmospheric)</li>
+      </ul>
+    </div>
+
+    <!-- Pillar 3: Prove & Trust -->
+    <div class="pillar-card gold">
+      <div class="pillar-icon gold">&#9733;</div>
+      <div class="pillar-name">Prove &amp; Trust</div>
+      <div class="pillar-purpose">Convert consideration into bookings through social proof. 500+ 5-star reviews and 2,500+ lives transformed are massively underused. "Parade of proof" compilations get 10-15K views.</div>
+      <div class="pillar-meta">
+        <span class="pillar-tag">1x / week</span>
+        <span class="pillar-tag">Reels (testimonials) + Carousels</span>
+      </div>
+      <ul class="pillar-topics">
+        <li>"What people are saying about LaWayra" (rapid-fire clips)</li>
+        <li>"Why 2,500+ people chose LaWayra" (carousel)</li>
+        <li>DM screenshots from past guests</li>
+      </ul>
+    </div>
+
+    <!-- Pillar 4: Story & Connect -->
+    <div class="pillar-card purple">
+      <div class="pillar-icon purple">&#9825;</div>
+      <div class="pillar-name">Story &amp; Connect</div>
+      <div class="pillar-purpose">Humanize the brand, build emotional connection. This is the "10x" in the 10:1 give-to-ask ratio. Casual, unpolished, human content that makes followers feel like insiders.</div>
+      <div class="pillar-meta">
+        <span class="pillar-tag">Daily Stories</span>
+        <span class="pillar-tag">Stories + occasional Reel</span>
+      </div>
+      <ul class="pillar-topics">
+        <li>The shaman's morning ritual</li>
+        <li>Preparing the ceremony space</li>
+        <li>"Why we started LaWayra" (origin story)</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">Pillar Balance</div>
+    <strong>Educate &amp; Warn is the volume driver.</strong> It should represent 40-50% of all feed posts. Show &amp; Immerse and Prove &amp; Trust each get ~25% of feed posts. Story &amp; Connect lives primarily in Stories (daily), with an occasional Reel when a story is powerful enough for the full hook-meat-reward treatment.
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 02: Hook Bank                                            -->
+<!-- ================================================================ -->
+<section class="section">
+  <div class="section-number">Section 02</div>
+  <h2>Hook Bank</h2>
+  <p class="section-subtitle">55 ready-to-film hooks organized by type. Each hook includes the verbal line, bold text overlay, and target awareness level.</p>
+
+  <!-- Tabs -->
+  <div class="hook-tabs">
+    <div class="hook-tab active" onclick="showPanel('command')">Command</div>
+    <div class="hook-tab" onclick="showPanel('educational')">Educational</div>
+    <div class="hook-tab" onclick="showPanel('contrarian')">Contrarian</div>
+    <div class="hook-tab" onclick="showPanel('question')">Questions</div>
+    <div class="hook-tab" onclick="showPanel('list')">List/Steps</div>
+    <div class="hook-tab" onclick="showPanel('label')">Label</div>
+    <div class="hook-tab" onclick="showPanel('social')">Social Proof</div>
+  </div>
+
+  <!-- Command Hooks -->
+  <div class="hook-panel active" id="panel-command">
+    <div class="hook-panel-header">
+      <div class="hook-panel-title">Command Hooks</div>
+      <div class="hook-panel-count">10 hooks &middot; 393K views proven</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">1</div>
+      <div class="hook-content">
+        <div class="hook-text">"Watch this before your first ayahuasca ceremony"</div>
+        <div class="hook-overlay">WATCH THIS BEFORE YOUR FIRST CEREMONY</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">2</div>
+      <div class="hook-content">
+        <div class="hook-text">"Watch this before choosing an ayahuasca retreat"</div>
+        <div class="hook-overlay">WATCH THIS BEFORE CHOOSING A RETREAT</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">3</div>
+      <div class="hook-content">
+        <div class="hook-text">"Don't drink ayahuasca until you understand this"</div>
+        <div class="hook-overlay">DON'T DRINK AYAHUASCA UNTIL YOU SEE THIS</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">4</div>
+      <div class="hook-content">
+        <div class="hook-text">"Stop scrolling if you've been thinking about ayahuasca"</div>
+        <div class="hook-overlay">STOP SCROLLING IF YOU'VE THOUGHT ABOUT THIS</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">5</div>
+      <div class="hook-content">
+        <div class="hook-text">"Come inside Colombia's #1 ayahuasca retreat"</div>
+        <div class="hook-overlay">COME INSIDE COLOMBIA'S #1 RETREAT</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">6</div>
+      <div class="hook-content">
+        <div class="hook-text">"Listen to what 500+ guests are saying about their experience"</div>
+        <div class="hook-overlay">HEAR WHAT 500+ GUESTS SAID</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">7</div>
+      <div class="hook-content">
+        <div class="hook-text">"Stop blaming yourself for not healing faster"</div>
+        <div class="hook-overlay">STOP BLAMING YOURSELF</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">8</div>
+      <div class="hook-content">
+        <div class="hook-text">"Watch this if therapy hasn't been enough"</div>
+        <div class="hook-overlay">WATCH THIS IF THERAPY ISN'T WORKING</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">9</div>
+      <div class="hook-content">
+        <div class="hook-text">"Do this BEFORE you book any ayahuasca retreat"</div>
+        <div class="hook-overlay">DO THIS BEFORE BOOKING ANY RETREAT</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">10</div>
+      <div class="hook-content">
+        <div class="hook-text">"Watch this before coming to Colombia for ayahuasca"</div>
+        <div class="hook-overlay">BEFORE COMING TO COLOMBIA FOR AYAHUASCA</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+  </div>
+
+  <!-- Educational Statement Hooks -->
+  <div class="hook-panel" id="panel-educational">
+    <div class="hook-panel-header">
+      <div class="hook-panel-title">Statement Hooks &mdash; Educational</div>
+      <div class="hook-panel-count">8 hooks &middot; 56.5K views proven</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">11</div>
+      <div class="hook-content">
+        <div class="hook-text">"This is what actually happens in an ayahuasca ceremony"</div>
+        <div class="hook-overlay">THIS IS WHAT ACTUALLY HAPPENS</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">12</div>
+      <div class="hook-content">
+        <div class="hook-text">"This is how ayahuasca heals trauma at the root"</div>
+        <div class="hook-overlay">HOW AYAHUASCA HEALS TRAUMA AT THE ROOT</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">13</div>
+      <div class="hook-content">
+        <div class="hook-text">"This is the difference between healing and coping"</div>
+        <div class="hook-overlay">THE DIFFERENCE BETWEEN HEALING AND COPING</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">14</div>
+      <div class="hook-content">
+        <div class="hook-text">"Here's why your depression keeps coming back"</div>
+        <div class="hook-overlay">WHY YOUR DEPRESSION KEEPS COMING BACK</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">15</div>
+      <div class="hook-content">
+        <div class="hook-text">"This is how indigenous shamans prepare for ceremony"</div>
+        <div class="hook-overlay">HOW INDIGENOUS SHAMANS PREPARE</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">16</div>
+      <div class="hook-content">
+        <div class="hook-text">"This is what the first 24 hours at LaWayra look like"</div>
+        <div class="hook-overlay">YOUR FIRST 24 HOURS AT LAWAYRA</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">17</div>
+      <div class="hook-content">
+        <div class="hook-text">"This is what integration looks like after ayahuasca"</div>
+        <div class="hook-overlay">WHAT INTEGRATION ACTUALLY LOOKS LIKE</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">18</div>
+      <div class="hook-content">
+        <div class="hook-text">"Here's what nobody tells you about plant medicine in Colombia"</div>
+        <div class="hook-overlay">WHAT NOBODY TELLS YOU ABOUT COLOMBIA</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+  </div>
+
+  <!-- Contrarian Statement Hooks -->
+  <div class="hook-panel" id="panel-contrarian">
+    <div class="hook-panel-header">
+      <div class="hook-panel-title">Statement Hooks &mdash; Contrarian</div>
+      <div class="hook-panel-count">8 hooks &middot; 38.2K views proven</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">19</div>
+      <div class="hook-content">
+        <div class="hook-text">"Ayahuasca didn't heal me. Here's what did."</div>
+        <div class="hook-overlay">AYAHUASCA DIDN'T HEAL ME</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">20</div>
+      <div class="hook-content">
+        <div class="hook-text">"Most ayahuasca retreats are doing it wrong"</div>
+        <div class="hook-overlay">MOST RETREATS ARE DOING IT WRONG</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">21</div>
+      <div class="hook-content">
+        <div class="hook-text">"Ayahuasca will break you before it heals you"</div>
+        <div class="hook-overlay">AYAHUASCA WILL BREAK YOU FIRST</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">22</div>
+      <div class="hook-content">
+        <div class="hook-text">"The healing isn't in the ceremony. It's in what comes after."</div>
+        <div class="hook-overlay">THE HEALING ISN'T IN THE CEREMONY</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">23</div>
+      <div class="hook-content">
+        <div class="hook-text">"Your therapist can't access what ayahuasca can"</div>
+        <div class="hook-overlay">YOUR THERAPIST CAN'T ACCESS THIS</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">24</div>
+      <div class="hook-content">
+        <div class="hook-text">"The hardest part of ayahuasca isn't the ceremony"</div>
+        <div class="hook-overlay">THE HARDEST PART ISN'T THE CEREMONY</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">25</div>
+      <div class="hook-content">
+        <div class="hook-text">"If you're coming for fun, don't come to LaWayra"</div>
+        <div class="hook-overlay">IF YOU'RE COMING FOR FUN, DON'T COME</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">26</div>
+      <div class="hook-content">
+        <div class="hook-text">"Healing isn't supposed to be comfortable"</div>
+        <div class="hook-overlay">HEALING ISN'T SUPPOSED TO BE COMFORTABLE</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+  </div>
+
+  <!-- Question Hooks -->
+  <div class="hook-panel" id="panel-question">
+    <div class="hook-panel-header">
+      <div class="hook-panel-title">Question Hooks</div>
+      <div class="hook-panel-count">8 hooks</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">27</div>
+      <div class="hook-content">
+        <div class="hook-text">"What if you could heal in 2 weeks what therapy couldn't in 2 years?"</div>
+        <div class="hook-overlay">WHAT IF 2 WEEKS > 2 YEARS OF THERAPY?</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">28</div>
+      <div class="hook-content">
+        <div class="hook-text">"What does an authentic ayahuasca ceremony actually look like?"</div>
+        <div class="hook-overlay">WHAT DOES AN AUTHENTIC CEREMONY LOOK LIKE?</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">29</div>
+      <div class="hook-content">
+        <div class="hook-text">"Why do people fly to Colombia to drink ayahuasca?"</div>
+        <div class="hook-overlay">WHY DO PEOPLE FLY TO COLOMBIA FOR THIS?</div>
+      </div>
+      <div class="hook-awareness awareness-unaware">Unaware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">30</div>
+      <div class="hook-content">
+        <div class="hook-text">"What if the thing you're most afraid of is exactly what heals you?"</div>
+        <div class="hook-overlay">WHAT IF YOUR FEAR IS THE MEDICINE?</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">31</div>
+      <div class="hook-content">
+        <div class="hook-text">"How do you know if an ayahuasca retreat is safe?"</div>
+        <div class="hook-overlay">HOW DO YOU KNOW IF A RETREAT IS SAFE?</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">32</div>
+      <div class="hook-content">
+        <div class="hook-text">"What happens to your body during an ayahuasca ceremony?"</div>
+        <div class="hook-overlay">WHAT HAPPENS TO YOUR BODY?</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">33</div>
+      <div class="hook-content">
+        <div class="hook-text">"Why are high-achievers turning to plant medicine?"</div>
+        <div class="hook-overlay">WHY ARE HIGH-ACHIEVERS DOING THIS?</div>
+      </div>
+      <div class="hook-awareness awareness-unaware">Unaware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">34</div>
+      <div class="hook-content">
+        <div class="hook-text">"Is ayahuasca actually safe? Let me be honest."</div>
+        <div class="hook-overlay">IS AYAHUASCA ACTUALLY SAFE?</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+  </div>
+
+  <!-- List/Steps Hooks -->
+  <div class="hook-panel" id="panel-list">
+    <div class="hook-panel-header">
+      <div class="hook-panel-title">List / Steps Hooks</div>
+      <div class="hook-panel-count">8 hooks &middot; 41.2K views proven</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">35</div>
+      <div class="hook-content">
+        <div class="hook-text">"5 things I wish I knew before my first ceremony"</div>
+        <div class="hook-overlay">5 THINGS I WISH I KNEW</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">36</div>
+      <div class="hook-content">
+        <div class="hook-text">"3 questions to ask any ayahuasca retreat before booking"</div>
+        <div class="hook-overlay">3 QUESTIONS TO ASK BEFORE BOOKING</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">37</div>
+      <div class="hook-content">
+        <div class="hook-text">"The 4 stages of an ayahuasca ceremony, explained"</div>
+        <div class="hook-overlay">THE 4 STAGES OF CEREMONY</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">38</div>
+      <div class="hook-content">
+        <div class="hook-text">"3 red flags that expose a fake ayahuasca retreat"</div>
+        <div class="hook-overlay">3 RED FLAGS IN AYAHUASCA RETREATS</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">39</div>
+      <div class="hook-content">
+        <div class="hook-text">"5 signs you're ready for ayahuasca"</div>
+        <div class="hook-overlay">5 SIGNS YOU'RE READY</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">40</div>
+      <div class="hook-content">
+        <div class="hook-text">"3 lessons our shaman taught me that changed everything"</div>
+        <div class="hook-overlay">3 LESSONS FROM OUR SHAMAN</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">41</div>
+      <div class="hook-content">
+        <div class="hook-text">"The 3 biggest mistakes first-timers make at ceremony"</div>
+        <div class="hook-overlay">3 MISTAKES FIRST-TIMERS MAKE</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">42</div>
+      <div class="hook-content">
+        <div class="hook-text">"4 things to do in the week AFTER ayahuasca"</div>
+        <div class="hook-overlay">4 THINGS TO DO AFTER AYAHUASCA</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+  </div>
+
+  <!-- Label/Conditional Hooks -->
+  <div class="hook-panel" id="panel-label">
+    <div class="hook-panel-header">
+      <div class="hook-panel-title">Label / Conditional Hooks</div>
+      <div class="hook-panel-count">8 hooks &middot; 28.3K views proven</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">43</div>
+      <div class="hook-content">
+        <div class="hook-text">"If you've tried everything and still feel stuck, this is for you"</div>
+        <div class="hook-overlay">IF YOU'VE TRIED EVERYTHING AND STILL FEEL STUCK</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">44</div>
+      <div class="hook-content">
+        <div class="hook-text">"These people should NEVER drink ayahuasca"</div>
+        <div class="hook-overlay">THESE PEOPLE SHOULD NEVER DRINK AYAHUASCA</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">45</div>
+      <div class="hook-content">
+        <div class="hook-text">"If you're carrying trauma you can't talk about in therapy"</div>
+        <div class="hook-overlay">IF YOUR TRAUMA IS BEYOND WORDS</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">46</div>
+      <div class="hook-content">
+        <div class="hook-text">"If you're a high-achiever who feels empty inside"</div>
+        <div class="hook-overlay">HIGH-ACHIEVERS WHO FEEL EMPTY</div>
+      </div>
+      <div class="hook-awareness awareness-unaware">Unaware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">47</div>
+      <div class="hook-content">
+        <div class="hook-text">"If your antidepressants aren't working anymore"</div>
+        <div class="hook-overlay">IF YOUR MEDICATION ISN'T WORKING</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">48</div>
+      <div class="hook-content">
+        <div class="hook-text">"If you're considering ayahuasca but you're scared"</div>
+        <div class="hook-overlay">IF YOU'RE SCARED OF AYAHUASCA</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">49</div>
+      <div class="hook-content">
+        <div class="hook-text">"If someone told you 'you just need to try harder'"</div>
+        <div class="hook-overlay">IF SOMEONE TOLD YOU TO JUST TRY HARDER</div>
+      </div>
+      <div class="hook-awareness awareness-problem">Problem Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">50</div>
+      <div class="hook-content">
+        <div class="hook-text">"Ayahuasca is not for everyone. Here's who it IS for."</div>
+        <div class="hook-overlay">AYAHUASCA ISN'T FOR EVERYONE</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+  </div>
+
+  <!-- Social Proof Hooks -->
+  <div class="hook-panel" id="panel-social">
+    <div class="hook-panel-header">
+      <div class="hook-panel-title">Social Proof Hooks</div>
+      <div class="hook-panel-count">5 hooks</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">51</div>
+      <div class="hook-content">
+        <div class="hook-text">"2,500 lives transformed. Here's what they said."</div>
+        <div class="hook-overlay">2,500 LIVES TRANSFORMED</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">52</div>
+      <div class="hook-content">
+        <div class="hook-text">"Why 500+ people gave us 5 stars"</div>
+        <div class="hook-overlay">500+ FIVE-STAR REVIEWS</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">53</div>
+      <div class="hook-content">
+        <div class="hook-text">"She came to LaWayra as a last resort. Watch what happened."</div>
+        <div class="hook-overlay">SHE CAME AS A LAST RESORT</div>
+      </div>
+      <div class="hook-awareness awareness-solution">Solution Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">54</div>
+      <div class="hook-content">
+        <div class="hook-text">"The DMs we get after ceremony week..."</div>
+        <div class="hook-overlay">THE DMS WE GET AFTER CEREMONY</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+    <div class="hook-item">
+      <div class="hook-num">55</div>
+      <div class="hook-content">
+        <div class="hook-text">"Why people keep coming back to LaWayra"</div>
+        <div class="hook-overlay">WHY PEOPLE KEEP COMING BACK</div>
+      </div>
+      <div class="hook-awareness awareness-product">Product Aware</div>
+    </div>
+  </div>
+
+  <div class="insight" style="margin-top: 30px;">
+    <div class="insight-label">How to Use This Bank</div>
+    <strong>Pick 4 hooks per week.</strong> Read them to camera with the bold text overlay on screen. Film all hooks back-to-back in one session. The overlay text is already written for each hook &mdash; just type it into CapCut or Instagram's editor. Reuse top-performing hooks monthly with new "meat" content underneath.
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 03: Content Assembly                                     -->
+<!-- ================================================================ -->
+<section class="section">
+  <div class="section-number">Section 03</div>
+  <h2>Content Assembly</h2>
+  <p class="section-subtitle">The solo creator workflow: one 2-3 hour filming session per week produces all content for the next 7 days.</p>
+
+  <h3>Weekly Batch Filming Protocol</h3>
+
+  <div class="timeline">
+    <div class="timeline-step">
+      <div class="timeline-duration">30</div>
+      <div class="timeline-unit">Minutes</div>
+      <div class="timeline-label">Pre-Film</div>
+      <div class="timeline-desc">Pick 4 hooks from bank. Write bullet points for each "meat" section. Set up filming location with natural light and nature background. Phone on tripod.</div>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-duration">90</div>
+      <div class="timeline-unit">Minutes</div>
+      <div class="timeline-label">Film Session</div>
+      <div class="timeline-desc">Face-to-camera hooks (30 min). Full meat sections for 2-3 Reels (30 min). POV walkthrough footage (15 min). B-roll: nature, ceremony, food (15 min).</div>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-duration">60</div>
+      <div class="timeline-unit">Minutes</div>
+      <div class="timeline-label">Post-Film</div>
+      <div class="timeline-desc">Edit 4 Reels in CapCut or Instagram editor. Add bold text overlays. Write captions using the template. Schedule for the week or save as drafts.</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">Hormozi Multiplication Method</div>
+    <strong>Film ONE meat section, then record 3 different hooks for it.</strong> One shoot produces 3 publishable Reels. This is how you scale from 3/week to 5/week without additional filming time.
+  </div>
+
+  <h3>Reel Assembly Template</h3>
+
+  <div class="reel-assembly">
+    <div class="reel-phase">
+      <div>
+        <div class="reel-time hook-time">0-3s</div>
+        <div class="reel-time-label">The Hook</div>
+      </div>
+      <div>
+        <div class="reel-phase-name">Stop the Scroll</div>
+        <div class="reel-details">Bold text overlay on screen (from Hook Bank). Face in frame OR dramatic visual. Deliver the verbal hook line. Movement &mdash; walking, gesturing, or scene change.</div>
+      </div>
+    </div>
+    <div class="reel-phase">
+      <div>
+        <div class="reel-time meat-time">3-20s</div>
+        <div class="reel-time-label">The Meat</div>
+      </div>
+      <div>
+        <div class="reel-phase-name">Deliver the Value</div>
+        <div class="reel-details">Use ONE format: Education (explain one concept), Demonstration (POV walkthrough), Testimonial (stack 2-3 guest clips), Story (one transformation narrative), or Faceless (text on screen + B-roll). Keep ONE idea per Reel.</div>
+      </div>
+    </div>
+    <div class="reel-phase">
+      <div>
+        <div class="reel-time reward-time">20-30s</div>
+        <div class="reel-time-label">Reward + CTA</div>
+      </div>
+      <div>
+        <div class="reel-phase-name">Insight &amp; Next Step</div>
+        <div class="reel-details">Deliver the insight/payoff ("The truth is..."). Soft CTA: "Save this" or "Share with someone who needs it." OR Hard CTA: "Link in bio to start your journey." Caption expands the lesson + booking CTA.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Weekly Content Calendar (4 Posts/Week)</h3>
+
+  <div class="week-grid">
+    <div class="week-day">
+      <div class="week-day-name">Monday</div>
+      <div class="week-day-pillar">Educate &amp; Warn</div>
+      <div class="week-day-format">Reel</div>
+      <div class="week-day-hook">Contrarian or Question hook. Start the week with reach content.</div>
+    </div>
+    <div class="week-day">
+      <div class="week-day-name">Wednesday</div>
+      <div class="week-day-pillar">Show &amp; Immerse</div>
+      <div class="week-day-format">Reel</div>
+      <div class="week-day-hook">Command or Statement hook. POV tour or facility showcase. Mid-week engagement.</div>
+    </div>
+    <div class="week-day">
+      <div class="week-day-name">Friday</div>
+      <div class="week-day-pillar">Prove &amp; Trust</div>
+      <div class="week-day-format">Reel or Carousel</div>
+      <div class="week-day-hook">Social Proof hook. Weekend browsers see proof. Testimonial compilation.</div>
+    </div>
+    <div class="week-day">
+      <div class="week-day-name">Sunday</div>
+      <div class="week-day-pillar">Educate &amp; Warn</div>
+      <div class="week-day-format">Reel</div>
+      <div class="week-day-hook">List/Steps hook. High save-rate content for weekend scrollers.</div>
+    </div>
+  </div>
+
+  <h4>Daily Stories (when possible)</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Time</th><th>Content</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Morning</strong></td><td>Behind-the-scenes: prep, nature, shaman</td><td>Humanize the brand</td></tr>
+        <tr><td><strong>Afternoon</strong></td><td>Engagement: poll, question box, quiz</td><td>Drive interaction &amp; DMs</td></tr>
+        <tr><td><strong>Evening</strong></td><td>Atmosphere: sunset, ceremony space, candles</td><td>Build desire &amp; emotion</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 04: Visual Standards                                     -->
+<!-- ================================================================ -->
+<section class="section">
+  <div class="section-number">Section 04</div>
+  <h2>Visual Standards</h2>
+  <p class="section-subtitle">Non-negotiable visual rules based on research: 100% of top-performing Reels in this niche use bold text overlays on frame 1.</p>
+
+  <div class="vis-grid">
+
+    <div class="vis-card">
+      <div class="vis-title">Text Overlay Rules <span class="vis-title-tag">Every Reel</span></div>
+      <ul class="vis-list">
+        <li><strong>Font:</strong> Bold sans-serif (Impact, Montserrat Black, or IG built-in bold)</li>
+        <li><strong>Color:</strong> White with black outline/shadow (maximum contrast)</li>
+        <li><strong>Size:</strong> Large enough for phone thumbnail (40-60% of frame width)</li>
+        <li><strong>Position:</strong> Upper third of frame (visible in grid preview)</li>
+        <li><strong>Case:</strong> ALL CAPS for hook text</li>
+        <li><strong>Word limit:</strong> 8-10 words per overlay maximum</li>
+      </ul>
+    </div>
+
+    <div class="vis-card">
+      <div class="vis-title">Thumbnail Formula <span class="vis-title-tag">3 Elements</span></div>
+      <ul class="vis-list">
+        <li><strong>Element 1 &mdash; Bold Text:</strong> The hook from the overlay column in the Hook Bank</li>
+        <li><strong>Element 2 &mdash; A Face:</strong> The creator, the shaman, or a guest</li>
+        <li><strong>Element 3 &mdash; A Setting:</strong> Jungle, ceremony space, or retreat grounds</li>
+      </ul>
+      <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted);">
+        <strong>Color Grading:</strong> Warm/golden tones preferred. Rich greens for nature. Avoid cool/blue tones, heavy filters, or overly polished corporate looks. Light color correction only &mdash; the goal is authentic, not cinematic.
+      </div>
+    </div>
+
+    <div class="vis-card full">
+      <div class="vis-title">Caption Template <span class="vis-title-tag">4-Part Structure</span></div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px; border: 1px solid rgba(200,149,108,0.15);">
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">Part 1</div>
+          <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">Hook Line</div>
+          <div style="font-size: 11px; color: var(--text-dim);">Repeat or expand on the Reel hook</div>
+        </div>
+        <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px; border: 1px solid rgba(200,149,108,0.15);">
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">Part 2</div>
+          <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">Value</div>
+          <div style="font-size: 11px; color: var(--text-dim);">2-4 sentences expanding the lesson, story, or proof</div>
+        </div>
+        <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px; border: 1px solid rgba(200,149,108,0.15);">
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">Part 3</div>
+          <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">CTA</div>
+          <div style="font-size: 11px; color: var(--text-dim);">One CTA from the soft/hard options below</div>
+        </div>
+        <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px; border: 1px solid rgba(200,149,108,0.15);">
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">Part 4</div>
+          <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px;">Hashtags</div>
+          <div style="font-size: 11px; color: var(--text-dim);">10-15 from the 3 rotating groups</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>Hashtag Strategy (3 Rotating Groups)</h3>
+
+  <div class="hashtag-row">
+    <div class="hashtag-group core">
+      <div class="hashtag-label">Group A &mdash; Core (Every Post)</div>
+      <div class="hashtag-tags">
+        <span class="hashtag-tag">#ayahuasca</span>
+        <span class="hashtag-tag">#ayahuascaretreat</span>
+        <span class="hashtag-tag">#ayahuascacolombia</span>
+        <span class="hashtag-tag">#plantmedicine</span>
+        <span class="hashtag-tag">#healingjourney</span>
+      </div>
+    </div>
+    <div class="hashtag-group reach">
+      <div class="hashtag-label">Group B &mdash; Reach (Rotate 5)</div>
+      <div class="hashtag-tags">
+        <span class="hashtag-tag">#traumahealing</span>
+        <span class="hashtag-tag">#innerwork</span>
+        <span class="hashtag-tag">#spiritualawakening</span>
+        <span class="hashtag-tag">#mentalhealth</span>
+        <span class="hashtag-tag">#depressionrecovery</span>
+        <span class="hashtag-tag">#anxietyrelief</span>
+        <span class="hashtag-tag">#selfhealing</span>
+        <span class="hashtag-tag">#healingtrauma</span>
+        <span class="hashtag-tag">#emotionalhealing</span>
+      </div>
+    </div>
+    <div class="hashtag-group niche">
+      <div class="hashtag-label">Group C &mdash; Niche (Rotate 3-5)</div>
+      <div class="hashtag-tags">
+        <span class="hashtag-tag">#shamanism</span>
+        <span class="hashtag-tag">#plantmedicinehealing</span>
+        <span class="hashtag-tag">#ceremonylife</span>
+        <span class="hashtag-tag">#sacredmedicine</span>
+        <span class="hashtag-tag">#colombiatravel</span>
+        <span class="hashtag-tag">#fredonia</span>
+        <span class="hashtag-tag">#medellin</span>
+        <span class="hashtag-tag">#retreatlife</span>
+        <span class="hashtag-tag">#medicinework</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">Hashtag Rule</div>
+    <strong>All 5 from Group A + 5 from Group B + 3-5 from Group C = 13-15 total per post.</strong> Rotate Groups B and C to avoid repetition. Never use more than 20 hashtags (Instagram deprioritizes over-tagged content).
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 05: CTA & Funnel                                        -->
+<!-- ================================================================ -->
+<section class="section">
+  <div class="section-number">Section 05</div>
+  <h2>CTA &amp; Booking Funnel</h2>
+  <p class="section-subtitle">Converting attention into inquiries using Hormozi's 5-part CTA structure and a frictionless link-in-bio flow.</p>
+
+  <h3>Primary CTA (Hormozi 5-Part Structure)</h3>
+
+  <div class="cta-primary">
+    <p style="font-size: 15px; color: var(--text); font-style: italic; margin-bottom: 0; line-height: 1.8;">
+      "Apply for our next ceremony <em>(what)</em> by tapping the link in our bio <em>(how)</em>. Spots for [month] are limited <em>(when)</em>. You'll get our free preparation guide right away <em>(what they get)</em>, and our team will reach out within 24 hours to see if it's the right fit <em>(what happens next)</em>."
+    </p>
+    <div class="cta-structure">
+      <div class="cta-part">
+        <div class="cta-part-num">1</div>
+        <div class="cta-part-label">What</div>
+        <div class="cta-part-example">Apply for our next ceremony</div>
+      </div>
+      <div class="cta-part">
+        <div class="cta-part-num">2</div>
+        <div class="cta-part-label">How</div>
+        <div class="cta-part-example">Tap the link in our bio</div>
+      </div>
+      <div class="cta-part">
+        <div class="cta-part-num">3</div>
+        <div class="cta-part-label">When</div>
+        <div class="cta-part-example">Spots for [month] are limited</div>
+      </div>
+      <div class="cta-part">
+        <div class="cta-part-num">4</div>
+        <div class="cta-part-label">What They Get</div>
+        <div class="cta-part-example">Free preparation guide</div>
+      </div>
+      <div class="cta-part">
+        <div class="cta-part-num">5</div>
+        <div class="cta-part-label">What Happens Next</div>
+        <div class="cta-part-example">Team reaches out in 24h</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Soft CTA Options (All Other Posts)</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>CTA Text</th><th>Best For</th><th>Drives</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>"Save this for when you're ready"</strong></td><td>Education content</td><td>Save rate (high-intent signal)</td></tr>
+        <tr><td><strong>"Share this with someone who needs to hear it"</strong></td><td>Contrarian/emotional content</td><td>Share rate (viral reach)</td></tr>
+        <tr><td><strong>"Follow for more about authentic ayahuasca in Colombia"</strong></td><td>Viral Reels reaching new audiences</td><td>Follower growth</td></tr>
+        <tr><td><strong>"Drop a prayer hands if this resonated"</strong></td><td>Emotional/story content</td><td>Comment engagement</td></tr>
+        <tr><td><strong>"DM us 'READY' and we'll send our preparation guide"</strong></td><td>High-performing Reels</td><td>DM leads (direct conversion)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Link-in-Bio Flow</h3>
+
+  <div class="flow-tree">
+    <div class="flow-root">Link in Bio</div>
+    <div class="flow-connector"></div>
+    <div class="flow-branches">
+      <div class="flow-branch">
+        <div class="flow-branch-icon">&#10095;</div>
+        <div class="flow-branch-name">Apply for Ceremony</div>
+        <div class="flow-branch-dest">Booking / inquiry form</div>
+      </div>
+      <div class="flow-branch">
+        <div class="flow-branch-icon">&#9998;</div>
+        <div class="flow-branch-name">Free Prep Guide</div>
+        <div class="flow-branch-dest">Email capture &rarr; guide delivery</div>
+      </div>
+      <div class="flow-branch">
+        <div class="flow-branch-icon">&#9733;</div>
+        <div class="flow-branch-name">Read Our Reviews</div>
+        <div class="flow-branch-dest">Review page / TripAdvisor</div>
+      </div>
+      <div class="flow-branch">
+        <div class="flow-branch-icon">&#9741;</div>
+        <div class="flow-branch-name">Visit Website</div>
+        <div class="flow-branch-dest">ayahuascaincolombia.com</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Story Highlights</h3>
+
+  <div class="highlights-row">
+    <div class="highlight-item">
+      <div class="highlight-circle">&#9654;</div>
+      <div class="highlight-label">Start Here</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-circle">&#9733;</div>
+      <div class="highlight-label">Reviews</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-circle">&#9750;</div>
+      <div class="highlight-label">The Retreat</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-circle">&#9788;</div>
+      <div class="highlight-label">Ceremony</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-circle">&#9830;</div>
+      <div class="highlight-label">Pricing</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-circle">?</div>
+      <div class="highlight-label">FAQ</div>
+    </div>
+  </div>
+
+  <h3>DM Automation Keywords</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Keyword</th><th>Auto-Reply</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong style="color: var(--success);">READY</strong></td><td>"Welcome! Here's our free preparation guide: [link]. Our team will reach out within 24 hours to discuss your journey."</td></tr>
+        <tr><td><strong style="color: var(--accent);">PRICE</strong></td><td>"Our ceremonies start at $545 and include [details]. Want to learn more? Here's our full info: [link]"</td></tr>
+        <tr><td><strong style="color: var(--blue);">BOOK</strong></td><td>"Excited you're ready! Apply here: [link]. We'll confirm availability within 24 hours."</td></tr>
+        <tr><td><strong style="color: var(--purple);">INFO</strong></td><td>"Here's everything you need to know about LaWayra: [link to Start Here highlight or website]"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 06: Awareness Funnel                                     -->
+<!-- ================================================================ -->
+<section class="section">
+  <div class="section-number">Section 06</div>
+  <h2>Awareness Funnel</h2>
+  <p class="section-subtitle">Most retreat accounts only post for people who already want ayahuasca. LaWayra's biggest growth opportunity is reaching the "Problem Aware" audience of millions.</p>
+
+  <div class="callout-row">
+    <div class="callout">
+      <div class="callout-number gold">30%</div>
+      <div class="callout-text">Problem Aware content<br>(largest growth opportunity)</div>
+    </div>
+    <div class="callout">
+      <div class="callout-number green">30%</div>
+      <div class="callout-text">Solution Aware content<br>(aya-curious audience)</div>
+    </div>
+    <div class="callout">
+      <div class="callout-number blue">10:1</div>
+      <div class="callout-text">Give-to-ask ratio<br>(1 booking CTA per 2.5 weeks)</div>
+    </div>
+  </div>
+
+  <div class="funnel">
+    <div class="funnel-level lvl-unaware">
+      <div class="funnel-name" style="color: var(--purple);">Unaware</div>
+      <div class="funnel-pct" style="color: var(--purple);">10%</div>
+      <div class="funnel-example">"The hidden pattern keeping high-achievers stuck"</div>
+    </div>
+    <div class="funnel-level lvl-problem">
+      <div class="funnel-name" style="color: var(--success);">Problem Aware</div>
+      <div class="funnel-pct" style="color: var(--success);">30%</div>
+      <div class="funnel-example">"If therapy hasn't been enough, this is for you"</div>
+    </div>
+    <div class="funnel-level lvl-solution">
+      <div class="funnel-name" style="color: var(--blue);">Solution Aware</div>
+      <div class="funnel-pct" style="color: var(--blue);">30%</div>
+      <div class="funnel-example">"This is what actually happens in a ceremony"</div>
+    </div>
+    <div class="funnel-level lvl-product">
+      <div class="funnel-name" style="color: var(--accent);">Product Aware</div>
+      <div class="funnel-pct" style="color: var(--accent);">20%</div>
+      <div class="funnel-example">"Why 500+ guests chose LaWayra for their first ceremony"</div>
+    </div>
+    <div class="funnel-level lvl-most">
+      <div class="funnel-name" style="color: var(--danger);">Most Aware</div>
+      <div class="funnel-pct" style="color: var(--danger);">10%</div>
+      <div class="funnel-example">"March ceremony &mdash; 3 spots left. Apply now."</div>
+    </div>
+  </div>
+
+  <h3>Weekly Awareness Rhythm</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Week Type</th><th>Post 1</th><th>Post 2</th><th>Post 3</th><th>Post 4</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Standard</strong></td>
+          <td><span class="awareness-problem" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Problem</span></td>
+          <td><span class="awareness-solution" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Solution</span></td>
+          <td><span class="awareness-product" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Product</span></td>
+          <td style="color: var(--text-dim);">&mdash;</td>
+        </tr>
+        <tr>
+          <td><strong>Growth Push</strong></td>
+          <td><span class="awareness-unaware" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Unaware</span></td>
+          <td><span class="awareness-problem" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Problem</span></td>
+          <td><span class="awareness-solution" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Solution</span></td>
+          <td><span class="awareness-product" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Product</span></td>
+        </tr>
+        <tr>
+          <td><strong>Conversion Push</strong></td>
+          <td><span class="awareness-solution" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Solution</span></td>
+          <td><span class="awareness-product" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Product</span></td>
+          <td><span class="awareness-most" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Most</span></td>
+          <td><span class="awareness-problem" style="font-size: 11px; padding: 3px 8px; border-radius: 12px;">Problem</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">The Hormozi Data Rule</div>
+    <strong>"Let the data do the teaching."</strong> Look at the top 10% of content &mdash; make more like that. Look at the bottom 10% &mdash; make less like that. Repeat. At the end of each month, review your awareness level balance to ensure you are not over-indexing on one level.
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 07: Metrics                                              -->
+<!-- ================================================================ -->
+<section class="section">
+  <div class="section-number">Section 07</div>
+  <h2>Growth Metrics</h2>
+  <p class="section-subtitle">Weekly scorecard: track these numbers every Sunday to measure progress across the 90-day ramp-up.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Why It Matters</th>
+          <th style="text-align: center;">Phase 1 (Wk 1-4)</th>
+          <th style="text-align: center;">Phase 2 (Wk 5-8)</th>
+          <th style="text-align: center;">Phase 3 (Wk 9-12)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Reel Views (avg)</strong></td>
+          <td>Primary reach indicator</td>
+          <td style="text-align: center;" class="target-green">1,000+</td>
+          <td style="text-align: center;" class="target-gold">3,000+</td>
+          <td style="text-align: center;" class="target-blue">5,000+</td>
+        </tr>
+        <tr>
+          <td><strong>Profile Visits</strong></td>
+          <td>Content &rarr; curiosity conversion</td>
+          <td style="text-align: center;" class="target-green">100+ /wk</td>
+          <td style="text-align: center;" class="target-gold">250+ /wk</td>
+          <td style="text-align: center;" class="target-blue">500+ /wk</td>
+        </tr>
+        <tr>
+          <td><strong>Link-in-Bio Clicks</strong></td>
+          <td>Curiosity &rarr; intent conversion</td>
+          <td style="text-align: center;" class="target-green">10+ /wk</td>
+          <td style="text-align: center;" class="target-gold">30+ /wk</td>
+          <td style="text-align: center;" class="target-blue">50+ /wk</td>
+        </tr>
+        <tr>
+          <td><strong>DM Inquiries</strong></td>
+          <td>Direct booking leads</td>
+          <td style="text-align: center;" class="target-green">2+ /wk</td>
+          <td style="text-align: center;" class="target-gold">5+ /wk</td>
+          <td style="text-align: center;" class="target-blue">10+ /wk</td>
+        </tr>
+        <tr>
+          <td><strong>Follower Growth</strong></td>
+          <td>Audience building</td>
+          <td style="text-align: center;" class="target-green">+50 /wk</td>
+          <td style="text-align: center;" class="target-gold">+100 /wk</td>
+          <td style="text-align: center;" class="target-blue">+200 /wk</td>
+        </tr>
+        <tr>
+          <td><strong>Save Rate</strong></td>
+          <td>Highest-intent engagement</td>
+          <td style="text-align: center; color: var(--text-dim);">Track only</td>
+          <td style="text-align: center;" class="target-gold">3%+</td>
+          <td style="text-align: center;" class="target-blue">5%+</td>
+        </tr>
+        <tr>
+          <td><strong>Share Rate</strong></td>
+          <td>Viral potential indicator</td>
+          <td style="text-align: center; color: var(--text-dim);">Track only</td>
+          <td style="text-align: center;" class="target-gold">1%+</td>
+          <td style="text-align: center;" class="target-blue">2%+</td>
+        </tr>
+        <tr>
+          <td><strong>Posts Published</strong></td>
+          <td>Consistency check</td>
+          <td style="text-align: center;" class="target-green">3 /wk</td>
+          <td style="text-align: center;" class="target-gold">4 /wk</td>
+          <td style="text-align: center;" class="target-blue">4-5 /wk</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Monthly Review Process</h3>
+
+  <div class="vis-grid" style="margin-top: 20px;">
+    <div class="vis-card">
+      <div class="vis-title">Analyze</div>
+      <ul class="vis-list">
+        <li>Identify top 3 posts by views &mdash; what hooks/topics worked?</li>
+        <li>Identify bottom 3 posts &mdash; what fell flat?</li>
+        <li>Check awareness level balance across all posts</li>
+      </ul>
+    </div>
+    <div class="vis-card">
+      <div class="vis-title">Optimize</div>
+      <ul class="vis-list">
+        <li>Review DM inquiries &mdash; turn common questions into content</li>
+        <li>Update hook bank: remove underperformers, add new winners</li>
+        <li>Make more of what works, less of what doesn't</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- SECTION 08: 90-Day Roadmap                                       -->
+<!-- ================================================================ -->
+<section class="section">
+  <div class="section-number">Section 08</div>
+  <h2>90-Day Roadmap</h2>
+  <p class="section-subtitle">Three phases to go from first post to content system. Each phase builds on the last &mdash; don't skip ahead.</p>
+
+  <div class="roadmap">
+
+    <!-- Phase 1 -->
+    <div class="roadmap-phase phase-1">
+      <div class="roadmap-phase-label">Phase 1 &middot; Weeks 1-4</div>
+      <div class="roadmap-phase-title">Launch</div>
+      <div class="roadmap-cadence">3 posts/week (Tue, Thu, Sat)</div>
+      <ul class="roadmap-weeks">
+        <li><strong>Wk 1:</strong> Education Reel + POV Tour + Proof Carousel</li>
+        <li><strong>Wk 2:</strong> Warning Reel + Behind-Scenes + Testimonial Reel</li>
+        <li><strong>Wk 3:</strong> List Reel + POV Night Ceremony + Proof Reel</li>
+        <li><strong>Wk 4:</strong> Contrarian Reel + Nature Show + Transformation Story</li>
+      </ul>
+      <div class="roadmap-checkpoint">
+        <div class="checkpoint-label">Week 4 Checkpoint</div>
+        <ul class="checkpoint-list">
+          <li>12 posts published</li>
+          <li>Top 2-3 performing hooks identified</li>
+          <li>Comfortable with filming workflow</li>
+          <li>Stories posted 3+ days/week</li>
+          <li>Bold text on every Reel</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="roadmap-phase phase-2">
+      <div class="roadmap-phase-label">Phase 2 &middot; Weeks 5-8</div>
+      <div class="roadmap-phase-title">Optimize</div>
+      <div class="roadmap-cadence">4 posts/week (Mon, Wed, Fri, Sun)</div>
+      <ul class="roadmap-weeks">
+        <li>Reuse top 3 hooks with new meat content</li>
+        <li>Add problem-aware content for non-aya audience</li>
+        <li>Daily Stories (behind-scenes, polls, Q&amp;A)</li>
+        <li>Set up DM automation (READY, PRICE, BOOK, INFO)</li>
+        <li>Test longer vs. shorter captions and CTA phrases</li>
+      </ul>
+      <div class="roadmap-checkpoint">
+        <div class="checkpoint-label">Week 8 Checkpoint</div>
+        <ul class="checkpoint-list">
+          <li>28+ total posts published</li>
+          <li>Reel views trending upward</li>
+          <li>At least 1 Reel hit 5K+ views</li>
+          <li>DM inquiries started coming in</li>
+          <li>Story highlights reorganized per funnel</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="roadmap-phase phase-3">
+      <div class="roadmap-phase-label">Phase 3 &middot; Weeks 9-12</div>
+      <div class="roadmap-phase-title">Scale</div>
+      <div class="roadmap-cadence">4-5 posts/week</div>
+      <ul class="roadmap-weeks">
+        <li>Repurpose top 5 Reels as carousels and Story sequences</li>
+        <li>Hormozi multiplication: 1 meat + 3 hooks per session</li>
+        <li>Add 1 "Most Aware" CTA post per week</li>
+        <li>Cross-platform test: top Reels on TikTok (if bandwidth)</li>
+        <li>Identify 3-5 accounts for future collaborations</li>
+      </ul>
+      <div class="roadmap-checkpoint">
+        <div class="checkpoint-label">Week 12 Checkpoint</div>
+        <ul class="checkpoint-list">
+          <li>45+ total posts published</li>
+          <li>Avg. Reel views at 3,000-5,000+</li>
+          <li>Followers growing 100+/week</li>
+          <li>5+ DM inquiries per week</li>
+          <li>Production workflow under 3 hours/week</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">The Compound Effect</div>
+    <strong>Content compounds.</strong> Every Reel is a permanent asset working 24/7. A Reel posted in Week 2 can go viral in Week 10. By Week 12, LaWayra will have 45+ permanent content assets on Instagram &mdash; each one a potential doorway for new guests to discover the retreat. The goal is not any single viral post. The goal is a system that consistently generates inquiries.
+  </div>
+</section>
+
+</div>
+
+<!-- ================================================================ -->
+<!-- FOOTER: The Content Formula                                      -->
+<!-- ================================================================ -->
+<footer class="formula-footer">
+  <div class="container">
+    <div class="formula-title">The LaWayra Content Formula</div>
+    <div class="formula-subtitle">Quick reference: 9 steps from hook bank to published Reel</div>
+
+    <div class="formula-steps">
+      <div class="formula-step">
+        <div class="formula-step-num">1</div>
+        <div class="formula-step-text"><strong>Pick a HOOK</strong> from the bank (Section 02). Choose based on your target awareness level for the day.</div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step-num">2</div>
+        <div class="formula-step-text"><strong>Film face-to-camera</strong> with the BOLD TEXT overlay on screen. Natural light, nature background.</div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step-num">3</div>
+        <div class="formula-step-text"><strong>Deliver the MEAT</strong> using one format: education, demonstration, testimonial, story, or faceless.</div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step-num">4</div>
+        <div class="formula-step-text"><strong>End with REWARD + CTA.</strong> Deliver the insight, then soft CTA (save/share) or hard CTA (link in bio).</div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step-num">5</div>
+        <div class="formula-step-text"><strong>Write the CAPTION</strong> using the 4-part template: hook line, value, CTA, hashtags.</div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step-num">6</div>
+        <div class="formula-step-text"><strong>Add HASHTAGS</strong> from the 3 rotating groups. All of Group A + 5 from B + 3-5 from C.</div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step-num">7</div>
+        <div class="formula-step-text"><strong>Post on SCHEDULE.</strong> Mon/Wed/Fri/Sun for 4-post weeks. Tue/Thu/Sat for 3-post weeks.</div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step-num">8</div>
+        <div class="formula-step-text"><strong>Track METRICS</strong> weekly. Views, profile visits, link clicks, DMs, followers, saves, shares.</div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step-num">9</div>
+        <div class="formula-step-text"><strong>Review monthly.</strong> MORE of what works, LESS of what doesn't. Update the hook bank accordingly.</div>
+      </div>
+    </div>
+
+    <div class="footer-credits">
+      LaWayra Retreat &middot; Instagram Content Strategy &middot; February 2026<br>
+      Built on competitive research of 5 Instagram profiles + Hormozi's $100M organic growth frameworks.<br>
+      Designed for a solo content creator at LaWayra Retreat, Fredonia, Colombia.
+    </div>
+  </div>
+</footer>
+
+<!-- Tab switching script -->
+<script>
+function showPanel(id) {
+  document.querySelectorAll('.hook-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.hook-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

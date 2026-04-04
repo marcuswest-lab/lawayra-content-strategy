@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaWayra Sales Tracking System</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #1a3a2a;
+    --primary-light: #2d5e42;
+    --accent: #c8956c;
+    --accent-light: #e8c9a8;
+    --accent-glow: #d4a574;
+    --bg: #0f1710;
+    --bg-card: #151e17;
+    --bg-card-hover: #1a2a1e;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --text-dim: #6b6560;
+    --border: #2a3a2e;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 60px 80px;
+    background: linear-gradient(165deg, #0f1710 0%, #1a3a2a 40%, #2d5e42 70%, #1a3a2a 100%);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,149,108,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(45,94,66,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    max-width: 750px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+  .hero-meta strong { color: var(--text); font-weight: 500; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin-bottom: 50px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 40px 0 16px;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 30px 0 12px;
+  }
+  p { margin-bottom: 16px; color: var(--text); font-size: 15px; }
+  strong { color: #fff; font-weight: 600; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+  .stat-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .data-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-card);
+  }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .data-table td:first-child { font-weight: 600; color: #fff; }
+  .data-table code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    background: rgba(200,149,108,0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Cards */
+  .info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 24px 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .info-card:hover {
+    border-color: rgba(200,149,108,0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+  .info-card-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .info-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .info-card-body { padding: 24px 28px; }
+  .info-card-body p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+  .info-card-body p:last-child { margin-bottom: 0; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .tag-paid { background: rgba(248,113,113,0.1); color: var(--danger); }
+  .tag-organic { background: rgba(74,222,128,0.1); color: var(--success); }
+  .tag-referral { background: rgba(96,165,250,0.1); color: var(--blue); }
+  .tag-email { background: rgba(167,139,250,0.1); color: var(--purple); }
+  .tag-wom { background: rgba(200,149,108,0.1); color: var(--accent); }
+  .tag-other { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+
+  /* Code blocks */
+  .code-block {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 16px 0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .code-block .highlight { color: var(--accent); }
+  .code-block .comment { color: var(--text-dim); }
+
+  /* Funnel */
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 30px 0;
+    max-width: 600px;
+  }
+  .funnel-step {
+    text-align: center;
+    padding: 18px 24px;
+    position: relative;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .funnel-step:nth-child(1) {
+    background: var(--primary-light);
+    border-radius: 12px 12px 0 0;
+  }
+  .funnel-step:nth-child(2) {
+    background: rgba(200,149,108,0.2);
+  }
+  .funnel-step:nth-child(3) {
+    background: rgba(200,149,108,0.35);
+    border-radius: 0 0 12px 12px;
+  }
+  .funnel-arrow {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 18px;
+    padding: 4px 0;
+  }
+  .funnel-rate {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-left: 8px;
+  }
+
+  /* Checklist */
+  .checklist {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .checklist li {
+    padding: 10px 0 10px 32px;
+    position: relative;
+    font-size: 14px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+  }
+
+  /* Notes */
+  .note-block {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+  }
+  .note-block p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .note-block p:last-child { margin-bottom: 0; }
+
+  /* Scenario table */
+  .scenario-table td:nth-child(3) {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .scenario-table td:nth-child(4) {
+    color: var(--success);
+    font-weight: 600;
+  }
+
+  /* Procedure blocks */
+  .procedure-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+  .procedure-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .procedure-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .procedure-freq {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: rgba(200,149,108,0.15);
+    color: var(--accent);
+  }
+  .procedure-body {
+    padding: 20px 28px;
+  }
+  .procedure-body .checklist li {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .footer {
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer p {
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .footer strong { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px 50px; }
+    .hero h1 { font-size: 32px; }
+    .container { padding: 0 20px; }
+    .section { padding: 50px 0; }
+    .section h2 { font-size: 28px; }
+    .data-table { font-size: 12px; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .funnel { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Phase 5 &mdash; LaWayra Operations</div>
+  <h1>Sales Tracking & <span>Attribution System</span></h1>
+  <p class="hero-subtitle">Know exactly where every booking comes from. UTM parameters, conversion tracking, automated data pipelines, and a live dashboard showing bookings and revenue by channel.</p>
+  <div class="hero-meta">
+    <span><strong>20+</strong> Source Channels</span>
+    <span><strong>8</strong> System Sections</span>
+    <span><strong>5</strong> GTM Tags</span>
+    <span><strong>5</strong> Sheet Tabs</span>
+    <span><strong>5</strong> Dashboard Pages</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- SECTION 1: UTM PARAMETERS -->
+<div class="section">
+  <div class="section-number">Section 01</div>
+  <h2>UTM Parameter Framework</h2>
+  <p class="section-subtitle">Every link you share needs UTM parameters so Google Analytics can tell you where traffic came from. Without UTMs, most social and referral traffic shows up as &ldquo;direct.&rdquo;</p>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-number">3</div><div class="stat-label">Required Params</div></div>
+    <div class="stat-box"><div class="stat-number">5</div><div class="stat-label">Source Categories</div></div>
+    <div class="stat-box"><div class="stat-number">20+</div><div class="stat-label">Tagged URLs</div></div>
+    <div class="stat-box"><div class="stat-number">30d</div><div class="stat-label">Cookie Duration</div></div>
+  </div>
+
+  <h3>How UTM Parameters Work</h3>
+  <div class="code-block"><span class="comment">// Example tagged URL:</span>
+https://ayahuascaincolombia.com/?<span class="highlight">utm_source</span>=instagram&<span class="highlight">utm_medium</span>=social&<span class="highlight">utm_campaign</span>=link-in-bio</div>
+
+  <div class="note-block">
+    <p><strong>Naming Rules:</strong> All lowercase. Hyphens for spaces. No special characters. Date suffix for time-bound campaigns (e.g., <code>mar2026</code>). Never share a bare URL externally.</p>
+  </div>
+
+  <h4>Paid Advertising</h4>
+  <table class="data-table">
+    <thead><tr><th>Source</th><th>utm_source</th><th>utm_medium</th><th>utm_campaign (example)</th></tr></thead>
+    <tbody>
+      <tr><td>Google Search Ads</td><td><code>google</code></td><td><code>cpc</code></td><td><code>retreat-search-mar2026</code></td></tr>
+      <tr><td>Google Display Ads</td><td><code>google</code></td><td><code>display</code></td><td><code>retreat-display-mar2026</code></td></tr>
+      <tr><td>Meta/Instagram Ads</td><td><code>meta</code></td><td><code>cpc</code></td><td><code>ig-reel-promo-mar2026</code></td></tr>
+      <tr><td>YouTube Ads</td><td><code>youtube</code></td><td><code>cpc</code></td><td><code>yt-pre-roll-mar2026</code></td></tr>
+      <tr><td>TikTok Ads</td><td><code>tiktok</code></td><td><code>cpc</code></td><td><code>tt-spark-ad-mar2026</code></td></tr>
+    </tbody>
+  </table>
+
+  <h4>Organic Social</h4>
+  <table class="data-table">
+    <thead><tr><th>Source</th><th>utm_source</th><th>utm_medium</th><th>utm_campaign</th></tr></thead>
+    <tbody>
+      <tr><td>Instagram bio link</td><td><code>instagram</code></td><td><code>social</code></td><td><code>link-in-bio</code></td></tr>
+      <tr><td>Instagram DM links</td><td><code>instagram</code></td><td><code>social</code></td><td><code>dm-response</code></td></tr>
+      <tr><td>Instagram Story link</td><td><code>instagram</code></td><td><code>social</code></td><td><code>story-link</code></td></tr>
+      <tr><td>Reddit posts/comments</td><td><code>reddit</code></td><td><code>social</code></td><td><code>r-ayahuasca</code></td></tr>
+      <tr><td>TikTok bio link</td><td><code>tiktok</code></td><td><code>social</code></td><td><code>bio-link</code></td></tr>
+      <tr><td>YouTube description</td><td><code>youtube</code></td><td><code>social</code></td><td><code>video-description</code></td></tr>
+      <tr><td>Facebook group post</td><td><code>facebook</code></td><td><code>social</code></td><td><code>fb-group-post</code></td></tr>
+    </tbody>
+  </table>
+
+  <h4>Referral &amp; Listings</h4>
+  <table class="data-table">
+    <thead><tr><th>Source</th><th>utm_source</th><th>utm_medium</th><th>utm_campaign</th></tr></thead>
+    <tbody>
+      <tr><td>Retreat Guru</td><td><code>retreatguru</code></td><td><code>referral</code></td><td><code>profile-listing</code></td></tr>
+      <tr><td>AyaAdvisors</td><td><code>ayaadvisors</code></td><td><code>referral</code></td><td><code>profile-listing</code></td></tr>
+      <tr><td>Psychedelist</td><td><code>psychedelist</code></td><td><code>referral</code></td><td><code>profile-listing</code></td></tr>
+      <tr><td>Podcast mention</td><td><code>podcast</code></td><td><code>referral</code></td><td><code>[podcast-name]</code></td></tr>
+      <tr><td>Blog/article</td><td><code>blog</code></td><td><code>referral</code></td><td><code>[article-slug]</code></td></tr>
+    </tbody>
+  </table>
+
+  <h4>Email &amp; Direct</h4>
+  <table class="data-table">
+    <thead><tr><th>Source</th><th>utm_source</th><th>utm_medium</th><th>utm_campaign</th></tr></thead>
+    <tbody>
+      <tr><td>Newsletter</td><td><code>newsletter</code></td><td><code>email</code></td><td><code>mar2026-issue</code></td></tr>
+      <tr><td>Follow-up email</td><td><code>email</code></td><td><code>email</code></td><td><code>follow-up-sequence</code></td></tr>
+      <tr><td>WhatsApp message</td><td><code>whatsapp</code></td><td><code>message</code></td><td><code>inquiry-response</code></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 2: BOOKINGLAYER DROPDOWN -->
+<div class="section">
+  <div class="section-number">Section 02</div>
+  <h2>BookingLayer Source Field</h2>
+  <p class="section-subtitle">Your checkout &ldquo;where did you hear about us&rdquo; dropdown updated for accurate attribution. Split vague options, add missing sources.</p>
+
+  <h3>Current vs. Recommended</h3>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Key Change: Split &ldquo;Advertisement&rdquo;</div>
+      <span class="tag tag-paid">Action Required</span>
+    </div>
+    <div class="info-card-body">
+      <p>The current &ldquo;Advertisement&rdquo; option doesn&rsquo;t tell you which ad platform drove the booking. Split it into <strong>Google Ads</strong>, <strong>Facebook/Instagram Ads</strong>, <strong>YouTube Ads</strong>, and <strong>Other Advertisement</strong>.</p>
+    </div>
+  </div>
+
+  <h4>Recommended Dropdown (20 Options)</h4>
+  <table class="data-table">
+    <thead><tr><th>#</th><th>Option</th><th>Category</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Google Search</td><td><span class="tag tag-organic">Organic Search</span></td><td>Keep</td></tr>
+      <tr><td>2</td><td>Google Ads</td><td><span class="tag tag-paid">Paid Ads</span></td><td>New (split)</td></tr>
+      <tr><td>3</td><td>Google Maps</td><td><span class="tag tag-organic">Organic Search</span></td><td>New</td></tr>
+      <tr><td>4</td><td>Facebook/Instagram Ads</td><td><span class="tag tag-paid">Paid Ads</span></td><td>New (split)</td></tr>
+      <tr><td>5</td><td>YouTube Ads</td><td><span class="tag tag-paid">Paid Ads</span></td><td>New (split)</td></tr>
+      <tr><td>6</td><td>Instagram</td><td><span class="tag tag-organic">Organic Social</span></td><td>Keep</td></tr>
+      <tr><td>7</td><td>Facebook</td><td><span class="tag tag-organic">Organic Social</span></td><td>New</td></tr>
+      <tr><td>8</td><td>YouTube</td><td><span class="tag tag-organic">Organic Social</span></td><td>Keep</td></tr>
+      <tr><td>9</td><td>TikTok</td><td><span class="tag tag-organic">Organic Social</span></td><td>Keep</td></tr>
+      <tr><td>10</td><td>Reddit</td><td><span class="tag tag-organic">Organic Social</span></td><td>Keep</td></tr>
+      <tr><td>11</td><td>Retreat Guru</td><td><span class="tag tag-referral">Listing Sites</span></td><td>Keep</td></tr>
+      <tr><td>12</td><td>AyaAdvisors</td><td><span class="tag tag-referral">Listing Sites</span></td><td>Keep</td></tr>
+      <tr><td>13</td><td>Psychedelist</td><td><span class="tag tag-referral">Listing Sites</span></td><td>Keep</td></tr>
+      <tr><td>14</td><td>ChatGPT or other AI Chatbots</td><td><span class="tag tag-other">Content &amp; Media</span></td><td>Keep</td></tr>
+      <tr><td>15</td><td>Podcast</td><td><span class="tag tag-other">Content &amp; Media</span></td><td>Keep</td></tr>
+      <tr><td>16</td><td>Newsletter</td><td><span class="tag tag-email">Email</span></td><td>Keep</td></tr>
+      <tr><td>17</td><td>Blog or Article</td><td><span class="tag tag-other">Content &amp; Media</span></td><td>New</td></tr>
+      <tr><td>18</td><td>Friend Recommendation</td><td><span class="tag tag-wom">Word of Mouth</span></td><td>Keep</td></tr>
+      <tr><td>19</td><td>Conference or Event</td><td><span class="tag tag-wom">Word of Mouth</span></td><td>Keep</td></tr>
+      <tr><td>20</td><td>Other</td><td><span class="tag tag-other">Other</span></td><td>New</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Source-to-Category Mapping</h4>
+  <table class="data-table">
+    <thead><tr><th>Category</th><th>Sources</th></tr></thead>
+    <tbody>
+      <tr><td>Paid Ads</td><td>Google Ads, Facebook/Instagram Ads, YouTube Ads</td></tr>
+      <tr><td>Organic Search</td><td>Google Search, Google Maps</td></tr>
+      <tr><td>Organic Social</td><td>Instagram, Facebook, YouTube, TikTok, Reddit</td></tr>
+      <tr><td>Listing Sites</td><td>Retreat Guru, AyaAdvisors, Psychedelist</td></tr>
+      <tr><td>Content &amp; Media</td><td>Podcast, Newsletter, Blog or Article, ChatGPT/AI</td></tr>
+      <tr><td>Word of Mouth</td><td>Friend Recommendation, Conference or Event</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: GTM + GA4 -->
+<div class="section">
+  <div class="section-number">Section 03</div>
+  <h2>GTM + GA4 Conversion Tracking</h2>
+  <p class="section-subtitle">Five GTM tags that track the full funnel: website visit &rarr; checkout start &rarr; booking complete. Plus UTM persistence across sessions.</p>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-number">5</div><div class="stat-label">GTM Tags</div></div>
+    <div class="stat-box"><div class="stat-number">3</div><div class="stat-label">GA4 Events</div></div>
+    <div class="stat-box"><div class="stat-number">7</div><div class="stat-label">GTM Variables</div></div>
+    <div class="stat-box"><div class="stat-number">30d</div><div class="stat-label">UTM Cookie Life</div></div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tag 1: UTM Parameter Capture &amp; Storage</div>
+      <span class="tag tag-organic">Custom HTML</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Purpose:</strong> Captures UTM parameters from the URL on arrival, stores in a 30-day cookie and localStorage. Persists through the entire booking flow.</p>
+      <p><strong>Trigger:</strong> All Pages</p>
+      <p><strong>What it does:</strong> Reads <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, and <code>utm_term</code> from the URL. Stores as JSON in <code>lw_utm</code> cookie with 30-day expiry.</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tag 2: GA4 &mdash; Begin Checkout</div>
+      <span class="tag tag-organic">GA4 Event</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Purpose:</strong> Fires when someone clicks &ldquo;Book Now&rdquo; and heads to BookingLayer.</p>
+      <p><strong>Event Name:</strong> <code>begin_checkout</code></p>
+      <p><strong>Trigger:</strong> Click &mdash; links containing your BookingLayer domain</p>
+      <p><strong>Parameters:</strong> utm_source, utm_medium, utm_campaign (from cookie)</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tag 3: GA4 &mdash; Purchase Event</div>
+      <span class="tag tag-paid">GA4 Event</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Purpose:</strong> Fires on BookingLayer&rsquo;s confirmation page when a booking is completed.</p>
+      <p><strong>Event Name:</strong> <code>purchase</code></p>
+      <p><strong>Trigger:</strong> BookingLayer&rsquo;s built-in dataLayer push (requires GTM integration enabled in BookingLayer Settings &rarr; Integrations)</p>
+      <p><strong>Parameters:</strong> transaction_id, value, currency, items</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tag 4: Google Ads Conversion</div>
+      <span class="tag tag-paid">Conversion Tag</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Purpose:</strong> Tells Google Ads when a booking happens so it can optimize ad delivery.</p>
+      <p><strong>Trigger:</strong> Same as Tag 3 &mdash; <code>purchase</code> event</p>
+      <p><strong>Requires:</strong> Conversion ID and Label from Google Ads &rarr; Tools &rarr; Conversions</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tag 5: Meta Pixel Events</div>
+      <span class="tag tag-referral">Custom HTML</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>InitiateCheckout:</strong> Fires on Book Now click (same trigger as Tag 2)</p>
+      <p><strong>Purchase:</strong> Fires on booking confirmation (same trigger as Tag 3)</p>
+      <p><strong>Includes:</strong> Transaction value and currency for ROAS calculation</p>
+    </div>
+  </div>
+
+  <h4>GTM Variables to Create</h4>
+  <table class="data-table">
+    <thead><tr><th>Variable Name</th><th>Type</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>UTM Source Cookie</td><td>1st Party Cookie</td><td>Parse <code>lw_utm</code> for <code>utm_source</code></td></tr>
+      <tr><td>UTM Medium Cookie</td><td>1st Party Cookie</td><td>Parse <code>lw_utm</code> for <code>utm_medium</code></td></tr>
+      <tr><td>UTM Campaign Cookie</td><td>1st Party Cookie</td><td>Parse <code>lw_utm</code> for <code>utm_campaign</code></td></tr>
+      <tr><td>DLV - transaction_id</td><td>Data Layer</td><td><code>ecommerce.transaction_id</code></td></tr>
+      <tr><td>DLV - value</td><td>Data Layer</td><td><code>ecommerce.value</code></td></tr>
+      <tr><td>DLV - currency</td><td>Data Layer</td><td><code>ecommerce.currency</code></td></tr>
+      <tr><td>DLV - items</td><td>Data Layer</td><td><code>ecommerce.items</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-block">
+    <p><strong>After tags are live:</strong> Go to GA4 &rarr; Admin &rarr; Events &rarr; mark <code>purchase</code> as conversion and <code>begin_checkout</code> as key event. Set attribution to &ldquo;Data-driven&rdquo; model.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: ZAPIER PIPELINE -->
+<div class="section">
+  <div class="section-number">Section 04</div>
+  <h2>Zapier Data Pipeline</h2>
+  <p class="section-subtitle">BookingLayer webhook &rarr; Zapier &rarr; Google Sheets. The automated pipeline that logs every booking with its source.</p>
+
+  <h3>Flow Architecture</h3>
+  <div class="funnel">
+    <div class="funnel-step">BookingLayer &mdash; BookingCreated Webhook</div>
+    <div class="funnel-arrow">&darr;</div>
+    <div class="funnel-step">Zapier &mdash; Format Date + Map Fields</div>
+    <div class="funnel-arrow">&darr;</div>
+    <div class="funnel-step">Google Sheets &mdash; Append Row to Raw Bookings</div>
+  </div>
+
+  <h4>Google Sheets Column Mapping</h4>
+  <table class="data-table">
+    <thead><tr><th>Column</th><th>Field</th><th>Source</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>A: Date</td><td>Booking created date</td><td>Webhook</td><td>Format: YYYY-MM-DD</td></tr>
+      <tr><td>B: Month</td><td>Auto-calculated</td><td>Formula</td><td><code>=TEXT(A2,"YYYY-MM")</code></td></tr>
+      <tr><td>C: Day</td><td>Auto-calculated</td><td>Formula</td><td><code>=TEXT(A2,"dddd")</code></td></tr>
+      <tr><td>D: Booking Ref</td><td>Booking reference</td><td>Webhook</td><td>&mdash;</td></tr>
+      <tr><td>E: Guest Name</td><td>First + last name</td><td>Webhook</td><td>&mdash;</td></tr>
+      <tr><td>F: Email</td><td>Booker email</td><td>Webhook</td><td>&mdash;</td></tr>
+      <tr><td>G: Package</td><td>Product/retreat name</td><td>Webhook</td><td>&mdash;</td></tr>
+      <tr><td>H: Amount</td><td>Booking total (USD)</td><td>Webhook</td><td>Numeric only</td></tr>
+      <tr><td>I: Self-Reported Source</td><td>&ldquo;Where did you hear about us&rdquo;</td><td>Webhook</td><td>Key attribution field</td></tr>
+      <tr><td>J: Source Category</td><td>Auto-calculated</td><td>Formula</td><td>VLOOKUP from mapping tab</td></tr>
+      <tr><td>K-M: UTM Fields</td><td>Source, Medium, Campaign</td><td>Cookie passthrough</td><td>May be blank</td></tr>
+      <tr><td>N: Notes</td><td>Manual entry</td><td>&mdash;</td><td>For team notes</td></tr>
+      <tr><td>O: Status</td><td>Booking status</td><td>Webhook</td><td>Confirmed / Cancelled</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-block">
+    <p><strong>If the webhook doesn&rsquo;t include the &ldquo;where did you hear about us&rdquo; field:</strong> Manually fill column I from BookingLayer admin during daily checks, or export BookingLayer bookings weekly as CSV to cross-reference.</p>
+  </div>
+</div>
+
+<!-- SECTION 5: GOOGLE SHEETS -->
+<div class="section">
+  <div class="section-number">Section 05</div>
+  <h2>Google Sheets Tracking Hub</h2>
+  <p class="section-subtitle">Five tabs: Raw Bookings (auto-populated), Monthly Dashboard, Daily Tracker, UTM Master List, and Source Mapping.</p>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-number">5</div><div class="stat-label">Sheet Tabs</div></div>
+    <div class="stat-box"><div class="stat-number">15</div><div class="stat-label">Data Columns</div></div>
+    <div class="stat-box"><div class="stat-number">20</div><div class="stat-label">Source Rows</div></div>
+    <div class="stat-box"><div class="stat-number">Auto</div><div class="stat-label">Category Mapping</div></div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tab 1: Raw Bookings</div>
+      <span class="tag tag-organic">Auto-populated</span>
+    </div>
+    <div class="info-card-body">
+      <p>One row per booking. Zapier writes columns A, D-I, O. Columns B, C, J are auto-calculated formulas. Columns K-N are manual or cookie-based.</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tab 2: Monthly Dashboard</div>
+      <span class="tag tag-paid">Summary View</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Rows:</strong> All 20 source options + TOTAL row</p>
+      <p><strong>Columns:</strong> Source | Bookings per month | Revenue per month (repeating for each month)</p>
+      <p><strong>Key formula:</strong> <code>=COUNTIFS('Raw Bookings'!$B:$B,"2026-03",'Raw Bookings'!$I:$I,A3)</code></p>
+      <p><strong>Revenue:</strong> <code>=SUMIFS('Raw Bookings'!$H:$H,'Raw Bookings'!$B:$B,"2026-03",'Raw Bookings'!$I:$I,A3)</code></p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tab 3: Daily Tracker</div>
+      <span class="tag tag-referral">Granular View</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Rows:</strong> Dates</p>
+      <p><strong>Columns:</strong> Date | Total Bookings | Total Revenue | one column per source</p>
+      <p><strong>Formula:</strong> <code>=COUNTIFS('Raw Bookings'!$A:$A,A2,'Raw Bookings'!$I:$I,D$1)</code></p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tab 4: UTM Master List</div>
+      <span class="tag tag-email">Reference</span>
+    </div>
+    <div class="info-card-body">
+      <p>All UTM-tagged URLs from Section 1, pre-built and ready to copy-paste. Team members grab URLs from here instead of building them manually.</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Tab 5: Source Mapping</div>
+      <span class="tag tag-other">Hidden Helper</span>
+    </div>
+    <div class="info-card-body">
+      <p>Two-column lookup table: Source name &rarr; Category. Powers the VLOOKUP in Tab 1 that auto-categorizes every booking.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: LOOKER STUDIO -->
+<div class="section">
+  <div class="section-number">Section 06</div>
+  <h2>Looker Studio Dashboard</h2>
+  <p class="section-subtitle">Free Google tool connecting your Sheets and GA4 into a visual, auto-refreshing, shareable dashboard.</p>
+
+  <h3>Conversion Funnel</h3>
+  <div class="funnel">
+    <div class="funnel-step">Website Sessions (GA4)<span class="funnel-rate">100%</span></div>
+    <div class="funnel-arrow">&darr;</div>
+    <div class="funnel-step">Book Now Clicks / begin_checkout<span class="funnel-rate">Target: 5-10%</span></div>
+    <div class="funnel-arrow">&darr;</div>
+    <div class="funnel-step">Completed Bookings<span class="funnel-rate">Target: 1-3%</span></div>
+  </div>
+
+  <h4>Dashboard Pages</h4>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Page 1: Overview</div>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Scorecards:</strong> Total Bookings, Total Revenue, Avg Booking Value, Conversion Rate, vs. Previous Month</p>
+      <p><strong>Charts:</strong> Bookings over time (line), Revenue over time (line), Bookings by category (donut)</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Page 2: Source Breakdown</div>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Table:</strong> All sources with bookings, revenue, % of total, avg value, month-over-month change</p>
+      <p><strong>Charts:</strong> Horizontal bar charts &mdash; bookings by source and revenue by source, sorted descending</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Page 3: Conversion Funnel</div>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Funnel:</strong> Sessions &rarr; Checkouts &rarr; Bookings (from GA4 + Sheets blend)</p>
+      <p><strong>Table:</strong> Conversion rate by source &mdash; which channels convert best?</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Page 4: Trends</div>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Stacked area chart:</strong> Bookings by source over time (monthly)</p>
+      <p><strong>Heatmap:</strong> Bookings by day-of-week &times; source</p>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-title">Page 5: Dual Attribution</div>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Side-by-side:</strong> Self-reported source vs. UTM-attributed source</p>
+      <p><strong>Mismatch table:</strong> Cases where the two don&rsquo;t agree</p>
+    </div>
+  </div>
+
+  <div class="note-block">
+    <p><strong>Setup:</strong> Go to lookerstudio.google.com &rarr; Create Report &rarr; Add Google Sheets data source (Raw Bookings tab) &rarr; Add GA4 data source &rarr; Build pages &rarr; Set auto-refresh to 12 hours &rarr; Share with team (view-only).</p>
+  </div>
+</div>
+
+<!-- SECTION 7: DUAL ATTRIBUTION -->
+<div class="section">
+  <div class="section-number">Section 07</div>
+  <h2>Dual Attribution System</h2>
+  <p class="section-subtitle">Cross-reference what customers say with what the data shows. Two signals together give you the most accurate picture.</p>
+
+  <h3>Why Both Signals Matter</h3>
+  <table class="data-table">
+    <thead><tr><th>Method</th><th>Strength</th><th>Weakness</th></tr></thead>
+    <tbody>
+      <tr><td>Self-Reported (dropdown)</td><td>Captures offline: friends, events, podcasts</td><td>People forget, guess, or pick first option</td></tr>
+      <tr><td>Technical (UTM/GA4)</td><td>Precise for digital channels</td><td>Can&rsquo;t track offline, cookie/cross-device gaps</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Attribution Scenarios</h4>
+  <table class="data-table scenario-table">
+    <thead><tr><th>Self-Reported</th><th>UTM Says</th><th>What Happened</th><th>How to Count</th></tr></thead>
+    <tbody>
+      <tr><td>Instagram</td><td>instagram/social</td><td>Match &mdash; high confidence</td><td>Instagram</td></tr>
+      <tr><td>Google Search</td><td>google/cpc</td><td>Googled but clicked an ad</td><td>Google Ads</td></tr>
+      <tr><td>Friend Recommendation</td><td>instagram/social</td><td>Friend told them, found you on IG</td><td>Both: Friend + IG</td></tr>
+      <tr><td>Reddit</td><td>(blank)</td><td>Direct visit after reading Reddit</td><td>Reddit (trust self-report)</td></tr>
+      <tr><td>Instagram</td><td>google/cpc</td><td>Saw IG, then Googled + clicked ad</td><td>Multi-touch</td></tr>
+      <tr><td>(blank)</td><td>meta/cpc</td><td>Didn&rsquo;t answer dropdown</td><td>Meta Ads (trust technical)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-block">
+    <p><strong>Priority rule:</strong> UTM available + self-reported matches = high confidence. UTM available + mismatch = trust UTM for digital, self-report for offline. UTM blank = trust self-report. Both blank = &ldquo;Unknown.&rdquo;</p>
+  </div>
+
+  <h4>Monthly Reconciliation Template</h4>
+  <div class="code-block"><span class="highlight">Month:</span> [YYYY-MM]
+<span class="highlight">Total Bookings:</span> [X]
+<span class="highlight">Attributed (both match):</span> [X] ([%])
+<span class="highlight">Attributed (UTM only):</span> [X] ([%])
+<span class="highlight">Attributed (self-report only):</span> [X] ([%])
+<span class="highlight">Unattributed:</span> [X] ([%])
+<span class="highlight">Top Mismatch Pattern:</span> [describe]</div>
+</div>
+
+<!-- SECTION 8: OPERATING PROCEDURES -->
+<div class="section">
+  <div class="section-number">Section 08</div>
+  <h2>Operating Procedures</h2>
+  <p class="section-subtitle">Daily, weekly, monthly, and quarterly routines to keep the tracking system accurate and actionable.</p>
+
+  <div class="procedure-card">
+    <div class="procedure-header">
+      <div class="procedure-title">Daily Check</div>
+      <div class="procedure-freq">5 minutes</div>
+    </div>
+    <div class="procedure-body">
+      <ul class="checklist">
+        <li>Glance at Daily Tracker tab &mdash; any bookings today? From which source?</li>
+        <li>If Zapier failed (missing rows), manually log from BookingLayer admin</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="procedure-card">
+    <div class="procedure-header">
+      <div class="procedure-title">Weekly Review</div>
+      <div class="procedure-freq">15 minutes</div>
+    </div>
+    <div class="procedure-body">
+      <ul class="checklist">
+        <li>Verify Zapier pipeline is running (check Zap history for errors)</li>
+        <li>Fill in any missing &ldquo;Self-Reported Source&rdquo; data from BookingLayer admin</li>
+        <li>Check GA4 Realtime report &mdash; are UTMs tracking correctly?</li>
+        <li>Review bookings with blank attribution and investigate</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="procedure-card">
+    <div class="procedure-header">
+      <div class="procedure-title">Monthly Report</div>
+      <div class="procedure-freq">45 minutes</div>
+    </div>
+    <div class="procedure-body">
+      <ul class="checklist">
+        <li>Run dual attribution reconciliation (Section 7)</li>
+        <li>Update Monthly Dashboard tab if formulas need extending</li>
+        <li>Calculate ROI per channel: Revenue &divide; Ad Spend = ROAS</li>
+        <li>Screenshot Looker Studio dashboard for team discussion</li>
+        <li>Review &ldquo;Other&rdquo; responses &mdash; should any become a new option?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="procedure-card">
+    <div class="procedure-header">
+      <div class="procedure-title">Quarterly Audit</div>
+      <div class="procedure-freq">1 hour</div>
+    </div>
+    <div class="procedure-body">
+      <ul class="checklist">
+        <li>Full channel review: Which sources are growing? Declining?</li>
+        <li>Reallocate ad budget based on ROAS by channel</li>
+        <li>Update UTM links if campaigns or URLs changed</li>
+        <li>Update BookingLayer dropdown if new sources emerged</li>
+        <li>Test full funnel: UTM link &rarr; website &rarr; test booking &rarr; verify tracking</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Key Metrics to Track Monthly</h4>
+  <table class="data-table">
+    <thead><tr><th>Metric</th><th>Formula</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>Total Bookings</td><td>Count all bookings</td><td>Trending up</td></tr>
+      <tr><td>Total Revenue</td><td>Sum of booking amounts</td><td>Trending up</td></tr>
+      <tr><td>Website Conversion Rate</td><td>Bookings &divide; Sessions</td><td>1-3%</td></tr>
+      <tr><td>Cost Per Acquisition</td><td>Ad spend &divide; Bookings</td><td>Track trend, lower is better</td></tr>
+      <tr><td>ROAS (Paid)</td><td>Revenue &divide; Ad spend</td><td>&gt;3x good, &gt;5x great</td></tr>
+      <tr><td>Avg Booking Value</td><td>Revenue &divide; Bookings</td><td>Stable or increasing</td></tr>
+      <tr><td>Attribution Rate</td><td>Known source &divide; Total</td><td>&gt;80%</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- IMPLEMENTATION CHECKLIST -->
+<div class="section">
+  <div class="section-number">Quick Reference</div>
+  <h2>Implementation Checklist</h2>
+  <p class="section-subtitle">Follow this order to get the full system live.</p>
+
+  <ul class="checklist">
+    <li><strong>Update BookingLayer dropdown</strong> &mdash; Replace 14 options with recommended 20 (Section 2)</li>
+    <li><strong>Set up UTM Master List</strong> &mdash; Create tagged URLs for all sources (Section 1)</li>
+    <li><strong>Configure GTM tags</strong> &mdash; Tags 1-5 as described (Section 3)</li>
+    <li><strong>Mark GA4 conversions</strong> &mdash; <code>purchase</code> and <code>begin_checkout</code> events</li>
+    <li><strong>Create Google Sheets</strong> &mdash; 5 tabs with formulas (Section 5)</li>
+    <li><strong>Configure Zapier</strong> &mdash; BookingLayer webhook &rarr; Google Sheets (Section 4)</li>
+    <li><strong>Test the pipeline</strong> &mdash; Run a test booking end-to-end</li>
+    <li><strong>Build Looker Studio dashboard</strong> &mdash; Connect Sheets + GA4 (Section 6)</li>
+    <li><strong>Start using UTM links</strong> &mdash; Update all bio links, listings, ad URLs immediately</li>
+    <li><strong>Set weekly review calendar</strong> &mdash; 15 min/week for monitoring</li>
+  </ul>
+</div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  <div class="container">
+    <p><strong>LaWayra Retreat</strong> &mdash; Sales Tracking &amp; Attribution System</p>
+    <p style="margin-top:8px">Phase 5 &bull; Operations &amp; Analytics &bull; ayahuascaincolombia.com</p>
+  </div>
+</div>
+
+</body>
+</html>
