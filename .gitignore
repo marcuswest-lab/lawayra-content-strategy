@@ -7,6 +7,10 @@
 !lawayra-content-calendar-report.html
 !lawayra-execution-kit-report.html
 
+# Allow team SOP pages
+!lawayra-team-sops.html
+!lawayra-content-calendar-notion.html
+
 # Allow landing page and repo files
 !index.html
 !.gitignore
