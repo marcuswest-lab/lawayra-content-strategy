@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaWayra — Content Strategy Reports</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #1a3a2a;
+    --primary-light: #2d5e42;
+    --accent: #c8956c;
+    --accent-light: #e8c9a8;
+    --bg: #0f1710;
+    --bg-card: #151e17;
+    --bg-card-hover: #1a2a1e;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --border: #2a3a2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 720px;
+    width: 100%;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(200,149,108,0.3);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  a.card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s ease;
+  }
+
+  a.card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(200,149,108,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .card-number {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    border: 1px solid rgba(200,149,108,0.15);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .card-content { flex: 1; }
+
+  .card-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 2px;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .card-arrow {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+
+  a.card:hover .card-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    a.card { padding: 18px 20px; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="badge">Internal Reports</div>
+    <h1>LaWayra Content Strategy</h1>
+    <p class="subtitle">Instagram growth playbook — click any report to view</p>
+  </div>
+
+  <div class="cards">
+    <a class="card" href="lawayra-instagram-research-report.html">
+      <div class="card-number">1</div>
+      <div class="card-content">
+        <div class="card-title">Research Report</div>
+        <div class="card-desc">Competitor analysis, platform benchmarks, opportunity map</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card" href="lawayra-content-strategy-report.html">
+      <div class="card-number">2</div>
+      <div class="card-content">
+        <div class="card-title">Content Strategy</div>
+        <div class="card-desc">5 pillars, hook bank, solo creator workflow</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card" href="lawayra-content-calendar-report.html">
+      <div class="card-number">3</div>
+      <div class="card-content">
+        <div class="card-title">Content Calendar</div>
+        <div class="card-desc">4-week posting schedule, filming plans, Stories calendar</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a class="card" href="lawayra-execution-kit-report.html">
+      <div class="card-number">4</div>
+      <div class="card-content">
+        <div class="card-title">Execution Kit</div>
+        <div class="card-desc">Word-for-word scripts, B-roll library, DM sequences, analytics</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="footer">LaWayra Retreat — connect. heal. grow.</div>
+</div>
+
+</body>
+</html>
