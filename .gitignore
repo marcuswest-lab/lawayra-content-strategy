@@ -11,6 +11,10 @@
 !lawayra-team-sops.html
 !lawayra-content-calendar-notion.html
 
+# Allow Hero Heal funnel deliverables
+!heroheal-funnel/
+!heroheal-funnel/**
+
 # Allow landing page and repo files
 !index.html
 !.gitignore

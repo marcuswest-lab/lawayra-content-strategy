@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Heal x LaWayra — Funnel Flow Map</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f5f5f0; color: #2B2728; line-height: 1.5; }
+
+  .header { background: #2B2728; color: #FFF7E7; padding: 40px 32px 32px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .header .subtitle { font-size: 16px; color: #AEAC92; }
+  .header .date { font-size: 13px; color: #888; margin-top: 8px; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #888; margin-bottom: 16px; margin-top: 48px; }
+
+  /* Funnel steps */
+  .step { display: flex; gap: 20px; margin-bottom: 0; position: relative; }
+  .step-left { width: 56px; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .step-number { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; color: white; flex-shrink: 0; }
+  .step-line { width: 3px; flex-grow: 1; min-height: 20px; }
+  .step-content { flex: 1; padding-bottom: 28px; }
+  .step-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .step-url { font-size: 13px; font-family: 'SF Mono', 'Fira Code', monospace; background: #e8e8e0; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 8px; color: #555; word-break: break-all; }
+  .step-url a { color: #555; text-decoration: none; }
+  .step-url a:hover { text-decoration: underline; }
+  .step-desc { font-size: 14px; color: #555; }
+  .step-owner { font-size: 12px; font-weight: 600; margin-top: 6px; padding: 2px 8px; border-radius: 3px; display: inline-block; }
+
+  /* Color coding by owner */
+  .hero-heal .step-number { background: #1a6b3c; }
+  .hero-heal .step-line { background: #1a6b3c30; }
+  .hero-heal .step-owner { background: #1a6b3c18; color: #1a6b3c; }
+
+  .lawayra .step-number { background: #B34100; }
+  .lawayra .step-line { background: #B3410030; }
+  .lawayra .step-owner { background: #B3410018; color: #B34100; }
+
+  .google .step-number { background: #1a73e8; }
+  .google .step-line { background: #1a73e830; }
+  .google .step-owner { background: #1a73e818; color: #1a73e8; }
+
+  .shared .step-number { background: #7B5EA7; }
+  .shared .step-line { background: #7B5EA730; }
+  .shared .step-owner { background: #7B5EA718; color: #7B5EA7; }
+
+  /* Conversion callout */
+  .conversion { background: #1a6b3c; color: white; padding: 10px 16px; border-radius: 8px; margin: 8px 0 12px; font-size: 13px; }
+  .conversion strong { font-size: 14px; }
+  .conversion code { background: rgba(255,255,255,0.2); padding: 1px 6px; border-radius: 3px; font-size: 12px; }
+
+  /* Branch */
+  .branch { display: flex; gap: 16px; margin: 12px 0 0; }
+  .branch-item { flex: 1; padding: 14px 16px; border-radius: 8px; font-size: 13px; }
+  .branch-cleared { background: #1a6b3c10; border: 2px solid #1a6b3c40; }
+  .branch-not-cleared { background: #cc000010; border: 2px solid #cc000030; }
+  .branch-label { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+
+  /* Arrow connector */
+  .arrow { text-align: center; padding: 8px 0; margin-left: 18px; }
+  .arrow svg { width: 24px; height: 32px; }
+
+  /* Legend */
+  .legend { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; margin-bottom: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+  /* Summary table */
+  .summary-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+  .summary-table th { text-align: left; padding: 10px 12px; background: #2B2728; color: #FFF7E7; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .summary-table td { padding: 10px 12px; border-bottom: 1px solid #e0e0d8; }
+  .summary-table tr:last-child td { border-bottom: none; }
+  .summary-table .url-cell { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; color: #555; word-break: break-all; }
+
+  /* Status badges */
+  .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; display: inline-block; }
+  .badge-live { background: #1a6b3c18; color: #1a6b3c; }
+  .badge-tracking { background: #1a73e818; color: #1a73e8; }
+
+  /* GTM info */
+  .gtm-box { background: #fff; border: 1px solid #e0e0d8; border-radius: 8px; padding: 20px; margin-top: 16px; }
+  .gtm-box h3 { font-size: 15px; margin-bottom: 12px; }
+  .gtm-row { display: flex; gap: 12px; margin-bottom: 8px; font-size: 13px; }
+  .gtm-label { font-weight: 600; min-width: 140px; color: #555; }
+  .gtm-value { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="max-width:900px;margin:0 auto;">
+    <h1>Hero Heal x LaWayra — Funnel Flow Map</h1>
+    <div class="subtitle">Google Ad Grant Partnership Funnel</div>
+    <div class="date">Updated April 2, 2026 &nbsp;|&nbsp; GTM Container Published &nbsp;|&nbsp; Google Ads Account: 248-132-2276</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1a73e8"></div> Google Ads</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1a6b3c"></div> Hero Heal (Jen)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#B34100"></div> LaWayra</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7B5EA7"></div> Shared / Both</div>
+  </div>
+
+  <div class="section-label">Acquisition</div>
+
+  <!-- Step 1: Google Ad -->
+  <div class="step google">
+    <div class="step-left">
+      <div class="step-number">1</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Google Ad (Search)</div>
+      <div class="step-desc">Prospect searches for veteran/first responder healing, retreat support, PTSD treatment alternatives, etc. Sees Google Ad Grant ad from Hero Heal.</div>
+      <div class="step-owner">Google Ads Grant — Hero Heal account</div>
+    </div>
+  </div>
+
+  <!-- Step 2: Landing Page -->
+  <div class="step hero-heal">
+    <div class="step-left">
+      <div class="step-number">2</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Hero Heal Landing Page</div>
+      <div class="step-url"><a href="https://heroheal.org/apply-healing-retreats-scholarships-education/" target="_blank">heroheal.org/apply-healing-retreats-scholarships-education/</a></div>
+      <div class="step-desc">Applicant reads about Hero Heal's support program. Clicks button to open Jotform application (opens on separate page, not embedded). Fills out basic info: name, email, phone, service background, readiness questions, and required disclosures.</div>
+      <div class="step-owner">Hero Heal — WordPress + Jotform</div>
+    </div>
+  </div>
+
+  <!-- Step 3: Thank You Page + Conversion 1 -->
+  <div class="step hero-heal">
+    <div class="step-left">
+      <div class="step-number">3</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Application Submitted — Thank You Page</div>
+      <div class="step-url"><a href="https://heroheal.org/thank-you-for-applying/" target="_blank">heroheal.org/thank-you-for-applying/</a></div>
+      <div class="step-desc">Jotform redirects here after submission. Applicant sees confirmation message that their application was received.</div>
+      <div class="conversion">
+        <strong>&#9733; CONVERSION 1: Lead</strong><br>
+        GTM fires <code>HH-LaWayra Application Submitted (Lead)</code><br>
+        Conversion ID: 17082821170 &nbsp;|&nbsp; Label: <code>O33iCKzvqoscELLU3NE_</code><br>
+        Trigger: Page URL contains <code>thank-you-for-applying</code>
+      </div>
+      <div class="step-owner">Hero Heal — WordPress</div>
+    </div>
+  </div>
+
+  <!-- Step 4: Hero Heal Outreach -->
+  <div class="step hero-heal">
+    <div class="step-left">
+      <div class="step-number">4</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Hero Heal Reaches Out</div>
+      <div class="step-desc">Jen receives application via email instantly. Hero Heal contacts applicant immediately by call, SMS, and email to schedule the safety review call.</div>
+      <div class="step-owner">Hero Heal — Jen (manual)</div>
+    </div>
+  </div>
+
+  <!-- Step 5: Safety Review Call -->
+  <div class="step hero-heal">
+    <div class="step-left">
+      <div class="step-number">5</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Safety Review Call</div>
+      <div class="step-desc">Hero Heal conducts brief screening: suicide risk, psychosis history, medication contraindications, instability. This is NOT clinical care — it's an educational referral safety check for nonprofit compliance.</div>
+
+      <div class="branch">
+        <div class="branch-item branch-not-cleared">
+          <div class="branch-label">4B: Not Cleared</div>
+          Applicant receives stabilization resources from Hero Heal. LaWayra is not involved. No further conversions fire. Funnel ends here.
+        </div>
+        <div class="branch-item branch-cleared">
+          <div class="branch-label">5: Cleared &#10003;</div>
+          Applicant is appropriate for referral. Hero Heal proceeds to book a LaWayra discovery call while still on the phone with the applicant.
+        </div>
+      </div>
+      <div class="step-owner">Hero Heal — Jen (manual)</div>
+    </div>
+  </div>
+
+  <div class="section-label">Handoff to LaWayra</div>
+
+  <!-- Step 6: Booking Page -->
+  <div class="step shared">
+    <div class="step-left">
+      <div class="step-number">6</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Hero Heal Books Discovery Call (GHL Calendar)</div>
+      <div class="step-url"><a href="https://heroheal.lawayraretreat.com/book-a-call" target="_blank">heroheal.lawayraretreat.com/book-a-call</a></div>
+      <div class="step-desc">While still on the safety call, Jen opens this co-branded GHL funnel page and books the LaWayra discovery call on behalf of the applicant. Page includes Hero Heal + LaWayra header, Colombia photography, program overview, trust signals, "What to Expect" section, and the embedded GHL consultation calendar (<code>herohealconsultation</code>). Calendar shows form first, then date/time selection. Auto-confirm is on.</div>
+      <div class="step-owner">Co-branded — GHL funnel (LaWayra hosted)</div>
+    </div>
+  </div>
+
+  <!-- Step 7: Confirmation Page + Conversion 2 -->
+  <div class="step lawayra">
+    <div class="step-left">
+      <div class="step-number">7</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Call Booked — Confirmation Page</div>
+      <div class="step-url"><a href="https://heroheal.lawayraretreat.com/booked-call-confirmed" target="_blank">heroheal.lawayraretreat.com/booked-call-confirmed</a></div>
+      <div class="step-desc">After booking is completed, the calendar redirects here. Co-branded confirmation page shown to Jen (who is booking on behalf of the applicant).</div>
+      <div class="conversion">
+        <strong>&#9733; CONVERSION 2: Booked Call</strong><br>
+        GTM fires <code>LaWayra-HH Consultation Call Booked</code><br>
+        Conversion ID: 17082821170 &nbsp;|&nbsp; Label: <code>RxKrCJ6DtlscELLU3NE_</code><br>
+        Trigger: Page URL contains <code>booked-call-confirmed</code>
+      </div>
+      <div class="step-owner">LaWayra — GHL funnel page</div>
+    </div>
+  </div>
+
+  <!-- Step 8: Handoff Form -->
+  <div class="step shared">
+    <div class="step-left">
+      <div class="step-number">8</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Handoff Form Submitted</div>
+      <div class="step-desc">Hero Heal fills out a short internal form with applicant details and screening notes. This triggers all LaWayra CRM automation (contact creation, tagging, pipeline placement, rep notification, confirmation email, Sheets logging).</div>
+      <div class="step-owner" style="background:#cc000015;color:#cc0000;">NOT YET BUILT — post-launch. Manual email handoff for now.</div>
+    </div>
+  </div>
+
+  <div class="section-label">LaWayra Sales Process</div>
+
+  <!-- Step 9: Sales Rep Notified -->
+  <div class="step lawayra">
+    <div class="step-left">
+      <div class="step-number">9</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">LaWayra Sales Rep Notified</div>
+      <div class="step-desc">Rep receives email/notification with applicant details and confirmed call time. This is a pre-booked appointment — no cold follow-up needed. Rep also receives referral email from Jen CC'ing LaWayra as a warm co-introduction.</div>
+      <div class="step-owner">LaWayra — GHL calendar notification + Jen's email</div>
+    </div>
+  </div>
+
+  <!-- Step 10: Discovery Call -->
+  <div class="step lawayra">
+    <div class="step-left">
+      <div class="step-number">10</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-title">Discovery Call &amp; Retreat Booking</div>
+      <div class="step-desc">Sales rep meets applicant at agreed time (45-min 1-on-1 consultation). Scholarship/pricing discussed. If applicant proceeds, they book through LaWayra's standard booking system. LaWayra handles all intake forms, waivers, medical screening, and retreat operations from here.</div>
+      <div class="step-owner">LaWayra — Sales team + BookingLayer</div>
+    </div>
+  </div>
+
+  <!-- URL Summary Table -->
+  <div class="section-label" style="margin-top:56px;">All URLs at a Glance</div>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Step</th>
+        <th>URL</th>
+        <th>Platform</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Landing Page</strong></td>
+        <td class="url-cell">heroheal.org/apply-healing-retreats-scholarships-education/</td>
+        <td>WordPress</td>
+        <td><span class="badge badge-live">Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>Thank You (Lead)</strong></td>
+        <td class="url-cell">heroheal.org/thank-you-for-applying/</td>
+        <td>WordPress</td>
+        <td><span class="badge badge-live">Live</span> <span class="badge badge-tracking">Tracking</span></td>
+      </tr>
+      <tr>
+        <td><strong>Booking Page</strong></td>
+        <td class="url-cell">heroheal.lawayraretreat.com/book-a-call</td>
+        <td>GHL Funnel</td>
+        <td><span class="badge badge-live">Live</span></td>
+      </tr>
+      <tr>
+        <td><strong>Booked Confirmation</strong></td>
+        <td class="url-cell">heroheal.lawayraretreat.com/booked-call-confirmed</td>
+        <td>GHL Funnel</td>
+        <td><span class="badge badge-live">Live</span> <span class="badge badge-tracking">Tracking</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- GTM / Conversion Details -->
+  <div class="section-label">Conversion Tracking Details</div>
+
+  <div class="gtm-box">
+    <h3>Google Tag Manager — GTM-MMVZ76WM</h3>
+    <p style="font-size:13px;color:#888;margin-bottom:16px;">Container on heroheal.org. Published April 2, 2026.</p>
+
+    <h4 style="font-size:13px;margin-bottom:8px;color:#1a6b3c;">Tag 1: HH-LaWayra Application Submitted (Lead)</h4>
+    <div class="gtm-row"><span class="gtm-label">Tag type</span><span class="gtm-value">Google Ads Conversion Tracking</span></div>
+    <div class="gtm-row"><span class="gtm-label">Conversion ID</span><span class="gtm-value">17082821170</span></div>
+    <div class="gtm-row"><span class="gtm-label">Conversion Label</span><span class="gtm-value">O33iCKzvqoscELLU3NE_</span></div>
+    <div class="gtm-row"><span class="gtm-label">Trigger</span><span class="gtm-value">Page URL contains "thank-you-for-applying"</span></div>
+
+    <hr style="border:none;border-top:1px solid #e0e0d8;margin:16px 0;">
+
+    <h4 style="font-size:13px;margin-bottom:8px;color:#B34100;">Tag 2: LaWayra-HH Consultation Call Booked</h4>
+    <div class="gtm-row"><span class="gtm-label">Tag type</span><span class="gtm-value">Google Ads Conversion Tracking</span></div>
+    <div class="gtm-row"><span class="gtm-label">Conversion ID</span><span class="gtm-value">17082821170</span></div>
+    <div class="gtm-row"><span class="gtm-label">Conversion Label</span><span class="gtm-value">RxKrCJ6DtlscELLU3NE_</span></div>
+    <div class="gtm-row"><span class="gtm-label">Trigger</span><span class="gtm-value">Page URL contains "booked-call-confirmed"</span></div>
+  </div>
+
+  <div class="gtm-box" style="margin-top:12px;">
+    <h3>Google Ads Account — 248-132-2276 (Hero Heal Grant)</h3>
+    <div class="gtm-row"><span class="gtm-label">Account type</span><span class="gtm-value">Google Ad Grant ($10K/mo)</span></div>
+    <div class="gtm-row"><span class="gtm-label">Conversion 1</span><span class="gtm-value">HH-LaWayra Application Submitted (Lead)</span></div>
+    <div class="gtm-row"><span class="gtm-label">Conversion 2</span><span class="gtm-value">HH Consultation Call Booked</span></div>
+    <div class="gtm-row"><span class="gtm-label">Campaign</span><span class="gtm-value" style="color:#cc0000;">Not yet created</span></div>
+  </div>
+
+  <p style="font-size:12px;color:#999;margin-top:48px;text-align:center;">Hero Heal x LaWayra &nbsp;|&nbsp; Confidential &nbsp;|&nbsp; For Internal Discussion Only</p>
+
+</div>
+</body>
+</html>
