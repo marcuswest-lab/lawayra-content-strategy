@@ -11,6 +11,9 @@
 !lawayra-team-sops.html
 !lawayra-content-calendar-notion.html
 
+# Allow Airbnb research report
+!lawayra-airbnb-research-report.html
+
 # Allow Hero Heal funnel deliverables
 !heroheal-funnel/
 !heroheal-funnel/**

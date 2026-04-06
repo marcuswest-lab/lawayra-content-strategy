@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaWayra Airbnb & Digital Nomad Stay — Market Research</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #1a3a2a;
+    --primary-light: #2d5e42;
+    --accent: #c8956c;
+    --accent-light: #e8c9a8;
+    --accent-glow: #d4a574;
+    --bg: #0f1710;
+    --bg-card: #151e17;
+    --bg-card-hover: #1a2a1e;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --text-dim: #6b6560;
+    --border: #2a3a2e;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 60px 80px;
+    background: linear-gradient(165deg, #0f1710 0%, #1a3a2a 40%, #2d5e42 70%, #1a3a2a 100%);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,149,108,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(45,94,66,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    max-width: 750px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+  .hero-meta strong { color: var(--text); font-weight: 500; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin-bottom: 50px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 40px 0 16px;
+  }
+  h3:first-child { margin-top: 0; }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 30px 0 12px;
+  }
+  p { margin-bottom: 16px; color: var(--text); font-size: 15px; }
+  strong { color: #fff; font-weight: 600; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+  .stat-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .data-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-card);
+  }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .data-table td:first-child { font-weight: 600; color: #fff; }
+
+  .info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 24px 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .info-card:hover {
+    border-color: rgba(200,149,108,0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+  .info-card-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .info-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .info-card-body { padding: 24px 28px; }
+  .info-card-body p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+  .info-card-body p:last-child { margin-bottom: 0; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .tag-free { background: rgba(74,222,128,0.1); color: var(--success); }
+  .tag-paid { background: rgba(248,113,113,0.1); color: var(--danger); }
+  .tag-listing { background: rgba(96,165,250,0.1); color: var(--blue); }
+  .tag-gap { background: rgba(251,191,36,0.1); color: var(--warning); }
+  .tag-opportunity { background: rgba(167,139,250,0.1); color: var(--purple); }
+  .tag-critical { background: rgba(248,113,113,0.15); color: var(--danger); border: 1px solid rgba(248,113,113,0.3); }
+
+  .note-block {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+  }
+  .note-block p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .note-block p:last-child { margin-bottom: 0; }
+
+  .insight-box {
+    background: linear-gradient(135deg, rgba(200,149,108,0.08) 0%, rgba(45,94,66,0.08) 100%);
+    border: 1px solid rgba(200,149,108,0.2);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .insight-box p { font-size: 14px; color: var(--text); margin-bottom: 8px; }
+  .insight-box p:last-child { margin-bottom: 0; }
+  .insight-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .ad-concept {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+  .ad-concept-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .ad-concept-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .ad-concept-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 4px;
+  }
+  .ad-concept-body { padding: 24px 28px; }
+  .ad-field {
+    margin-bottom: 16px;
+  }
+  .ad-field-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .ad-field-value {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .ad-hook {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.4;
+    padding: 16px 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  .checklist {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .checklist li {
+    padding: 10px 0 10px 32px;
+    position: relative;
+    font-size: 14px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+  }
+
+  .timeline {
+    margin: 30px 0;
+    padding-left: 30px;
+    border-left: 2px solid var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 30px 24px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -37px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 3px solid var(--bg);
+  }
+  .timeline-week {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .timeline-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .timeline-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .home-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .home-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px 50px; }
+    .hero h1 { font-size: 32px; }
+    .container { padding: 0 20px; }
+    .section { padding: 50px 0; }
+    .section h2 { font-size: 28px; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .data-table { font-size: 12px; }
+    .data-table th, .data-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="landing-page.html" class="home-btn">Home</a>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Market Research & Ad Strategy</div>
+  <h1>LaWayra <span>Airbnb</span> &amp; Digital Nomad Stay</h1>
+  <p class="hero-subtitle">Competitive landscape, positioning, target audiences, channel strategy, and ad creative for renting LaWayra cabins to digital nomads during low season.</p>
+  <div class="hero-meta">
+    <span><strong>Date:</strong> April 5, 2026</span>
+    <span><strong>Prepared by:</strong> Marcus (Ads & Marketing)</span>
+    <span><strong>Status:</strong> Research Complete</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: MARKET SNAPSHOT -->
+  <div class="section">
+    <div class="section-number">Section 01</div>
+    <h2>Market Snapshot</h2>
+    <p class="section-subtitle">Fredonia's Airbnb market is thin and undifferentiated. Rural coliving near Medellin doesn't exist. LaWayra has a massive first-mover advantage.</p>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-number">~15</div>
+        <div class="stat-label">Airbnb Listings in Fredonia</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Wellness-Positioned Listings</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Rural Coliving Near Medellin</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">26K+</div>
+        <div class="stat-label">Expats in Medellin FB Groups</div>
+      </div>
+    </div>
+
+    <h3>Fredonia Airbnb Listings</h3>
+    <p>All existing listings are standard fincas. No one is marketing wellness, workspaces, or community.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Nightly Rate</th>
+          <th>Capacity</th>
+          <th>Rating</th>
+          <th>Reviews</th>
+          <th>Positioning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Finca Naya</td>
+          <td>~$100+</td>
+          <td>8 guests</td>
+          <td>4.77/5</td>
+          <td>82</td>
+          <td>Coffee + waterfalls + adventure</td>
+        </tr>
+        <tr>
+          <td>Finca el Cielo</td>
+          <td>~$145</td>
+          <td>10 guests</td>
+          <td>4.66/5</td>
+          <td>68</td>
+          <td>Standard cottage/finca</td>
+        </tr>
+        <tr>
+          <td>Beautiful Estate</td>
+          <td>~$153</td>
+          <td>16 guests</td>
+          <td>4.7/5</td>
+          <td>56</td>
+          <td>Groups, pools, BBQ, fire pit</td>
+        </tr>
+        <tr>
+          <td>Finca Atrapasue-os</td>
+          <td>~$105</td>
+          <td>10 guests</td>
+          <td>--</td>
+          <td>--</td>
+          <td>Standard finca</td>
+        </tr>
+        <tr>
+          <td>Glamping Dome</td>
+          <td>~$74</td>
+          <td>2 guests</td>
+          <td>--</td>
+          <td>--</td>
+          <td>Geodesic dome</td>
+        </tr>
+        <tr>
+          <td>Finca Emilio Casita</td>
+          <td>~$32</td>
+          <td>4 guests</td>
+          <td>4.8/5</td>
+          <td>20</td>
+          <td>Budget B&amp;B, breakfast included</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight-box">
+      <div class="insight-label">Key Insight</div>
+      <p><strong>Price range: $32-$155/night.</strong> Most listings target Colombian families or large groups. No listing mentions WiFi speed, workspaces, wellness, or community. LaWayra would be the only wellness-positioned property in Fredonia.</p>
+    </div>
+
+    <h3>Booking.com &amp; Hostelworld</h3>
+    <p>Booking.com has ~15-20 options starting at $35-$54/night. Top performers: <strong>Hotel Tahiti</strong> (5-star, restaurant, mountain views) and <strong>Glamping Santa Isabel</strong> (8.7/10 rating, hot tub, breakfast). Hostelworld has <strong>zero listings</strong> in Fredonia.</p>
+
+    <h3>Broader Antioquia Eco-Lodge Market</h3>
+    <p>The eco-lodge/glamping segment is booming outside Fredonia, especially around Guatape and El Penol. Properties with unique architecture and included experiences command premium ratings (4.85-5.0 stars).</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Location</th>
+          <th>Rating</th>
+          <th>Reviews</th>
+          <th>Standout Feature</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Queen Floating Cabin</td>
+          <td>Guatape</td>
+          <td>4.93/5</td>
+          <td>136</td>
+          <td>Floating cabin, jacuzzi, kayaking</td>
+        </tr>
+        <tr>
+          <td>Geodesic Dome Suite</td>
+          <td>Guatape</td>
+          <td>4.83/5</td>
+          <td>82</td>
+          <td>Luxury glamping, pool, AC</td>
+        </tr>
+        <tr>
+          <td>Iraka Villa</td>
+          <td>Sopetran</td>
+          <td>5.0/5</td>
+          <td>37</td>
+          <td>Minipool, 1hr 15min from Medellin</td>
+        </tr>
+        <tr>
+          <td>COCOZNA Glamping</td>
+          <td>Samana</td>
+          <td>5.0/5</td>
+          <td>22</td>
+          <td>Meals included, waterfall tours</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Rural Coliving: A Blank Slate</h3>
+    <div class="insight-box">
+      <div class="insight-label">White Space</div>
+      <p><strong>Zero rural coliving exists within 2 hours of Medellin.</strong> All coliving is urban (Selina in Poblado, Nomadico, Co.404 in Laureles). Zero Fredonia listings on Workaway, Worldpackers, or any coliving platform. LaWayra would be the absolute first mover.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: POSITIONING -->
+  <div class="section">
+    <div class="section-number">Section 02</div>
+    <h2>LaWayra Positioning</h2>
+    <p class="section-subtitle">"Wellness retreat meets digital nomad base" — the only offering of its kind near Medellin.</p>
+
+    <h3>What We Already Have</h3>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 20px;">Mountain Cabins</div>
+        <div class="stat-label">Private rooms with views</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 20px;">Pool + Sauna</div>
+        <div class="stat-label">On-site amenities</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 20px;">3 Daily Meals</div>
+        <div class="stat-label">Plant-forward, local chefs</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 20px;">Yoga Spaces</div>
+        <div class="stat-label">Maloca + outdoor areas</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 20px;">90 min</div>
+        <div class="stat-label">From Medellin</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 20px;">Coffee Region</div>
+        <div class="stat-label">Fredonia, Antioquia</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 20px;">No Malaria</div>
+        <div class="stat-label">Mountains, not jungle</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 20px;">700+ Reviews</div>
+        <div class="stat-label">Google, 5-star average</div>
+      </div>
+    </div>
+
+    <h3>Prerequisites Before Listing</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Prerequisite</th>
+          <th>Owner</th>
+          <th>Priority</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>WiFi upgrade (80+ Mbps)</td>
+          <td>Sam / Oliver</td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td>Required — non-negotiable for nomads</td>
+        </tr>
+        <tr>
+          <td>Desks + chairs in all cabins</td>
+          <td>Stefy</td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td>In progress</td>
+        </tr>
+        <tr>
+          <td>Flexible pricing model</td>
+          <td>Sarah + Oliver</td>
+          <td><span class="tag tag-paid">High</span></td>
+          <td>To be decided</td>
+        </tr>
+        <tr>
+          <td>A la carte meal option</td>
+          <td>Sarah + Stefy + Oliver</td>
+          <td><span class="tag tag-gap">Medium</span></td>
+          <td>To be decided</td>
+        </tr>
+        <tr>
+          <td>Airbnb / Booking.com registration</td>
+          <td>Sam + Stefy</td>
+          <td><span class="tag tag-paid">High</span></td>
+          <td>To do</td>
+        </tr>
+        <tr>
+          <td>BookingLayer occupancy integration</td>
+          <td>Madhu</td>
+          <td><span class="tag tag-gap">Medium</span></td>
+          <td>To do</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Why LaWayra Wins vs. Standard Airbnbs</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Standard Fredonia Airbnb</th>
+          <th>LaWayra Nomad Stay</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Private cabin</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>WiFi for work</td>
+          <td>Sometimes, speed unknown</td>
+          <td>Must be 80+ Mbps (verified)</td>
+        </tr>
+        <tr>
+          <td>Meals</td>
+          <td>Self-cater or none</td>
+          <td>3 daily meals included</td>
+        </tr>
+        <tr>
+          <td>Workspace</td>
+          <td>No</td>
+          <td>Desks being installed</td>
+        </tr>
+        <tr>
+          <td>Pool / Sauna</td>
+          <td>Some</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Yoga / Meditation</td>
+          <td>No</td>
+          <td>Dedicated spaces</td>
+        </tr>
+        <tr>
+          <td>Community</td>
+          <td>No</td>
+          <td>Built-in, like-minded guests</td>
+        </tr>
+        <tr>
+          <td>Weekly/Monthly rates</td>
+          <td>Rare</td>
+          <td>Yes (discounted tiers)</td>
+        </tr>
+        <tr>
+          <td>Transport from Medellin</td>
+          <td>No</td>
+          <td>Can offer as add-on</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 3: TARGET AUDIENCES -->
+  <div class="section">
+    <div class="section-number">Section 03</div>
+    <h2>Target Audiences</h2>
+    <p class="section-subtitle">Four distinct profiles, each with different pain points, stay lengths, and discovery channels.</p>
+
+    <div class="info-card">
+      <div class="info-card-header">
+        <div>
+          <div class="info-card-title">Profile A: Digital Nomads in Medellin</div>
+        </div>
+        <span class="tag tag-free">Primary Target</span>
+      </div>
+      <div class="info-card-body">
+        <p><strong>Who:</strong> Remote workers living in Poblado/Laureles, 25-45, earning $3K-$10K/month</p>
+        <p><strong>Pain point:</strong> Tired of city noise, want nature break without losing productivity</p>
+        <p><strong>Stay length:</strong> 1-4 weeks</p>
+        <p><strong>Decision driver:</strong> WiFi speed, workspace quality, proximity to Medellin for occasional city trips</p>
+        <p><strong>Where they are:</strong> Facebook groups (Digital Nomads Medellin, 8.9K members), WhatsApp communities, coworking spaces</p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-header">
+        <div>
+          <div class="info-card-title">Profile B: Traveling Remote Workers</div>
+        </div>
+        <span class="tag tag-listing">Secondary</span>
+      </div>
+      <div class="info-card-body">
+        <p><strong>Who:</strong> Passing through Colombia, looking for unique stays beyond hostels/hotels</p>
+        <p><strong>Pain point:</strong> Want something authentic, not another generic Airbnb</p>
+        <p><strong>Stay length:</strong> 3-7 nights</p>
+        <p><strong>Decision driver:</strong> Reviews, photos, unique experience, value for money</p>
+        <p><strong>Where they are:</strong> Airbnb search, Booking.com, Instagram, r/solotravel, r/digitalnomad</p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-header">
+        <div>
+          <div class="info-card-title">Profile C: Wellness-Curious Nomads</div>
+        </div>
+        <span class="tag tag-opportunity">High Value</span>
+      </div>
+      <div class="info-card-body">
+        <p><strong>Who:</strong> Interested in yoga, meditation, plant medicine but not ready for full ceremony</p>
+        <p><strong>Pain point:</strong> Want to explore wellness lifestyle without heavy commitment</p>
+        <p><strong>Stay length:</strong> 1-2 weeks</p>
+        <p><strong>Decision driver:</strong> Wellness offerings, community, authenticity, no pressure to participate in ceremonies</p>
+        <p><strong>Where they are:</strong> WhatsApp wellness groups (Holistic Wellness, Club Conscience), BookRetreats, yoga communities</p>
+        <p><strong>Upsell potential:</strong> These guests may convert to full ceremony participants during or after their stay</p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-header">
+        <div>
+          <div class="info-card-title">Profile D: Groups &amp; Couples</div>
+        </div>
+        <span class="tag tag-listing">Secondary</span>
+      </div>
+      <div class="info-card-body">
+        <p><strong>Who:</strong> Expat friend groups or couples in Medellin wanting weekend escape</p>
+        <p><strong>Pain point:</strong> Want nature + good food + pool without planning everything</p>
+        <p><strong>Stay length:</strong> 2-3 nights (weekends)</p>
+        <p><strong>Decision driver:</strong> All-inclusive convenience, property photos, group pricing</p>
+        <p><strong>Where they are:</strong> Facebook groups (Medellin Expat and Tourist Info, 26.1K), Instagram, word of mouth</p>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">Nomad Data (NomadList)</div>
+      <p>Medellin ranks <strong>#51 globally</strong> for digital nomads. Average trip length: <strong>28 days</strong>. Average cost: <strong>$1,570/month</strong>. 14% of visitors return. Community rating is "Okay" — organized communities (like a retreat) fill a gap.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: CHANNEL STRATEGY -->
+  <div class="section">
+    <div class="section-number">Section 04</div>
+    <h2>Channel Strategy</h2>
+    <p class="section-subtitle">Free channels first (Facebook groups, WhatsApp, Reddit), then paid ads, then listing platforms.</p>
+
+    <h3>Free Channels</h3>
+    <h4>Facebook Groups</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Group</th>
+          <th>Members</th>
+          <th>Activity</th>
+          <th>Approach</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Medellin Expat and Tourist Info</td>
+          <td>26,100</td>
+          <td>50+ posts/day</td>
+          <td>Answer accommodation Qs, share genuine property posts</td>
+        </tr>
+        <tr>
+          <td>Digital Nomads Medellin</td>
+          <td>8,900</td>
+          <td>10 posts/day</td>
+          <td>Workspace photos, WiFi speed tests, day-in-the-life</td>
+        </tr>
+        <tr>
+          <td>Expats in Colombia</td>
+          <td>19,300</td>
+          <td>Moderate</td>
+          <td>Occasional property features when relevant</td>
+        </tr>
+        <tr>
+          <td>Medellin Gringo Info</td>
+          <td>15,200</td>
+          <td>11 posts/day</td>
+          <td>Events, property mentions</td>
+        </tr>
+        <tr>
+          <td>Expat Women in Medellin</td>
+          <td>3,800</td>
+          <td>11 posts/day</td>
+          <td>Solo female traveler safety angle</td>
+        </tr>
+        <tr>
+          <td>Medellin Hiking Group</td>
+          <td>2,800</td>
+          <td>1 post/day</td>
+          <td>Trails near property, hiking meetups</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-block">
+      <p><strong>Approach:</strong> Genuine engagement, not promotional posts. Become a known community member. When people ask for rural stay recommendations, offer LaWayra naturally.</p>
+    </div>
+
+    <h4>WhatsApp Communities (via MDE Community)</h4>
+    <p>50+ curated WhatsApp communities at mdecommunity.com. The most relevant for LaWayra:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Community</th>
+          <th>Relevance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Holistic Wellness</td>
+          <td>Direct match for wellness-curious nomads (Profile C)</td>
+        </tr>
+        <tr>
+          <td>Yoga and Wellness Events</td>
+          <td>Invite community to yoga sessions at LaWayra</td>
+        </tr>
+        <tr>
+          <td>Club Conscience</td>
+          <td>Consciousness-curious nomads, ceremony-adjacent</td>
+        </tr>
+        <tr>
+          <td>Digital Nomads &amp; Co-working Club</td>
+          <td>Work-from-nature angle</td>
+        </tr>
+        <tr>
+          <td>Real Estate Sales &amp; Rentals</td>
+          <td>Monthly stay listings</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Reddit</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Subreddit</th>
+          <th>Members</th>
+          <th>Approach</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>r/digitalnomad</td>
+          <td>2M+</td>
+          <td>Engage in Medellin threads, share genuine experience</td>
+        </tr>
+        <tr>
+          <td>r/medellin</td>
+          <td>30K+</td>
+          <td>Answer accommodation questions authentically</td>
+        </tr>
+        <tr>
+          <td>r/solotravel</td>
+          <td>3M+</td>
+          <td>Colombia recommendation threads</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-block">
+      <p><strong>Reddit rule:</strong> Users are highly skeptical of promotion. Must be authentic. AMA-style posts and genuine recommendations work best. Never post links to your listing without context.</p>
+    </div>
+
+    <h3>Listing Platforms</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Type</th>
+          <th>Owner</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Airbnb</td>
+          <td><span class="tag tag-listing">Listing</span></td>
+          <td>Sam + Stefy</td>
+          <td>Register property with professional photos</td>
+        </tr>
+        <tr>
+          <td>Booking.com</td>
+          <td><span class="tag tag-listing">Listing</span></td>
+          <td>Sam + Stefy</td>
+          <td>Register property</td>
+        </tr>
+        <tr>
+          <td>NomadList</td>
+          <td><span class="tag tag-listing">Listing</span></td>
+          <td>Marcus</td>
+          <td>List with verified WiFi speeds</td>
+        </tr>
+        <tr>
+          <td>BookRetreats</td>
+          <td><span class="tag tag-listing">Listing</span></td>
+          <td>Marcus</td>
+          <td>List "digital nomad retreat" package</td>
+        </tr>
+        <tr>
+          <td>Workaway</td>
+          <td><span class="tag tag-listing">Listing</span></td>
+          <td>Sam</td>
+          <td>Budget travelers, potential ceremony converts</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Paid Channels</h3>
+    <h4>Meta Ads (Facebook + Instagram)</h4>
+    <div class="info-card">
+      <div class="info-card-header">
+        <div class="info-card-title">Meta Ads Setup</div>
+        <span class="tag tag-paid">Paid</span>
+      </div>
+      <div class="info-card-body">
+        <p><strong>Geo-targeting:</strong> Medellin, Bogota, Cartagena, Barranquilla</p>
+        <p><strong>Language:</strong> English only</p>
+        <p><strong>Interests:</strong> Remote work, yoga, wellness, travel, coffee, meditation, digital nomad lifestyle, co-living</p>
+        <p><strong>Exclude:</strong> Local Colombian audience without purchasing power</p>
+        <p><strong>Budget:</strong> Start $10-$20/day, test 3-5 ad variations</p>
+        <p><strong>Destination:</strong> Airbnb listing or dedicated landing page</p>
+        <p><strong>Format:</strong> Carousel (cabin + workspace + pool + meals + views) or Reel-style video</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: AD CREATIVE -->
+  <div class="section">
+    <div class="section-number">Section 05</div>
+    <h2>Ad Creative Concepts</h2>
+    <p class="section-subtitle">Five ad concepts targeting different audience segments. Start with $5/day each, scale winners.</p>
+
+    <div class="ad-concept">
+      <div class="ad-concept-header">
+        <div>
+          <div class="ad-concept-number">Concept 01</div>
+          <div class="ad-concept-title">Escape the City</div>
+        </div>
+        <span class="tag tag-free">Nomad Audience</span>
+      </div>
+      <div class="ad-concept-body">
+        <div class="ad-hook">"Your Medellin apartment view vs. your desk view at LaWayra"</div>
+        <div class="ad-field">
+          <div class="ad-field-label">Visual</div>
+          <div class="ad-field-value">Split screen — city apartment desk vs. mountain cabin workspace with panoramic views</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">Body Copy</div>
+          <div class="ad-field-value">Work from a private mountain cabin 90 min from Medellin. Fast WiFi, all meals included, pool &amp; yoga spaces. Starting at $XX/night.</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">CTA</div>
+          <div class="ad-field-value">Book your nature office</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-concept">
+      <div class="ad-concept-header">
+        <div>
+          <div class="ad-concept-number">Concept 02</div>
+          <div class="ad-concept-title">All-In Nature Stay</div>
+        </div>
+        <span class="tag tag-opportunity">Value Angle</span>
+      </div>
+      <div class="ad-concept-body">
+        <div class="ad-hook">"Private cabin + 3 meals/day + pool + yoga = $XX/night"</div>
+        <div class="ad-field">
+          <div class="ad-field-label">Visual</div>
+          <div class="ad-field-value">Carousel: cabin exterior &rarr; meal spread &rarr; pool &rarr; yoga space &rarr; sunset mountain view</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">Body Copy</div>
+          <div class="ad-field-value">Stop cooking, stop planning. Just show up with your laptop. Everything else is handled.</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">CTA</div>
+          <div class="ad-field-value">See availability</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-concept">
+      <div class="ad-concept-header">
+        <div>
+          <div class="ad-concept-number">Concept 03</div>
+          <div class="ad-concept-title">The Anti-Hostel</div>
+        </div>
+        <span class="tag tag-listing">Travelers</span>
+      </div>
+      <div class="ad-concept-body">
+        <div class="ad-hook">"Not a hostel. Not a hotel. Something better."</div>
+        <div class="ad-field">
+          <div class="ad-field-label">Visual</div>
+          <div class="ad-field-value">Video walkthrough: gate opens &rarr; garden path &rarr; cabin interior &rarr; desk with view &rarr; communal dinner &rarr; pool at sunset</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">Body Copy</div>
+          <div class="ad-field-value">A wellness retreat center in the Colombian coffee mountains. Private cabins, real food, real community. No ceremonies required.</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">CTA</div>
+          <div class="ad-field-value">Book a cabin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-concept">
+      <div class="ad-concept-header">
+        <div>
+          <div class="ad-concept-number">Concept 04</div>
+          <div class="ad-concept-title">Weekend Reset</div>
+        </div>
+        <span class="tag tag-listing">Groups/Couples</span>
+      </div>
+      <div class="ad-concept-body">
+        <div class="ad-hook">"2 hours from Medellin. 2 worlds away."</div>
+        <div class="ad-field">
+          <div class="ad-field-label">Visual</div>
+          <div class="ad-field-value">Car on mountain roads &rarr; arrival at property &rarr; group around pool &rarr; coffee farm tour &rarr; night sky with stars</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">Body Copy</div>
+          <div class="ad-field-value">Escape to the mountains for the weekend. Bring your crew — we'll handle the rest. All meals, pool, sauna, yoga included.</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">CTA</div>
+          <div class="ad-field-value">Plan your weekend escape</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-concept">
+      <div class="ad-concept-header">
+        <div>
+          <div class="ad-concept-number">Concept 05</div>
+          <div class="ad-concept-title">Wellness Without the Woo</div>
+        </div>
+        <span class="tag tag-opportunity">Wellness-Curious</span>
+      </div>
+      <div class="ad-concept-body">
+        <div class="ad-hook">"Yoga, meditation, and mountain air — no commitments required"</div>
+        <div class="ad-field">
+          <div class="ad-field-label">Visual</div>
+          <div class="ad-field-value">Morning yoga session &rarr; plant-based lunch &rarr; hammock with book &rarr; sunset view from cabin porch</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">Body Copy</div>
+          <div class="ad-field-value">Stay at a wellness retreat center without signing up for anything. Just soak in the environment, eat incredible food, and reset.</div>
+        </div>
+        <div class="ad-field">
+          <div class="ad-field-label">CTA</div>
+          <div class="ad-field-value">Explore the stay</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>A/B Testing Plan</h3>
+    <div class="info-card">
+      <div class="info-card-header">
+        <div class="info-card-title">Testing Sequence</div>
+      </div>
+      <div class="info-card-body">
+        <p><strong>Round 1 (Week 1-2):</strong> Run all 5 concepts at $5/day each = $25/day total. Test hooks and creative angles.</p>
+        <p><strong>Round 2 (Week 3-4):</strong> Kill bottom 2-3 performers. Scale winners to $15-20/day. Test audience variations.</p>
+        <p><strong>Round 3 (Month 2):</strong> Iterate on winning creative — try video vs. carousel vs. single image. Refine targeting.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: PRICING -->
+  <div class="section">
+    <div class="section-number">Section 06</div>
+    <h2>Pricing Context</h2>
+    <p class="section-subtitle">Competitive benchmarks and suggested pricing tiers for Sarah &amp; Oliver's decision.</p>
+
+    <h3>Competitor Benchmarks</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Price Range</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fredonia Airbnb cabins</td>
+          <td>$32 - $155/night</td>
+          <td>$32 = budget B&amp;B, $100-$155 = group fincas</td>
+        </tr>
+        <tr>
+          <td>Fredonia Booking.com</td>
+          <td>$35 - $120/night</td>
+          <td>Hotel Tahiti at upper end</td>
+        </tr>
+        <tr>
+          <td>Antioquia eco-lodges</td>
+          <td>$40 - $200/night</td>
+          <td>Glamping/unique architecture = premium</td>
+        </tr>
+        <tr>
+          <td>Medellin coliving (shared)</td>
+          <td>$350 - $600/month</td>
+          <td>Urban, basic amenities</td>
+        </tr>
+        <tr>
+          <td>Medellin coliving (private)</td>
+          <td>$675 - $1,490/month</td>
+          <td>Urban apartments</td>
+        </tr>
+        <tr>
+          <td>Medellin Airbnb (monthly)</td>
+          <td>$1,200 - $2,300/month</td>
+          <td>Furnished apartments, no meals</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Suggested Pricing Tiers</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Per Night</th>
+          <th>Monthly Equivalent</th>
+          <th>Discount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nightly (1-6 nights)</td>
+          <td>$65 - $95</td>
+          <td>--</td>
+          <td>Base rate</td>
+        </tr>
+        <tr>
+          <td>Weekly (7-13 nights)</td>
+          <td>$55 - $80</td>
+          <td>--</td>
+          <td>~15% off</td>
+        </tr>
+        <tr>
+          <td>Monthly (14-29 nights)</td>
+          <td>$45 - $65</td>
+          <td>$1,260 - $1,820</td>
+          <td>~30% off</td>
+        </tr>
+        <tr>
+          <td>Extended (30+ nights)</td>
+          <td>$35 - $55</td>
+          <td>$1,050 - $1,650</td>
+          <td>~40% off</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight-box">
+      <div class="insight-label">Pricing Logic</div>
+      <p>At $65-$95/night, LaWayra sits in the middle of the Fredonia market but <strong>includes meals, pool, sauna, yoga, and community</strong> — which no competitor does. At the monthly tier ($1,050-$1,650), it competes with Medellin urban apartments ($1,200-$2,300) but adds meals, nature, and wellness. The value proposition is strong at every tier.</p>
+    </div>
+
+    <h3>What to Include vs. Charge Extra</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Included in Base Price</th>
+          <th>Optional Add-On</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Private cabin</td>
+          <td>Coffee farm tour ($25-$40/person)</td>
+        </tr>
+        <tr>
+          <td>3 daily meals</td>
+          <td>Laundry service</td>
+        </tr>
+        <tr>
+          <td>Pool + sauna access</td>
+          <td>Transport from/to Medellin ($20-$30)</td>
+        </tr>
+        <tr>
+          <td>Yoga/meditation spaces</td>
+          <td>Guided hiking</td>
+        </tr>
+        <tr>
+          <td>Common areas + WiFi</td>
+          <td>Instructor-led yoga classes</td>
+        </tr>
+        <tr>
+          <td>Filtered water</td>
+          <td>Ceremony experience (separate package)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 7: LAUNCH PLAN -->
+  <div class="section">
+    <div class="section-number">Section 07</div>
+    <h2>Launch Sequence</h2>
+    <p class="section-subtitle">Four-week rollout from prerequisites to paid ads to community growth.</p>
+
+    <h3>Before Launch (Prerequisites)</h3>
+    <ul class="checklist">
+      <li>Test and verify WiFi speed (must be 80+ Mbps)</li>
+      <li>Install desks + chairs in all cabins</li>
+      <li>Take professional photos (workspace setups, cabin interiors, views, meals, pool, yoga)</li>
+      <li>Set pricing (Sarah + Oliver decide on tiers)</li>
+      <li>Write Airbnb listing copy (emphasize WiFi, meals, wellness, coffee region)</li>
+    </ul>
+
+    <h3>Launch Timeline</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-week">Week 1</div>
+        <div class="timeline-title">Register &amp; List</div>
+        <div class="timeline-desc">Register on Airbnb + Booking.com with professional photos. Start organic engagement in Facebook groups (genuine community participation, not promotional posts).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-week">Week 2</div>
+        <div class="timeline-title">Community + Ads</div>
+        <div class="timeline-desc">Join MDE Community WhatsApp groups, engage naturally. Launch Meta ads — 5 concepts at $5/day each ($25/day total).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-week">Week 3</div>
+        <div class="timeline-title">Analyze + Expand</div>
+        <div class="timeline-desc">Analyze ad performance, scale winners to $15-20/day. List on NomadList, BookRetreats, Workaway.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-week">Week 4</div>
+        <div class="timeline-title">Reddit + Instagram</div>
+        <div class="timeline-desc">Post genuine Reddit content in r/digitalnomad and r/medellin. Begin Instagram content — 3x/week showing the nomad lifestyle at LaWayra.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-week">Ongoing</div>
+        <div class="timeline-title">Measure &amp; Iterate</div>
+        <div class="timeline-desc">Track Airbnb views, booking conversion rate, ad CPC/CTR, occupancy rate, average stay length, and guest source attribution.</div>
+      </div>
+    </div>
+
+    <h3>Metrics to Track</h3>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 16px;">Listing Views</div>
+        <div class="stat-label">Airbnb + Booking.com</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 16px;">Booking Rate</div>
+        <div class="stat-label">Views to Bookings</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 16px;">Ad CPC / CTR</div>
+        <div class="stat-label">Meta Ads Performance</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 16px;">Occupancy %</div>
+        <div class="stat-label">By Week</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 16px;">Avg Stay</div>
+        <div class="stat-label">Length in Days</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" style="font-size: 16px;">Guest Source</div>
+        <div class="stat-label">How Did They Find Us</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
