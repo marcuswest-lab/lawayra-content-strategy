@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaWayra Membership Model Proposal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #1a3a2a;
+    --primary-light: #2d5e42;
+    --accent: #c8956c;
+    --accent-light: #e8c9a8;
+    --accent-glow: #d4a574;
+    --bg: #0f1710;
+    --bg-card: #151e17;
+    --bg-card-hover: #1a2a1e;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --text-dim: #6b6560;
+    --border: #2a3a2e;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 60px 80px;
+    background: linear-gradient(165deg, #0f1710 0%, #1a3a2a 40%, #2d5e42 70%, #1a3a2a 100%);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,149,108,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    max-width: 750px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    max-width: 650px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+  .hero-meta strong { color: var(--text); font-weight: 500; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  .section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin-bottom: 30px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 40px 0 16px;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 30px 0 12px;
+  }
+  p { margin-bottom: 16px; color: var(--text); font-size: 15px; }
+  strong { color: #fff; font-weight: 600; }
+
+  /* Quote callout */
+  .quote-block {
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 28px 32px;
+    margin: 30px 0;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .quote-block .attribution {
+    font-style: normal;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    font-weight: 500;
+  }
+
+  /* Tier cards */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+  }
+  @media (max-width: 800px) {
+    .tier-grid { grid-template-columns: 1fr; }
+  }
+  .tier-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .tier-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+  .tier-card.free { border-top: 3px solid var(--success); }
+  .tier-card.core { border-top: 3px solid var(--accent); }
+  .tier-card.premium { border-top: 3px solid var(--purple); }
+  .tier-card.featured {
+    border-color: var(--accent);
+    box-shadow: 0 0 40px rgba(200,149,108,0.08);
+  }
+  .tier-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .tier-card.free .tier-badge { background: rgba(74,222,128,0.12); color: var(--success); }
+  .tier-card.core .tier-badge { background: rgba(200,149,108,0.12); color: var(--accent); }
+  .tier-card.premium .tier-badge { background: rgba(167,139,250,0.12); color: var(--purple); }
+  .tier-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .tier-price {
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    margin: 12px 0 4px;
+  }
+  .tier-price span {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .tier-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .tier-features {
+    list-style: none;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .tier-features li {
+    padding: 8px 0 8px 24px;
+    font-size: 14px;
+    color: var(--text);
+    position: relative;
+  }
+  .tier-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .tier-card.free .tier-features li::before { color: var(--success); }
+  .tier-card.core .tier-features li::before { color: var(--accent); }
+  .tier-card.premium .tier-features li::before { color: var(--purple); }
+
+  /* Competitor table */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    font-size: 14px;
+  }
+  .comp-table th {
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-card);
+  }
+  .comp-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .comp-table tr:hover td { background: var(--bg-card); }
+  .comp-table .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .tag-yes { background: rgba(74,222,128,0.12); color: var(--success); }
+  .tag-no { background: rgba(248,113,113,0.12); color: var(--danger); }
+  .tag-partial { background: rgba(251,191,36,0.12); color: var(--warning); }
+
+  /* Revenue projection */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+  }
+  @media (max-width: 800px) {
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+  .proj-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .proj-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .proj-value {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .proj-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .proj-card.highlight {
+    border-color: var(--accent);
+    background: linear-gradient(160deg, var(--bg-card) 0%, rgba(200,149,108,0.05) 100%);
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    margin: 40px 0;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -33px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: var(--bg);
+  }
+  .timeline-phase {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .timeline-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .timeline-body {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .timeline-body ul {
+    list-style: none;
+    margin: 10px 0;
+  }
+  .timeline-body ul li {
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+  .timeline-body ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .timeline-duration {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: rgba(200,149,108,0.1);
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  /* Info cards */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+  }
+  @media (max-width: 700px) {
+    .info-grid { grid-template-columns: 1fr; }
+  }
+  .info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .info-card h4 {
+    margin: 0 0 12px;
+    font-size: 14px;
+  }
+  .info-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  /* Stat row */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 30px 0;
+  }
+  @media (max-width: 700px) {
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Risk cards */
+  .risk-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .risk-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .risk-icon.warn { background: rgba(251,191,36,0.12); }
+  .risk-icon.danger { background: rgba(248,113,113,0.12); }
+  .risk-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .risk-body {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .risk-mitigation {
+    font-size: 13px;
+    color: var(--success);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  /* Key insight callout */
+  .insight-box {
+    background: linear-gradient(135deg, rgba(200,149,108,0.08) 0%, rgba(45,94,66,0.08) 100%);
+    border: 1px solid rgba(200,149,108,0.2);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 30px 0;
+  }
+  .insight-box h4 {
+    color: var(--accent);
+    margin: 0 0 12px;
+    font-size: 13px;
+  }
+  .insight-box p {
+    font-size: 16px;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* Back home link */
+  .home-link {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .home-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="home-link">&#8592; Home</a>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Strategic Proposal</div>
+  <h1>From Retreat to <span>Community</span></h1>
+  <div class="hero-subtitle">A membership model that transforms LaWayra from a one-time experience into a lifelong healing ecosystem &mdash; inspired by Sam's vision, backed by market research.</div>
+  <div class="hero-meta">
+    <span><strong>Prepared:</strong> April 2026</span>
+    <span><strong>For:</strong> Sam &amp; LaWayra Leadership</span>
+    <span><strong>Status:</strong> Proposal for Discussion</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: THE VISION -->
+  <div class="section">
+    <div class="section-number">01 &mdash; The Vision</div>
+    <h2>We're Not a Retreat with a Community. We're a Community with a Retreat.</h2>
+    <p class="section-subtitle">Sam's words. And the data says he's right.</p>
+
+    <div class="quote-block">
+      "The biggest pivot this year is we're stopping being a retreat... we've become a community. Starting from online community to &mdash; well, people are here &mdash; to everything in between. It's like you're part of this and this is what it entails."
+      <div class="attribution">&mdash; Sam, Voice Note, April 7 2026</div>
+    </div>
+
+    <h3>Why This Makes Sense Right Now</h3>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-value">2,500+</div>
+        <div class="stat-label">Past guests (alumni base)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">64</div>
+        <div class="stat-label">Bookings from word of mouth</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">#2</div>
+        <div class="stat-label">Largest booking source</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">$0</div>
+        <div class="stat-label">Current alumni revenue</div>
+      </div>
+    </div>
+
+    <p>Word of mouth is already LaWayra's second-largest booking source (64 of 266 tracked bookings). That's a community wanting to exist &mdash; they just don't have a container for it yet. Every guest who leaves wanting to come back but forgets is lost lifetime value. Every past guest who recommends LaWayra to a friend is doing free marketing.</p>
+
+    <p>A membership model captures both: it keeps guests connected (so they rebook) and gives them identity and belonging (so they refer more). The retreat becomes the anchor experience in a larger ecosystem rather than the entire relationship.</p>
+
+    <div class="insight-box">
+      <h4>Key Insight</h4>
+      <p><strong>Rythmia &mdash; the dominant player with 169K followers and 22,000+ guests &mdash; has no membership model.</strong> They rely purely on influencer marketing and organic return visits. This is a wide-open competitive gap that LaWayra can own first in the ayahuasca space.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: COMPETITIVE LANDSCAPE -->
+  <div class="section">
+    <div class="section-number">02 &mdash; Market Evidence</div>
+    <h2>Who's Done This (And How)</h2>
+    <p class="section-subtitle">Real models from the retreat, wellness, and community space. What works, what doesn't.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Price</th>
+          <th>Membership</th>
+          <th>Key Takeaway</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Nectara</strong></td>
+          <td>Post-ceremony integration community</td>
+          <td>$20/mo or $199 lifetime</td>
+          <td><span class="tag tag-yes">Yes</span></td>
+          <td>Weekly circles, breathwork, 10 courses, 25+ guides. Soltara bundles free year with every retreat.</td>
+        </tr>
+        <tr>
+          <td><strong>Mindvalley</strong></td>
+          <td>Digital membership + premium events</td>
+          <td>$49/mo or $299/yr</td>
+          <td><span class="tag tag-yes">Yes</span></td>
+          <td>100+ programs, AI tools. In-person events ($600-$3,500) gated behind active membership.</td>
+        </tr>
+        <tr>
+          <td><strong>Gabor Mate / CI</strong></td>
+          <td>Monthly community + professional training</td>
+          <td>~$30/mo</td>
+          <td><span class="tag tag-yes">Yes</span></td>
+          <td>3 live sessions/mo with senior facilitators. Serves both newcomers and alumni. Training is the big upsell.</td>
+        </tr>
+        <tr>
+          <td><strong>Soltara</strong></td>
+          <td>Retreat + bundled Nectara membership</td>
+          <td>Free year included</td>
+          <td><span class="tag tag-partial">Bundled</span></td>
+          <td>Partnered with Nectara rather than building their own. Smart leverage.</td>
+        </tr>
+        <tr>
+          <td><strong>Temple of the Way of Light</strong></td>
+          <td>Free 3-month integration program</td>
+          <td>Free</td>
+          <td><span class="tag tag-partial">Free only</span></td>
+          <td>Facebook group, weekly emails, meditation toolkit. Drives repeat visits but no recurring revenue.</td>
+        </tr>
+        <tr>
+          <td><strong>Rythmia</strong></td>
+          <td>No post-retreat community</td>
+          <td>N/A</td>
+          <td><span class="tag tag-no">None</span></td>
+          <td>22K+ guests, zero alumni infrastructure. Relies on influencer scale. Major gap.</td>
+        </tr>
+        <tr>
+          <td><strong>Peloton</strong></td>
+          <td>Content subscription + community</td>
+          <td>$13-44/mo</td>
+          <td><span class="tag tag-yes">Yes</span></td>
+          <td>88% 1-year retention. Multi-discipline users have 60% lower churn. Cross-sell is key.</td>
+        </tr>
+        <tr>
+          <td><strong>Whoop</strong></td>
+          <td>Free hardware, paid subscription</td>
+          <td>$30/mo</td>
+          <td><span class="tag tag-yes">Yes</span></td>
+          <td>85% retention. Community built around shareable data. Daily usage = daily value.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight-box">
+      <h4>Pattern</h4>
+      <p>The winning models all share one trait: <strong>they deliver value between the anchor experience</strong>. Peloton between rides. Mindvalley between events. Nectara between ceremonies. The membership that only gives a discount on the next retreat will fail &mdash; the membership that fills the 364 days in between will thrive.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: PROPOSED MODEL -->
+  <div class="section">
+    <div class="section-number">03 &mdash; The Model</div>
+    <h2>LaWayra Familia</h2>
+    <p class="section-subtitle">Three tiers designed to meet alumni where they are &mdash; from free integration support to full ecosystem access.</p>
+
+    <div class="tier-grid">
+      <!-- FREE TIER -->
+      <div class="tier-card free">
+        <span class="tier-badge">Free</span>
+        <div class="tier-name">Integration</div>
+        <div class="tier-price">$0 <span>/ 3 months</span></div>
+        <div class="tier-desc">Bundled free with every retreat. The on-ramp into the community. Every guest gets this automatically.</div>
+        <ul class="tier-features">
+          <li>Private community space (Circle or WhatsApp)</li>
+          <li>Weekly integration email series (12 weeks)</li>
+          <li>2 group integration calls with a LaWayra facilitator</li>
+          <li>Integration resource library (PDFs, meditations)</li>
+          <li>Access to alumni events calendar</li>
+        </ul>
+      </div>
+
+      <!-- CORE TIER -->
+      <div class="tier-card core featured">
+        <span class="tier-badge">Recommended</span>
+        <div class="tier-name">Familia</div>
+        <div class="tier-price">$29 <span>/ month</span></div>
+        <div class="tier-desc">The core membership. Ongoing community, live support, and retreat benefits. This is where the recurring value lives.</div>
+        <ul class="tier-features">
+          <li>Everything in Integration tier</li>
+          <li>Weekly live community calls (rotating: integration circle, breathwork, Q&A with shaman/facilitators)</li>
+          <li>Crisis support: request a 1-on-1 call with a trained volunteer within 48 hours</li>
+          <li>Monthly guest speaker sessions (healers, authors, practitioners)</li>
+          <li>15% discount on all future retreats</li>
+          <li>Priority booking for high-demand dates</li>
+          <li>Member-only content (shaman teachings, ceremony prep, documentary extras)</li>
+          <li>Annual "Familia Reunion" virtual gathering</li>
+        </ul>
+      </div>
+
+      <!-- PREMIUM TIER -->
+      <div class="tier-card premium">
+        <span class="tier-badge">Premium</span>
+        <div class="tier-name">Raices (Roots)</div>
+        <div class="tier-price">$97 <span>/ month</span></div>
+        <div class="tier-desc">For deeply committed members. Personal guidance, exclusive access, and a path toward extended stays or facilitation.</div>
+        <ul class="tier-features">
+          <li>Everything in Familia tier</li>
+          <li>Monthly 1-on-1 integration coaching session (30 min)</li>
+          <li>25% discount on all retreats</li>
+          <li>1 free cabin upgrade per year</li>
+          <li>Early access to new programs (facilitator training, extended stays)</li>
+          <li>Quarterly small-group call with Sam</li>
+          <li>Input on LaWayra's direction (advisory circle)</li>
+          <li>Path to volunteer/facilitator opportunities</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Pricing Rationale</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>Why $29/mo for Familia</h4>
+        <p>Nectara charges $20/mo. Mindvalley charges $49/mo. At $29, LaWayra sits in the sweet spot &mdash; premium enough to signal value, affordable enough for a global audience. At $348/year, it's less than a single retreat ($545+), making the retreat discount alone nearly worth the cost for anyone planning to return.</p>
+      </div>
+      <div class="info-card">
+        <h4>Why $97/mo for Raices</h4>
+        <p>The 1-on-1 coaching session alone would cost $100-200 on the open market. Members who want deep personal support are already paying for therapists and coaches. This packages LaWayra's unique perspective (ceremony integration, spiritual guidance) at a fraction of standalone coaching costs.</p>
+      </div>
+      <div class="info-card">
+        <h4>Why Free for 3 Months</h4>
+        <p>Soltara bundles a full year of Nectara free. Temple of the Way of Light gives 3 months free. The post-retreat window is when guests are most vulnerable, most grateful, and most likely to convert. A free period proves value before asking for payment &mdash; and prevents early churn.</p>
+      </div>
+      <div class="info-card">
+        <h4>The Gym Membership Psychology</h4>
+        <p>Sam's instinct is backed by data: gym membership retention is driven by identity, not usage. People who call themselves "members" behave differently than "customers." LaWayra Familia isn't a purchase &mdash; it's a belonging. The monthly payment is a commitment to their own healing journey.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: REVENUE PROJECTIONS -->
+  <div class="section">
+    <div class="section-number">04 &mdash; Revenue Projections</div>
+    <h2>What This Could Look Like</h2>
+    <p class="section-subtitle">Conservative estimates based on 2,500+ past guests and current retreat capacity (~20 guests/week, ~80/month).</p>
+
+    <h3>Year 1 Projections (Conservative)</h3>
+    <p>Assumes a phased rollout: free tier first (Month 1-3), paid tiers launch Month 4, with modest conversion from the alumni base and all new retreat guests automatically enrolled in the free tier.</p>
+
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-label">Free Tier Members</div>
+        <div class="proj-value">500+</div>
+        <div class="proj-sub">All new guests + alumni opt-in</div>
+      </div>
+      <div class="proj-card highlight">
+        <div class="proj-label">Familia ($29/mo)</div>
+        <div class="proj-value">125</div>
+        <div class="proj-sub">~5% of alumni base converts</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-label">Raices ($97/mo)</div>
+        <div class="proj-value">20</div>
+        <div class="proj-sub">~0.8% of alumni base</div>
+      </div>
+    </div>
+
+    <h3>Monthly Recurring Revenue Projection</h3>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-label">Familia Revenue</div>
+        <div class="proj-value">$3,625</div>
+        <div class="proj-sub">125 members &times; $29/mo</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-label">Raices Revenue</div>
+        <div class="proj-value">$1,940</div>
+        <div class="proj-sub">20 members &times; $97/mo</div>
+      </div>
+      <div class="proj-card highlight">
+        <div class="proj-label">Total MRR</div>
+        <div class="proj-value">$5,565</div>
+        <div class="proj-sub">$66,780 annual recurring</div>
+      </div>
+    </div>
+
+    <h3>Year 2+ Growth Scenario</h3>
+    <p>As community momentum builds, conversion rates increase. With 80 new guests/month and improving retention:</p>
+
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-label">Familia Members</div>
+        <div class="proj-value">350</div>
+        <div class="proj-sub">10% conversion + new guest flow</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-label">Raices Members</div>
+        <div class="proj-value">50</div>
+        <div class="proj-sub">2% of total alumni</div>
+      </div>
+      <div class="proj-card highlight">
+        <div class="proj-label">Year 2 MRR</div>
+        <div class="proj-value">$15,000</div>
+        <div class="proj-sub">$180,000 annual recurring</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <h4>The Real Revenue Impact</h4>
+      <p>The membership revenue is just the surface. The deeper value is in <strong>increased return-visit rates</strong>. If membership increases repeat bookings by even 20% (from current levels), that's dozens of additional retreat bookings per year at $545-$2,000+ each. The community pays for itself through rebookings alone &mdash; the membership revenue is gravy.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5: IMPLEMENTATION ROADMAP -->
+  <div class="section">
+    <div class="section-number">05 &mdash; Roadmap</div>
+    <h2>How to Get There</h2>
+    <p class="section-subtitle">A phased approach. Start simple, prove value, then build the full ecosystem.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase 1 &mdash; Foundation</div>
+        <div class="timeline-title">Launch the Free Integration Program</div>
+        <div class="timeline-body">
+          Start with what costs nothing and proves everything. Every departing guest gets enrolled automatically.
+          <ul>
+            <li>Set up a private community space (Circle app recommended &mdash; $39/mo for the platform)</li>
+            <li>Create 12-week email integration series (repurpose existing content + shaman teachings)</li>
+            <li>Host 2 group integration calls per month (facilitators volunteer, record for library)</li>
+            <li>Build the integration resource library (meditation recordings, journaling prompts, diet guidance)</li>
+            <li>Collect feedback and testimonials from participants</li>
+          </ul>
+          <span class="timeline-duration">Month 1-3</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase 2 &mdash; Activation</div>
+        <div class="timeline-title">Launch Familia Paid Tier + Alumni Outreach</div>
+        <div class="timeline-body">
+          Once the free community has 200+ members and proven engagement, introduce the paid tier.
+          <ul>
+            <li>Email the 2,500+ alumni list: "LaWayra Familia is here. You're already part of the family &mdash; here's how to stay connected."</li>
+            <li>Launch weekly live calls (integration circle + breathwork + guest speakers on rotation)</li>
+            <li>Activate crisis support line (train 3-5 volunteers, create protocol)</li>
+            <li>Start producing member-only content (Sam's voice notes/teachings are perfect raw material)</li>
+            <li>Offer founding member pricing: $19/mo for first 100 members (locked in forever)</li>
+          </ul>
+          <span class="timeline-duration">Month 4-6</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase 3 &mdash; Expansion</div>
+        <div class="timeline-title">Launch Raices Premium + Full Ecosystem</div>
+        <div class="timeline-body">
+          With a thriving Familia community, add the premium tier and expand offerings.
+          <ul>
+            <li>Recruit 2-3 integration coaches (could be past volunteers or trained alumni)</li>
+            <li>Launch quarterly Sam sessions (intimate, high-value, builds loyalty)</li>
+            <li>Develop facilitator training pathway (long-term revenue, deepens community)</li>
+            <li>Explore extended-stay program for Raices members (Sam's "you can even get to live there" vision)</li>
+            <li>Build podcast or video series featuring community stories (content flywheel)</li>
+          </ul>
+          <span class="timeline-duration">Month 7-12</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase 4 &mdash; Ecosystem</div>
+        <div class="timeline-title">The Full "Community with a Retreat" Model</div>
+        <div class="timeline-body">
+          The long-term vision Sam described: multiple touchpoints, multiple revenue streams, one community.
+          <ul>
+            <li>Community events (online + regional in-person meetups)</li>
+            <li>Facilitator/practitioner certification program</li>
+            <li>Extended stay / work-exchange program</li>
+            <li>Podcast, YouTube series, documentary content</li>
+            <li>Partner retreats (bring LaWayra community to other locations)</li>
+            <li>Eventually: the retreat offering itself becomes just one feature of a larger membership</li>
+          </ul>
+          <span class="timeline-duration">Year 2+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: PLATFORM & TECH -->
+  <div class="section">
+    <div class="section-number">06 &mdash; Platform &amp; Tech</div>
+    <h2>What You Need to Build It</h2>
+    <p class="section-subtitle">Minimal tech stack. Most of it plugs into what LaWayra already has.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>Community Platform: Circle</h4>
+        <p><strong>$39-89/mo.</strong> Used by Nectara, Mindvalley, and hundreds of membership businesses. Built-in spaces, events, courses, live rooms, and mobile app. Members can access from anywhere. Integrates with Zapier for automation.</p>
+      </div>
+      <div class="info-card">
+        <h4>Payment: Stripe + Circle</h4>
+        <p>Circle has built-in paid membership tiers with Stripe integration. Members pay through the platform. No separate billing system needed. Handles free trials, upgrades, cancellations automatically.</p>
+      </div>
+      <div class="info-card">
+        <h4>Email: Existing Tools</h4>
+        <p>The 12-week integration series can run through whatever email tool LaWayra uses. Triggered automatically when a guest checks out of BookingLayer. n8n can handle the automation if needed.</p>
+      </div>
+      <div class="info-card">
+        <h4>Video Calls: Zoom or Circle Live</h4>
+        <p>Circle has built-in live rooms for community calls. For larger events or guest speakers, Zoom works fine. Recordings go into the content library automatically.</p>
+      </div>
+      <div class="info-card">
+        <h4>Content Library</h4>
+        <p>Hosted within Circle as "Spaces." Meditation recordings, integration guides, ceremony prep content, shaman teachings. Members access everything in one place via the Circle app.</p>
+      </div>
+      <div class="info-card">
+        <h4>Automation: n8n + Zapier</h4>
+        <p>Already have both running (n8n at server.lawayraserver.com). BookingLayer checkout &rarr; auto-enroll in Circle community. Zapier handles payment events. n8n handles content + notifications.</p>
+      </div>
+    </div>
+
+    <h3>Estimated Monthly Tech Cost</h3>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-value">$89</div>
+        <div class="stat-label">Circle Pro plan</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">$0</div>
+        <div class="stat-label">Zoom (free tier works)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">$0</div>
+        <div class="stat-label">n8n (already running)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" style="color: var(--success);">~$89</div>
+        <div class="stat-label">Total monthly cost</div>
+      </div>
+    </div>
+    <p style="color: var(--text-muted); font-size: 14px; text-align: center;">Break-even: 4 Familia members cover the entire platform cost.</p>
+  </div>
+
+  <!-- SECTION 7: RISKS -->
+  <div class="section">
+    <div class="section-number">07 &mdash; Risks &amp; Considerations</div>
+    <h2>Eyes Wide Open</h2>
+    <p class="section-subtitle">Every model has risks. Here's how to navigate them.</p>
+
+    <div class="risk-card">
+      <div class="risk-icon warn">&#9888;</div>
+      <div>
+        <div class="risk-title">The Cold Start Problem</div>
+        <div class="risk-body">A community with 5 people on a Zoom call feels empty. A community with 50 feels alive. The early months are the hardest &mdash; you need critical mass before the community becomes self-sustaining.</div>
+        <div class="risk-mitigation">Mitigation: Start with the free tier to build numbers. Offer founding member pricing to incentivize early adopters. Personally invite the most engaged past guests. 2,500+ alumni is a large base to seed from.</div>
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-icon warn">&#9888;</div>
+      <div>
+        <div class="risk-title">Cannibalization Concern</div>
+        <div class="risk-body">Sam asked: "If they pay $100/month and get 1-3 retreats a year, does that reduce per-retreat revenue?" Valid concern. At $1,200/year for a retreat that costs $545+, the math needs to work.</div>
+        <div class="risk-mitigation">Mitigation: The proposed model doesn't include free retreats. It offers discounts (15-25%) that still price above cost. The revenue gain from members who wouldn't have rebooked at all far outweighs the discount given to those who would have. Net positive.</div>
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-icon warn">&#9888;</div>
+      <div>
+        <div class="risk-title">Content & Facilitation Bandwidth</div>
+        <div class="risk-body">Weekly calls, crisis support, content creation &mdash; someone has to do the work. If it falls on Sam or the core team already running retreats, it'll burn out fast.</div>
+        <div class="risk-mitigation">Mitigation: Phase 1 uses existing resources (facilitators, recorded content). Phase 2 recruits trained alumni as volunteer facilitators. Phase 3's Raices revenue funds paid community managers. The community should eventually sustain its own labor.</div>
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-icon warn">&#9888;</div>
+      <div>
+        <div class="risk-title">Ethical Sensitivity</div>
+        <div class="risk-body">Sam himself raised this: "I don't know how ethical it is." Monetizing a sacred healing experience through a subscription model could feel transactional if not handled with care. The ayahuasca community is sensitive to commercialization.</div>
+        <div class="risk-mitigation">Mitigation: Frame it as ongoing support, not a product. The free integration tier demonstrates care comes first, payment comes later. Crisis support is a genuine need, not a sales tactic. Let the community name and shape itself &mdash; don't over-brand it.</div>
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-icon danger">&#9888;</div>
+      <div>
+        <div class="risk-title">Churn After Initial Excitement</div>
+        <div class="risk-body">Many membership businesses see high initial sign-ups followed by 3-6 month churn. If members don't find ongoing value, they'll cancel after the novelty wears off.</div>
+        <div class="risk-mitigation">Mitigation: Multiple engagement touchpoints (Peloton's lesson: multi-discipline users churn 60% less). Vary the content: integration calls, breathwork, guest speakers, shaman teachings, community challenges. Make the annual reunion a can't-miss event. Track engagement weekly and adapt.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: NEXT STEPS -->
+  <div class="section">
+    <div class="section-number">08 &mdash; Next Steps</div>
+    <h2>The Ask</h2>
+    <p class="section-subtitle">What needs to happen to move this from idea to reality.</p>
+
+    <h3>Decisions Needed from Sam &amp; Team</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>1. Alignment on the Vision</h4>
+        <p>Does this capture what Sam described? What's missing? What feels off? The model should reflect his intuition, not override it.</p>
+      </div>
+      <div class="info-card">
+        <h4>2. Naming &amp; Identity</h4>
+        <p>"LaWayra Familia" is a working name. Sam and team should choose something that feels authentic to the community they want to build. The name matters &mdash; it becomes identity.</p>
+      </div>
+      <div class="info-card">
+        <h4>3. Facilitation Capacity</h4>
+        <p>Who runs the weekly calls? Who manages crisis support? Can current facilitators take this on, or do we need to recruit alumni? This is the biggest operational question.</p>
+      </div>
+      <div class="info-card">
+        <h4>4. Timeline</h4>
+        <p>The free tier could launch within 4-6 weeks. The paid tier needs 3-4 months of runway. Is this a 2026 priority, or something to plan for later?</p>
+      </div>
+    </div>
+
+    <h3>Immediate Actions (If Approved)</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Week 1-2</div>
+        <div class="timeline-title">Set Up Circle + Design Community Structure</div>
+        <div class="timeline-body">
+          <ul>
+            <li>Create Circle account and configure spaces (Welcome, Integration, General, Events)</li>
+            <li>Draft 12-week integration email series outline</li>
+            <li>Identify 5-10 "founding members" from past guests to seed the community</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Week 3-4</div>
+        <div class="timeline-title">Soft Launch Free Tier</div>
+        <div class="timeline-body">
+          <ul>
+            <li>Invite founding members + current retreat guests</li>
+            <li>Host first integration call</li>
+            <li>Start populating content library</li>
+            <li>Collect feedback and iterate</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Week 5-6</div>
+        <div class="timeline-title">Alumni Outreach</div>
+        <div class="timeline-body">
+          <ul>
+            <li>Email blast to full alumni list with community invitation</li>
+            <li>Share on Instagram, WhatsApp groups</li>
+            <li>Goal: 200 free members before paid tier launches</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="text-align: center; padding: 60px 40px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 13px;">
+  <p style="color: var(--text-dim);">LaWayra Membership Model Proposal &mdash; April 2026</p>
+  <p style="color: var(--text-dim); margin-top: 4px;">Prepared for internal discussion. Not for public distribution.</p>
+</div>
+
+</body>
+</html>
