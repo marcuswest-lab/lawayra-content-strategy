@@ -14,9 +14,6 @@
 # Allow Airbnb research report
 !lawayra-airbnb-research-report.html
 
-# Allow membership model proposal
-!lawayra-membership-model-proposal.html
-
 # Allow Hero Heal funnel deliverables
 !heroheal-funnel/
 !heroheal-funnel/**
