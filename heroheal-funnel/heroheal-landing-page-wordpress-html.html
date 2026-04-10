@@ -1,0 +1,342 @@
+<!--
+  ============================================================
+  HERO HEAL LANDING PAGE — WORDPRESS-READY HTML (v2)
+  ============================================================
+  For: Jen
+  Page: heroheal.org/apply-healing-retreats-scholarships-education/
+
+  INSTRUCTIONS:
+  1. In WordPress, edit the landing page
+  2. Switch to the HTML/Code editor (not Visual)
+  3. Replace all existing content with everything below
+  4. IMPORTANT: Hide the site header/navigation on this page only.
+     Add this CSS to your theme customizer or a custom CSS plugin:
+     .page-id-XXXX header, .page-id-XXXX .site-header,
+     .page-id-XXXX .main-navigation { display: none !important; }
+     (Replace XXXX with the actual page ID)
+  5. Update the Jotform iframe src URL if it's different
+  6. Replace image URLs with your own if needed
+  7. Save and preview on mobile first
+
+  CHANGES FROM v1:
+  - Nav/header should be hidden (CSS instruction above)
+  - Hero section is shorter and more compact
+  - Headline, description, CTA, and trust line all above the fold
+  - Small Hero Heal logo at top of hero for branding
+  - Tighter spacing throughout for mobile
+  ============================================================
+-->
+
+<!-- ===== INLINE STYLES ===== -->
+<style>
+  .hh-landing * { box-sizing: border-box; margin: 0; padding: 0; }
+  .hh-landing { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; color: #1a2332; line-height: 1.6; }
+
+  /* Hero — compact, everything above the fold */
+  .hh-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://heroheal.org/wp-content/uploads/2026/03/IMG_8526-2-scaled.jpeg') center/cover no-repeat;
+    padding: 32px 24px 36px; text-align: center; color: white;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  }
+  .hh-hero-logo { height: 48px; margin-bottom: 20px; }
+  .hh-hero h1 { font-size: 34px; font-weight: 800; margin-bottom: 10px; max-width: 680px; line-height: 1.15; letter-spacing: -0.5px; }
+  .hh-hero p { font-size: 17px; max-width: 560px; margin-bottom: 20px; opacity: 0.92; line-height: 1.5; }
+  .hh-hero .hh-sub { font-size: 13px; margin-top: 10px; opacity: 0.65; }
+
+  /* Buttons */
+  .hh-btn {
+    display: inline-block; background: #1a6b3c; color: white !important; padding: 15px 32px;
+    border-radius: 8px; text-decoration: none !important; font-weight: 700; font-size: 17px;
+    transition: background 0.2s, transform 0.1s; border: none; cursor: pointer;
+  }
+  .hh-btn:hover { background: #155a31; transform: translateY(-1px); }
+  .hh-btn-white { background: white; color: #1a6b3c !important; }
+  .hh-btn-white:hover { background: #f0f0f0; }
+  .hh-btn-outline { background: transparent; border: 2px solid white; color: white !important; }
+  .hh-btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .hh-cta-center { text-align: center; margin: 28px 0 8px; }
+
+  /* Trust bar */
+  .hh-trust-bar {
+    background: #1a2332; color: white; padding: 14px 24px; text-align: center;
+    font-size: 14px; display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+  }
+  .hh-trust-bar span { opacity: 0.85; }
+  .hh-trust-bar strong { color: #5cb85c; }
+
+  /* Sections */
+  .hh-section { padding: 48px 24px; max-width: 800px; margin: 0 auto; }
+  .hh-section h2 { font-size: 26px; font-weight: 700; margin-bottom: 16px; }
+  .hh-section p { font-size: 16px; color: #444; margin-bottom: 16px; }
+  .hh-section-alt { background: #f4f6f4; padding: 48px 24px; }
+  .hh-section-alt .hh-inner { max-width: 800px; margin: 0 auto; }
+
+  /* Checklist */
+  .hh-checklist { list-style: none; margin: 20px 0; padding: 0; }
+  .hh-checklist li {
+    padding: 10px 0 10px 32px; position: relative; font-size: 15px; color: #444;
+    border-bottom: 1px solid #e0e0d8;
+  }
+  .hh-checklist li:last-child { border-bottom: none; }
+  .hh-checklist li::before {
+    content: "\2713"; position: absolute; left: 4px; color: #1a6b3c; font-weight: 700; font-size: 18px;
+  }
+
+  /* Steps */
+  .hh-steps { display: flex; flex-direction: column; gap: 20px; margin: 24px 0; }
+  .hh-step { display: flex; gap: 16px; align-items: flex-start; }
+  .hh-step-num {
+    width: 40px; height: 40px; border-radius: 50%; background: #1a6b3c; color: white;
+    display: flex; align-items: center; justify-content: center; font-weight: 700;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .hh-step h3 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+  .hh-step p { font-size: 14px; color: #555; margin: 0; }
+
+  /* Image divider */
+  .hh-img-break { width: 100%; height: 200px; object-fit: cover; display: block; }
+
+  /* Form section */
+  .hh-form-section { background: #1a2332; color: white; padding: 48px 24px; text-align: center; }
+  .hh-form-section h2 { color: white; font-size: 26px; margin-bottom: 8px; }
+  .hh-form-section p { color: #ccc; font-size: 15px; margin-bottom: 24px; }
+  .hh-form-wrap {
+    background: white; border-radius: 12px; max-width: 700px; margin: 0 auto;
+    padding: 8px; overflow: hidden;
+  }
+  .hh-form-wrap iframe { width: 100%; min-height: 600px; border: none; }
+
+  /* Support cards */
+  .hh-cards { display: flex; gap: 20px; flex-wrap: wrap; margin: 24px 0; }
+  .hh-card {
+    flex: 1; min-width: 220px; background: white; border-radius: 10px; padding: 24px;
+    border: 1px solid #e0e0d8;
+  }
+  .hh-card-icon { font-size: 28px; margin-bottom: 8px; }
+  .hh-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .hh-card p { font-size: 14px; color: #555; margin: 0; }
+
+  /* Warm intro */
+  .hh-warm { font-size: 17px; color: #333; font-style: italic; border-left: 4px solid #1a6b3c; padding-left: 20px; margin: 16px 0 24px; }
+
+  /* Trust links */
+  .hh-trust-links { display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0; }
+  .hh-trust-link {
+    flex: 1; min-width: 200px; background: white; border: 1px solid #ddd; border-radius: 8px;
+    padding: 16px; text-decoration: none !important; color: #1a2332; font-size: 14px;
+    font-weight: 600; text-align: center; transition: border-color 0.2s;
+  }
+  .hh-trust-link:hover { border-color: #1a6b3c; }
+  .hh-trust-link small { display: block; font-size: 12px; color: #888; font-weight: 400; margin-top: 4px; }
+
+  /* Final CTA band */
+  .hh-final-cta { background: #1a6b3c; padding: 40px 24px; text-align: center; }
+  .hh-final-cta h2 { color: white; font-size: 24px; margin-bottom: 8px; }
+  .hh-final-cta p { color: rgba(255,255,255,0.8); font-size: 15px; margin-bottom: 20px; }
+
+  /* Footer disclaimer */
+  .hh-footer-disc { padding: 24px; text-align: center; font-size: 12px; color: #888; background: #f5f5f0; }
+  .hh-footer-disc p { margin: 4px 0; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .hh-hero h1 { font-size: 26px; }
+    .hh-hero p { font-size: 15px; }
+    .hh-hero { padding: 28px 20px 32px; }
+    .hh-hero-logo { height: 40px; margin-bottom: 16px; }
+    .hh-section { padding: 36px 20px; }
+    .hh-section-alt { padding: 36px 20px; }
+    .hh-trust-links { flex-direction: column; }
+    .hh-cards { flex-direction: column; }
+    .hh-img-break { height: 140px; }
+    .hh-trust-bar { gap: 12px; font-size: 13px; padding: 12px 16px; }
+  }
+</style>
+
+<div class="hh-landing">
+
+<!-- ===== SECTION 1: HERO (compact, no nav) ===== -->
+<div class="hh-hero">
+  <!-- Replace with your Hero Heal logo URL -->
+  <img src="https://heroheal.org/wp-content/uploads/2024/06/Hero-Heal-Logo-White-1.png" alt="Hero Heal Foundation" class="hh-hero-logo">
+  <h1>Healing Support for Veterans &amp; First Responders</h1>
+  <p>Apply for retreat access, education, and personalized guidance through Hero Heal Foundation.</p>
+  <a href="#apply-form" class="hh-btn">Start Your Application</a>
+  <div class="hh-sub">Free to apply &bull; Takes 3-5 minutes &bull; Reviewed within 48 hours</div>
+</div>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="hh-trust-bar">
+  <span><strong>501(c)(3)</strong> Nonprofit</span>
+  <span><strong>Free</strong> to Apply</span>
+  <span><strong>Confidential</strong> Review</span>
+  <span><strong>No</strong> Obligation</span>
+</div>
+
+
+<!-- ===== SECTION 2: WARM INTRO ===== -->
+<div class="hh-section">
+  <h2>Healing Support for Those Who Serve</h2>
+  <p>Hero Heal Foundation supports veterans and first responders facing trauma, grief, burnout, depression, anxiety, nervous system overload, and the emotional impact of service.</p>
+  <p class="hh-warm">We know reaching out for help can feel difficult, so this page is designed to make the process simple, respectful, and clear. You don't need to have perfect words or everything figured out before you apply. This is simply a place to begin.</p>
+  <div class="hh-cta-center">
+    <a href="#apply-form" class="hh-btn">Start Your Application</a>
+  </div>
+</div>
+
+
+<!-- ===== SECTION 3: WHO SHOULD APPLY ===== -->
+<div class="hh-section-alt">
+  <div class="hh-inner">
+    <h2>Who Should Apply</h2>
+    <p>This page is for people seeking meaningful next steps and wanting to explore healing support through Hero Heal Foundation.</p>
+    <ul class="hh-checklist">
+      <li>Veterans looking for healing support after military service</li>
+      <li>First responders carrying stress, trauma, grief, or emotional exhaustion</li>
+      <li>People exploring healing retreats for restoration and recovery</li>
+      <li>People seeking education and trustworthy next-step resources</li>
+      <li>Applicants looking for clear guidance on possible support options</li>
+    </ul>
+    <div class="hh-cta-center">
+      <a href="#apply-form" class="hh-btn">Apply for Support</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== IMAGE DIVIDER ===== -->
+<!-- Replace this image URL with your preferred photo -->
+<img src="https://heroheal.org/wp-content/uploads/2026/03/IMG_8537-2-scaled.jpeg" alt="Healing retreat environment" class="hh-img-break">
+
+
+<!-- ===== SECTION 4: WHAT THIS APPLICATION HELPS WITH ===== -->
+<div class="hh-section">
+  <h2>What This Application Helps With</h2>
+  <div class="hh-cards">
+    <div class="hh-card">
+      <div class="hh-card-icon">&#127793;</div>
+      <h3>Healing Retreats</h3>
+      <p>Healing retreats may provide a supportive environment for rest, reflection, emotional processing, connection, and nervous system repair. Your application helps us evaluate whether a retreat may be appropriate.</p>
+    </div>
+    <div class="hh-card">
+      <div class="hh-card-icon">&#128218;</div>
+      <h3>Education</h3>
+      <p>Some applicants are looking for trusted information, guidance, or educational next steps. This application can help connect people to those resources.</p>
+    </div>
+    <div class="hh-card">
+      <div class="hh-card-icon">&#129309;</div>
+      <h3>Support Navigation</h3>
+      <p>Not every applicant needs the same path. This form helps our team better understand what type of support may be most appropriate based on your current situation and goals.</p>
+    </div>
+  </div>
+  <div class="hh-cta-center">
+    <a href="#apply-form" class="hh-btn">Apply for Support</a>
+  </div>
+</div>
+
+
+<!-- ===== IMAGE DIVIDER ===== -->
+<!-- Replace this image URL with your preferred photo -->
+<img src="https://heroheal.org/wp-content/uploads/2026/03/IMG_8526-2-scaled.jpeg" alt="Veterans at retreat" class="hh-img-break">
+
+
+<!-- ===== SECTION 5: HOW IT WORKS ===== -->
+<div class="hh-section-alt">
+  <div class="hh-inner">
+    <h2>How It Works</h2>
+    <div class="hh-steps">
+      <div class="hh-step">
+        <div class="hh-step-num">1</div>
+        <div>
+          <h3>Complete the Application</h3>
+          <p>Share your background, current needs, and the kind of support you're looking for. Takes 3-5 minutes.</p>
+        </div>
+      </div>
+      <div class="hh-step">
+        <div class="hh-step-num">2</div>
+        <div>
+          <h3>We Review Your Submission</h3>
+          <p>Every application is reviewed individually and with care by our team.</p>
+        </div>
+      </div>
+      <div class="hh-step">
+        <div class="hh-step-num">3</div>
+        <div>
+          <h3>A Team Member Follows Up</h3>
+          <p>We'll contact you by phone to discuss your situation, answer questions, and explore options together.</p>
+        </div>
+      </div>
+      <div class="hh-step">
+        <div class="hh-step-num">4</div>
+        <div>
+          <h3>We Guide You From There</h3>
+          <p>If there's a fit, we'll share appropriate retreat options, educational resources, or other support pathways.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hh-cta-center">
+      <a href="#apply-form" class="hh-btn">Start Your Application</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== SECTION 6: EMBEDDED APPLICATION FORM ===== -->
+<div class="hh-form-section" id="apply-form">
+  <h2>Start Your Application</h2>
+  <p>Every application is reviewed with care and respect. Free to apply.</p>
+  <div class="hh-form-wrap">
+    <!--
+      JOTFORM EMBED:
+      Replace the src URL below with your actual Jotform URL.
+      Adjust the min-height if the form is longer/shorter.
+    -->
+    <iframe
+      src="https://form.jotform.com/260787014759063"
+      title="Hero Heal Application Form"
+      style="width:100%; min-height:600px; border:none;"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
+
+<!-- ===== SECTION 7: IMMEDIATE SUPPORT RESOURCES ===== -->
+<div class="hh-section">
+  <h2>Immediate Support Resources</h2>
+  <p>If you or someone you know needs immediate help, these trusted resources are available 24/7.</p>
+  <div class="hh-trust-links">
+    <a href="https://988lifeline.org/" class="hh-trust-link" target="_blank" rel="noopener">
+      988 Suicide &amp; Crisis Lifeline
+      <small>Call or text 988</small>
+    </a>
+    <a href="https://www.samhsa.gov/find-help/national-helpline" class="hh-trust-link" target="_blank" rel="noopener">
+      SAMHSA Helpline
+      <small>1-800-662-4357</small>
+    </a>
+    <a href="https://www.va.gov/health-care/health-needs-conditions/mental-health/" class="hh-trust-link" target="_blank" rel="noopener">
+      VA Mental Health
+      <small>va.gov</small>
+    </a>
+  </div>
+  <p style="font-size:13px;color:#888;margin-top:12px;">If you are in immediate danger, call 911.</p>
+</div>
+
+
+<!-- ===== SECTION 8: FINAL CTA ===== -->
+<div class="hh-final-cta">
+  <h2>Ready to Take the First Step?</h2>
+  <p>Your application will be reviewed with care. No cost. No obligation.</p>
+  <a href="#apply-form" class="hh-btn hh-btn-white">Apply Now</a>
+</div>
+
+
+<!-- ===== FOOTER DISCLAIMER ===== -->
+<div class="hh-footer-disc">
+  <p>Hero Heal Foundation is a registered 501(c)(3) nonprofit organization (EIN: 88-3285698).</p>
+  <p>P.O Box #1457, La Grande, OR 97850 | admin@heroheal.com | 541-975-4535</p>
+  <p style="margin-top:8px;font-size:11px;color:#aaa;">The information provided on this website is for educational and referral purposes only and does not constitute medical or clinical advice.</p>
+</div>
+
+</div>
+<!-- END Hero Heal Landing Page v2 -->
