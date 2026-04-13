@@ -14,6 +14,9 @@
 # Allow Airbnb research report
 !lawayra-airbnb-research-report.html
 
+# Allow Martech SOP
+!lawayra-martech-sop.html
+
 # Allow Hero Heal funnel deliverables
 !heroheal-funnel/
 !heroheal-funnel/**
