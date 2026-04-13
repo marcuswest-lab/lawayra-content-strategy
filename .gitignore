@@ -18,6 +18,9 @@
 !heroheal-funnel/
 !heroheal-funnel/**
 
+# Allow Community & Integration Mockup
+!Community-Integration-Mockup-v2.pdf
+
 # Allow landing page and repo files
 !index.html
 !.gitignore
