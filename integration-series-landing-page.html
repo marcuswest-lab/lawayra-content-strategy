@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-Week Integration Series — LaWayra Retreat</title>
+<meta name="description" content="Turn insight into change. A 6-week guided integration series with Monica Kronstain to help you process, understand, and live what you experienced in ceremony. Starting May 10, 2026.">
+<meta property="og:title" content="6-Week Integration Series — LaWayra Retreat">
+<meta property="og:description" content="The real work starts after the experience. Join a 6-week guided integration circle starting May 10. Sundays at 2:30 PM Colombia Time. $80.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FFF7E7;
+    --cream-dark: #F5F0E8;
+    --olive: #3F4021;
+    --olive-light: #4A4B2A;
+    --sage: #AEAC92;
+    --beige: #D6D0B8;
+    --amber: #E4A017;
+    --burnt-orange: #B34100;
+    --brown: #623E2A;
+    --charcoal: #2B2728;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', -apple-system, 'Segoe UI', sans-serif;
+    color: var(--charcoal);
+    line-height: 1.6;
+    background: var(--cream);
+  }
+
+  h1, h2, h3 { line-height: 1.25; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── HEADER ─── */
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 40px;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(174,172,146,0.3);
+  }
+  .header-logo { height: 48px; }
+  .header-nav { display: flex; align-items: center; gap: 24px; }
+  .header-nav a { font-size: 14px; color: var(--charcoal); font-weight: 500; transition: color 0.2s; }
+  .header-nav a:hover { color: var(--olive); }
+  .header-cta {
+    background: var(--amber); color: var(--white); padding: 12px 24px;
+    border-radius: 8px; font-weight: 600; font-size: 14px;
+    letter-spacing: 0.3px; transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+  }
+  .header-cta:hover { background: #cc8f14; transform: translateY(-1px); }
+
+  /* ─── BUTTONS ─── */
+  .btn-amber {
+    display: inline-block; background: var(--amber); color: var(--white);
+    padding: 16px 36px; border-radius: 8px; font-weight: 600; font-size: 15px;
+    letter-spacing: 0.5px; transition: background 0.2s, transform 0.1s;
+  }
+  .btn-amber:hover { background: #cc8f14; transform: translateY(-2px); }
+  .btn-olive {
+    display: inline-block; background: var(--olive); color: var(--white);
+    padding: 16px 36px; border-radius: 8px; font-weight: 600; font-size: 15px;
+    letter-spacing: 0.5px; transition: background 0.2s, transform 0.1s;
+  }
+  .btn-olive:hover { background: var(--olive-light); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block; background: transparent; color: var(--white);
+    padding: 14px 32px; border-radius: 8px; font-weight: 500; font-size: 14px;
+    border: 2px solid rgba(255,255,255,0.6); transition: all 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative; min-height: 560px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; color: var(--white);
+    padding: 80px 24px 60px;
+    background: linear-gradient(to bottom, rgba(63,64,33,0.35) 0%, rgba(43,39,40,0.65) 100%),
+      url('hero-candidate-2.jpg') center/cover no-repeat;
+  }
+  .hero-label {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 52px; font-weight: 700; margin-bottom: 16px;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .hero-sub {
+    font-size: 18px; font-weight: 300; max-width: 560px;
+    margin-bottom: 12px; line-height: 1.6; opacity: 0.95;
+  }
+  .hero-details {
+    font-size: 14px; font-weight: 500; margin-bottom: 32px;
+    opacity: 0.85; letter-spacing: 0.5px;
+  }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  /* ─── PAIN POINT ─── */
+  .pain {
+    padding: 80px 40px; background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .pain-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .pain h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px; font-weight: 600; color: var(--charcoal);
+    margin-bottom: 20px; font-style: italic;
+  }
+  .pain p { font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 16px; }
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    font-size: 14px; color: #555; padding: 10px 0 10px 32px;
+    position: relative; border-bottom: 1px solid rgba(174,172,146,0.2);
+    line-height: 1.5;
+  }
+  .checklist li::before {
+    content: ''; position: absolute; left: 0; top: 14px;
+    width: 18px; height: 18px; border: 2px solid var(--sage);
+    border-radius: 4px;
+  }
+
+  /* ─── WHY IT MATTERS ─── */
+  .why {
+    padding: 80px 40px; background: var(--olive); color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .why-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .why h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .why p { font-size: 16px; line-height: 1.8; opacity: 0.9; margin-bottom: 16px; }
+  .why .highlight {
+    color: var(--amber); font-weight: 600; font-style: italic;
+  }
+
+  /* ─── WEEK BY WEEK ─── */
+  .weeks {
+    padding: 80px 40px; background: var(--cream-dark);
+    position: relative; overflow: hidden;
+  }
+  .weeks-inner { max-width: 1000px; margin: 0 auto; }
+  .weeks h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; text-align: center;
+    margin-bottom: 12px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .weeks > .weeks-inner > .weeks-subtitle {
+    font-size: 15px; color: #666; text-align: center;
+    margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+  .week-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .week-card {
+    background: var(--white); border-radius: 16px; padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    border-top: 4px solid var(--sage);
+  }
+  .week-card:hover { transform: translateY(-4px); }
+  .week-card .week-num {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--amber); margin-bottom: 8px;
+  }
+  .week-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px; font-weight: 600; color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+  .week-card .week-theme {
+    font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 16px;
+    font-style: italic;
+  }
+  .week-card ul {
+    list-style: none; padding: 0;
+  }
+  .week-card li {
+    font-size: 13px; color: #555; padding: 4px 0 4px 16px;
+    position: relative; line-height: 1.5;
+  }
+  .week-card li::before {
+    content: ''; position: absolute; left: 0; top: 10px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--amber);
+  }
+
+  /* ─── OUTCOMES ─── */
+  .outcomes {
+    padding: 80px 40px; background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .outcomes-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .outcomes h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; margin-bottom: 48px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .outcomes-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    text-align: left;
+  }
+  .outcome-card {
+    background: var(--white); border-radius: 16px; padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .outcome-icon {
+    flex-shrink: 0; width: 48px; height: 48px;
+    background: var(--olive); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .outcome-icon svg { width: 24px; height: 24px; }
+  .outcome-card h3 {
+    font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px;
+  }
+  .outcome-card p { font-size: 13px; color: #666; line-height: 1.6; }
+
+  /* ─── WHAT'S INCLUDED ─── */
+  .included {
+    padding: 60px 40px; background: var(--cream-dark);
+  }
+  .included-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    text-align: center;
+  }
+  .included-item { padding: 24px 16px; }
+  .included-item .icon { font-size: 32px; margin-bottom: 12px; }
+  .included-item h3 {
+    font-size: 14px; font-weight: 600; color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .included-item p { font-size: 13px; color: #666; line-height: 1.5; }
+
+  /* ─── FACILITATOR ─── */
+  .facilitator {
+    padding: 80px 40px; background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .facilitator-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center;
+  }
+  .facilitator-photo {
+    border-radius: 20px; overflow: hidden;
+    aspect-ratio: 3/4; background: var(--beige);
+  }
+  .facilitator-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .facilitator-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 8px;
+  }
+  .facilitator h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px; font-weight: 800; color: var(--charcoal);
+    margin-bottom: 16px; text-transform: uppercase; letter-spacing: -0.5px;
+  }
+  .facilitator .credential {
+    font-size: 14px; color: var(--burnt-orange); font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .facilitator p { font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 14px; }
+
+  /* ─── PRICING ─── */
+  .pricing {
+    padding: 80px 40px; background: var(--olive); color: var(--white);
+    text-align: center;
+  }
+  .pricing-inner { max-width: 600px; margin: 0 auto; }
+  .pricing h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; margin-bottom: 32px;
+    letter-spacing: -0.5px;
+  }
+  .pricing-card {
+    background: rgba(255,255,255,0.1); border-radius: 20px;
+    padding: 40px; border: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 32px;
+  }
+  .pricing-amount {
+    font-size: 56px; font-weight: 700; color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .pricing-per { font-size: 14px; opacity: 0.7; margin-bottom: 24px; }
+  .pricing-details { list-style: none; padding: 0; text-align: left; }
+  .pricing-details li {
+    font-size: 15px; padding: 10px 0 10px 28px;
+    position: relative; border-bottom: 1px solid rgba(255,255,255,0.1);
+    opacity: 0.9;
+  }
+  .pricing-details li::before {
+    content: ''; position: absolute; left: 0; top: 16px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--amber);
+  }
+  .pricing-details li:last-child { border-bottom: none; }
+  .pricing-note {
+    font-size: 14px; opacity: 0.7; margin-top: 24px;
+    font-style: italic;
+  }
+
+  /* ─── FAQ ─── */
+  .faq {
+    padding: 80px 40px; background: var(--cream-dark);
+  }
+  .faq-inner { max-width: 700px; margin: 0 auto; }
+  .faq h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; text-align: center;
+    margin-bottom: 40px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .faq-item {
+    background: var(--white); border-radius: 12px;
+    padding: 24px 28px; margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .faq-item h3 {
+    font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px;
+  }
+  .faq-item p { font-size: 14px; color: #666; line-height: 1.6; }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    padding: 80px 40px; background: var(--cream);
+    text-align: center;
+  }
+  .final-cta-inner { max-width: 600px; margin: 0 auto; }
+  .final-cta h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px; font-weight: 700; color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+  .final-cta p {
+    font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 32px;
+  }
+  .final-cta .questions {
+    font-size: 14px; color: var(--olive); margin-top: 20px;
+  }
+  .final-cta .questions a {
+    text-decoration: underline; font-weight: 500;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: 32px 40px; text-align: center;
+    background: var(--cream-dark); border-top: 1px solid rgba(174,172,146,0.3);
+  }
+  .footer-logo { height: 60px; margin: 0 auto 16px; opacity: 0.6; }
+  .footer p { font-size: 12px; color: #888; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+  /* ─── DECORATIVE ─── */
+  .deco {
+    position: absolute; opacity: 0.08; z-index: 0; pointer-events: none;
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 1024px) {
+    .week-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 10px 20px; }
+    .header-logo { height: 36px; }
+    .header-nav { gap: 12px; }
+    .header-nav a { font-size: 12px; }
+    .header-cta { padding: 10px 16px; font-size: 12px; }
+
+    .hero { min-height: 460px; padding: 60px 20px 40px; }
+    .hero h1 { font-size: 34px; }
+    .hero-sub { font-size: 16px; }
+
+    .pain { padding: 48px 20px; }
+    .pain-inner { grid-template-columns: 1fr; gap: 32px; }
+    .pain h2 { font-size: 28px; }
+
+    .why { padding: 48px 20px; }
+    .why h2 { font-size: 28px; }
+
+    .weeks { padding: 48px 20px; }
+    .weeks h2 { font-size: 28px; }
+    .week-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+    .outcomes { padding: 48px 20px; }
+    .outcomes h2 { font-size: 28px; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+
+    .included-inner { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; }
+
+    .facilitator { padding: 48px 20px; }
+    .facilitator-inner { grid-template-columns: 1fr; }
+    .facilitator-photo { max-width: 320px; margin: 0 auto; }
+    .facilitator h2 { font-size: 32px; }
+
+    .pricing { padding: 48px 20px; }
+    .pricing h2 { font-size: 28px; }
+
+    .faq { padding: 48px 20px; }
+    .faq h2 { font-size: 28px; }
+
+    .final-cta { padding: 48px 20px; }
+    .final-cta h2 { font-size: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    .header-nav { display: none; }
+    .hero h1 { font-size: 28px; }
+    .pricing-amount { font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header class="header">
+  <a href="https://ayahuascaincolombia.com">
+    <img src="https://ayahuascaincolombia.com/wp-content/uploads/2026/02/cropped-LaWayara-Logotype-Black-noBG.png" alt="LaWayra Retreat" class="header-logo">
+  </a>
+  <nav class="header-nav">
+    <a href="#program">The Program</a>
+    <a href="#facilitator">Your Facilitator</a>
+    <a href="#pricing">Details</a>
+  </nav>
+  <a href="#signup" class="header-cta">RESERVE YOUR SPOT</a>
+</header>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-label">6-Week Integration Series &middot; May 2026</div>
+  <h1>Turn Insight<br>Into Change</h1>
+  <p class="hero-sub">A guided 6-week integration circle to help you process, understand, and live what you experienced in ceremony.</p>
+  <p class="hero-details">Starting May 10 &middot; Sundays at 2:30 PM Colombia Time &middot; $80</p>
+  <div class="hero-buttons">
+    <a href="#signup" class="btn-amber">Reserve Your Spot</a>
+    <a href="#program" class="btn-outline">See the Full Program</a>
+  </div>
+</section>
+
+<!-- ═══════════════ PAIN POINT ═══════════════ -->
+<section class="pain">
+  <div class="pain-inner">
+    <div>
+      <h2>"It was so clear in ceremony... why is it slipping away?"</h2>
+      <p>You came home with something powerful. But everyday life has a way of pulling you back into old patterns, and the clarity you felt starts to fade.</p>
+      <p>You're not losing what you found. You just need a space to ground it.</p>
+    </div>
+    <div>
+      <ul class="checklist">
+        <li>You had a powerful experience and now feel confused</li>
+        <li>You know you need integration, but don't know where to start</li>
+        <li>You feel empty, heavy, or energetically off</li>
+        <li>You feel different, but your life hasn't caught up</li>
+        <li>You're trying to make sense of it, but going in circles</li>
+        <li>You don't feel fully understood by people around you</li>
+        <li>You feel yourself slipping back into old patterns</li>
+        <li>You want real change in yourself and your life</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHY INTEGRATION MATTERS ═══════════════ -->
+<section class="why">
+  <svg class="deco" style="top:20px;right:20px;" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M60 10L90 40L60 70L30 40Z M60 50L80 70L60 90L40 70Z" stroke="#FFF7E7" stroke-width="1.5" fill="none"/>
+    <circle cx="60" cy="60" r="50" stroke="#FFF7E7" stroke-width="0.8" fill="none" stroke-dasharray="4 4"/>
+  </svg>
+  <div class="why-inner">
+    <h2>Why integration matters</h2>
+    <p>The real work starts after the experience. Ceremony opens the door, but <span class="highlight">integration is how you walk through it and stay there.</span></p>
+    <p>Without a dedicated space to process what came up, even the most powerful insights can fade back into the noise of daily life. Old routines return. The people around you don't quite understand. And slowly, what felt so clear starts to feel distant.</p>
+    <p>This series gives you the structure, community, and guidance to make sure that doesn't happen. <span class="highlight">In 6 weeks, you'll learn how to process, understand, and live what you experienced.</span></p>
+  </div>
+</section>
+
+<!-- ═══════════════ WEEK BY WEEK ═══════════════ -->
+<section class="weeks" id="program">
+  <div class="weeks-inner">
+    <h2>Your 6-week journey</h2>
+    <p class="weeks-subtitle">Each week builds on the last, guiding you from grounding the experience to living the transformation in your everyday life.</p>
+
+    <div class="week-grid">
+      <div class="week-card">
+        <div class="week-num">Week 1</div>
+        <h3>Landing the Experience</h3>
+        <div class="week-theme">Making space for the experience to settle</div>
+        <ul>
+          <li>Integration vs. interpretation</li>
+          <li>Somatic grounding exercise</li>
+          <li>Why insights often unfold slowly</li>
+          <li>Stabilizing after expanded states</li>
+          <li>Daily rhythm reset (sleep, food, movement)</li>
+        </ul>
+      </div>
+
+      <div class="week-card">
+        <div class="week-num">Week 2</div>
+        <h3>Finding the Thread of Meaning</h3>
+        <div class="week-theme">Honoring your truth without over-analysis</div>
+        <ul>
+          <li>Personal myth journaling</li>
+          <li>Symbol mapping from ceremony</li>
+          <li>Self-trust after mystical experiences</li>
+          <li>Working with doubt and skepticism</li>
+          <li>Writing your "medicine message"</li>
+        </ul>
+      </div>
+
+      <div class="week-card">
+        <div class="week-num">Week 3</div>
+        <h3>Compassion for the Inner Landscape</h3>
+        <div class="week-theme">Allowing difficult emotions to flow</div>
+        <ul>
+          <li>Self-compassion meditation</li>
+          <li>Emotional body scan</li>
+          <li>Working with grief, anger, or fear</li>
+          <li>Acceptance and commitment principles</li>
+          <li>Writing a letter to the part of yourself that surfaced</li>
+        </ul>
+      </div>
+
+      <div class="week-card">
+        <div class="week-num">Week 4</div>
+        <h3>Aligning My Life With My Truth</h3>
+        <div class="week-theme">Applying insights to real life</div>
+        <ul>
+          <li>Core values mapping</li>
+          <li>Boundary reflection and role play</li>
+          <li>Recognizing unhealthy patterns</li>
+          <li>Relationship reflection journaling</li>
+          <li>Integrating spiritual insight into ordinary life</li>
+        </ul>
+      </div>
+
+      <div class="week-card">
+        <div class="week-num">Week 5</div>
+        <h3>Embodiment Rituals to Sustain Change</h3>
+        <div class="week-theme">Integrating change without isolating yourself</div>
+        <ul>
+          <li>Designing a daily integration ritual</li>
+          <li>Habit stacking and behavioral change</li>
+          <li>Identity mapping exercise</li>
+          <li>Community mapping</li>
+          <li>Vision journaling: "The life that feels aligned"</li>
+        </ul>
+      </div>
+
+      <div class="week-card">
+        <div class="week-num">Week 6</div>
+        <h3>Living the Transformation</h3>
+        <div class="week-theme">Turning insight into lived practice</div>
+        <ul>
+          <li>Personal integration plan (3-6 months)</li>
+          <li>Gratitude and dedication ritual</li>
+          <li>Long-term spiritual practice</li>
+          <li>Closing reflection and manifesto</li>
+          <li>Continuing the journey forward</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ OUTCOMES ═══════════════ -->
+<section class="outcomes">
+  <div class="outcomes-inner">
+    <h2>Where this actually takes you</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9-4-9-9-9z" stroke="#FFF7E7" stroke-width="1.5"/>
+            <path d="M12 8v4l3 3" stroke="#FFF7E7" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Navigate emotional waves</h3>
+          <p>Learn to sit with what came up without feeling overwhelmed, and process emotions as they arise.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15 8.5L22 9.5L17 14.5L18 21.5L12 18.5L6 21.5L7 14.5L2 9.5L9 8.5Z" stroke="#FFF7E7" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Practices that actually work for you</h3>
+          <p>Discover integration practices — meditation, journaling, somatic work — that fit your real life, not just the retreat.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#FFF7E7" stroke-width="1.5"/>
+            <circle cx="9" cy="7" r="4" stroke="#FFF7E7" stroke-width="1.5"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#FFF7E7" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Feel understood and supported</h3>
+          <p>Be part of a group that gets it — no need to explain or justify what you went through.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="#FFF7E7" stroke-width="1.5"/>
+            <path d="M22 4L12 14.01l-3-3" stroke="#FFF7E7" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>A clear sense of what to change</h3>
+          <p>Walk away with a personal integration plan and the confidence to follow through on what the experience revealed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHAT'S INCLUDED ═══════════════ -->
+<section class="included">
+  <div class="included-inner">
+    <div class="included-item">
+      <div class="icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#3F4021" stroke-width="1.5"/><path d="M18 10v8l5 3" stroke="#3F4021" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3>2-Hour Live Calls</h3>
+      <p>Weekly guided sessions with Monica and your group</p>
+    </div>
+    <div class="included-item">
+      <div class="icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="4" y="6" width="28" height="24" rx="4" stroke="#3F4021" stroke-width="1.5"/><path d="M4 14h28M12 6v-2M24 6v-2" stroke="#3F4021" stroke-width="1.5"/></svg>
+      </div>
+      <h3>Guided Practices</h3>
+      <p>Meditation, somatic exercises, and journaling prompts</p>
+    </div>
+    <div class="included-item">
+      <div class="icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M8 28c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="#3F4021" stroke-width="1.5"/><circle cx="18" cy="12" r="5" stroke="#3F4021" stroke-width="1.5"/><circle cx="8" cy="18" r="3" stroke="#3F4021" stroke-width="1"/><circle cx="28" cy="18" r="3" stroke="#3F4021" stroke-width="1"/></svg>
+      </div>
+      <h3>Group Support</h3>
+      <p>Ongoing community connection through Circle</p>
+    </div>
+    <div class="included-item">
+      <div class="icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M18 4v28M4 18h28" stroke="#3F4021" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="18" r="8" stroke="#3F4021" stroke-width="1"/></svg>
+      </div>
+      <h3>Weekly Focus</h3>
+      <p>Clear themes with tools to apply between sessions</p>
+    </div>
+    <div class="included-item">
+      <div class="icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M28 18H8M18 8v20" stroke="#3F4021" stroke-width="1.5"/><path d="M13 13l5-5 5 5M13 23l5 5 5-5" stroke="#3F4021" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3>1:1 Access</h3>
+      <p>Personal support from Monica when you need it</p>
+    </div>
+    <div class="included-item">
+      <div class="icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M6 26l8-8 5 5 11-11" stroke="#3F4021" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 12h8v8" stroke="#3F4021" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Integration Plan</h3>
+      <p>Leave with a personal 3-6 month roadmap</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FACILITATOR ═══════════════ -->
+<section class="facilitator" id="facilitator">
+  <div class="facilitator-inner">
+    <div class="facilitator-photo">
+      <img src="monica-kronstain.png" alt="Monica Kronstain, Head of Facilitation at LaWayra">
+    </div>
+    <div>
+      <div class="facilitator-label">Your Facilitator</div>
+      <h2>Monica Kronstain</h2>
+      <div class="credential">MSc Psychology &amp; Neuroscience of Mental Health</div>
+      <p>As Head of Facilitation at LaWayra, Monica blends clinical expertise with deep ceremonial experience to guide meaningful transformation.</p>
+      <p>With a background in psychology, neuroscience, and psychiatric care, she helps guests turn insight into real life change through somatic, therapeutic, and mindfulness-based practices.</p>
+      <p>She brings a warm, empathetic approach that creates a supportive space for reflection, sharing, and meaningful personal growth that lasts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRICING ═══════════════ -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <h2>Details &amp; Pricing</h2>
+    <div class="pricing-card">
+      <div class="pricing-amount">$80</div>
+      <div class="pricing-per">for the full 6-week series</div>
+      <ul class="pricing-details">
+        <li>Starts May 10th, 2026</li>
+        <li>Sundays at 2:30 PM Colombia Time (COT / UTC-5)</li>
+        <li>6 weekly 2-hour live integration calls</li>
+        <li>Guided practices, journaling prompts, and somatic exercises</li>
+        <li>Ongoing group support through Circle community</li>
+        <li>Access to 1:1 support with Monica</li>
+        <li>Personal 3-6 month integration plan</li>
+      </ul>
+    </div>
+    <a href="#signup" class="btn-amber">Reserve Your Spot</a>
+    <p class="pricing-note">Spaces are limited to keep the group intimate and supportive.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section class="faq">
+  <div class="faq-inner">
+    <h2>Common questions</h2>
+
+    <div class="faq-item">
+      <h3>Is this only for LaWayra guests?</h3>
+      <p>No. This series is open to anyone who has been through a ceremony experience and is looking for structured integration support. Whether your experience was at LaWayra or elsewhere, you are welcome.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How are sessions held?</h3>
+      <p>Sessions are held live via video call through our Circle community. You'll be able to see and interact with Monica and the other participants in a warm, group setting.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What if I miss a week?</h3>
+      <p>While attending live is encouraged, we understand life happens. Each session builds on the previous one, but Monica and the group will help you stay connected even if you need to miss a call.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How recent does my experience need to be?</h3>
+      <p>Whether your experience was recent or months ago, integration is an ongoing process. You can step into this at any time. If something still feels alive or unresolved, this space is for you.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What time is 2:30 PM Colombia Time in my timezone?</h3>
+      <p>Colombia Time (COT) is UTC-5. That's the same as US Eastern Time (EST), 11:30 AM Pacific, 7:30 PM UK (BST), and 8:30 PM Central Europe (CEST).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FINAL CTA ═══════════════ -->
+<section class="final-cta" id="signup">
+  <div class="final-cta-inner">
+    <h2>The medicine opened the door. This is how you walk through it.</h2>
+    <p>Join Monica and a small group of people who understand what you've been through. Together, over 6 weeks, you'll turn what you experienced into something that lasts.</p>
+    <!--
+      ══════════════════════════════════════════════
+      CHECKOUT BUTTON
+      Replace #checkout with Monica's personal website checkout URL
+      ══════════════════════════════════════════════
+    -->
+    <a href="#checkout" class="btn-amber" style="font-size: 17px; padding: 18px 48px;">Reserve Your Spot &mdash; $80</a>
+    <p class="questions">Have questions before signing up? <a href="https://wa.me/573508449074">Send us a message on WhatsApp</a></p>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <img src="https://ayahuascaincolombia.com/wp-content/uploads/2026/02/cropped-LaWayara-Logotype-Black-noBG.png" alt="LaWayra" class="footer-logo">
+  <p>LaWayra Ayahuasca Retreat &middot; Fredonia, Colombia &middot; <a href="https://ayahuascaincolombia.com" style="text-decoration:underline;">ayahuascaincolombia.com</a></p>
+</footer>
+
+</body>
+</html>
