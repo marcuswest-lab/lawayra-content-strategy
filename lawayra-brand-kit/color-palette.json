@@ -1,0 +1,32 @@
+{
+  "primary_colors": {
+    "olive": "#3F4021",
+    "sage": "#AEAC92",
+    "beige": "#D6D0B8",
+    "cream": "#FFF7E7"
+  },
+  "secondary_colors": {
+    "amber": "#E4A017",
+    "burnt_orange": "#B34100",
+    "brown": "#623E2A",
+    "charcoal": "#2B2728"
+  },
+  "functional": {
+    "text_light": "#FFFFFF",
+    "text_dark": "#623E2A",
+    "background": "#FFF7E7",
+    "overlay": "rgba(43, 39, 40, 0.6)"
+  },
+  "typography": {
+    "primary": "Poppins",
+    "script": "Twister"
+  },
+  "tagline": "connect. heal. grow.",
+  "color_schemes": [
+    {"name": "primary", "bg": "#3F4021", "text": "#FFF7E7", "accent": "#E4A017"},
+    {"name": "clean", "bg": "#FFF7E7", "text": "#623E2A", "accent": "#3F4021"},
+    {"name": "warm", "bg": "#E4A017", "text": "#FFF7E7", "accent": "#3F4021"},
+    {"name": "bold", "bg": "#B34100", "text": "#FFF7E7", "accent": "#E4A017"},
+    {"name": "earthy", "bg": "#AEAC92", "text": "#623E2A", "accent": "#3F4021"}
+  ]
+}

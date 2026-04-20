@@ -30,3 +30,8 @@
 # Allow landing page and repo files
 !index.html
 !.gitignore
+
+# Allow brand guidelines
+!lawayra-brand-guide.html
+!lawayra-brand-kit/
+!lawayra-brand-kit/**

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaWayra — Brand Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap');
+
+  :root {
+    --primary: #1a3a2a;
+    --primary-light: #2d5e42;
+    --accent: #c8956c;
+    --accent-light: #e8c9a8;
+    --bg: #0f1710;
+    --bg-card: #151e17;
+    --bg-card-hover: #1a2a1e;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --border: #2a3a2e;
+
+    /* Brand palette */
+    --olive: #3F4021;
+    --sage: #AEAC92;
+    --beige: #D6D0B8;
+    --cream: #FFF7E7;
+    --amber: #E4A017;
+    --burnt-orange: #B34100;
+    --brown: #623E2A;
+    --charcoal: #2B2728;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+    transition: color 0.2s ease;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    padding: 40px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(200,149,108,0.3);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tagline {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  section { margin-bottom: 64px; }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    margin-top: 32px;
+  }
+
+  /* Color palette */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .color-swatch {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+  }
+
+  .color-block {
+    height: 120px;
+    width: 100%;
+  }
+
+  .color-meta {
+    padding: 14px 16px;
+  }
+
+  .color-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+
+  .color-hex {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .color-use {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* Typography samples */
+  .type-sample {
+    padding: 24px 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 14px;
+  }
+
+  .type-label {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .poppins-sample {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    font-size: 1.5rem;
+  }
+
+  .poppins-300 { font-weight: 300; }
+  .poppins-400 { font-weight: 400; }
+  .poppins-500 { font-weight: 500; }
+  .poppins-600 { font-weight: 600; }
+  .poppins-700 { font-weight: 700; }
+  .poppins-italic { font-weight: 400; font-style: italic; }
+
+  .script-sample {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.4rem;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  /* Logo / symbol / texture galleries */
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .asset-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  .asset-card:hover {
+    border-color: rgba(200,149,108,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .asset-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    min-height: 150px;
+    background: var(--bg-card-hover);
+  }
+  .asset-preview img {
+    max-width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+  }
+
+  .asset-preview.light-bg {
+    background: var(--cream);
+  }
+  .asset-preview.olive-bg {
+    background: var(--olive);
+  }
+
+  .asset-meta {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .asset-filename {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    word-break: break-all;
+  }
+
+  /* Rules list */
+  .rules-list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+  .rules-list li {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .rules-list li strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Downloads */
+  .download-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 28px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border: 1px solid rgba(200,149,108,0.3);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s ease;
+  }
+  .download-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  .download-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(228,160,23,0.15);
+    border-radius: 12px;
+    font-size: 1.4rem;
+  }
+  .download-meta { flex: 1; }
+  .download-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 2px;
+  }
+  .download-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+  .download-arrow {
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 300;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .tagline { font-size: 1.4rem; }
+    h2 { font-size: 1.4rem; }
+    .poppins-sample { font-size: 1.2rem; }
+    .script-sample { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a class="back-link" href="index.html">← Back to reports</a>
+
+  <div class="header">
+    <div class="badge">Visual Identity</div>
+    <h1>LaWayra Brand Guide</h1>
+    <div class="tagline">connect. heal. grow.</div>
+    <p class="subtitle">The visual system for LaWayra Retreat — colors, typography, logos, symbols, and the rules that tie them together. For anyone creating content, running ads, or building anything that represents the brand.</p>
+  </div>
+
+  <!-- Color Palette -->
+  <section>
+    <h2>Color Palette</h2>
+    <p class="section-desc">Earth tones grounded in warm cream and olive. Amber is reserved for calls-to-action only.</p>
+
+    <h3>Primary</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-block" style="background: #3F4021;"></div>
+        <div class="color-meta">
+          <div class="color-name">Olive</div>
+          <div class="color-hex">#3F4021</div>
+          <div class="color-use">Dark backgrounds, headings</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background: #AEAC92;"></div>
+        <div class="color-meta">
+          <div class="color-name">Sage</div>
+          <div class="color-hex">#AEAC92</div>
+          <div class="color-use">Subtle accents, secondary text</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background: #D6D0B8;"></div>
+        <div class="color-meta">
+          <div class="color-name">Beige</div>
+          <div class="color-hex">#D6D0B8</div>
+          <div class="color-use">Alternate section backgrounds</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background: #FFF7E7;"></div>
+        <div class="color-meta">
+          <div class="color-name">Cream</div>
+          <div class="color-hex">#FFF7E7</div>
+          <div class="color-use">Primary light backgrounds</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Secondary</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-block" style="background: #E4A017;"></div>
+        <div class="color-meta">
+          <div class="color-name">Amber</div>
+          <div class="color-hex">#E4A017</div>
+          <div class="color-use">Primary CTA buttons, highlights</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background: #B34100;"></div>
+        <div class="color-meta">
+          <div class="color-name">Burnt Orange</div>
+          <div class="color-hex">#B34100</div>
+          <div class="color-use">Accent, hover states</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background: #623E2A;"></div>
+        <div class="color-meta">
+          <div class="color-name">Brown</div>
+          <div class="color-hex">#623E2A</div>
+          <div class="color-use">Earthy accents</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-block" style="background: #2B2728;"></div>
+        <div class="color-meta">
+          <div class="color-name">Charcoal</div>
+          <div class="color-hex">#2B2728</div>
+          <div class="color-use">Body text, dark elements</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography -->
+  <section>
+    <h2>Typography</h2>
+    <p class="section-desc">Poppins for everything. Script accents for the tagline only.</p>
+
+    <h3>Poppins — Primary</h3>
+    <div class="type-sample">
+      <div class="type-label">Light · 300</div>
+      <div class="poppins-sample poppins-300">A sacred journey of healing and transformation</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">Regular · 400</div>
+      <div class="poppins-sample poppins-400">A sacred journey of healing and transformation</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">Medium · 500</div>
+      <div class="poppins-sample poppins-500">A sacred journey of healing and transformation</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">SemiBold · 600</div>
+      <div class="poppins-sample poppins-600">A sacred journey of healing and transformation</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">Bold · 700</div>
+      <div class="poppins-sample poppins-700">A sacred journey of healing and transformation</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">Italic</div>
+      <div class="poppins-sample poppins-italic">A sacred journey of healing and transformation</div>
+    </div>
+
+    <h3>Script — Tagline Only</h3>
+    <div class="type-sample">
+      <div class="type-label">Twister (web fallback: Dancing Script)</div>
+      <div class="script-sample">connect. heal. grow.</div>
+    </div>
+    <ul class="rules-list" style="margin-top:16px;">
+      <li><strong>Tagline format:</strong> lowercase, with periods — "connect. heal. grow."</li>
+      <li><strong>Headings:</strong> lowercase, Poppins SemiBold or Bold</li>
+      <li><strong>Body:</strong> Poppins Regular, Charcoal (#2B2728) on light backgrounds</li>
+    </ul>
+  </section>
+
+  <!-- Logos -->
+  <section>
+    <h2>Logos</h2>
+    <p class="section-desc">The lotus-and-wordmark lockup is the primary brand mark. Use the color variant that gives the most contrast against the background.</p>
+
+    <h3>Color Variants</h3>
+    <div class="asset-grid">
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/logos/lockup-olive.png" alt="Olive lockup"></div>
+        <div class="asset-meta"><div class="asset-filename">lockup-olive.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/logos/lockup-sage.png" alt="Sage lockup"></div>
+        <div class="asset-meta"><div class="asset-filename">lockup-sage.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview olive-bg"><img src="lawayra-brand-kit/logos/lockup-cream.png" alt="Cream lockup"></div>
+        <div class="asset-meta"><div class="asset-filename">lockup-cream.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview olive-bg"><img src="lawayra-brand-kit/logos/lockup-amber.png" alt="Amber lockup"></div>
+        <div class="asset-meta"><div class="asset-filename">lockup-amber.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/logos/lockup-burnt-orange.png" alt="Burnt orange lockup"></div>
+        <div class="asset-meta"><div class="asset-filename">lockup-burnt-orange.png</div></div>
+      </div>
+    </div>
+
+    <h3>Marks</h3>
+    <div class="asset-grid">
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/logos/logo-filled.png" alt="Logo filled"></div>
+        <div class="asset-meta"><div class="asset-filename">logo-filled.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/logos/logo-outline.png" alt="Logo outline"></div>
+        <div class="asset-meta"><div class="asset-filename">logo-outline.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/logos/logo-lockup.png" alt="Logo lockup"></div>
+        <div class="asset-meta"><div class="asset-filename">logo-lockup.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/logos/logo-marks.png" alt="Logo marks"></div>
+        <div class="asset-meta"><div class="asset-filename">logo-marks.png</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Symbols -->
+  <section>
+    <h2>Symbols</h2>
+    <p class="section-desc">Geometric icons drawn from Andean/Amazonian iconography and sacred geometry. Use sparingly as accents — not every piece needs a symbol.</p>
+
+    <div class="asset-grid">
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/symbols/jaguar.png" alt="Jaguar"></div>
+        <div class="asset-meta"><div class="asset-filename">jaguar.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/symbols/snake.png" alt="Snake"></div>
+        <div class="asset-meta"><div class="asset-filename">snake.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/symbols/mountains.png" alt="Mountains"></div>
+        <div class="asset-meta"><div class="asset-filename">mountains.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/symbols/flower-of-life.png" alt="Flower of life"></div>
+        <div class="asset-meta"><div class="asset-filename">flower-of-life.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/symbols/ayahuasca-flower.png" alt="Ayahuasca flower"></div>
+        <div class="asset-meta"><div class="asset-filename">ayahuasca-flower.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/symbols/sacred-geometry.png" alt="Sacred geometry"></div>
+        <div class="asset-meta"><div class="asset-filename">sacred-geometry.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light-bg"><img src="lawayra-brand-kit/symbols/decorative-icons.png" alt="Decorative icons"></div>
+        <div class="asset-meta"><div class="asset-filename">decorative-icons.png</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Textures -->
+  <section>
+    <h2>Textures</h2>
+    <p class="section-desc">Grain overlays add warmth and an analog-film feel. Apply at low opacity over hero images, never full-strength.</p>
+
+    <div class="asset-grid">
+      <div class="asset-card">
+        <div class="asset-preview"><img src="lawayra-brand-kit/textures/analog-film-grain.png" alt="Analog film grain"></div>
+        <div class="asset-meta"><div class="asset-filename">analog-film-grain.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview"><img src="lawayra-brand-kit/textures/analog-film-grain-light.png" alt="Analog film grain light"></div>
+        <div class="asset-meta"><div class="asset-filename">analog-film-grain-light.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview"><img src="lawayra-brand-kit/textures/vector-grain.png" alt="Vector grain"></div>
+        <div class="asset-meta"><div class="asset-filename">vector-grain.png</div></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview"><img src="lawayra-brand-kit/textures/textile-imprint-grain.png" alt="Textile imprint grain"></div>
+        <div class="asset-meta"><div class="asset-filename">textile-imprint-grain.png</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Rules -->
+  <section>
+    <h2>Application Rules</h2>
+    <p class="section-desc">The small decisions that keep the brand feeling consistent across web, social, and print.</p>
+
+    <ul class="rules-list">
+      <li><strong>CTA buttons:</strong> Amber (#E4A017) background, white text, fully rounded (border-radius: 40px). No other color gets a rounded-pill treatment.</li>
+      <li><strong>Section background rotation:</strong> cream → olive → beige → cream. Alternating tones create rhythm down long pages.</li>
+      <li><strong>Headings:</strong> Always lowercase, Poppins SemiBold or Bold. Never all-caps.</li>
+      <li><strong>Body text:</strong> Poppins Regular, Charcoal (#2B2728) on light backgrounds, Cream (#FFF7E7) on dark.</li>
+      <li><strong>Grain textures:</strong> Used as subtle overlays on hero images — never full opacity.</li>
+      <li><strong>Photography:</strong> Warm, natural, analog film feel. Mountains, jungle paths, ceremonies, team moments. No stock-photo vibes.</li>
+      <li><strong>Voice:</strong> Warm friend who has walked this path. "sacred medicine" not "drug", "guests" not "clients", "healing journey" not "program".</li>
+    </ul>
+  </section>
+
+  <!-- Downloads -->
+  <section>
+    <h2>Full Brand Kit</h2>
+    <p class="section-desc">Raw assets and the complete brand guide PDF.</p>
+
+    <a class="download-card" href="lawayra-brand-kit/LaWayra Final Brand Guides .pdf" style="margin-bottom:14px;" target="_blank" rel="noopener">
+      <div class="download-icon">📄</div>
+      <div class="download-meta">
+        <div class="download-title">LaWayra Final Brand Guides (PDF)</div>
+        <div class="download-desc">Complete visual identity system — 21MB</div>
+      </div>
+      <div class="download-arrow">→</div>
+    </a>
+
+    <a class="download-card" href="lawayra-brand-kit/" style="margin-bottom:14px;">
+      <div class="download-icon">📁</div>
+      <div class="download-meta">
+        <div class="download-title">Brand Kit Folder</div>
+        <div class="download-desc">Logos, fonts, color palette JSON, symbols, textures, photography</div>
+      </div>
+      <div class="download-arrow">→</div>
+    </a>
+
+    <a class="download-card" href="lawayra-brand-kit/color-palette.json">
+      <div class="download-icon">🎨</div>
+      <div class="download-meta">
+        <div class="download-title">color-palette.json</div>
+        <div class="download-desc">Structured color data for design tools and code</div>
+      </div>
+      <div class="download-arrow">→</div>
+    </a>
+  </section>
+
+  <div class="footer">LaWayra Retreat — connect. heal. grow.</div>
+</div>
+
+</body>
+</html>
