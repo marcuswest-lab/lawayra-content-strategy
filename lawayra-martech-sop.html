@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaWayra Martech SOP</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #1a3a2a;
+    --primary-light: #2d5e42;
+    --accent: #c8956c;
+    --accent-light: #e8c9a8;
+    --accent-glow: #d4a574;
+    --bg: #0f1710;
+    --bg-card: #151e17;
+    --bg-card-hover: #1a2a1e;
+    --text: #e8e4df;
+    --text-muted: #9a9590;
+    --text-dim: #6b6560;
+    --border: #2a3a2e;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 60px 80px;
+    background: linear-gradient(165deg, #0f1710 0%, #1a3a2a 40%, #2d5e42 70%, #1a3a2a 100%);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,149,108,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(45,94,66,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    max-width: 750px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+  .hero-meta strong { color: var(--text); font-weight: 500; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin-bottom: 50px;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 40px 0 16px;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 30px 0 12px;
+  }
+  p { margin-bottom: 16px; color: var(--text); font-size: 15px; }
+  strong { color: #fff; font-weight: 600; }
+
+  /* Tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .data-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-card);
+  }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .data-table td:first-child { font-weight: 600; color: #fff; }
+  .data-table code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    background: rgba(200,149,108,0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Cards */
+  .info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 24px 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .info-card:hover {
+    border-color: rgba(200,149,108,0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+  .info-card-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .info-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .info-card-body { padding: 24px 28px; }
+  .info-card-body p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+  .info-card-body p:last-child { margin-bottom: 0; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .tag-active { background: rgba(74,222,128,0.1); color: var(--success); }
+  .tag-pending { background: rgba(251,191,36,0.1); color: var(--warning); }
+  .tag-broken { background: rgba(248,113,113,0.1); color: var(--danger); }
+
+  /* Code blocks */
+  .code-block {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 16px 0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .code-block .highlight { color: var(--accent); }
+  .code-block .comment { color: var(--text-dim); }
+  .code-block .arrow { color: var(--success); }
+  .code-block .service { color: #fff; font-weight: 600; }
+
+  /* Flow diagram */
+  .flow-diagram {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 30px 0;
+    overflow-x: auto;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .flow-row:last-child { margin-bottom: 0; }
+  .flow-node {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .flow-node-source {
+    background: rgba(96,165,250,0.1);
+    border: 1px solid rgba(96,165,250,0.2);
+    color: var(--blue);
+  }
+  .flow-node-tool {
+    background: rgba(167,139,250,0.1);
+    border: 1px solid rgba(167,139,250,0.2);
+    color: var(--purple);
+  }
+  .flow-node-dest {
+    background: rgba(74,222,128,0.1);
+    border: 1px solid rgba(74,222,128,0.2);
+    color: var(--success);
+  }
+  .flow-node-output {
+    background: rgba(200,149,108,0.1);
+    border: 1px solid rgba(200,149,108,0.2);
+    color: var(--accent);
+  }
+  .flow-arrow {
+    color: var(--text-dim);
+    font-size: 16px;
+  }
+
+  /* Ordered list for attribution */
+  .step-list {
+    list-style: none;
+    counter-reset: steps;
+    margin: 20px 0;
+  }
+  .step-list li {
+    counter-increment: steps;
+    padding: 12px 0 12px 52px;
+    position: relative;
+    font-size: 14px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-list li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    background: rgba(200,149,108,0.1);
+    border: 1px solid rgba(200,149,108,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  /* Callout */
+  .callout {
+    background: rgba(200,149,108,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin: 20px 0;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .callout strong { color: var(--accent); }
+
+  /* Details / collapsible */
+  details {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+  details summary {
+    padding: 20px 28px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: '\25B6';
+    font-size: 11px;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  details[open] summary {
+    border-bottom: 1px solid var(--border);
+  }
+  .details-body {
+    padding: 24px 28px;
+  }
+  .details-body h4 { margin-top: 0; }
+  .details-body h4:not(:first-child) { margin-top: 30px; }
+
+  /* Platform list */
+  .platform-list {
+    list-style: none;
+    margin: 20px 0;
+  }
+  .platform-list li {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .platform-list li:last-child { border-bottom: none; }
+  .platform-name {
+    font-weight: 600;
+    color: #fff;
+    min-width: 180px;
+  }
+  .platform-detail {
+    color: var(--text-muted);
+  }
+  .platform-detail a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .platform-detail a:hover {
+    text-decoration: underline;
+  }
+
+  /* Links */
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px 50px; }
+    .hero h1 { font-size: 32px; }
+    .container { padding: 0 20px; }
+    .section { padding: 50px 0; }
+    .section h2 { font-size: 28px; }
+    .flow-diagram { padding: 20px; }
+    .info-card-header { padding: 16px 20px; }
+    .info-card-body { padding: 18px 20px; }
+    .platform-list li { flex-direction: column; gap: 4px; }
+    .platform-name { min-width: auto; }
+    .toc-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Table of Contents */
+  .toc {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 40px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .toc-item:hover { border-bottom-color: var(--accent); }
+  .toc-item:hover .toc-label { color: #fff; }
+  .toc-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent);
+    min-width: 24px;
+  }
+  .toc-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+  <div class="hero-label">Operations Playbook</div>
+  <h1>LaWayra <span>Martech SOP</span></h1>
+  <p class="hero-subtitle">How our marketing &amp; sales tracking infrastructure works &mdash; updated April 2026</p>
+  <div class="hero-meta">
+    <span><strong>3</strong> dashboards</span>
+    <span><strong>8</strong> automations</span>
+    <span><strong>6</strong> platforms</span>
+    <span><strong>12</strong> sections</span>
+    <span>Last updated: April 18, 2026</span>
+  </div>
+</div>
+
+<!-- ==================== TABLE OF CONTENTS ==================== -->
+<div class="container">
+<div class="toc">
+  <h2>Contents</h2>
+  <div class="toc-grid">
+    <a href="#s01" class="toc-item"><span class="toc-num">01</span><span class="toc-label">How It All Connects</span></a>
+    <a href="#s07" class="toc-item"><span class="toc-num">07</span><span class="toc-label">Technical Reference</span></a>
+    <a href="#s02" class="toc-item"><span class="toc-num">02</span><span class="toc-label">The Three Dashboards</span></a>
+    <a href="#s08" class="toc-item"><span class="toc-num">08</span><span class="toc-label">Platform Access</span></a>
+    <a href="#s03" class="toc-item"><span class="toc-num">03</span><span class="toc-label">Automations</span></a>
+    <a href="#s09" class="toc-item"><span class="toc-num">09</span><span class="toc-label">How to Send Email Broadcasts</span></a>
+    <a href="#s04" class="toc-item"><span class="toc-num">04</span><span class="toc-label">Source Attribution</span></a>
+    <a href="#s10" class="toc-item"><span class="toc-num">10</span><span class="toc-label">How to Build &amp; Launch a Funnel Page</span></a>
+    <a href="#s05" class="toc-item"><span class="toc-num">05</span><span class="toc-label">What's Still Manual</span></a>
+    <a href="#s11" class="toc-item"><span class="toc-num">11</span><span class="toc-label">How to Set Up Claude Code</span></a>
+    <a href="#s06" class="toc-item"><span class="toc-num">06</span><span class="toc-label">When Something Breaks</span></a>
+    <a href="#s12" class="toc-item"><span class="toc-num">12</span><span class="toc-label">How to Set Up a Subdomain in GHL</span></a>
+    <a href="#s13" class="toc-item"><span class="toc-num">13</span><span class="toc-label">How to Change Permissions in GHL</span></a>
+    <a href="#s14" class="toc-item"><span class="toc-num">14</span><span class="toc-label">Logins</span></a>
+  </div>
+</div>
+
+<!-- ==================== SECTION 1: HOW IT ALL CONNECTS ==================== -->
+<div class="section" id="s01">
+  <div class="section-number">Section 01</div>
+  <h2>How It All Connects</h2>
+  <p class="section-subtitle">A high-level view of how booking data, ad spend, and sales calls flow through our systems and end up on dashboards and Discord.</p>
+
+  <div class="flow-diagram">
+    <div class="flow-row">
+      <span class="flow-node flow-node-source">BookingLayer</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-tool">Zapier</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-dest">Sales by Source Dashboard</span>
+      <span style="font-size:12px; color:var(--text-dim); margin-left:4px;">(Raw Bookings tab)</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node flow-node-source">BookingLayer CSV</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-tool">n8n (Source Pipeline)</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-dest">Sales by Source Dashboard</span>
+      <span style="font-size:12px; color:var(--text-dim); margin-left:4px;">(Self-Reported Source + Email cols)</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node flow-node-source">Google Ads API</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-tool">n8n</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-dest">Marketing Dashboard</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node flow-node-source">GHL (Appointments)</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-tool">n8n</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-dest">Sales Dashboard</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node flow-node-dest">Both Dashboards</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-tool">n8n (Daily Report)</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-output">Discord Daily Reports</span>
+    </div>
+    <div class="flow-row" style="margin-top:20px; padding-top:14px; border-top:1px solid var(--border);">
+      <span class="flow-node flow-node-source">Google Ads Lead Forms</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span class="flow-node flow-node-dest">GG Leads Sheet</span>
+      <span style="font-size:12px; color:var(--text-dim); margin-left:4px;">(auto, 4,200+ emails)</span>
+    </div>
+    <div class="flow-row">
+      <span class="flow-node flow-node-tool">Apps Script (nightly)</span>
+      <span class="flow-arrow">&rarr;</span>
+      <span style="font-size:13px; color:var(--text-muted);">Cross-references GG Leads emails &rarr; overrides Source Category with "Google Ads"</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2: THE THREE DASHBOARDS ==================== -->
+<div class="section" id="s02">
+  <div class="section-number">Section 02</div>
+  <h2>The Three Dashboards</h2>
+  <p class="section-subtitle">Each dashboard tracks a different piece of the funnel. Together they give a full picture from ad spend to revenue.</p>
+
+  <!-- Marketing Dashboard -->
+  <div class="info-card">
+    <div class="info-card-header">
+      <span class="info-card-title">1. LW Marketing Dashboard</span>
+      <span class="tag tag-active">Active</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>What it tracks:</strong> Google Ads spend, impressions, clicks, reach, leads, booked calls, sales, revenue, and ROAS &mdash; one row per day.</p>
+      <p><strong>Link:</strong> <a href="https://docs.google.com/spreadsheets/d/1du8jYw-EPr3Bvkiq-_sMsA8XNtWH-d81AXS48glVzvc/edit" target="_blank">Open in Google Sheets</a></p>
+      <p><strong>Updates:</strong> Automatically via n8n (daily at 1:07am UTC from Google Ads API).</p>
+      <p><strong>Key tabs:</strong> Dashboard (raw data), Daily Report (Yesterday / WTD / MTD + Pace), Weekly Tracker, Monthly Tracker.</p>
+    </div>
+  </div>
+
+  <!-- Sales Dashboard -->
+  <div class="info-card">
+    <div class="info-card-header">
+      <span class="info-card-title">2. LW Sales Dashboard</span>
+      <span class="tag tag-active">Active</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>What it tracks:</strong> Sales calls (appointments, outcomes, show rates) and actual bookings/revenue &mdash; one row per call on the Dashboard tab.</p>
+      <p><strong>Link:</strong> <a href="https://docs.google.com/spreadsheets/d/1fcBghq6dXp9v_58Lz0b-Fm5iXYlhw4HF00zQUjCSSTU/edit" target="_blank">Open in Google Sheets</a></p>
+      <p><strong>Updates:</strong> Dashboard tab auto-updates via n8n (daily at 1:13am UTC from GHL API). Sales tab auto-populates from Raw Bookings (nightly Apps Script, pending setup).</p>
+      <p><strong>Key tabs:</strong> Dashboard (calls), Sales (bookings/revenue), Daily Report, Sales Rep Breakdown, Rep Monthly Breakdown, individual rep tabs (Nico, Aliyah, Jacobo, Thomas).</p>
+    </div>
+  </div>
+
+  <!-- Sales by Source Dashboard -->
+  <div class="info-card">
+    <div class="info-card-header">
+      <span class="info-card-title">3. Sales by Source Dashboard</span>
+      <span class="tag tag-active">Active</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>What it tracks:</strong> Where bookings come from &mdash; source attribution for all BookingLayer bookings. Answers: "Which channels drive revenue?"</p>
+      <p><strong>Link:</strong> <a href="https://docs.google.com/spreadsheets/d/139G-OUoApI5ksdSMXMe_WE8geaw_mZ3Sv8PYvBDsq5w/edit" target="_blank">Open in Google Sheets</a></p>
+      <p><strong>Updates:</strong> Multiple automations &mdash; Zapier (new bookings), n8n (source data + emails), Apps Script (source category classification). See Automations section.</p>
+      <p><strong>Key tabs:</strong> Raw Bookings (main data), Source Mapping, Monthly Dashboard.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3: AUTOMATIONS ==================== -->
+<div class="section" id="s03">
+  <div class="section-number">Section 03</div>
+  <h2>Automations</h2>
+  <p class="section-subtitle">Everything that runs automatically. If it is on this list, you do not need to do it manually.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>What</th>
+        <th>How</th>
+        <th>Schedule</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>New bookings &rarr; Raw Bookings</td>
+        <td>Zapier (BookingLayer webhook)</td>
+        <td>Real-time</td>
+        <td><span class="tag tag-active">Active</span></td>
+      </tr>
+      <tr>
+        <td>Google Ads &rarr; Marketing Dashboard</td>
+        <td>n8n workflow <code>Google Ads > LW Marketing Dashboard</code></td>
+        <td>Daily 1:07am</td>
+        <td><span class="tag tag-active">Active</span></td>
+      </tr>
+      <tr>
+        <td>GHL appointments &rarr; Sales Dashboard</td>
+        <td>n8n workflow <code>GHL > LW Sales Dashboard</code></td>
+        <td>Daily 1:13am</td>
+        <td><span class="tag tag-active">Active</span></td>
+      </tr>
+      <tr>
+        <td>"How did you hear?" &rarr; Self-Reported Source</td>
+        <td>n8n workflow <code>LW Source Data Pipeline</code></td>
+        <td>Hourly (polls Gmail)</td>
+        <td><span class="tag tag-active">Active</span></td>
+      </tr>
+      <tr>
+        <td>Booking emails &rarr; Email column</td>
+        <td>n8n workflow <code>LW Email Data Pipeline</code></td>
+        <td>Hourly (polls Gmail)</td>
+        <td><span class="tag tag-pending">Pending deployment</span></td>
+      </tr>
+      <tr>
+        <td>Source Category override (GG Ads detection)</td>
+        <td>Apps Script <code>updateSourceCategoriesV4()</code></td>
+        <td>Nightly trigger</td>
+        <td><span class="tag tag-pending">Pending v4 (v3 active)</span></td>
+      </tr>
+      <tr>
+        <td>New bookings &rarr; Sales tab</td>
+        <td>Apps Script <code>autoPopulateSalesTab()</code></td>
+        <td>Nightly trigger</td>
+        <td><span class="tag tag-pending">Pending setup</span></td>
+      </tr>
+      <tr>
+        <td>Daily Discord reports</td>
+        <td>n8n workflow <code>LW Daily Report > Discord</code></td>
+        <td>Daily 2:03am</td>
+        <td><span class="tag tag-active">Active</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== SECTION 4: SOURCE ATTRIBUTION ==================== -->
+<div class="section" id="s04">
+  <div class="section-number">Section 04</div>
+  <h2>Source Attribution &mdash; How It Works</h2>
+  <p class="section-subtitle">How we figure out which marketing channel each booking came from, and why email matching is critical.</p>
+
+  <ol class="step-list">
+    <li>Guest books on <strong>BookingLayer</strong> and is asked "How did you hear about us?"</li>
+    <li>BookingLayer sends a <strong>daily CSV</strong> with their answers to admin@lawayra.com. An n8n workflow parses it and fills the <strong>Self-Reported Source</strong> column (col I).</li>
+    <li>A separate BookingLayer report sends guest emails. Another n8n workflow parses it and fills the <strong>Email</strong> column (col F).</li>
+    <li>A <strong>nightly Apps Script</strong> cross-references each guest's email against the <strong>GG Leads sheet</strong> (4,200+ Google Ads lead form emails).</li>
+    <li>If the email matches a Google Ads lead &rarr; <strong>Source Category = "Google Ads"</strong> (overrides whatever they self-reported).</li>
+    <li>If the email does not match and they said "Google Search" &rarr; <strong>Source Category = "Organic Search/SEO"</strong>.</li>
+    <li>All other answers are mapped to standard categories (Friend Rec &rarr; Word of Mouth, Reddit &rarr; Reddit, etc.).</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Why email matching matters:</strong> People who clicked a Google Ad often say "Google Search" when asked. Name matching misses about 57% of Google Ads bookings because people use different names on ad forms vs BookingLayer. Email is the reliable identifier.
+  </div>
+</div>
+
+<!-- ==================== SECTION 5: WHAT'S STILL MANUAL ==================== -->
+<div class="section" id="s05">
+  <div class="section-number">Section 05</div>
+  <h2>What's Still Manual</h2>
+  <p class="section-subtitle">A few things still require a human touch.</p>
+
+  <div class="info-card">
+    <div class="info-card-body">
+      <p><strong>Sales tab amounts:</strong> Bookings with status "deposit_paid" show the deposit amount, not the full price. The full amount needs to be entered manually once the guest has fully paid.</p>
+      <p><strong>New source types:</strong> If a guest writes something new that does not exist in the mapping (e.g., "AyaAdvisors"), it needs to be added to the category mapping in the Apps Script.</p>
+      <p><strong>GG Leads sheet:</strong> This is auto-populated by Google Ads lead forms. No manual action needed &mdash; listed here for context only.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 6: WHEN SOMETHING BREAKS ==================== -->
+<div class="section" id="s06">
+  <div class="section-number">Section 06</div>
+  <h2>When Something Breaks</h2>
+  <p class="section-subtitle">Common issues and how to fix them. Check the most likely cause first.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Issue</th>
+        <th>Check</th>
+        <th>Fix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Discord report didn't post</td>
+        <td>n8n &rarr; check <code>LW Daily Report > Discord</code> executions</td>
+        <td>Re-run manually. Check Discord webhook credentials in n8n.</td>
+      </tr>
+      <tr>
+        <td>New bookings not appearing in Raw Bookings</td>
+        <td>Zapier &rarr; check <a href="https://zapier.com/editor/356749217/published/" target="_blank">zap status</a></td>
+        <td>Re-connect BookingLayer account in Zapier. Check API key.</td>
+      </tr>
+      <tr>
+        <td>Source Category empty for new bookings</td>
+        <td>Wait for nightly Apps Script trigger</td>
+        <td>Run <code>updateSourceCategoriesV4()</code> manually in Apps Script editor.</td>
+      </tr>
+      <tr>
+        <td>Google Ads data missing from Marketing Dashboard</td>
+        <td>n8n &rarr; check <code>Google Ads > LW Marketing Dashboard</code></td>
+        <td>Re-authenticate Google Ads OAuth2 credential in n8n.</td>
+      </tr>
+      <tr>
+        <td>GHL appointment data missing</td>
+        <td>n8n &rarr; check <code>GHL > LW Sales Dashboard</code></td>
+        <td>Re-authenticate GHL API credential. Verify userId param.</td>
+      </tr>
+      <tr>
+        <td>Google Sheets OAuth expired</td>
+        <td>Multiple n8n workflows will fail simultaneously</td>
+        <td>Re-authenticate in n8n credentials panel with admin@lawayra.com.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== SECTION 7: TECHNICAL REFERENCE ==================== -->
+<div class="section" id="s07">
+  <div class="section-number">Section 07</div>
+  <h2>Technical Reference</h2>
+  <p class="section-subtitle">IDs, workflow details, and credentials for troubleshooting. Click to expand.</p>
+
+  <!-- Google Sheets -->
+  <details>
+    <summary>Google Sheets</summary>
+    <div class="details-body">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Sheet</th>
+            <th>ID</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LW Marketing Dashboard</td>
+            <td><code>1du8jYw-EPr3Bvkiq-_sMsA8XNtWH-d81AXS48glVzvc</code></td>
+            <td>Google Ads KPIs</td>
+          </tr>
+          <tr>
+            <td>LW Sales Dashboard</td>
+            <td><code>1fcBghq6dXp9v_58Lz0b-Fm5iXYlhw4HF00zQUjCSSTU</code></td>
+            <td>Sales calls + bookings</td>
+          </tr>
+          <tr>
+            <td>Sales by Source Dashboard</td>
+            <td><code>139G-OUoApI5ksdSMXMe_WE8geaw_mZ3Sv8PYvBDsq5w</code></td>
+            <td>Source attribution</td>
+          </tr>
+          <tr>
+            <td>LEADS (GG Leads)</td>
+            <td><code>1PKOKpTg9o6HgV41Fvwag8aId5PAnr4qH5AwxmVL2jBg</code></td>
+            <td>Google Ads lead emails</td>
+          </tr>
+          <tr>
+            <td>Old Sales Tracking</td>
+            <td><code>16fy6Fpq7Z6P3yv3JN0YzmxlT204gnrfThu8KcC13gnY</code></td>
+            <td style="color:var(--warning);">Legacy &mdash; READ ONLY, do not modify</td>
+          </tr>
+          <tr>
+            <td>Old Marketing Tracking</td>
+            <td><code>1QNQLbvwdROIdyTAjIXTDe1DNzR_w1DG9iH8tR-aXvRQ</code></td>
+            <td style="color:var(--warning);">Legacy &mdash; READ ONLY, do not modify</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- n8n Workflows -->
+  <details>
+    <summary>n8n Workflows (server.lawayraserver.com)</summary>
+    <div class="details-body">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Workflow</th>
+            <th>ID</th>
+            <th>Schedule</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Ads > LW Marketing Dashboard</td>
+            <td><code>E6K7ts1s0HXYw8JV</code></td>
+            <td>Daily 1:07am</td>
+            <td><span class="tag tag-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>GHL > LW Sales Dashboard</td>
+            <td><code>jStC73dYSNXQEuV7</code></td>
+            <td>Daily 1:13am</td>
+            <td><span class="tag tag-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>LW Daily Report > Discord</td>
+            <td><code>(check n8n)</code></td>
+            <td>Daily 2:03am</td>
+            <td><span class="tag tag-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>LW Source Data Pipeline</td>
+            <td><code>(check n8n)</code></td>
+            <td>Hourly</td>
+            <td><span class="tag tag-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>LW Email Data Pipeline</td>
+            <td><code>(to import)</code></td>
+            <td>Hourly</td>
+            <td><span class="tag tag-pending">Pending</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- Apps Script Triggers -->
+  <details>
+    <summary>Apps Script Triggers</summary>
+    <div class="details-body">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Sheet</th>
+            <th>Schedule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>setupAndUpdate()</code> (v3 source categories)</td>
+            <td>Sales by Source Dashboard</td>
+            <td>Nightly time-based</td>
+          </tr>
+          <tr>
+            <td><code>updateSourceCategoriesV4()</code> (v4 &mdash; pending)</td>
+            <td>Sales by Source Dashboard</td>
+            <td>Replace v3 trigger</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- BookingLayer Scheduled Reports -->
+  <details>
+    <summary>BookingLayer Scheduled Reports</summary>
+    <div class="details-body">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Report</th>
+            <th>URL</th>
+            <th>Schedule</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>How did you hear about us?</td>
+            <td><a href="https://app.bookinglayer.io/reports_v2/edit/019ca9d3-8267-72dd-87c9-a8be89b7095d" target="_blank">BookingLayer report</a></td>
+            <td>Daily midnight UTC</td>
+            <td>admin@lawayra.com</td>
+          </tr>
+          <tr>
+            <td>Booking Emails for Source Attribution</td>
+            <td><a href="https://app.bookinglayer.io/reports_v2/edit/019d83e7-9b53-730a-b26a-f1f8b890fbe5" target="_blank">BookingLayer report</a></td>
+            <td>Daily midnight UTC</td>
+            <td>admin@lawayra.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- Zapier -->
+  <details>
+    <summary>Zapier</summary>
+    <div class="details-body">
+      <p><strong>Zap:</strong> BookingLayer paid bookings &rarr; Google Sheets</p>
+      <p><strong>URL:</strong> <a href="https://zapier.com/editor/356749217/published/" target="_blank">https://zapier.com/editor/356749217/published/</a></p>
+      <p><strong>Trigger:</strong> New Booking (BookingLayer)</p>
+      <p><strong>Action:</strong> Append row to Raw Bookings tab</p>
+      <div class="callout">
+        <strong>Limitation:</strong> Zapier's BookingLayer connector does NOT pass guest email or custom form fields (like "How did you hear?"). That data comes from the n8n source/email pipelines instead.
+      </div>
+    </div>
+  </details>
+
+  <!-- GHL Credentials -->
+  <details>
+    <summary>GHL Credentials</summary>
+    <div class="details-body">
+      <p><strong>API type:</strong> v1 Location API key</p>
+      <p><strong>JWT sub (userId):</strong> <code>sDNwoaCoDpqccA0neooz</code></p>
+      <p><strong>Location ID:</strong> <code>tM9BbjaL2wzkIIIEm1Sn</code></p>
+      <p><strong>Calendar (Consultation Call):</strong> <code>yN2tS8tSN24EtkLfiW4E</code></p>
+      <p><strong>Sales Pipeline:</strong> <code>qVw5yZ34CpAZuAmh4Bne</code></p>
+      <p><strong>n8n credentials:</strong> <code>LW GHL v2</code> + <code>LW GHL</code></p>
+    </div>
+  </details>
+
+  <!-- Discord Webhooks -->
+  <details>
+    <summary>Discord Webhooks</summary>
+    <div class="details-body">
+      <p><strong>#gg-marketing-tracking:</strong> Spidey Bot webhook &mdash; receives daily Google Ads report</p>
+      <p><strong>#sales-tracking:</strong> Captain Hook webhook &mdash; receives daily sales call report</p>
+    </div>
+  </details>
+</div>
+
+<!-- ==================== SECTION 8: PLATFORM ACCESS ==================== -->
+<div class="section" id="s08">
+  <div class="section-number">Section 08</div>
+  <h2>Platform Access</h2>
+  <p class="section-subtitle">Where to log in for each system.</p>
+
+  <ul class="platform-list">
+    <li>
+      <span class="platform-name">Google Sheets / Looker Studio</span>
+      <span class="platform-detail">admin@lawayra.com</span>
+    </li>
+    <li>
+      <span class="platform-name">n8n</span>
+      <span class="platform-detail"><a href="https://server.lawayraserver.com" target="_blank">server.lawayraserver.com</a></span>
+    </li>
+    <li>
+      <span class="platform-name">BookingLayer</span>
+      <span class="platform-detail"><a href="https://app.bookinglayer.io" target="_blank">app.bookinglayer.io</a> &mdash; admin@lawayra.com</span>
+    </li>
+    <li>
+      <span class="platform-name">Zapier</span>
+      <span class="platform-detail"><a href="https://zapier.com" target="_blank">zapier.com</a> &mdash; admin@lawayra.com</span>
+    </li>
+    <li>
+      <span class="platform-name">GHL (GoHighLevel)</span>
+      <span class="platform-detail"><a href="https://app.gohighlevel.com" target="_blank">app.gohighlevel.com</a></span>
+    </li>
+    <li>
+      <span class="platform-name">Discord</span>
+      <span class="platform-detail">LaWayra server</span>
+    </li>
+    <li>
+      <span class="platform-name">Looker Studio Dashboard</span>
+      <span class="platform-detail"><a href="https://lookerstudio.google.com/u/0/reporting/023b5c1e-17be-4518-b313-aa8a8fb40693/page/I97rF" target="_blank">Open Dashboard</a></span>
+    </li>
+  </ul>
+</div>
+
+<!-- ==================== SECTION 9: HOW TO SEND EMAIL BROADCASTS ==================== -->
+<div class="section" id="s09">
+  <div class="section-number">Section 09</div>
+  <h2>How to Send Email Broadcasts</h2>
+  <p class="section-subtitle">Step-by-step process for sending email broadcasts to the LaWayra subscriber list via GetDrip.</p>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <span class="info-card-title">Email Template Reference</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Template file:</strong> <code>community-call-email.html</code> in the project repo</p>
+      <p><strong>Template includes:</strong> Subscriber first name personalization, 5 timezone display, RSVP link, call format overview</p>
+      <p><strong>Drip account:</strong> admin@lawayra.com</p>
+      <p><strong>Walkthrough video:</strong> <a href="https://www.loom.com/share/5a22821ed2df4c828d894258dd1868e7" target="_blank">Loom &mdash; How to send a broadcast in Drip</a></p>
+    </div>
+  </div>
+
+  <h3>Broadcast Process</h3>
+
+  <ol class="step-list">
+    <li><strong>Draft the email</strong> &mdash; Write copy with event details (date, time in multiple time zones, RSVP link to Circle event). Use the community call email template at <code>community-call-email.html</code> as reference for formatting.</li>
+    <li><strong>Review in WhatsApp group</strong> &mdash; Share the draft in the team WhatsApp group and get feedback before sending.</li>
+    <li><strong>Send a test email</strong> &mdash; Send to yourself first. Check formatting, links, time zones, and mobile rendering.</li>
+    <li><strong>Broadcast via Drip</strong> &mdash; Log in to <a href="https://getdrip.com" target="_blank">getdrip.com</a>. Select the appropriate list/segment. Compose or paste your email. Send the broadcast. See the <a href="https://www.loom.com/share/5a22821ed2df4c828d894258dd1868e7" target="_blank">Loom walkthrough</a> for a visual guide.</li>
+    <li><strong>Confirm delivery</strong> &mdash; Check the Drip dashboard for open rates and click rates after sending.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Best practices:</strong>
+    <br>&bull; Always include times in at least 3 time zones (CDT/COT, EDT, BST).
+    <br>&bull; If multiple events are close together, combine into one email to avoid fatigue.
+    <br>&bull; Day-before reminder emails improve attendance significantly (lesson learned: 18 RSVPs but only 5 showed up without reminders).
+    <br>&bull; Never send without team review first.
+  </div>
+</div>
+
+<!-- ==================== SECTION 10: HOW TO BUILD & LAUNCH A FUNNEL PAGE ==================== -->
+<div class="section" id="s10">
+  <div class="section-number">Section 10</div>
+  <h2>How to Build &amp; Launch a Funnel Page</h2>
+  <p class="section-subtitle">When LaWayra launches a new program, workshop, or offer, it needs its own landing page. We use Claude Code to generate branded, self-contained HTML pages that are hosted on GitHub Pages &mdash; no WordPress or external builder needed.</p>
+
+  <h3>Build Process</h3>
+
+  <ol class="step-list">
+    <li><strong>Gather content</strong> &mdash; Collect: program name, headline/tagline, start date &amp; schedule, price, checkout URL, program description, what's included, facilitator photo + bio, hero image, FAQ (3&ndash;5 questions). The more complete, the faster the build.</li>
+    <li><strong>Place source files in the project folder</strong> &mdash; Put PDFs (proposals, mockups), promo slide PNGs, and photos in the project directory. Claude Code can extract text from PDFs and read images directly.</li>
+    <li><strong>Run the skill</strong> &mdash; Open Claude Code and run <code>/build-landing-page</code>. Provide the details and file locations. Claude Code will read source files, extract content, apply LaWayra branding, and generate a self-contained HTML page.</li>
+    <li><strong>Review the page</strong> &mdash; Open the HTML file locally in your browser. Check: content accuracy, mobile responsiveness, facilitator photo, CTA button links, logo rendering. Request specific changes ("make the heading bigger", "swap the hero image", "change the price").</li>
+    <li><strong>Push to GitHub</strong> &mdash; Tell Claude Code to push. It will update <code>.gitignore</code>, commit, and push to <code>origin main</code>. The page goes live on GitHub Pages within 1&ndash;2 minutes.</li>
+    <li><strong>Share the viewable URL</strong> &mdash; Format: <code>https://marcuswest-lab.github.io/lawayra-content-strategy/[filename].html</code>. Share with team for final review and sign-off.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Brand specs for landing pages:</strong>
+    <br>&bull; <strong>Font:</strong> Poppins (Google Fonts) &mdash; Bold (700) for headings, Regular (400) for body
+    <br>&bull; <strong>Colors:</strong> Olive #3F4021, Cream #FFF7E7, Amber #E4A017 (CTAs), Charcoal #2B2728
+    <br>&bull; <strong>Logo:</strong> <code>lawayra-logo-new.png</code> (outline flower, transparent background)
+    <br>&bull; <strong>Voice:</strong> Warm, authentic, compassion-first &mdash; reference <code>content-machine/lawayra-voice-guide.md</code>
+    <br>&bull; <strong>Full SOP:</strong> <code>lawayra-landing-page-sop.md</code> in the project repo
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <span class="info-card-title">Template Reference</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Template:</strong> <code>integration-series-landing-page.html</code> (the Integration Series page)</p>
+      <p><strong>Available sections:</strong> Hero, Pain Point, Why It Matters, Program Breakdown, Outcomes, What's Included, Facilitator Bio, Pricing, FAQ, Final CTA</p>
+      <p><strong>Not every page needs all sections</strong> &mdash; adapt based on offer complexity</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 11: HOW TO SET UP CLAUDE CODE ==================== -->
+<div class="section" id="s11">
+  <div class="section-number">Section 11</div>
+  <h2>How to Set Up Claude Code</h2>
+  <p class="section-subtitle">Claude Code is the AI-powered CLI tool that powers content generation, landing page building, dashboard creation, and automation for LaWayra. A new team member needs to set it up on their machine to use the slash commands (skills) documented in this SOP.</p>
+
+  <h3>Setup Process</h3>
+
+  <ol class="step-list">
+    <li><strong>Install Claude Code</strong> &mdash; Visit <a href="https://claude.ai/code" target="_blank">claude.ai/code</a> or install via terminal: <code>npm install -g @anthropic-ai/claude-code</code>. Requires Node.js 18+.</li>
+    <li><strong>Authenticate</strong> &mdash; Run <code>claude</code> in terminal. It will prompt you to sign in with your Anthropic account. Follow the browser-based auth flow.</li>
+    <li><strong>Clone the project repo</strong> &mdash; <code>git clone https://github.com/marcuswest-lab/lawayra-content-strategy.git</code> and <code>cd</code> into the directory.</li>
+    <li><strong>Verify setup</strong> &mdash; Run <code>claude</code> inside the project directory. It should load the CLAUDE.md project instructions automatically. Type <code>/help</code> to see available commands.</li>
+    <li><strong>Test a skill</strong> &mdash; Try <code>/create-facebook-post</code> with a test hook to verify the skills are working.</li>
+  </ol>
+
+  <details>
+    <summary>Available Skills (Slash Commands)</summary>
+    <div class="details-body">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>What It Does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/build-landing-page</code></td>
+            <td>Generate a branded landing page for any program/offer</td>
+          </tr>
+          <tr>
+            <td><code>/create-instagram-carousel</code></td>
+            <td>Hook &rarr; 5&ndash;8 slide carousel + caption</td>
+          </tr>
+          <tr>
+            <td><code>/create-instagram-reel</code></td>
+            <td>Hook &rarr; face-to-camera Reel script + caption</td>
+          </tr>
+          <tr>
+            <td><code>/create-linkedin-post</code></td>
+            <td>Professional thought leadership post</td>
+          </tr>
+          <tr>
+            <td><code>/create-x-post</code></td>
+            <td>Casual post under 280 chars</td>
+          </tr>
+          <tr>
+            <td><code>/create-facebook-post</code></td>
+            <td>Community-oriented post</td>
+          </tr>
+          <tr>
+            <td><code>/generate-weekly-batch</code></td>
+            <td>Full week of content across all platforms</td>
+          </tr>
+          <tr>
+            <td><code>/generate-stories</code></td>
+            <td>Daily Stories copy with visual direction</td>
+          </tr>
+          <tr>
+            <td><code>/publish-approved</code></td>
+            <td>Push approved content to Upload-Post for scheduling</td>
+          </tr>
+          <tr>
+            <td><code>/repurpose-youtube</code></td>
+            <td>YouTube video &rarr; multi-platform posts</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <div class="callout">
+    <strong>How it works:</strong> The project <code>CLAUDE.md</code> file contains all context about LaWayra &mdash; brand positioning, content strategy, infrastructure, and team structure. Claude Code reads this automatically when you open the project. For the full Claude Code setup guide, see: <a href="https://docs.google.com/document/d/1LxTxjcIG50uWBD3C8AamuPDDBdN0sXVscxfUp_s6wwI/edit" target="_blank">Claude Code Setup Guide (Google Doc)</a>
+  </div>
+</div>
+
+<!-- ==================== SECTION 12: HOW TO SET UP A SUBDOMAIN IN GHL ==================== -->
+<div class="section" id="s12">
+  <div class="section-number">Section 12</div>
+  <h2>How to Set Up a Subdomain in GHL</h2>
+  <p class="section-subtitle">When you need to host a landing page or funnel on a custom subdomain (e.g., heal.lawayra.com), follow these steps to connect it through DNS and GHL.</p>
+
+  <h3>What You Need</h3>
+
+  <div class="info-card">
+    <div class="info-card-body">
+      <p><strong>DNS provider:</strong> Wherever lawayra.com DNS is managed (check for existing CNAME records to identify the provider).</p>
+      <p><strong>GHL CNAME value:</strong> <code>sites.ludicrous.cloud</code> &mdash; this is the server our GHL account uses for all hosted pages.</p>
+      <p><strong>Subdomain name:</strong> Choose something short and relevant to the offer (e.g., <code>heal</code>, <code>integration</code>, <code>workshops</code>).</p>
+    </div>
+  </div>
+
+  <h3>Setup Process</h3>
+
+  <ol class="step-list">
+    <li><strong>Add CNAME record in DNS</strong> &mdash; Log in to your DNS provider. Add a new CNAME record with the subdomain name (e.g., <code>heal</code>) pointing to <code>sites.ludicrous.cloud</code>. Set TTL to Automatic.</li>
+    <li><strong>Add domain in GHL</strong> &mdash; Go to <strong>Settings &rarr; Domains</strong> in GHL. Click <strong>Add Domain</strong>. Enter the full subdomain (e.g., <code>heal.lawayra.com</code>). GHL will show you the required CNAME record &mdash; confirm it matches what you just added.</li>
+    <li><strong>Verify the DNS</strong> &mdash; Click <strong>Verify records</strong> in GHL. DNS propagation can take a few minutes to a few hours. If verification fails, wait and try again.</li>
+    <li><strong>Create the funnel in GHL</strong> &mdash; Go to <strong>Sites &rarr; Funnels &rarr; Create New Funnel</strong>. Name it after the offer. Add a new step/page. Use a blank template or add a <strong>Custom Code</strong> element and paste your HTML.</li>
+    <li><strong>Connect domain to funnel</strong> &mdash; In funnel settings, click <strong>Custom Domain</strong>. Select the subdomain you just added (e.g., <code>heal.lawayra.com</code>). Set the page as the default path (<code>/</code>).</li>
+    <li><strong>Test the page</strong> &mdash; Visit the subdomain in your browser (e.g., <code>heal.lawayra.com</code>). Verify the page loads correctly, images render, and CTA buttons link to the right checkout URL.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Important notes:</strong>
+    <br>&bull; Our GHL uses <code>sites.ludicrous.cloud</code> as the CNAME value &mdash; not the default <code>preview.gohighlevel.com</code>. This is because the account is white-labeled.
+    <br>&bull; The <code>workshops</code> subdomain is already set up this way and can be used as a reference.
+    <br>&bull; If pasting custom HTML into GHL, you may need to add CSS overrides to remove GHL's default container margins and borders. The <code>/build-landing-page</code> skill includes these overrides automatically.
+    <br>&bull; SSL certificates are provisioned automatically by GHL once the domain is verified.
+  </div>
+
+  <h3>DNS Record Reference</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CNAME</td>
+        <td><code>heal</code></td>
+        <td><code>sites.ludicrous.cloud</code></td>
+        <td>Integration Series landing page</td>
+      </tr>
+      <tr>
+        <td>CNAME</td>
+        <td><code>workshops</code></td>
+        <td><code>sites.ludicrous.cloud</code></td>
+        <td>Workshops page (existing)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== SECTION 13: HOW TO CHANGE PERMISSIONS IN GHL ==================== -->
+<div class="section" id="s13">
+  <div class="section-number">Section 13</div>
+  <h2>How to Change Permissions in GHL</h2>
+  <p class="section-subtitle">Walkthrough for managing user roles and permissions inside GHL (adding/removing team members, restricting access to specific areas).</p>
+
+  <div class="info-card">
+    <div class="info-card-body">
+      <p><strong>Video walkthrough:</strong> <a href="https://www.loom.com/share/32434a6dcaa74293a73301fb5877e1eb?from_recorder=1&amp;focus_title=1" target="_blank">Watch Loom &rarr;</a></p>
+      <p>Follow the steps in the video to update a user's permissions. Always confirm with Marcus before changing admin-level access or removing a team member.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 14: LOGINS (encrypted) ==================== -->
+<div class="section" id="s14">
+  <div class="section-number">Section 14</div>
+  <h2>Logins</h2>
+  <p class="section-subtitle">Credentials for the platforms used across the martech stack. Encrypted &mdash; ask Marcus for the team password.</p>
+
+  <div class="callout">
+    <strong>Security note:</strong> These credentials are encrypted with AES-256-GCM (PBKDF2-SHA256, 200k iterations). Decryption happens locally in your browser &mdash; nothing is sent anywhere. Do not share the password outside the team.
+  </div>
+
+  <div id="logins-gate" class="info-card" style="max-width:420px;">
+    <div class="info-card-header">
+      <span class="info-card-title">Enter team password</span>
+    </div>
+    <div class="info-card-body">
+      <form id="logins-form" autocomplete="off" onsubmit="return false;">
+        <input id="logins-password" type="password" placeholder="Team password" style="width:100%; padding:10px 12px; font-size:14px; font-family:inherit; background:var(--bg, #0f1012); color:var(--text, #eee); border:1px solid var(--border, #333); border-radius:6px; box-sizing:border-box;" />
+        <button id="logins-submit" type="submit" style="margin-top:10px; padding:10px 16px; font-size:14px; font-family:inherit; background:var(--accent, #B34100); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Unlock</button>
+        <p id="logins-error" style="margin-top:10px; color:#ff6b6b; font-size:13px; display:none;">Incorrect password. Try again.</p>
+      </form>
+    </div>
+  </div>
+
+  <div id="logins-content" style="display:none;"></div>
+
+  <script>
+  (function() {
+    const ITERATIONS = 200000;
+    const B64 = "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";
+
+    function b64ToBytes(b64) {
+      const bin = atob(b64);
+      const out = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+      return out;
+    }
+
+    async function decryptBlob(password) {
+      const data = b64ToBytes(B64);
+      const salt = data.slice(0, 16);
+      const iv = data.slice(16, 28);
+      const ct = data.slice(28);
+      const keyMaterial = await crypto.subtle.importKey(
+        "raw", new TextEncoder().encode(password),
+        "PBKDF2", false, ["deriveKey"]
+      );
+      const key = await crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt: salt, iterations: ITERATIONS, hash: "SHA-256" },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        false, ["decrypt"]
+      );
+      const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, key, ct);
+      return new TextDecoder().decode(pt);
+    }
+
+    const form = document.getElementById("logins-form");
+    const input = document.getElementById("logins-password");
+    const errEl = document.getElementById("logins-error");
+    const gate = document.getElementById("logins-gate");
+    const content = document.getElementById("logins-content");
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      errEl.style.display = "none";
+      try {
+        const html = await decryptBlob(input.value);
+        content.innerHTML = html;
+        content.style.display = "block";
+        gate.style.display = "none";
+      } catch (err) {
+        errEl.style.display = "block";
+        input.value = "";
+        input.focus();
+      }
+    });
+  })();
+  </script>
+</div>
+
+</div><!-- /container -->
+
+</body>
+</html>

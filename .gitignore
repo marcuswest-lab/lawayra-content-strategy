@@ -10,6 +10,7 @@
 # Allow team SOP pages
 !lawayra-team-sops.html
 !lawayra-content-calendar-notion.html
+!lawayra-martech-sop.html
 
 # Allow Airbnb research report
 !lawayra-airbnb-research-report.html
