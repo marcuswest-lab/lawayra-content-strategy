@@ -77,14 +77,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: var(--cream);
   border-radius: 54px;
   box-shadow: var(--shadow-lg), 0 0 0 10px #1a1a1a, 0 0 0 12px #333;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--sage) transparent;
 }
+.phone-frame::-webkit-scrollbar { width: 6px; }
+.phone-frame::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 3px; }
 
-/* Status bar */
+/* Status bar — sticky at top while content scrolls under it */
 .status-bar {
-  flex: 0 0 var(--status-h);
+  height: var(--status-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -94,6 +96,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--charcoal);
   background: var(--cream);
   z-index: 5;
+  position: sticky;
+  top: 0;
 }
 .status-bar__icons {
   display: flex;
@@ -101,16 +105,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
 }
 
-/* Screen container */
+/* Screen container — natural flow */
 .app-body {
-  flex: 1;
   position: relative;
-  overflow: hidden;
 }
 
-/* Tab bar */
+/* Tab bar — sticky to bottom of phone-frame's visible area while content scrolls */
 .tab-bar {
-  flex: 0 0 var(--tab-h);
+  position: sticky;
+  bottom: 0;
+  height: var(--tab-h);
   display: flex;
   justify-content: space-around;
   align-items: stretch;
@@ -149,44 +153,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    SCREENS
    ============================================ */
 .screen {
-  position: absolute;
-  inset: 0;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-  overscroll-behavior: contain;
   padding: 20px 20px 24px;
-  opacity: 0;
-  transform: translateX(20px);
-  pointer-events: none;
-  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
   background: var(--cream);
+  display: none;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
 }
 .screen.active {
+  display: block;
   opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
 }
 
-/* Thin scrollbar on desktop so users know content is scrollable.
-   On real phones we hide it since swipe is obvious. */
-.screen {
-  scrollbar-width: thin;
-  scrollbar-color: var(--sage) transparent;
-}
-.screen::-webkit-scrollbar {
-  width: 6px;
-}
-.screen::-webkit-scrollbar-thumb {
-  background: var(--sage);
-  border-radius: 3px;
-}
-.screen::-webkit-scrollbar-track {
-  background: transparent;
-}
+/* Hide phone-frame scrollbar on real phones — swipe is obvious there */
 @media (max-width: 500px) {
-  .screen { scrollbar-width: none; }
-  .screen::-webkit-scrollbar { width: 0; }
+  .phone-frame { scrollbar-width: none; }
+  .phone-frame::-webkit-scrollbar { width: 0; }
 }
 
 .screen-header {
@@ -435,63 +416,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ============================================
-   MOBILE (real phone) — strip frame, natural page flow
+   MOBILE (real phone) — strip the phone frame
    ============================================ */
 @media (max-width: 500px) {
-  html, body {
-    height: auto;
-    overflow: visible;
-  }
   body {
     padding: 0;
     background: var(--cream);
-    display: block;
-    min-height: 100dvh;
+    align-items: stretch;
+    justify-content: stretch;
   }
   .phone-frame {
     width: 100%;
-    max-width: none;
+    height: 100vh;
+    height: 100dvh;
     max-height: none;
-    height: auto;
-    min-height: 100dvh;
     border-radius: 0;
     box-shadow: none;
-    display: block;
   }
   .status-bar { display: none; }
-  .app-body {
-    position: relative;
-    min-height: calc(100dvh - var(--tab-h));
-    padding-bottom: var(--tab-h);
-  }
-  /* Screens flow naturally; the document scrolls */
-  .screen {
-    position: static;
-    inset: auto;
-    opacity: 0;
-    transform: none;
-    pointer-events: none;
-    overflow: visible;
-    touch-action: auto;
-    display: none;
-    padding: 16px 16px 24px;
-  }
-  .screen.active {
-    display: block;
-    opacity: 1;
-    pointer-events: auto;
-  }
-  /* Tab bar fixed to bottom of the viewport so it's always reachable */
-  .tab-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-  }
+  .screen { padding: 16px 16px 24px; }
   .fab-live {
     position: fixed;
-    bottom: calc(var(--tab-h) + 10px);
+    bottom: calc(var(--tab-h) + 12px);
     right: 14px;
   }
 }
