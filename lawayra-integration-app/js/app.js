@@ -76,19 +76,38 @@
   function initOnboard() {
     const slides = document.querySelectorAll('.onboard__slide');
     const dots = document.querySelectorAll('.onboard__dot');
+    const backBtn = document.getElementById('onboardBack');
     let idx = 0;
 
     function goTo(i) {
       idx = Math.max(0, Math.min(slides.length - 1, i));
       slides.forEach((s, n) => s.classList.toggle('active', n === idx));
       dots.forEach((d, n) => d.classList.toggle('active', n === idx));
+      if (backBtn) backBtn.style.visibility = idx === 0 ? 'hidden' : 'visible';
     }
 
-    // Tap anywhere on a slide (except role buttons) advances
+    // Tap anywhere on a slide (except interactive controls) advances to next
     document.getElementById('onboardSlides').addEventListener('click', (e) => {
       if (e.target.closest('.onboard__role')) return;
       if (idx < slides.length - 1) goTo(idx + 1);
     });
+
+    // Dots are clickable — jump to any slide
+    dots.forEach((d, n) => {
+      d.style.cursor = 'pointer';
+      d.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goTo(n);
+      });
+    });
+
+    // Back button
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (idx > 0) goTo(idx - 1);
+      });
+    }
 
     // Role selection (slide 2)
     document.querySelectorAll('#onboardRoles .onboard__role').forEach(btn => {
