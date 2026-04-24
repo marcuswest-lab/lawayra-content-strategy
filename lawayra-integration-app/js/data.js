@@ -180,81 +180,60 @@ window.APP_DATA = {
 
   // --- Events / Community calendar (next ~14 days, relative offsets)
   events: [
-    {
-      id: 'ev-1',
-      title: 'Sunday Community Call',
-      host: 'Marcus + community',
-      type: 'Community',
-      dayOffset: 0,
-      time: '2:00 PM COT',
-      duration: '60 min',
-      description:
-        'Our weekly open circle. Share where you are in your journey, hear from others, breakout rooms for deeper connection. All are welcome — alumni and friends.',
-      link: 'https://zoom.us/j/lawayra-community'
-    },
-    {
-      id: 'ev-2',
-      title: 'Integration Series — Week 2',
-      host: 'Monica Kronstain',
-      type: 'Integration',
-      dayOffset: 2,
-      time: '2:30 PM COT',
-      duration: '90 min',
+    { id: 'ev-1', title: 'Sunday Community Call', host: 'Marcus + community', type: 'Community', dayOffset: 0, time: '2:00 PM COT', duration: '60 min',
+      description: 'Our weekly open circle. Share where you are in your journey, hear from others, breakout rooms for deeper connection. All are welcome — alumni and friends.',
+      link: 'https://zoom.us/j/lawayra-community' },
+    { id: 'ev-1b', title: 'Live Yoga at LaWayra', host: 'Kevin', type: 'Ceremony', dayOffset: 0, time: '4:00 PM COT', duration: '45 min',
+      description: 'Livestreamed yoga from the maloca. Sunset flow, gentle and grounding.',
+      link: 'https://zoom.us/j/lawayra-yoga' },
+    { id: 'ev-2', title: 'Morning Meditation', host: 'Monica Kronstain', type: 'Community', dayOffset: 1, time: '7:00 AM COT', duration: '25 min',
+      description: 'A short grounding meditation to start your week. Open to all — turn your camera on or off.',
+      link: 'https://zoom.us/j/morning-med' },
+    { id: 'ev-2b', title: 'Integration Series — Week 2', host: 'Monica Kronstain', type: 'Integration', dayOffset: 2, time: '2:30 PM COT', duration: '90 min',
       description: 'Week 2: Finding the Thread of Meaning. Live facilitation + breakout practice.',
-      link: 'https://zoom.us/j/monica-integration',
-      premium: false
-    },
-    {
-      id: 'ev-3',
-      title: 'Somatic Workshop with Dan',
-      host: 'Dan',
-      type: 'Workshop',
-      dayOffset: 4,
-      time: '10:00 AM COT',
-      duration: '75 min',
-      description:
-        'Trauma-informed somatic meditation. Gentle movement, nervous system regulation, and a guided body scan. No experience required.',
-      link: 'https://zoom.us/j/dan-somatic'
-    },
-    {
-      id: 'ev-4',
-      title: 'Cacao Ceremony (Live)',
-      host: 'Kevin + LaWayra team',
-      type: 'Ceremony',
-      dayOffset: 6,
-      time: '8:00 AM COT',
-      duration: '45 min',
-      description:
-        'Livestreamed from the maloca. Brew your own cacao, join us in heart-opening meditation and song.',
-      link: 'https://zoom.us/j/lawayra-cacao',
-      premium: true
-    },
-    {
-      id: 'ev-5',
-      title: 'Taita AMA — Ask the Shaman',
-      host: 'Taita + Sam',
-      type: 'Premium',
-      dayOffset: 9,
-      time: '4:00 PM COT',
-      duration: '60 min',
-      description:
-        'Premium members only. Translated live Q&A with Taita. Ask questions about the medicine, the tradition, and your own experience.',
-      link: 'https://zoom.us/j/taita-ama',
-      premium: true
-    },
-    {
-      id: 'ev-6',
-      title: "Monthly AMA with Sam",
-      host: 'Sam (Founder)',
-      type: 'Premium',
-      dayOffset: 13,
-      time: '3:00 PM COT',
-      duration: '60 min',
-      description:
-        'Premium members only. Sam opens the floor — retreat questions, integration, the path, whatever is alive for you.',
-      link: 'https://zoom.us/j/sam-ama',
-      premium: true
-    }
+      link: 'https://zoom.us/j/monica-integration' },
+    { id: 'ev-2c', title: 'Book Club — Radical Acceptance', host: 'Aliyah Pettitt', type: 'Community', dayOffset: 2, time: '6:00 PM COT', duration: '60 min',
+      description: 'Chapters 3–5 this week. BYO book, BYO tea. Discussion in small groups.',
+      link: 'https://zoom.us/j/book-club' },
+    { id: 'ev-3', title: 'Somatic Workshop with Dan', host: 'Dan', type: 'Workshop', dayOffset: 4, time: '10:00 AM COT', duration: '75 min',
+      description: 'Trauma-informed somatic meditation. Gentle movement, nervous system regulation, and a guided body scan. No experience required.',
+      link: 'https://zoom.us/j/dan-somatic' },
+    { id: 'ev-3b', title: 'Journaling Circle', host: 'Juliana Herrera', type: 'Community', dayOffset: 4, time: '7:30 PM COT', duration: '45 min',
+      description: 'Guided prompts from the integration workbook. Silent writing with a shared closing.',
+      link: 'https://zoom.us/j/journal' },
+    { id: 'ev-4', title: 'Cacao Ceremony (Live)', host: 'Kevin + LaWayra team', type: 'Ceremony', dayOffset: 6, time: '8:00 AM COT', duration: '45 min',
+      description: 'Livestreamed from the maloca. Brew your own cacao, join us in heart-opening meditation and song.',
+      link: 'https://zoom.us/j/lawayra-cacao', premium: true },
+    { id: 'ev-4b', title: 'Breathwork — Coherent Breathing', host: 'Dan', type: 'Workshop', dayOffset: 6, time: '6:00 PM COT', duration: '45 min',
+      description: '5-5 breath rhythm for nervous system regulation. Gentle, grounding, bring a blanket.',
+      link: 'https://zoom.us/j/breath' },
+    { id: 'ev-5x', title: 'Sunday Community Call', host: 'Marcus + community', type: 'Community', dayOffset: 7, time: '2:00 PM COT', duration: '60 min',
+      description: 'Weekly open circle. Same format as always — share, listen, connect.',
+      link: 'https://zoom.us/j/lawayra-community' },
+    { id: 'ev-5y', title: 'New Moon Ceremony', host: 'Monica Kronstain', type: 'Ceremony', dayOffset: 8, time: '7:00 PM COT', duration: '60 min',
+      description: 'Setting intentions for the lunar cycle. Candles, cacao, and a shared song.',
+      link: 'https://zoom.us/j/new-moon' },
+    { id: 'ev-5', title: 'Taita AMA — Ask the Shaman', host: 'Taita + Sam', type: 'Premium', dayOffset: 9, time: '4:00 PM COT', duration: '60 min',
+      description: 'Premium members only. Translated live Q&A with Taita. Ask questions about the medicine, the tradition, and your own experience.',
+      link: 'https://zoom.us/j/taita-ama', premium: true },
+    { id: 'ev-5z', title: 'Integration Series — Week 3', host: 'Monica Kronstain', type: 'Integration', dayOffset: 9, time: '2:30 PM COT', duration: '90 min',
+      description: 'Week 3: Compassion for the Inner Landscape. Emotional body scan + small group share.',
+      link: 'https://zoom.us/j/monica-integration' },
+    { id: 'ev-denver', title: 'Denver Meetup', host: 'Aliyah Pettitt', type: 'Community', dayOffset: 10, time: '7:00 PM MDT', duration: '2 hrs',
+      description: 'In-person gathering for Denver-based community members. Food, fire, and a shared circle. Address sent upon RSVP.',
+      link: 'https://lawayra.com/denver' },
+    { id: 'ev-yoga2', title: 'Restorative Yoga', host: 'Kevin', type: 'Workshop', dayOffset: 11, time: '10:00 AM COT', duration: '60 min',
+      description: 'Long-held postures with bolsters and blankets. Deeply parasympathetic. Great for processing.',
+      link: 'https://zoom.us/j/yoga-rest' },
+    { id: 'ev-dubai', title: 'Dubai Meetup', host: 'Aliyah + friends', type: 'Community', dayOffset: 12, time: '6:00 PM GST', duration: '2 hrs',
+      description: 'First Dubai gathering. Tea and stories at a cafe in JLT. Open to alumni and friends.',
+      link: 'https://lawayra.com/dubai' },
+    { id: 'ev-6', title: 'Monthly AMA with Sam', host: 'Sam (Founder)', type: 'Premium', dayOffset: 13, time: '3:00 PM COT', duration: '60 min',
+      description: 'Premium members only. Sam opens the floor — retreat questions, integration, the path, whatever is alive for you.',
+      link: 'https://zoom.us/j/sam-ama', premium: true },
+    { id: 'ev-dan2', title: 'Somatic Trauma Release', host: 'Dan', type: 'Workshop', dayOffset: 13, time: '11:00 AM COT', duration: '90 min',
+      description: 'Deeper dive into nervous system release work. Intended for those who have already attended Dan\'s intro.',
+      link: 'https://zoom.us/j/dan-somatic-2' }
   ],
 
   // --- Resource category meta (icon, color accent, action verb)
@@ -275,41 +254,86 @@ window.APP_DATA = {
     Meditations: [
       { title: 'Grounding After Ceremony', length: '12 min', desc: 'A body scan to help you land back into daily life.' },
       { title: 'Heart Opening', length: '18 min', desc: 'Gentle practice for working with grief and tenderness.' },
-      { title: 'Sleep Integration', length: '22 min', desc: 'Wind-down practice for the nights after a ceremony.' }
+      { title: 'Sleep Integration', length: '22 min', desc: 'Wind-down practice for the nights after a ceremony.' },
+      { title: 'Loving-Kindness (Metta)', length: '15 min', desc: 'Cultivate compassion for yourself and others — essential post-ceremony work.' },
+      { title: 'Inner Child Dialogue', length: '28 min', desc: 'Guided journey to meet a younger part of yourself with tenderness.' },
+      { title: 'Morning Presence', length: '8 min', desc: 'A short start-of-day practice — arrive in your body before the noise starts.' },
+      { title: 'Forgiveness Practice', length: '20 min', desc: 'Working with resentment and release. Go slow with this one.' },
+      { title: 'Ancestral Connection', length: '35 min', desc: 'A lineage meditation — feel the strength and love of those who came before.' },
+      { title: 'Cord Cutting', length: '14 min', desc: 'Energetic closure for relationships that no longer serve you.' },
+      { title: 'Walking Meditation', length: '20 min', desc: 'Bring presence into movement. Can be done anywhere.' }
     ],
     'Cacao Ceremonies': [
-      { title: 'Solo Cacao Ritual Guide', length: 'Read 6 min', desc: 'How to hold your own cacao ceremony at home.' },
-      { title: 'Group Cacao Recording', length: '45 min', desc: 'Replay of our last community cacao circle.' }
+      { title: 'Solo Cacao Ritual Guide', length: 'Read 6 min', desc: 'How to hold your own cacao ceremony at home — step by step.' },
+      { title: 'Group Cacao Recording', length: '45 min', desc: 'Replay of our last community cacao circle.' },
+      { title: 'Ceremonial Cacao Sources', length: 'Read 4 min', desc: 'Where we source our cacao, and vetted brands we recommend.' },
+      { title: 'Cacao & Grief', length: '38 min', desc: 'A recorded ceremony focused on holding grief with the medicine.' },
+      { title: 'Morning Cacao Ritual', length: '15 min', desc: 'A shorter daily ritual — not a full ceremony, more of a sacred pause.' },
+      { title: 'Full Moon Cacao Ceremony', length: '52 min', desc: 'Replay: Kevin + Monica\'s last full moon livestream.' }
     ],
     Yoga: [
       { title: 'Morning Flow for Integration', length: '25 min', desc: 'Gentle sequence to move stuck energy.' },
-      { title: 'Restorative Evening Practice', length: '30 min', desc: 'Slow, nervous-system-calming postures.' }
+      { title: 'Restorative Evening Practice', length: '30 min', desc: 'Slow, nervous-system-calming postures.' },
+      { title: 'Yin Yoga for Release', length: '45 min', desc: 'Long holds, deep connective tissue work. Excellent for emotional processing.' },
+      { title: 'Heart Opening Flow', length: '35 min', desc: 'Backbends and hip openers — vulnerable and powerful.' },
+      { title: 'Chair Yoga (Accessible)', length: '20 min', desc: 'For bodies that need a gentler entry point. No floor required.' },
+      { title: 'Kundalini Kriya for Clarity', length: '22 min', desc: 'Breath + movement sequence from Dan. Energizing and clarifying.' },
+      { title: '5-Minute Desk Reset', length: '5 min', desc: 'A mini-sequence you can do between meetings.' }
     ],
     Breathwork: [
       { title: 'Coherent Breathing Intro', length: '10 min', desc: 'Simple 5–5 breath rhythm for regulation.' },
-      { title: 'Holotropic Practice (Advanced)', length: '35 min', desc: 'Deep breathwork — only with a friend nearby.' }
+      { title: 'Holotropic Practice (Advanced)', length: '35 min', desc: 'Deep breathwork — only with a friend nearby.' },
+      { title: 'Box Breathing for Anxiety', length: '8 min', desc: '4-4-4-4 rhythm used by Navy SEALs. Calms the nervous system quickly.' },
+      { title: 'Wim Hof Method', length: '18 min', desc: 'Three rounds of 30-breath cycles with retention. Energizing.' },
+      { title: '4-7-8 for Sleep', length: '7 min', desc: 'A simple evening technique to drop you into rest.' },
+      { title: 'Nadi Shodhana (Alternate Nostril)', length: '12 min', desc: 'Balancing breath for clarity and calm.' },
+      { title: 'Emotional Release Breathwork', length: '42 min', desc: 'Circular breathing session — best with a journal nearby after.' }
     ],
     Workshops: [
       { title: 'Somatic Trauma Release', length: '60 min', desc: 'Replay of Dan\'s introductory workshop.' },
-      { title: 'Writing Your Medicine Message', length: '50 min', desc: 'Journaling workshop with Samuel Araya.' }
+      { title: 'Writing Your Medicine Message', length: '50 min', desc: 'Journaling workshop with Samuel Araya.' },
+      { title: 'Integrating Difficult Experiences', length: '75 min', desc: 'Monica on working with ceremony content that didn\'t feel good.' },
+      { title: 'Boundaries After the Medicine', length: '55 min', desc: 'How to hold new truths in old relationships.' },
+      { title: 'Shadow Work Basics', length: '65 min', desc: 'A gentle intro to IFS / parts work for integration.' },
+      { title: 'Relational Healing Panel', length: '90 min', desc: 'Three alumni share how integration reshaped their relationships.' },
+      { title: 'Q&A: First-Time Retreat Concerns', length: '48 min', desc: 'Sam and Sarah field common questions from first-timers.' }
     ],
     'Book List': [
-      { title: 'When the Body Says No', length: 'Book', desc: 'Gabor Maté — stress, emotion, the body.' },
-      { title: 'The Way of the Shaman', length: 'Book', desc: 'Michael Harner — classic on shamanic practice.' },
-      { title: 'Radical Acceptance', length: 'Book', desc: 'Tara Brach — self-compassion foundation.' }
+      { title: 'When the Body Says No', length: 'Book · Gabor Maté', desc: 'Stress, emotion, the body. Essential reading for integration.' },
+      { title: 'The Way of the Shaman', length: 'Book · Michael Harner', desc: 'A classic introduction to cross-cultural shamanic practice.' },
+      { title: 'Radical Acceptance', length: 'Book · Tara Brach', desc: 'Self-compassion foundation. A gentle but transformative read.' },
+      { title: 'The Myth of Normal', length: 'Book · Gabor Maté', desc: 'Trauma, illness, and healing in a toxic culture.' },
+      { title: 'No Bad Parts', length: 'Book · Richard Schwartz', desc: 'Founder of IFS. The most useful framework we\'ve found for integration.' },
+      { title: 'Food of the Gods', length: 'Book · Terence McKenna', desc: 'The botanical and cultural history of entheogenic plants.' },
+      { title: 'Sacred Knowledge', length: 'Book · William Richards', desc: 'Decades of research on psychedelic therapy. Reverent and careful.' },
+      { title: 'The Body Keeps the Score', length: 'Book · Bessel van der Kolk', desc: 'How trauma lives in the body. The most-cited trauma book of our time.' },
+      { title: 'How to Change Your Mind', length: 'Book · Michael Pollan', desc: 'A journalistic and personal exploration of psychedelic renaissance.' }
     ],
     'Tool Templates': [
       { title: 'Wheel of Life', length: 'Interactive', desc: 'Rate 8 areas of your life on a 10-point scale.', tool: 'wheel' },
-      { title: 'SMART Goals', length: 'Template', desc: 'Turn a vision into a concrete next step.' },
-      { title: 'Values Audit', length: 'Template', desc: 'Clarify what matters most, right now.' }
+      { title: 'SMART Goals', length: 'Template', desc: 'Turn a vision into a concrete next step you can actually take this week.' },
+      { title: 'Values Audit', length: 'Template', desc: 'Clarify what matters most to you, right now — and what\'s been running on autopilot.' },
+      { title: 'Integration Plan (3-month)', length: 'Worksheet', desc: 'A Monica-designed template for mapping your post-retreat commitments.' },
+      { title: 'Morning Pages Template', length: 'Daily', desc: 'Julia Cameron\'s 3 longhand pages. The simplest, most powerful journaling practice.' },
+      { title: 'Resistance Map', length: 'Worksheet', desc: 'Identify where you\'re avoiding — and what the avoidance is protecting.' },
+      { title: 'Boundary Script Builder', length: 'Worksheet', desc: 'Fill-in-the-blank prompts to draft a boundary conversation.' },
+      { title: 'Gratitude + Grief Log', length: 'Daily', desc: 'Two prompts a day. Holds the full range of the post-ceremony experience.' }
     ],
     'Past Event Recordings': [
       { title: 'Sunday Call — April 2026', length: '58 min', desc: 'Community reflection on fear and trust.' },
-      { title: 'Monica — Integration Q&A', length: '42 min', desc: 'Highlights from last cohort\'s closing call.' }
+      { title: 'Monica — Integration Q&A', length: '42 min', desc: 'Highlights from last cohort\'s closing call.' },
+      { title: 'Taita Teaching — Session 1', length: '38 min', desc: 'On humility, patience, and the plant\'s timing (translated).' },
+      { title: 'Sam\'s Founder AMA — March', length: '66 min', desc: 'Q&A covering everything from dieta to cost to post-retreat support.' },
+      { title: 'Dan — Somatic Workshop', length: '72 min', desc: 'The full introductory session. Great if you missed it live.' },
+      { title: 'Full Moon Ceremony — March', length: '48 min', desc: 'Replay of the March full moon virtual circle.' },
+      { title: 'Panel: Coming Home from Ceremony', length: '85 min', desc: 'Three alumni on reentry — the good, the hard, the surprising.' },
+      { title: 'Kevin — Breathwork Intro', length: '40 min', desc: 'Walkthrough of the 5-5 practice plus a guided session.' }
     ],
     '1:1 Coaching': [
-      { title: 'Coaching with Monica', length: '60 min / session', desc: 'Private integration support. Sliding scale available.' },
-      { title: 'Book a Discovery Call', length: '20 min free', desc: 'Decide together if 1:1 is right for you.' }
+      { title: 'Coaching with Monica', length: '60 min / session', desc: 'Private integration support from our lead facilitator. Sliding scale available.' },
+      { title: 'Coaching with Dan', length: '50 min / session', desc: 'Somatic + trauma-informed support. Good fit if you\'re working with intense material.' },
+      { title: 'Book a Discovery Call', length: '20 min · free', desc: 'Decide together if 1:1 is right for you. No pressure, no pitch.' },
+      { title: 'Emergency Integration Support', length: '30 min · on-demand', desc: 'For urgent moments — destabilization, re-emergence, or crisis.' }
     ]
   },
 
