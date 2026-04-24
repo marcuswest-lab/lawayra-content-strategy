@@ -624,13 +624,68 @@
         p.addEventListener('click', () => {
           filterRow.querySelectorAll('.cat-pill').forEach(x => x.classList.remove('active'));
           p.classList.add('active');
-          // Scroll active pill into view
-          p.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          // Scroll active pill into view so adjacent categories are visible
+          const r = p.getBoundingClientRect();
+          const rowR = filterRow.getBoundingClientRect();
+          const targetScroll = filterRow.scrollLeft + (r.left - rowR.left) - (rowR.width / 2 - r.width / 2);
+          filterRow.scrollTo({ left: targetScroll, behavior: 'smooth' });
           renderResourceList(p.dataset.cat);
         });
       });
+      initPillScrollAffordances(filterRow);
     }
     renderResourceList(categories[0]);
+  }
+
+  // Drag-to-scroll + fade edge indicators on the category pill row
+  function initPillScrollAffordances(row) {
+    const wrap = row.parentElement;
+    if (!wrap) return;
+
+    const updateFade = () => {
+      const max = row.scrollWidth - row.clientWidth;
+      wrap.classList.toggle('can-scroll-left', row.scrollLeft > 4);
+      wrap.classList.toggle('can-scroll-right', row.scrollLeft < max - 4);
+    };
+    updateFade();
+    row.addEventListener('scroll', updateFade);
+    window.addEventListener('resize', updateFade);
+
+    // Drag-to-scroll (mouse). Touch uses native momentum scroll via -webkit-overflow-scrolling.
+    let isDown = false;
+    let startX = 0;
+    let startScroll = 0;
+    let moved = 0;
+
+    row.addEventListener('mousedown', (e) => {
+      isDown = true;
+      moved = 0;
+      startX = e.pageX;
+      startScroll = row.scrollLeft;
+    });
+    row.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 4 && !row.classList.contains('dragging')) {
+        row.classList.add('dragging');
+      }
+      moved = Math.abs(dx);
+      row.scrollLeft = startScroll - dx;
+    });
+    const endDrag = () => {
+      if (isDown && row.classList.contains('dragging')) {
+        // Re-enable pointer events on a tick so the stray mouseup doesn't click
+        setTimeout(() => row.classList.remove('dragging'), 0);
+      }
+      isDown = false;
+    };
+    row.addEventListener('mouseup', endDrag);
+    row.addEventListener('mouseleave', endDrag);
+    // Swallow click after a drag so it doesn't toggle a pill accidentally
+    row.addEventListener('click', (e) => {
+      if (moved > 6) { e.stopPropagation(); e.preventDefault(); moved = 0; }
+    }, true);
   }
 
   function renderResourceList(cat) {

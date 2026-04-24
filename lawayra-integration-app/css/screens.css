@@ -948,17 +948,51 @@
    RESOURCES SCREEN
    ============================================ */
 
+/* Pill row wrapper — holds fade gradients on the edges */
+.cat-pill-wrap {
+  position: relative;
+  margin: 0 -20px 4px;
+}
+.cat-pill-fade {
+  position: absolute;
+  top: 0;
+  bottom: 14px;
+  width: 28px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+.cat-pill-fade--left {
+  left: 0;
+  background: linear-gradient(to right, var(--cream) 20%, rgba(255, 247, 231, 0));
+}
+.cat-pill-fade--right {
+  right: 0;
+  background: linear-gradient(to left, var(--cream) 20%, rgba(255, 247, 231, 0));
+}
+.cat-pill-wrap.can-scroll-left .cat-pill-fade--left { opacity: 1; }
+.cat-pill-wrap.can-scroll-right .cat-pill-fade--right { opacity: 1; }
+
 /* Interactive category pills */
 .cat-pills {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding: 4px 2px 14px;
-  margin: 0 -20px 4px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 4px 20px 14px;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  cursor: grab;
+  user-select: none;
+}
+.cat-pills.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+.cat-pills.dragging .cat-pill {
+  pointer-events: none;
 }
 .cat-pills::-webkit-scrollbar { display: none; }
 
