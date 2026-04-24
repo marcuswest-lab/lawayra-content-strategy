@@ -257,6 +257,19 @@ window.APP_DATA = {
     }
   ],
 
+  // --- Resource category meta (icon, color accent, action verb)
+  resourceMeta: {
+    'Meditations':           { emoji: '🧘',  color: '#8d6b94', action: 'play',   actionIcon: '▶', verb: 'Play' },
+    'Cacao Ceremonies':      { emoji: '🍫',  color: '#8b4513', action: 'play',   actionIcon: '▶', verb: 'Play' },
+    'Yoga':                  { emoji: '🕉️', color: '#d98a4f', action: 'play',   actionIcon: '▶', verb: 'Start' },
+    'Breathwork':            { emoji: '💨',  color: '#5c8fb3', action: 'play',   actionIcon: '▶', verb: 'Begin' },
+    'Workshops':             { emoji: '🎥',  color: '#b34100', action: 'play',   actionIcon: '▶', verb: 'Watch' },
+    'Book List':             { emoji: '📖',  color: '#623e2a', action: 'read',   actionIcon: '📖', verb: 'Read' },
+    'Tool Templates':        { emoji: '🧭',  color: '#e4a017', action: 'open',   actionIcon: '✦', verb: 'Open' },
+    'Past Event Recordings': { emoji: '📼',  color: '#3f4021', action: 'play',   actionIcon: '▶', verb: 'Replay' },
+    '1:1 Coaching':          { emoji: '💬',  color: '#aeac92', action: 'book',   actionIcon: '→', verb: 'Book' }
+  },
+
   // --- Resource library
   resources: {
     Meditations: [

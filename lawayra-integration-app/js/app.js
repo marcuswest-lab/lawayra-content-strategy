@@ -17,7 +17,8 @@
     promptIndex: 0,
     promptDateKey: '',
     rsvp: [],                 // event ids user said "Going" to
-    likedPosts: []             // post ids the user liked
+    likedPosts: [],           // post ids the user liked
+    bookmarks: []              // saved resource keys
   });
 
   let state = loadState();
@@ -606,14 +607,25 @@
 
     const categories = Object.keys(DATA.resources);
     if (!filterRow.dataset.built) {
-      filterRow.innerHTML = categories.map((c, i) =>
-        `<button class="filter-pill ${i === 0 ? 'active' : ''}" data-cat="${c}">${c}</button>`
-      ).join('');
+      filterRow.innerHTML = categories.map((c, i) => {
+        const meta = DATA.resourceMeta[c] || { emoji: '🌿', color: '#3f4021' };
+        const count = DATA.resources[c].length;
+        return `
+          <button class="cat-pill ${i === 0 ? 'active' : ''}" data-cat="${c}" style="--cat-color:${meta.color};">
+            <span class="cat-pill__emoji">${meta.emoji}</span>
+            <span class="cat-pill__label">${c}</span>
+            <span class="cat-pill__count">${count}</span>
+          </button>
+        `;
+      }).join('');
+      filterRow.classList.add('cat-pills');
       filterRow.dataset.built = '1';
-      filterRow.querySelectorAll('.filter-pill').forEach(p => {
+      filterRow.querySelectorAll('.cat-pill').forEach(p => {
         p.addEventListener('click', () => {
-          filterRow.querySelectorAll('.filter-pill').forEach(x => x.classList.remove('active'));
+          filterRow.querySelectorAll('.cat-pill').forEach(x => x.classList.remove('active'));
           p.classList.add('active');
+          // Scroll active pill into view
+          p.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
           renderResourceList(p.dataset.cat);
         });
       });
@@ -624,36 +636,130 @@
   function renderResourceList(cat) {
     const list = document.getElementById('resourceList');
     const items = DATA.resources[cat] || [];
-    list.innerHTML = items.map(r => `
-      <div class="resource-card" data-tool="${r.tool || ''}" data-title="${r.title}">
-        <div class="resource-card__info">
-          <div class="resource-card__title">${r.title}</div>
-          <div class="resource-card__desc">${r.desc}</div>
-          <div class="resource-card__length">${r.length}</div>
+    const meta = DATA.resourceMeta[cat] || { emoji: '🌿', color: '#3f4021', actionIcon: '▶', verb: 'Open' };
+    const bookmarks = state.bookmarks || [];
+
+    // Category intro card
+    const intro = `
+      <div class="cat-intro" style="--cat-color:${meta.color};">
+        <div class="cat-intro__icon">${meta.emoji}</div>
+        <div class="cat-intro__info">
+          <div class="cat-intro__name">${cat}</div>
+          <div class="cat-intro__count">${items.length} resources</div>
         </div>
-        <div class="resource-card__action">▶</div>
       </div>
-    `).join('');
+    `;
+
+    const cards = items.map(r => {
+      const key = cat + '::' + r.title;
+      const saved = bookmarks.includes(key);
+      return `
+        <div class="resource-card" style="--cat-color:${meta.color};" data-tool="${r.tool || ''}" data-title="${r.title}" data-cat="${cat}">
+          <div class="resource-card__thumb">
+            <span class="resource-card__emoji">${meta.emoji}</span>
+          </div>
+          <div class="resource-card__info">
+            <div class="resource-card__title">${r.title}</div>
+            <div class="resource-card__desc">${r.desc}</div>
+            <div class="resource-card__meta-row">
+              <span class="resource-card__length-chip">${r.length}</span>
+              <button class="resource-card__bookmark ${saved ? 'saved' : ''}" data-key="${key}" aria-label="Bookmark">
+                ${saved ? '♥' : '♡'}
+              </button>
+            </div>
+          </div>
+          <button class="resource-card__play" aria-label="${meta.verb}">
+            <span class="resource-card__play-icon">${meta.actionIcon}</span>
+            <span class="resource-card__play-label">${meta.verb}</span>
+          </button>
+        </div>
+      `;
+    }).join('');
+
+    list.innerHTML = intro + cards;
+
     list.querySelectorAll('.resource-card').forEach(card => {
-      card.addEventListener('click', () => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.resource-card__bookmark')) return;
         const tool = card.dataset.tool;
+        const category = card.dataset.cat;
         if (tool === 'wheel') {
           openWheelOfLife();
+        } else if (category === '1:1 Coaching') {
+          openCoachingBooking(card.dataset.title);
+        } else if (category === 'Book List') {
+          openBookDetail(card.dataset.title);
         } else {
-          openResourcePlayer(card.dataset.title);
+          openResourcePlayer(card.dataset.title, category);
         }
+      });
+    });
+
+    list.querySelectorAll('.resource-card__bookmark').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleBookmark(btn.dataset.key);
+        btn.classList.toggle('saved');
+        btn.innerHTML = btn.classList.contains('saved') ? '♥' : '♡';
       });
     });
   }
 
-  function openResourcePlayer(title) {
+  function toggleBookmark(key) {
+    state.bookmarks = state.bookmarks || [];
+    const i = state.bookmarks.indexOf(key);
+    if (i === -1) {
+      state.bookmarks.push(key);
+      awardPoints(2, 'saved');
+    } else {
+      state.bookmarks.splice(i, 1);
+    }
+    saveState();
+  }
+
+  function openBookDetail(title) {
     openModal(`
-      <h2 style="color:var(--olive);font-weight:400;margin-bottom:8px;">${title}</h2>
-      <div class="module-detail__video" style="height:200px;">🎧</div>
-      <p style="font-size:0.9rem;color:var(--brown);line-height:1.6;margin-bottom:18px;">
-        This is a prototype — no real media attached. In production, this screen would play audio or video with chapter markers and a transcript.
+      <h2 style="color:var(--olive);font-weight:400;margin-bottom:6px;">${title}</h2>
+      <div style="height:140px;background:linear-gradient(135deg,var(--brown),var(--olive));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:14px;">📖</div>
+      <p style="font-size:0.9rem;color:var(--brown);line-height:1.6;margin-bottom:18px;">A recommended read for your integration journey. In production, this would link to a digital excerpt, audiobook preview, or buy-links (Libro.fm, Bookshop).</p>
+      <button class="btn btn--amber btn--full" id="markReadBtn">Mark as read · +8 pts</button>
+    `);
+    document.getElementById('markReadBtn').addEventListener('click', () => {
+      awardPoints(8, 'book read');
+      closeModal();
+    });
+  }
+
+  function openCoachingBooking(title) {
+    openModal(`
+      <h2 style="color:var(--olive);font-weight:400;margin-bottom:6px;">${title}</h2>
+      <p style="font-size:0.9rem;color:var(--brown);line-height:1.6;margin-bottom:18px;">Private integration support. Tap a time below to request a session — you'll confirm over email.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px;">
+        ${['Tomorrow · 10:00 AM', 'Tomorrow · 2:00 PM', 'Fri · 11:00 AM', 'Fri · 4:00 PM'].map(t =>
+          `<button class="btn btn--ghost btn--full" style="justify-content:flex-start;">${t}</button>`).join('')}
+      </div>
+      <button class="btn btn--olive btn--full" id="coachingConfirmBtn">Request session · +3 pts</button>
+    `);
+    document.getElementById('coachingConfirmBtn').addEventListener('click', () => {
+      awardPoints(3, 'coaching request');
+      showToast('Request sent (mock)');
+      closeModal();
+    });
+  }
+
+  function openResourcePlayer(title, category) {
+    const meta = (DATA.resourceMeta || {})[category] || { emoji: '🎧', color: '#3f4021', verb: 'Play' };
+    openModal(`
+      <div style="background:linear-gradient(135deg, ${meta.color}, color-mix(in srgb, ${meta.color} 70%, #000 30%));border-radius:14px;padding:30px 20px;color:var(--white);text-align:center;margin-bottom:16px;">
+        <div style="font-size:3.4rem;margin-bottom:8px;">${meta.emoji}</div>
+        <h2 style="color:var(--white);font-weight:500;font-size:1.2rem;margin:0;">${title}</h2>
+      </div>
+      <p style="font-size:0.88rem;color:var(--brown);line-height:1.6;margin-bottom:16px;">
+        Prototype — no real media attached. In production, this plays with chapter markers + transcript.
       </p>
-      <button class="btn btn--amber btn--full" id="rewardBtn">Mark as practiced · +5 pts</button>
+      <div style="display:flex;gap:10px;margin-bottom:14px;">
+        <button class="btn btn--amber btn--full" id="rewardBtn">${meta.verb} · +5 pts</button>
+      </div>
     `);
     document.getElementById('rewardBtn').addEventListener('click', () => {
       awardPoints(5, 'practice');
