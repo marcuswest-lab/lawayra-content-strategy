@@ -127,6 +127,303 @@
 }
 
 /* ============================================
+   FEED (community)
+   ============================================ */
+.feed-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+.feed-sort {
+  background: var(--white);
+  padding: 6px 12px;
+  border-radius: 18px;
+  font-size: 0.78rem;
+  color: var(--olive);
+  box-shadow: var(--shadow-sm);
+  font-weight: 500;
+}
+
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.composer__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.composer__input {
+  flex: 1;
+  color: var(--sage);
+  font-size: 0.88rem;
+}
+.composer__btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--white);
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.post.pinned {
+  border: 1.5px solid var(--amber);
+}
+.post__pin {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 0.7rem;
+  color: var(--amber);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.post__head {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.post__avatar {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.post__author {
+  flex: 1;
+  min-width: 0;
+}
+.post__name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.post__meta {
+  font-size: 0.75rem;
+  color: var(--sage);
+  margin-top: 2px;
+}
+.post__space {
+  color: var(--olive);
+  font-weight: 500;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.badge--team {
+  background: #1f7a4e;
+  color: var(--white);
+}
+.badge--admin {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+.badge--community {
+  background: #4a6d8f;
+  color: var(--white);
+}
+.post__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.post__body {
+  font-size: 0.88rem;
+  color: var(--brown);
+  line-height: 1.55;
+  white-space: pre-line;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.post__more {
+  font-size: 0.78rem;
+  color: var(--olive);
+  font-weight: 500;
+  margin-top: 4px;
+}
+.post__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--beige);
+}
+.post__action-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.post__action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--brown);
+}
+.post__action.liked { color: var(--burnt-orange); }
+.post__action__icon { font-size: 1.1rem; }
+.post__counts {
+  font-size: 0.75rem;
+  color: var(--sage);
+}
+
+/* Floating Go Live button */
+.fab-live {
+  position: fixed;
+  bottom: calc(var(--tab-h) + 16px);
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--burnt-orange);
+  color: var(--white);
+  padding: 10px 16px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  z-index: 9;
+}
+@media (max-width: 500px) {
+  .fab-live { right: 16px; bottom: calc(var(--tab-h) + 16px); }
+}
+.fab-live__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--white);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* Cohort badge on Me screen */
+.cohort-badge {
+  background: linear-gradient(135deg, var(--olive), var(--sage));
+  color: var(--cream);
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cohort-badge__icon { font-size: 1.4rem; }
+.cohort-badge__info { flex: 1; }
+.cohort-badge__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+.cohort-badge__name {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.cohort-badge__dates {
+  font-size: 0.72rem;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* Course social proof */
+.social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--white);
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.social-proof__stat {
+  text-align: center;
+}
+.social-proof__stat strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--amber);
+  font-weight: 600;
+}
+.social-proof__stat span {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sage);
+  font-weight: 500;
+}
+.social-proof__divider {
+  width: 1px;
+  height: 28px;
+  background: var(--beige);
+}
+
+/* Section label with button on the right */
+.section-label--head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+}
+
+/* ============================================
    HOME / DASHBOARD
    ============================================ */
 .greeting {

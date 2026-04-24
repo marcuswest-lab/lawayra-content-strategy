@@ -4,17 +4,35 @@ A clickable, mobile-first prototype of the LaWayra Community & Integration app. 
 
 ## What this is
 
-A validated-concept prototype we can share with Sam, Monica, and Kevin before investing in a native build. It demonstrates:
+A validated-concept prototype to share with Sam, Monica, Sarah, and Kevin before investing in a native build. The structure mirrors the existing **LaWayra Family Circle community** (lawayra-family.circle.so) so the app feels like a natural evolution — not a parallel product.
 
-- **Onboarding** — splash, 3-card intro, role selector (joining / post-retreat / exploring)
-- **Home / Dashboard** — greeting, streak + points, **gamified garden** (seed → sprout → flowering → butterflies → sacred grove), daily prompt, quick habit tiles, upcoming event, premium teaser
-- **Preparation + Integration Course** — 3 preparation modules + Monica's 6-week integration series, module detail with video placeholder, summary, interactive checklist, mark complete
-- **Habit tracker** — 5 default habits + custom habit creation with emoji picker, 7-day streak grid, daily notification mockup
-- **Resource library** — meditations, cacao ceremonies, yoga, breathwork, workshops, book list, tool templates (interactive Wheel of Life), past recordings, 1:1 coaching
-- **Events calendar** — 14-day strip, Sunday community calls, Monica's integration weeks, Taita AMA, Sam's AMA, cacao ceremonies, workshops; RSVP + add-to-calendar mock
-- **Premium tier modal** — Taita AMAs, virtual cleanse, Taita Talks, Sam's monthly AMA, early retreat access; retreat guests auto-premium
+### 5 tabs (Circle-native)
 
-All state persists to `localStorage`. Tap the "LW" chip 5× on Home to reset.
+- **Feed 💬** — community posts with pinned Monica content, composer ("Start a post"), like/comment counts, team badges (LaWayra Team, Admin, Community Team), pulsing "Go Live" FAB. Directly inspired by the Circle home feed.
+- **Course 📚** — Preparation (3 modules) + Integration (Monica's 6-week series). Social proof banner pulled from real Circle data: **695 students · 64% completion · 4.8★**. Modules open to a detail view with video placeholder, summary, interactive checklist, and "mark complete".
+- **Me 🌱** — Greeting + cohort badge (March / April / May 2026 with dates + member count) + streak / points + **gamified garden** (seed → sprout → young plant → flowering → butterflies → sacred grove) + daily prompt + today's check-ins + full habit tracker + upcoming event + premium teaser.
+- **Events 📅** — 14-day calendar strip, Sunday Community Call, Monica's integration weeks, Taita AMA, Sam's AMA, cacao ceremonies, workshops. RSVP + add-to-calendar mock. Premium-gated events show lock.
+- **Library 🌿** — Meditations, Cacao Ceremonies, Yoga, Breathwork, Workshops, Book List, Tool Templates (interactive Wheel of Life SVG), Past Event Recordings, 1:1 Coaching.
+
+### Onboarding
+
+- Splash with "connect · heal · grow"
+- 2 intro slides
+- Role selector: Joining a retreat soon / Just returned / Exploring
+- **If "joining"** → cohort picker (March / April / May 2026 or undecided) — cohort appears as a badge on the Me tab
+- Retreat guests auto-granted Premium
+
+### Gamification
+
+- Each habit check-in: +5 pts
+- Each module complete: +15 pts
+- Each module checklist tick: +2 pts
+- Each RSVP: +3 pts
+- Each like on a post: +1 pt
+- New post: +5 pts
+- Wheel of Life reflection: +10 pts
+
+State persists to `localStorage` under key `lw-integration-app-v1`. Tap the "LW" chip 5× on the Me tab to reset.
 
 ## Run locally
 
@@ -87,6 +105,8 @@ lawayra-integration-app/
 1. **YouTube vs. in-app course** — The Course tab has a design note asking whether the Preparation course stays public on YouTube (community-subscription model) or moves inside the app.
 2. **Garden metaphor** — We chose garden growth. Alternatives that match the brand symbols (mountain, river, tree, flower of life) are worth exploring in v2.
 3. **Premium pricing** — Placeholder `$19/month`. Decide post-feedback.
+4. **Circle migration strategy** — If we ship this app, does Circle stay as the "desktop" community and the app becomes the mobile face, or do we migrate everything? Either way, the data shape (spaces, posts, cohorts, courses) maps cleanly.
+5. **Cohort-specific content** — Each cohort has its own space in Circle. In the app, should we let users switch cohort context, or keep it tied to the one they joined?
 
 ## What's NOT in the prototype (by design)
 

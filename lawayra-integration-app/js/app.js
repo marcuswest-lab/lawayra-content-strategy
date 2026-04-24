@@ -9,14 +9,15 @@
   // ---------- State ----------
   const defaultState = () => ({
     onboarded: false,
-    user: { name: '', role: '', isPremium: false },
+    user: { name: '', role: '', cohort: '', isPremium: false },
     points: 0,
     habits: DATA.defaultHabits.map(h => ({ ...h, checkins: [] })),
     courseCompleted: [],      // module ids
     moduleChecks: {},         // { moduleId: [checklistIndexes] }
     promptIndex: 0,
     promptDateKey: '',
-    rsvp: []                  // event ids user said "Going" to
+    rsvp: [],                 // event ids user said "Going" to
+    likedPosts: []             // post ids the user liked
   });
 
   let state = loadState();
@@ -89,15 +90,32 @@
       if (idx < slides.length - 1) goTo(idx + 1);
     });
 
-    document.querySelectorAll('.onboard__role').forEach(btn => {
+    // Role selection (slide 2)
+    document.querySelectorAll('#onboardRoles .onboard__role').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.onboard__role').forEach(b => b.classList.remove('selected'));
+        document.querySelectorAll('#onboardRoles .onboard__role').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         state.user.role = btn.dataset.role;
-        // If joining a retreat, auto-grant premium (as per plan)
+        // Retreat guests get auto-premium
         if (btn.dataset.role === 'joining' || btn.dataset.role === 'post') {
           state.user.isPremium = true;
         }
+        saveState();
+        // If joining, advance to cohort picker; otherwise finish
+        if (btn.dataset.role === 'joining') {
+          setTimeout(() => goTo(3), 300);
+        } else {
+          setTimeout(hideOnboard, 400);
+        }
+      });
+    });
+
+    // Cohort selection (slide 3)
+    document.querySelectorAll('#onboardCohorts .onboard__role').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#onboardCohorts .onboard__role').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.user.cohort = btn.dataset.cohort;
         saveState();
         setTimeout(hideOnboard, 400);
       });
@@ -126,6 +144,8 @@
       t.classList.toggle('active', t.dataset.tab === name);
     });
     if (name === 'events') renderEvents();
+    if (name === 'feed') renderFeed();
+    if (name === 'me') renderHome();
   }
 
   // ---------- Home ----------
@@ -167,6 +187,9 @@
     document.getElementById('homePoints').textContent = state.points;
     document.getElementById('homeStreak').innerHTML = `${Habits.calcStreak(state.habits)} <small>days</small>`;
 
+    // Cohort badge
+    renderCohortBadge();
+
     // Garden
     Garden.render(state.points);
 
@@ -175,15 +198,196 @@
     document.getElementById('promptType').textContent = p.type;
     document.getElementById('promptText').textContent = p.text;
 
-    // Habit tiles
+    // Habit tiles + full habit list on Me tab
     Habits.renderHomeTiles(state.habits, onHabitToggle);
+    Habits.renderHabitList(state.habits, onHabitToggle);
 
     // Premium strip
     const strip = document.getElementById('premiumStrip');
-    strip.style.display = state.user.isPremium ? 'none' : '';
+    if (strip) strip.style.display = state.user.isPremium ? 'none' : '';
 
     // Upcoming event
     renderUpcoming();
+  }
+
+  function renderCohortBadge() {
+    const wrap = document.getElementById('cohortBadge');
+    if (!wrap) return;
+    const cohortId = state.user.cohort;
+    if (!cohortId || cohortId === 'undecided') {
+      wrap.innerHTML = '';
+      return;
+    }
+    const cohort = DATA.cohorts.find(c => c.id === cohortId);
+    if (!cohort) { wrap.innerHTML = ''; return; }
+    wrap.innerHTML = `
+      <div class="cohort-badge">
+        <div class="cohort-badge__icon">${cohort.emoji}</div>
+        <div class="cohort-badge__info">
+          <div class="cohort-badge__label">Your Cohort</div>
+          <div class="cohort-badge__name">${cohort.name}</div>
+          <div class="cohort-badge__dates">${cohort.dates} · ${cohort.members} members</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // ---------- Feed (community) ----------
+  function renderFeed() {
+    const wrap = document.getElementById('feedPosts');
+    if (!wrap) return;
+    // Pinned posts first, then reverse chronological
+    const posts = [...DATA.posts].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+    wrap.innerHTML = posts.map(p => postHtml(p)).join('');
+    wrap.querySelectorAll('.post__like').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePostLike(btn.dataset.id);
+      });
+    });
+    wrap.querySelectorAll('.post').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        const p = DATA.posts.find(x => x.id === id);
+        if (p) openPostDetail(p);
+      });
+    });
+  }
+
+  function postHtml(p) {
+    const liked = state.likedPosts.includes(p.id) || p.likedByMe;
+    const extraLikes = (state.likedPosts.includes(p.id) && !p.likedByMe) ? 1 : 0;
+    const totalLikes = p.likes + extraLikes;
+    const avatar = p.avatarInitials
+      ? `<div class="post__avatar">${p.avatar}</div>`
+      : `<div class="post__avatar" style="background:var(--beige);font-size:1.2rem;">${p.avatar}</div>`;
+    const badges = p.badges.map(b => {
+      const cls = b === 'Admin' ? 'badge--admin' : (b === 'Community Team' ? 'badge--community' : 'badge--team');
+      return `<span class="badge ${cls}">${b}</span>`;
+    }).join('');
+    return `
+      <article class="post ${p.pinned ? 'pinned' : ''}" data-id="${p.id}">
+        ${p.pinned ? '<div class="post__pin">📌 Pinned</div>' : ''}
+        <div class="post__head">
+          ${avatar}
+          <div class="post__author">
+            <div class="post__name">${p.author} ${badges}</div>
+            <div class="post__meta">Posted in <span class="post__space">${p.space}</span> · ${p.timeAgo}</div>
+          </div>
+        </div>
+        ${p.title ? `<div class="post__title">${p.title}</div>` : ''}
+        <div class="post__body">${p.body}</div>
+        <div class="post__more">See more →</div>
+        <div class="post__actions">
+          <div class="post__action-group">
+            <button class="post__action post__like ${liked ? 'liked' : ''}" data-id="${p.id}">
+              <span class="post__action__icon">${liked ? '❤️' : '🤍'}</span>
+            </button>
+            <span class="post__action">
+              <span class="post__action__icon">💬</span>
+            </span>
+          </div>
+          <span class="post__counts">${totalLikes} likes · ${p.comments} comments</span>
+        </div>
+      </article>
+    `;
+  }
+
+  function togglePostLike(postId) {
+    const i = state.likedPosts.indexOf(postId);
+    if (i === -1) {
+      state.likedPosts.push(postId);
+      awardPoints(1, 'engagement');
+    } else {
+      state.likedPosts.splice(i, 1);
+    }
+    saveState();
+    renderFeed();
+  }
+
+  function openPostDetail(p) {
+    const liked = state.likedPosts.includes(p.id) || p.likedByMe;
+    openModal(`
+      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;">
+        ${p.avatarInitials
+          ? `<div class="post__avatar">${p.avatar}</div>`
+          : `<div class="post__avatar" style="background:var(--beige);font-size:1.2rem;">${p.avatar}</div>`}
+        <div style="flex:1;">
+          <div style="font-weight:600;color:var(--charcoal);font-size:0.95rem;">${p.author}</div>
+          <div style="font-size:0.75rem;color:var(--sage);">Posted in ${p.space} · ${p.timeAgo}</div>
+        </div>
+      </div>
+      ${p.title ? `<h2 style="color:var(--charcoal);font-weight:600;font-size:1.2rem;margin-bottom:12px;">${p.title}</h2>` : ''}
+      <div style="font-size:0.92rem;color:var(--brown);line-height:1.65;white-space:pre-line;margin-bottom:16px;">${p.body}</div>
+      <div style="display:flex;gap:10px;padding-top:12px;border-top:1px solid var(--beige);">
+        <button class="btn ${liked ? 'btn--olive' : 'btn--amber'} btn--sm" id="postLikeBtn">${liked ? '❤️ Liked' : '🤍 Like'}</button>
+        <button class="btn btn--ghost btn--sm" id="postCommentBtn">💬 Comment</button>
+      </div>
+    `);
+    document.getElementById('postLikeBtn').addEventListener('click', () => {
+      togglePostLike(p.id);
+      closeModal();
+    });
+    document.getElementById('postCommentBtn').addEventListener('click', () => {
+      showToast('Comments coming in v2');
+    });
+  }
+
+  function openComposerModal() {
+    openModal(`
+      <h2 style="color:var(--olive);font-weight:400;margin-bottom:14px;">New Post</h2>
+      <select id="composerSpace" style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--beige);font-family:inherit;font-size:0.9rem;margin-bottom:10px;background:var(--white);color:var(--charcoal);">
+        <option>General Information</option>
+        <option>Integration Resources</option>
+        <option>Ayahuasca Preparation</option>
+        <option>March Cohort 2026</option>
+        <option>April Cohort 2026</option>
+        <option>May Cohort 2026</option>
+        <option>Events</option>
+      </select>
+      <input type="text" id="composerTitle" placeholder="Title (optional)"
+        style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--beige);font-family:inherit;font-size:0.95rem;margin-bottom:10px;background:var(--white);color:var(--charcoal);" />
+      <textarea id="composerBody" placeholder="Share something with the community…" rows="6"
+        style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--beige);font-family:inherit;font-size:0.9rem;margin-bottom:16px;background:var(--white);color:var(--charcoal);resize:none;"></textarea>
+      <button class="btn btn--amber btn--full" id="composerPublishBtn">Post · +5 pts</button>
+    `);
+    document.getElementById('composerPublishBtn').addEventListener('click', () => {
+      const body = document.getElementById('composerBody').value.trim();
+      if (!body) return;
+      const title = document.getElementById('composerTitle').value.trim();
+      const space = document.getElementById('composerSpace').value;
+      DATA.posts.unshift({
+        id: 'post-' + Date.now(),
+        author: 'You',
+        avatar: 'YO',
+        avatarInitials: true,
+        badges: [],
+        space,
+        timeAgo: 'just now',
+        pinned: false,
+        title,
+        body,
+        likes: 0,
+        likedByMe: false,
+        comments: 0
+      });
+      awardPoints(5, 'new post');
+      closeModal();
+      renderFeed();
+    });
+  }
+
+  function openGoLiveModal() {
+    openModal(`
+      <h2 style="color:var(--olive);font-weight:400;margin-bottom:6px;">Start a Live Session</h2>
+      <p style="font-size:0.88rem;color:var(--brown);line-height:1.6;margin-bottom:16px;">Go live to the community right now — for a spontaneous check-in, a shared practice, or to hold space.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+        <button class="btn btn--amber btn--full">🎤 Audio only</button>
+        <button class="btn btn--olive btn--full">🎥 Video live</button>
+        <button class="btn btn--ghost btn--full">📝 Schedule for later</button>
+      </div>
+      <p style="font-size:0.75rem;color:var(--sage);text-align:center;">Premium members only · You have Premium ✓</p>
+    `);
   }
 
   function renderUpcoming() {
@@ -224,8 +428,8 @@
   }
 
   function renderHabitsScreen() {
-    document.getElementById('habitStreak').textContent = Habits.calcStreak(state.habits);
-    document.getElementById('habitPoints').textContent = state.points;
+    // Habits are now merged into the Me tab — rendered by renderHome().
+    // Kept as a stub so any stale callers still work.
     Habits.renderHabitList(state.habits, onHabitToggle);
   }
 
@@ -664,7 +868,16 @@
       el.addEventListener('click', openPremiumModal);
     });
     // Add habit
-    document.getElementById('addHabitBtn').addEventListener('click', openAddHabitModal);
+    const addHabitBtn = document.getElementById('addHabitBtn');
+    if (addHabitBtn) addHabitBtn.addEventListener('click', openAddHabitModal);
+
+    // Composer tap (Feed) → compose modal
+    const composer = document.getElementById('composer');
+    if (composer) composer.addEventListener('click', openComposerModal);
+
+    // Go Live FAB
+    const goLiveBtn = document.getElementById('goLiveBtn');
+    if (goLiveBtn) goLiveBtn.addEventListener('click', openGoLiveModal);
 
     // Logo tap 5× to reset (dev)
     let taps = 0;
@@ -683,9 +896,9 @@
 
   // ---------- Render everything ----------
   function renderAll() {
+    renderFeed();
     renderHome();
     renderCourse(getActivePhaseFilter());
-    renderHabitsScreen();
     renderResources();
     renderEvents();
   }

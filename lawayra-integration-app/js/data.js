@@ -315,6 +315,80 @@ window.APP_DATA = {
     autoNote: 'Retreat guests receive Premium free for 6 months after their stay.'
   },
 
+  // --- Cohorts (retreat groups, like Circle spaces)
+  cohorts: [
+    { id: 'mar-2026', name: 'March Cohort 2026', emoji: '🗓️', members: 18, dates: 'Mar 15 – Mar 22, 2026' },
+    { id: 'apr-2026', name: 'April Cohort 2026', emoji: '🗓️', members: 22, dates: 'Apr 12 – Apr 19, 2026' },
+    { id: 'may-2026', name: 'May Cohort 2026', emoji: '🗓️', members: 15, dates: 'May 10 – May 17, 2026' }
+  ],
+
+  // --- Community feed posts
+  posts: [
+    {
+      id: 'post-1',
+      author: 'Monica Kronstain',
+      avatar: '👩🏻',
+      badges: ['LaWayra Team'],
+      space: 'Integration Resources',
+      timeAgo: '1d',
+      pinned: true,
+      title: 'Integration Series May 2026',
+      body: 'I hope you\'re all doing well! I want to warmly invite you into a 6-week integration series we\'re offering next month!\n\nAt LaWayra, integration and community are at the heart of the work, because what happens after ceremony is just as important as the ceremony itself.',
+      likes: 4,
+      likedByMe: false,
+      comments: 0
+    },
+    {
+      id: 'post-2',
+      author: 'La Wayra Team',
+      avatar: 'LT',
+      avatarInitials: true,
+      badges: ['Admin', 'LaWayra Team'],
+      space: 'Events',
+      timeAgo: '2d',
+      pinned: false,
+      title: '',
+      body: 'Join us live from LaWayra for a heart-opening cacao ceremony rooted in intention, connection, and presence. This is a space to slow down, turn inward, and share in a ritual that has been used for generations to support clarity, emotional openness, and deeper connection.\n\nTogether, we\'ll sit in ceremony, set intentions, and connect as a community — no matter where you are in the world.',
+      likes: 12,
+      likedByMe: true,
+      comments: 3
+    },
+    {
+      id: 'post-3',
+      author: 'Aliyah Pettitt',
+      avatar: '👩🏽',
+      badges: [],
+      space: 'Integration Resources',
+      timeAgo: '3d',
+      pinned: false,
+      title: 'Lately, I\'ve been questioning where my energy really goes...',
+      body: 'Coming back from ceremony I\'ve been paying attention to where my energy actually leaves me during the week. It\'s not the big things — it\'s the small "yes-es" I\'ve been giving out of habit. Anyone else noticing this shift?',
+      likes: 8,
+      likedByMe: false,
+      comments: 5
+    },
+    {
+      id: 'post-4',
+      author: 'Juliana Herrera',
+      avatar: '👩🏻',
+      badges: ['Community Team'],
+      space: 'May Cohort 2026',
+      timeAgo: '4d',
+      pinned: false,
+      title: 'Welcome May Cohort 2026',
+      body: 'So excited to meet all of you. We\'ve just added your cohort space — please introduce yourself here and share one intention you\'re bringing to this work. No pressure to be polished. We just want to know who you are.',
+      likes: 15,
+      likedByMe: false,
+      comments: 11
+    }
+  ],
+
+  // --- Course stats for social proof (from real Circle data)
+  courseStats: {
+    'prep': { students: 695, completion: 64 },
+    'integration': { students: 142, completion: 48 }
+  },
+
   // --- Garden stages (points thresholds)
   gardenStages: [
     { stage: 0, name: 'Seed',          threshold: 0,   emoji: '🌰', caption: 'A seed in the soil. Unseen, but alive.' },

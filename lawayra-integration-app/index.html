@@ -54,11 +54,22 @@
             <button class="onboard__role" data-role="exploring">Exploring the path <span>→</span></button>
           </div>
         </div>
+        <div class="onboard__slide" data-slide="3">
+          <div class="onboard__emoji">🗓️</div>
+          <h2>Which cohort are you joining?</h2>
+          <div class="onboard__roles" id="onboardCohorts">
+            <button class="onboard__role" data-cohort="mar-2026">March 2026 <span>→</span></button>
+            <button class="onboard__role" data-cohort="apr-2026">April 2026 <span>→</span></button>
+            <button class="onboard__role" data-cohort="may-2026">May 2026 <span>→</span></button>
+            <button class="onboard__role" data-cohort="undecided">I haven't picked dates yet <span>→</span></button>
+          </div>
+        </div>
       </div>
 
       <div class="onboard__footer">
         <div class="onboard__dots" id="onboardDots">
           <span class="onboard__dot active"></span>
+          <span class="onboard__dot"></span>
           <span class="onboard__dot"></span>
           <span class="onboard__dot"></span>
         </div>
@@ -69,8 +80,35 @@
     <!-- App body (screens) -->
     <div class="app-body" id="appBody">
 
-      <!-- ===== HOME ===== -->
-      <section class="screen active" id="screen-home" data-screen="home">
+      <!-- ===== FEED (community) ===== -->
+      <section class="screen active" id="screen-feed" data-screen="feed">
+        <div class="feed-head">
+          <div>
+            <div class="screen-title">Feed</div>
+            <div class="screen-sub">La Wayra Family</div>
+          </div>
+          <button class="feed-sort">Latest ▾</button>
+        </div>
+
+        <!-- Composer -->
+        <div class="composer" id="composer">
+          <div class="composer__avatar">🌿</div>
+          <div class="composer__input">Start a post…</div>
+          <button class="composer__btn">+</button>
+        </div>
+
+        <!-- Posts render here -->
+        <div id="feedPosts"></div>
+
+        <!-- Go Live FAB -->
+        <button class="fab-live" id="goLiveBtn">
+          <span class="fab-live__dot"></span>
+          Go Live
+        </button>
+      </section>
+
+      <!-- ===== ME (profile + garden + habits) ===== -->
+      <section class="screen" id="screen-me" data-screen="me">
         <div class="screen-header">
           <div>
             <div class="greeting">Welcome back</div>
@@ -79,6 +117,9 @@
           </div>
           <button class="chip chip--olive" id="logoTap" title="Tap 5× to reset">LW</button>
         </div>
+
+        <!-- Cohort badge (if user is in a cohort) -->
+        <div id="cohortBadge"></div>
 
         <div class="stats-row">
           <div class="stat">
@@ -127,6 +168,13 @@
         <div class="section-label">Today's Check-ins</div>
         <div class="home-habits" id="homeHabits"></div>
 
+        <!-- Full habit list -->
+        <div class="section-label section-label--head">
+          <span>Daily Habits</span>
+          <button class="btn btn--sm btn--amber" id="addHabitBtn">+ Add</button>
+        </div>
+        <div id="habitList"></div>
+
         <!-- Upcoming event -->
         <div class="section-label">Upcoming</div>
         <div id="homeUpcoming"></div>
@@ -149,6 +197,24 @@
           </div>
         </div>
 
+        <!-- Social proof banner from Circle stats -->
+        <div class="social-proof">
+          <div class="social-proof__stat">
+            <strong>695</strong>
+            <span>students</span>
+          </div>
+          <div class="social-proof__divider"></div>
+          <div class="social-proof__stat">
+            <strong>64%</strong>
+            <span>completion</span>
+          </div>
+          <div class="social-proof__divider"></div>
+          <div class="social-proof__stat">
+            <strong>4.8★</strong>
+            <span>avg rating</span>
+          </div>
+        </div>
+
         <div class="filter-row" id="courseFilter">
           <button class="filter-pill active" data-phase="all">All</button>
           <button class="filter-pill" data-phase="Preparation">Preparation</button>
@@ -160,39 +226,6 @@
         <div class="design-note">
           <strong>Design question</strong>
           Keep the preparation course public on YouTube (community-subscription model), or move it inside the app as gated content? Surface this for the team to decide.
-        </div>
-      </section>
-
-      <!-- ===== HABITS ===== -->
-      <section class="screen" id="screen-habits" data-screen="habits">
-        <div class="screen-header">
-          <div>
-            <div class="screen-title">Habits</div>
-            <div class="screen-sub">Small steps, daily</div>
-          </div>
-          <button class="btn btn--sm btn--amber" id="addHabitBtn">+ Add</button>
-        </div>
-
-        <div class="habit-streak-banner">
-          <div>
-            <div class="habit-streak-banner__label">Current streak</div>
-            <div class="habit-streak-banner__num"><span id="habitStreak">0</span> 🔥</div>
-          </div>
-          <div>
-            <div class="habit-streak-banner__label">Total points</div>
-            <div class="habit-streak-banner__num"><span id="habitPoints">0</span></div>
-          </div>
-        </div>
-
-        <div class="section-label">Daily Habits</div>
-        <div id="habitList"></div>
-
-        <div class="notif-mock">
-          <div class="notif-mock__icon">🔔</div>
-          <div class="notif-mock__text">
-            <strong>LaWayra · 7:00 AM</strong>
-            A gentle morning from the maloca. Time for your breathwork?
-          </div>
         </div>
       </section>
 
@@ -235,25 +268,25 @@
 
     <!-- Tab bar -->
     <nav class="tab-bar" id="tabBar">
-      <button class="tab active" data-tab="home">
-        <span class="tab__icon">🏠</span>
-        <span>Home</span>
+      <button class="tab active" data-tab="feed">
+        <span class="tab__icon">💬</span>
+        <span>Feed</span>
       </button>
       <button class="tab" data-tab="course">
         <span class="tab__icon">📚</span>
         <span>Course</span>
       </button>
-      <button class="tab" data-tab="habits">
-        <span class="tab__icon">✓</span>
-        <span>Habits</span>
-      </button>
-      <button class="tab" data-tab="resources">
-        <span class="tab__icon">🌿</span>
-        <span>Library</span>
+      <button class="tab" data-tab="me">
+        <span class="tab__icon">🌱</span>
+        <span>Me</span>
       </button>
       <button class="tab" data-tab="events">
         <span class="tab__icon">📅</span>
         <span>Events</span>
+      </button>
+      <button class="tab" data-tab="resources">
+        <span class="tab__icon">🌿</span>
+        <span>Library</span>
       </button>
     </nav>
 
