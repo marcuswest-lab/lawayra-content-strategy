@@ -209,16 +209,20 @@
 }
 .post.pinned {
   border: 1.5px solid var(--amber);
+  padding-top: 36px;
 }
 .post__pin {
   position: absolute;
-  top: 12px;
-  right: 14px;
-  font-size: 0.7rem;
-  color: var(--amber);
+  top: 0;
+  left: 16px;
+  font-size: 0.62rem;
+  color: var(--white);
+  background: var(--amber);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 0 0 8px 8px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -335,11 +339,11 @@
   color: var(--sage);
 }
 
-/* Floating Go Live button */
+/* Floating Go Live button — pinned to bottom-right of the feed screen */
 .fab-live {
-  position: fixed;
-  bottom: calc(var(--tab-h) + 16px);
-  right: 20px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -353,9 +357,6 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   z-index: 9;
-}
-@media (max-width: 500px) {
-  .fab-live { right: 16px; bottom: calc(var(--tab-h) + 16px); }
 }
 .fab-live__dot {
   width: 8px;
