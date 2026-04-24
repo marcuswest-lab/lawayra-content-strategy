@@ -165,7 +165,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: translateX(0);
   pointer-events: auto;
 }
-.screen::-webkit-scrollbar { width: 0; }
+
+/* Thin scrollbar on desktop so users know content is scrollable.
+   On real phones we hide it since swipe is obvious. */
+.screen {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sage) transparent;
+}
+.screen::-webkit-scrollbar {
+  width: 6px;
+}
+.screen::-webkit-scrollbar-thumb {
+  background: var(--sage);
+  border-radius: 3px;
+}
+.screen::-webkit-scrollbar-track {
+  background: transparent;
+}
+@media (max-width: 500px) {
+  .screen { scrollbar-width: none; }
+  .screen::-webkit-scrollbar { width: 0; }
+}
 
 .screen-header {
   display: flex;

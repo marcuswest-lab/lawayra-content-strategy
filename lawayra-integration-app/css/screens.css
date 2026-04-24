@@ -974,6 +974,34 @@
 .cat-pill-wrap.can-scroll-left .cat-pill-fade--left { opacity: 1; }
 .cat-pill-wrap.can-scroll-right .cat-pill-fade--right { opacity: 1; }
 
+/* Explicit scroll arrows — always discoverable */
+.cat-pill-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--olive);
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(43, 39, 40, 0.18);
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease), transform 0.15s var(--ease);
+  line-height: 1;
+}
+.cat-pill-arrow--left  { left: 4px; }
+.cat-pill-arrow--right { right: 4px; }
+.cat-pill-wrap.can-scroll-left  .cat-pill-arrow--left  { opacity: 1; pointer-events: auto; }
+.cat-pill-wrap.can-scroll-right .cat-pill-arrow--right { opacity: 1; pointer-events: auto; }
+.cat-pill-arrow:active { transform: translateY(-50%) scale(0.9); }
+
 /* Interactive category pills */
 .cat-pills {
   display: flex;

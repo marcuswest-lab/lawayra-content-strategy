@@ -651,6 +651,13 @@
     row.addEventListener('scroll', updateFade);
     window.addEventListener('resize', updateFade);
 
+    // Explicit arrow buttons
+    const leftBtn = document.getElementById('pillArrowLeft');
+    const rightBtn = document.getElementById('pillArrowRight');
+    const scrollBy = (dx) => row.scrollBy({ left: dx, behavior: 'smooth' });
+    if (leftBtn)  leftBtn.addEventListener('click', () => scrollBy(-140));
+    if (rightBtn) rightBtn.addEventListener('click', () => scrollBy(140));
+
     // Drag-to-scroll (mouse). Touch uses native momentum scroll via -webkit-overflow-scrolling.
     let isDown = false;
     let startX = 0;
