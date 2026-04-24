@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#3f4021">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>LaWayra — Community & Integration</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body>
+  <div class="phone-frame" id="phoneFrame">
+
+    <!-- Status bar (desktop only) -->
+    <div class="status-bar">
+      <span>9:41</span>
+      <span class="status-bar__icons">●●●● LTE 100%</span>
+    </div>
+
+    <!-- Points toast -->
+    <div class="points-toast" id="pointsToast">+10 pts</div>
+
+    <!-- Onboarding overlay -->
+    <div class="onboard" id="onboard">
+      <div class="onboard__logo">LA<span>WAYRA</span></div>
+      <div class="onboard__tag">connect · heal · grow</div>
+
+      <div class="onboard__slides" id="onboardSlides">
+        <div class="onboard__slide active" data-slide="0">
+          <div class="onboard__emoji">🌱</div>
+          <h2>A home for your healing path</h2>
+          <p>Prepare for your retreat, integrate what you experienced, and walk this path alongside a community that gets it.</p>
+        </div>
+        <div class="onboard__slide" data-slide="1">
+          <div class="onboard__emoji">🌿</div>
+          <h2>Small steps, real practice</h2>
+          <p>Bite-sized lessons, daily prompts, habits that actually stick. Watch your garden grow as you grow.</p>
+        </div>
+        <div class="onboard__slide" data-slide="2">
+          <div class="onboard__emoji">✨</div>
+          <h2>Tell us where you are</h2>
+          <div class="onboard__roles" id="onboardRoles">
+            <button class="onboard__role" data-role="joining">Joining a retreat soon <span>→</span></button>
+            <button class="onboard__role" data-role="post">Just returned from ceremony <span>→</span></button>
+            <button class="onboard__role" data-role="exploring">Exploring the path <span>→</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="onboard__footer">
+        <div class="onboard__dots" id="onboardDots">
+          <span class="onboard__dot active"></span>
+          <span class="onboard__dot"></span>
+          <span class="onboard__dot"></span>
+        </div>
+        <button class="onboard__skip" id="onboardSkip">Skip</button>
+      </div>
+    </div>
+
+    <!-- App body (screens) -->
+    <div class="app-body" id="appBody">
+
+      <!-- ===== HOME ===== -->
+      <section class="screen active" id="screen-home" data-screen="home">
+        <div class="screen-header">
+          <div>
+            <div class="greeting">Welcome back</div>
+            <div class="greeting__name" id="greetingName">Friend</div>
+            <div class="greeting__date" id="greetingDate"></div>
+          </div>
+          <button class="chip chip--olive" id="logoTap" title="Tap 5× to reset">LW</button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat__label">🔥 Streak</div>
+            <div class="stat__value" id="homeStreak">0 <small>days</small></div>
+          </div>
+          <div class="stat">
+            <div class="stat__label">✨ Points</div>
+            <div class="stat__value" id="homePoints">0</div>
+          </div>
+        </div>
+
+        <!-- Garden -->
+        <div class="garden-card" id="gardenCard">
+          <div class="garden-card__header">
+            <span class="garden-card__label">Your Garden</span>
+            <span class="garden-card__stage" id="gardenStage">Seed</span>
+          </div>
+          <div class="garden-scene" id="gardenScene">
+            <div class="garden-emoji" id="gardenEmoji">🌰</div>
+          </div>
+          <div class="garden-card__caption" id="gardenCaption">A seed in the soil. Unseen, but alive.</div>
+          <div class="garden-progress">
+            <span id="gardenProgressText">0 / 20 pts to next stage</span>
+            <span id="gardenNextStage">→ Sprout</span>
+          </div>
+        </div>
+
+        <!-- Premium strip -->
+        <div class="premium-strip" id="premiumStrip" data-action="open-premium">
+          <div class="premium-strip__text">
+            <strong>🌿 Unlock Taita AMAs + early access</strong>
+            <span>Try Premium free for 14 days</span>
+          </div>
+          <button class="premium-strip__cta">Try free</button>
+        </div>
+
+        <!-- Daily prompt -->
+        <div class="section-label">Today's Prompt</div>
+        <div class="prompt-card" id="promptCard">
+          <div class="prompt-card__type" id="promptType">Mindfulness</div>
+          <div class="prompt-card__text" id="promptText">Take three conscious breaths…</div>
+        </div>
+
+        <!-- Quick habit tiles -->
+        <div class="section-label">Today's Check-ins</div>
+        <div class="home-habits" id="homeHabits"></div>
+
+        <!-- Upcoming event -->
+        <div class="section-label">Upcoming</div>
+        <div id="homeUpcoming"></div>
+      </section>
+
+      <!-- ===== COURSE ===== -->
+      <section class="screen" id="screen-course" data-screen="course">
+        <div class="screen-header">
+          <div>
+            <div class="screen-title">Your Path</div>
+            <div class="screen-sub">Preparation + Integration</div>
+          </div>
+        </div>
+
+        <div class="course-progress">
+          <div class="course-progress__label">Overall Progress</div>
+          <div class="course-progress__num" id="courseProgressNum">0 of 9 modules</div>
+          <div class="progress">
+            <div class="progress__fill" id="courseProgressFill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="filter-row" id="courseFilter">
+          <button class="filter-pill active" data-phase="all">All</button>
+          <button class="filter-pill" data-phase="Preparation">Preparation</button>
+          <button class="filter-pill" data-phase="Integration">Integration</button>
+        </div>
+
+        <div id="courseModules"></div>
+
+        <div class="design-note">
+          <strong>Design question</strong>
+          Keep the preparation course public on YouTube (community-subscription model), or move it inside the app as gated content? Surface this for the team to decide.
+        </div>
+      </section>
+
+      <!-- ===== HABITS ===== -->
+      <section class="screen" id="screen-habits" data-screen="habits">
+        <div class="screen-header">
+          <div>
+            <div class="screen-title">Habits</div>
+            <div class="screen-sub">Small steps, daily</div>
+          </div>
+          <button class="btn btn--sm btn--amber" id="addHabitBtn">+ Add</button>
+        </div>
+
+        <div class="habit-streak-banner">
+          <div>
+            <div class="habit-streak-banner__label">Current streak</div>
+            <div class="habit-streak-banner__num"><span id="habitStreak">0</span> 🔥</div>
+          </div>
+          <div>
+            <div class="habit-streak-banner__label">Total points</div>
+            <div class="habit-streak-banner__num"><span id="habitPoints">0</span></div>
+          </div>
+        </div>
+
+        <div class="section-label">Daily Habits</div>
+        <div id="habitList"></div>
+
+        <div class="notif-mock">
+          <div class="notif-mock__icon">🔔</div>
+          <div class="notif-mock__text">
+            <strong>LaWayra · 7:00 AM</strong>
+            A gentle morning from the maloca. Time for your breathwork?
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== RESOURCES ===== -->
+      <section class="screen" id="screen-resources" data-screen="resources">
+        <div class="screen-header">
+          <div>
+            <div class="screen-title">Library</div>
+            <div class="screen-sub">Meditations, workshops, tools</div>
+          </div>
+        </div>
+
+        <div class="filter-row" id="resourceFilter"></div>
+        <div id="resourceList"></div>
+      </section>
+
+      <!-- ===== EVENTS ===== -->
+      <section class="screen" id="screen-events" data-screen="events">
+        <div class="screen-header">
+          <div>
+            <div class="screen-title">Community</div>
+            <div class="screen-sub">Calls, workshops, gatherings</div>
+          </div>
+        </div>
+
+        <div class="cal-strip" id="calStrip"></div>
+        <div id="eventList"></div>
+      </section>
+
+      <!-- Modal backdrop (module detail / premium / custom habit) -->
+      <div class="modal-backdrop" id="modalBackdrop">
+        <div class="modal" id="modal">
+          <div class="modal__handle"></div>
+          <button class="modal__close" id="modalClose">×</button>
+          <div id="modalContent"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tab bar -->
+    <nav class="tab-bar" id="tabBar">
+      <button class="tab active" data-tab="home">
+        <span class="tab__icon">🏠</span>
+        <span>Home</span>
+      </button>
+      <button class="tab" data-tab="course">
+        <span class="tab__icon">📚</span>
+        <span>Course</span>
+      </button>
+      <button class="tab" data-tab="habits">
+        <span class="tab__icon">✓</span>
+        <span>Habits</span>
+      </button>
+      <button class="tab" data-tab="resources">
+        <span class="tab__icon">🌿</span>
+        <span>Library</span>
+      </button>
+      <button class="tab" data-tab="events">
+        <span class="tab__icon">📅</span>
+        <span>Events</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/garden.js"></script>
+  <script src="js/habits.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
