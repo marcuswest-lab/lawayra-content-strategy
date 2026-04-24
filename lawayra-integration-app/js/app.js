@@ -637,7 +637,9 @@
     renderResourceList(categories[0]);
   }
 
-  // Drag-to-scroll + fade edge indicators on the category pill row
+  // Fade edge indicators + arrow buttons on the category pill row
+  // (Native touch/trackpad scroll handles horizontal swipe; arrows are the
+  // primary affordance on mouse-only desktops.)
   function initPillScrollAffordances(row) {
     const wrap = row.parentElement;
     if (!wrap) return;
@@ -657,42 +659,6 @@
     const scrollBy = (dx) => row.scrollBy({ left: dx, behavior: 'smooth' });
     if (leftBtn)  leftBtn.addEventListener('click', () => scrollBy(-140));
     if (rightBtn) rightBtn.addEventListener('click', () => scrollBy(140));
-
-    // Drag-to-scroll (mouse). Touch uses native momentum scroll via -webkit-overflow-scrolling.
-    let isDown = false;
-    let startX = 0;
-    let startScroll = 0;
-    let moved = 0;
-
-    row.addEventListener('mousedown', (e) => {
-      isDown = true;
-      moved = 0;
-      startX = e.pageX;
-      startScroll = row.scrollLeft;
-    });
-    row.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const dx = e.pageX - startX;
-      if (Math.abs(dx) > 4 && !row.classList.contains('dragging')) {
-        row.classList.add('dragging');
-      }
-      moved = Math.abs(dx);
-      row.scrollLeft = startScroll - dx;
-    });
-    const endDrag = () => {
-      if (isDown && row.classList.contains('dragging')) {
-        // Re-enable pointer events on a tick so the stray mouseup doesn't click
-        setTimeout(() => row.classList.remove('dragging'), 0);
-      }
-      isDown = false;
-    };
-    row.addEventListener('mouseup', endDrag);
-    row.addEventListener('mouseleave', endDrag);
-    // Swallow click after a drag so it doesn't toggle a pill accidentally
-    row.addEventListener('click', (e) => {
-      if (moved > 6) { e.stopPropagation(); e.preventDefault(); moved = 0; }
-    }, true);
   }
 
   function renderResourceList(cat) {
