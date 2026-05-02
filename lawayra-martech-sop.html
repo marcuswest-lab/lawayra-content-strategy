@@ -484,7 +484,7 @@
     <span><strong>3</strong> dashboards</span>
     <span><strong>8</strong> automations</span>
     <span><strong>6</strong> platforms</span>
-    <span><strong>12</strong> sections</span>
+    <span><strong>15</strong> sections</span>
     <span>Last updated: April 18, 2026</span>
   </div>
 </div>
@@ -507,7 +507,8 @@
     <a href="#s06" class="toc-item"><span class="toc-num">06</span><span class="toc-label">When Something Breaks</span></a>
     <a href="#s12" class="toc-item"><span class="toc-num">12</span><span class="toc-label">How to Set Up a Subdomain in GHL</span></a>
     <a href="#s13" class="toc-item"><span class="toc-num">13</span><span class="toc-label">How to Change Permissions in GHL</span></a>
-    <a href="#s14" class="toc-item"><span class="toc-num">14</span><span class="toc-label">Logins</span></a>
+    <a href="#s14" class="toc-item"><span class="toc-num">14</span><span class="toc-label">AI Appointment Setter Prompt</span></a>
+    <a href="#s15" class="toc-item"><span class="toc-num">15</span><span class="toc-label">Logins</span></a>
   </div>
 </div>
 
@@ -1237,9 +1238,50 @@
   </div>
 </div>
 
-<!-- ==================== SECTION 14: LOGINS (encrypted) ==================== -->
+<!-- ==================== SECTION 14: AI APPOINTMENT SETTER PROMPT ==================== -->
 <div class="section" id="s14">
   <div class="section-number">Section 14</div>
+  <h2>How to Update the AI Appointment Setter Prompt</h2>
+  <p class="section-subtitle">How to edit and deploy changes to the AI appointment setter prompt that converts inbound leads into booked sales calls.</p>
+
+  <h3>Quick Edit (recommended for prompt tweaks)</h3>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <span class="info-card-title">Simplified flow &mdash; for everyday prompt updates</span>
+    </div>
+    <div class="info-card-body">
+      <p><strong>Walkthrough:</strong> <a href="https://www.loom.com/share/0505a58dcbe549359c9ec12855cf2acf" target="_blank" rel="noopener">Watch the Loom &rarr;</a></p>
+      <ol class="step-list">
+        <li><strong>Edit the prompt doc first</strong> &mdash; Make all changes here before touching n8n: <a href="https://docs.google.com/document/d/11VYDWwRY4eBCQWRurbNYiabCFwHsafqap5p3k-e8vOE/edit?usp=sharing" target="_blank" rel="noopener">AI Appointment Setter Prompt (working doc)</a></li>
+        <li><strong>Paste the updated prompt into n8n</strong> &mdash; Open the n8n server and update the relevant workflow node: <a href="https://server.lawayraserver.com/home/workflows" target="_blank" rel="noopener">server.lawayraserver.com/home/workflows</a></li>
+        <li><strong>Test in OpenAI Playground</strong> (optional but recommended) &mdash; Validate prompt behavior before going live: <a href="https://platform.openai.com/assistants" target="_blank" rel="noopener">platform.openai.com/assistants</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>Full System Walkthrough</h3>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <span class="info-card-title">Deeper changes / new team member onboarding</span>
+    </div>
+    <div class="info-card-body">
+      <p>Use this if you're new to the appointment setter or making changes beyond the prompt itself (workflow logic, webhooks, GHL integration).</p>
+      <ol class="step-list">
+        <li><strong>Setup video 1</strong> &mdash; Start at <code>22:15</code>: <a href="https://drive.google.com/file/d/1tg0T-uZzH85tFJmGKLKGF6CxgNBHTVyT/view?usp=drive_link" target="_blank" rel="noopener">Watch on Drive &rarr;</a></li>
+        <li><strong>Setup video 2</strong> &mdash; Watch in full: <a href="https://drive.google.com/file/d/1W5_2YgD9ALoWqMrwHka4OYg35TLAfoqF/view?usp=drive_link" target="_blank" rel="noopener">Watch on Drive &rarr;</a></li>
+        <li><strong>3-min overview Loom:</strong> <a href="https://www.loom.com/share/b1a4b39eff854d6d8aeeed81d154e02e" target="_blank" rel="noopener">Watch &rarr;</a></li>
+        <li><strong>Part 2 Loom (2.5 min):</strong> <a href="https://www.loom.com/share/175903faaa0849f49856b6d15455c228" target="_blank" rel="noopener">Watch &rarr;</a></li>
+        <li><strong>Original prompt doc</strong> (for reference): <a href="https://docs.google.com/document/d/185XGwh5dvvvX0vxb0QovKuWWZJx4tBCnTL3wvq0z1Zg/edit" target="_blank" rel="noopener">Open in Google Docs &rarr;</a></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 15: LOGINS (encrypted) ==================== -->
+<div class="section" id="s15">
+  <div class="section-number">Section 15</div>
   <h2>Logins</h2>
   <p class="section-subtitle">Credentials for the platforms used across the martech stack. Encrypted &mdash; ask Marcus for the team password.</p>
 
