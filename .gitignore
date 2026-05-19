@@ -36,3 +36,15 @@
 !lawayra-brand-guide.html
 !lawayra-brand-kit/
 !lawayra-brand-kit/**
+
+# Allow Community landing page and photos
+!lawayra-community-landing-page.html
+!lw-photo-pool.jpg
+!lw-photo-yoga-group.jpg
+!lw-photo-meditation.jpg
+!lw-photo-cacao.jpg
+!lw-photo-yoga-rest.jpg
+!lw-photo-ceremony.jpg
+!lw-photo-maloka.jpg
+!lw-photo-mountains.jpg
+.mcp.json

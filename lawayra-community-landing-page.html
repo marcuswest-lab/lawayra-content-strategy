@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The LaWayra Family — A Life Aligned, Not Just a Retreat</title>
+<meta name="description" content="An invitation to past LaWayra guests: continue your journey with our community of like-minded souls. Weekly calls, integration support, and an annual retreat — built into your everyday.">
+<meta property="og:title" content="The LaWayra Family — A Life Aligned, Not Just a Retreat">
+<meta property="og:description" content="Subscribe to the LaWayra way of life. Continuous support, meaningful community, and real integration — for those who've already sat with us.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Override GHL container defaults */
+  html, body, div, section, header, footer, main, article, aside, nav {
+    max-width: 100% !important;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: var(--cream) !important;
+  }
+  body > div, body > div > div, body > div > div > div,
+  [class*="container"], [class*="section"], [class*="content"],
+  [class*="wrapper"], [class*="inner"], [class*="col"],
+  [class*="row"], [class*="page"], [class*="preview"],
+  [id*="section"], [id*="preview"], [id*="container"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow-x: hidden !important;
+    background: transparent !important;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FFF7E7;
+    --cream-dark: #F5F0E8;
+    --olive: #3F4021;
+    --olive-light: #4A4B2A;
+    --sage: #AEAC92;
+    --beige: #D6D0B8;
+    --amber: #E4A017;
+    --burnt-orange: #B34100;
+    --brown: #623E2A;
+    --charcoal: #2B2728;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', -apple-system, 'Segoe UI', sans-serif;
+    color: var(--charcoal);
+    line-height: 1.6;
+    background: var(--cream);
+  }
+
+  h1, h2, h3 { line-height: 1.25; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── HEADER ─── */
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 8px 40px;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(174,172,146,0.3);
+  }
+  .header-logo { height: 56px; }
+  .header-nav { display: flex; align-items: center; gap: 24px; justify-self: center; }
+  .header-nav a { font-size: 14px; color: var(--charcoal); font-weight: 500; transition: color 0.2s; }
+  .header-nav a:hover { color: var(--olive); }
+  .header-cta {
+    justify-self: end;
+    background: var(--amber); color: var(--white); padding: 12px 24px;
+    border-radius: 8px; font-weight: 600; font-size: 14px;
+    letter-spacing: 0.3px; transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+  }
+  .header-cta:hover { background: #cc8f14; transform: translateY(-1px); }
+
+  /* ─── BUTTONS ─── */
+  .btn-amber {
+    display: inline-block; background: var(--amber); color: var(--white);
+    padding: 16px 36px; border-radius: 8px; font-weight: 600; font-size: 15px;
+    letter-spacing: 0.5px; transition: background 0.2s, transform 0.1s;
+  }
+  .btn-amber:hover { background: #cc8f14; transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block; background: transparent; color: var(--white);
+    padding: 14px 32px; border-radius: 8px; font-weight: 500; font-size: 14px;
+    border: 2px solid rgba(255,255,255,0.6); transition: all 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative; min-height: 620px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; color: var(--white);
+    padding: 100px 24px 80px;
+    background: linear-gradient(to bottom, rgba(63,64,33,0.45) 0%, rgba(43,39,40,0.75) 100%),
+      url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/hero-candidate-2.jpg') center/cover no-repeat;
+  }
+  .hero-label {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 56px; font-weight: 700; margin-bottom: 20px;
+    letter-spacing: -1px; max-width: 900px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .hero-sub {
+    font-size: 19px; font-weight: 300; max-width: 640px;
+    margin-bottom: 32px; line-height: 1.7; opacity: 0.95;
+  }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  /* ─── WELCOME / FAMILY NOTE ─── */
+  .welcome {
+    padding: 80px 40px; background: var(--cream);
+    text-align: center;
+  }
+  .welcome-inner { max-width: 760px; margin: 0 auto; }
+  .welcome-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--burnt-orange); margin-bottom: 16px;
+  }
+  .welcome h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; color: var(--charcoal);
+    margin-bottom: 24px; letter-spacing: -0.5px;
+  }
+  .welcome p {
+    font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 16px;
+  }
+  .welcome .em {
+    color: var(--olive); font-weight: 600;
+  }
+
+  /* ─── WHY (the gap) ─── */
+  .why {
+    padding: 80px 40px; background: var(--olive); color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .why-inner { max-width: 1000px; margin: 0 auto; }
+  .why h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; margin-bottom: 16px;
+    letter-spacing: -0.5px; text-align: center;
+  }
+  .why-subtitle {
+    font-size: 16px; opacity: 0.85; text-align: center;
+    margin-bottom: 48px; max-width: 700px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .why-card {
+    background: rgba(255,255,255,0.07); border-radius: 16px; padding: 32px 28px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .why-card h3 {
+    font-size: 17px; font-weight: 600; color: var(--amber);
+    margin-bottom: 18px; line-height: 1.5;
+  }
+  .why-card ul { list-style: none; padding: 0; }
+  .why-card li {
+    font-size: 14px; padding: 8px 0 8px 20px;
+    position: relative; line-height: 1.6; opacity: 0.92;
+  }
+  .why-card li::before {
+    content: ''; position: absolute; left: 0; top: 14px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--amber);
+  }
+
+  /* ─── SECTION BREAK (full-width photo) ─── */
+  .break {
+    width: 100%; height: 380px;
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .break::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(63,64,33,0.15) 0%, rgba(43,39,40,0.25) 100%);
+  }
+
+  /* ─── PILLARS ─── */
+  .pillars {
+    padding: 80px 40px; background: var(--cream-dark);
+  }
+  .pillars-inner { max-width: 1100px; margin: 0 auto; }
+  .pillars h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; text-align: center;
+    margin-bottom: 16px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .pillars-subtitle {
+    font-size: 15px; color: #666; text-align: center;
+    margin-bottom: 48px; max-width: 620px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .pillar-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .pillar-card {
+    background: var(--white); border-radius: 16px; padding: 32px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    text-align: center;
+    border-top: 4px solid var(--amber);
+    transition: transform 0.2s;
+  }
+  .pillar-card:hover { transform: translateY(-4px); }
+  .pillar-card { padding-top: 0; overflow: hidden; }
+  .pillar-photo {
+    width: calc(100% + 48px); height: 160px;
+    margin: 0 -24px 20px;
+    background-size: cover; background-position: center;
+  }
+  .pillar-icon {
+    width: 56px; height: 56px; margin: 0 auto 16px;
+    border-radius: 50%; background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+  }
+  .pillar-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px; font-weight: 600; color: var(--charcoal);
+    margin-bottom: 8px; line-height: 1.4;
+  }
+  .pillar-card p {
+    font-size: 13px; color: #666; line-height: 1.6;
+  }
+
+  /* ─── WHAT'S INSIDE ─── */
+  .inside {
+    padding: 80px 40px; background: var(--cream);
+  }
+  .inside-inner { max-width: 1000px; margin: 0 auto; }
+  .inside h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; text-align: center;
+    margin-bottom: 16px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .inside-subtitle {
+    font-size: 15px; color: #666; text-align: center;
+    margin-bottom: 48px; max-width: 640px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .inside-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .inside-card {
+    background: var(--white); border-radius: 16px; padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .inside-icon {
+    flex-shrink: 0; width: 48px; height: 48px;
+    background: var(--olive); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--amber); font-size: 22px; font-weight: 600;
+  }
+  .inside-card h3 {
+    font-size: 16px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px;
+  }
+  .inside-card p { font-size: 14px; color: #666; line-height: 1.65; }
+
+  /* ─── GALLERY ─── */
+  .gallery {
+    padding: 80px 40px; background: var(--cream-dark);
+  }
+  .gallery-inner { max-width: 1200px; margin: 0 auto; }
+  .gallery h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; text-align: center;
+    margin-bottom: 16px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .gallery-subtitle {
+    font-size: 15px; color: #666; text-align: center;
+    margin-bottom: 48px; max-width: 640px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .gallery-item {
+    aspect-ratio: 4/3; border-radius: 12px; overflow: hidden;
+    background-size: cover; background-position: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item.tall { aspect-ratio: 3/4; grid-row: span 2; }
+
+  /* ─── COACHES ─── */
+  .coaches {
+    padding: 80px 40px; background: var(--cream-dark);
+  }
+  .coaches-inner { max-width: 1100px; margin: 0 auto; }
+  .coaches h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; text-align: center;
+    margin-bottom: 16px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .coaches-subtitle {
+    font-size: 15px; color: #666; text-align: center;
+    margin-bottom: 48px; max-width: 640px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .coaches-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .coach-card {
+    background: var(--white); border-radius: 16px; padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  .coach-card h3 {
+    font-size: 20px; font-weight: 700; color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .coach-card .role {
+    font-size: 13px; color: var(--burnt-orange); font-weight: 500;
+    margin-bottom: 14px; line-height: 1.4;
+  }
+  .coach-card p {
+    font-size: 13px; color: #666; line-height: 1.65;
+  }
+
+  /* ─── PATHWAYS ─── */
+  .pathways {
+    padding: 80px 40px; background: var(--cream);
+  }
+  .pathways-inner { max-width: 1100px; margin: 0 auto; }
+  .pathways h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; text-align: center;
+    margin-bottom: 16px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .pathways-subtitle {
+    font-size: 15px; color: #666; text-align: center;
+    margin-bottom: 48px; max-width: 660px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .path-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .path-card {
+    background: var(--white); border-radius: 20px; padding: 36px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column;
+    border-top: 6px solid var(--sage);
+    transition: transform 0.2s;
+  }
+  .path-card:hover { transform: translateY(-4px); }
+  .path-card.featured { border-top-color: var(--amber); }
+  .path-card.featured .path-tag { background: var(--amber); }
+  .path-tag {
+    display: inline-block; align-self: flex-start;
+    background: var(--olive); color: var(--white);
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 6px 12px; border-radius: 6px;
+    margin-bottom: 18px;
+  }
+  .path-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px; font-weight: 700; color: var(--charcoal);
+    margin-bottom: 12px; line-height: 1.3;
+  }
+  .path-card .path-lead {
+    font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 20px;
+    flex-grow: 0;
+  }
+  .path-card ul {
+    list-style: none; padding: 0; margin-bottom: 24px; flex-grow: 1;
+  }
+  .path-card li {
+    font-size: 13.5px; color: #555; padding: 7px 0 7px 20px;
+    position: relative; line-height: 1.5;
+  }
+  .path-card li::before {
+    content: ''; position: absolute; left: 0; top: 13px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--amber);
+  }
+  .path-card .path-cta {
+    display: inline-block; text-align: center;
+    background: var(--olive); color: var(--white);
+    padding: 12px 20px; border-radius: 8px; font-weight: 600;
+    font-size: 13px; letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+  .path-card .path-cta:hover { background: var(--olive-light); }
+  .path-card.featured .path-cta { background: var(--amber); }
+  .path-card.featured .path-cta:hover { background: #cc8f14; }
+
+  /* ─── FAMILY INVITATION (replaces pricing) ─── */
+  .family {
+    padding: 80px 40px; background: var(--olive); color: var(--white);
+    text-align: center;
+  }
+  .family-inner { max-width: 700px; margin: 0 auto; }
+  .family-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 16px;
+  }
+  .family h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 38px; font-weight: 700; margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .family p {
+    font-size: 16px; line-height: 1.8; opacity: 0.95;
+    margin-bottom: 24px;
+  }
+  .family .highlight {
+    color: var(--amber); font-weight: 600;
+  }
+  .family .cta-row {
+    margin-top: 32px;
+  }
+  .family .cta-note {
+    font-size: 13px; opacity: 0.75; margin-top: 16px;
+    font-style: italic;
+  }
+
+  /* ─── FAQ ─── */
+  .faq {
+    padding: 80px 40px; background: var(--cream);
+  }
+  .faq-inner { max-width: 760px; margin: 0 auto; }
+  .faq h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px; font-weight: 700; text-align: center;
+    margin-bottom: 40px; color: var(--charcoal);
+    letter-spacing: -0.5px;
+  }
+  .faq-item {
+    background: var(--white); border-radius: 12px;
+    padding: 24px 28px; margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .faq-item h3 {
+    font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px;
+  }
+  .faq-item p { font-size: 14px; color: #666; line-height: 1.65; }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    padding: 80px 40px; background: var(--cream-dark);
+    text-align: center;
+  }
+  .final-cta-inner { max-width: 640px; margin: 0 auto; }
+  .final-cta h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 34px; font-weight: 700; color: var(--charcoal);
+    margin-bottom: 20px; letter-spacing: -0.5px;
+  }
+  .final-cta p {
+    font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 32px;
+  }
+  .final-cta .questions {
+    font-size: 14px; color: var(--olive); margin-top: 24px;
+  }
+  .final-cta .questions a {
+    text-decoration: underline; font-weight: 500;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: 32px 40px; text-align: center;
+    background: var(--cream); border-top: 1px solid rgba(174,172,146,0.3);
+  }
+  .footer-logo { height: 60px; margin: 0 auto 16px; opacity: 0.6; }
+  .footer p { font-size: 12px; color: #888; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+    .coaches-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .path-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.tall { grid-row: span 1; aspect-ratio: 4/3; }
+    .break { height: 300px; }
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 10px 20px; grid-template-columns: 1fr 1fr; }
+    .header-logo { height: 44px; }
+    .header-nav { display: none; }
+    .header-cta { padding: 10px 16px; font-size: 12px; justify-self: end; }
+
+    .hero { min-height: 500px; padding: 60px 20px 40px; }
+    .hero h1 { font-size: 34px; }
+    .hero-sub { font-size: 16px; }
+
+    .welcome { padding: 48px 20px; }
+    .welcome h2 { font-size: 28px; }
+
+    .why { padding: 48px 20px; }
+    .why h2 { font-size: 28px; }
+    .why-grid { grid-template-columns: 1fr; gap: 20px; }
+
+    .pillars { padding: 48px 20px; }
+    .pillars h2 { font-size: 28px; }
+    .pillar-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+
+    .inside { padding: 48px 20px; }
+    .inside h2 { font-size: 28px; }
+    .inside-grid { grid-template-columns: 1fr; }
+
+    .gallery { padding: 48px 20px; }
+    .gallery h2 { font-size: 28px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .break { height: 220px; }
+
+    .coaches { padding: 48px 20px; }
+    .coaches h2 { font-size: 28px; }
+
+    .pathways { padding: 48px 20px; }
+    .pathways h2 { font-size: 28px; }
+    .path-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+
+    .family { padding: 48px 20px; }
+    .family h2 { font-size: 28px; }
+
+    .faq { padding: 48px 20px; }
+    .faq h2 { font-size: 28px; }
+
+    .final-cta { padding: 48px 20px; }
+    .final-cta h2 { font-size: 26px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header class="header">
+  <a href="https://ayahuascaincolombia.com">
+    <img src="https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lawayra-logo-new.png?v=2" alt="LaWayra Retreat" class="header-logo">
+  </a>
+  <nav class="header-nav">
+    <a href="#why">Why It Matters</a>
+    <a href="#inside">What's Inside</a>
+    <a href="#coaches">Our Coaches</a>
+    <a href="#faq">Questions</a>
+  </nav>
+  <a href="#book-call" class="header-cta">BOOK A CALL</a>
+</header>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-label">We're launching the LaWayra Community</div>
+  <h1>a life aligned,<br>not just a retreat</h1>
+  <p class="hero-sub">A new model for living together — continuous support, meaningful community, and real integration, built into your everyday. We're inviting the family in first.</p>
+  <div class="hero-buttons">
+    <a href="#book-call" class="btn-amber">Book a Call With the Team</a>
+    <a href="#why" class="btn-outline">See What's Inside</a>
+  </div>
+</section>
+
+<!-- ═══════════════ WELCOME ═══════════════ -->
+<section class="welcome">
+  <div class="welcome-inner">
+    <div class="welcome-label">A new chapter, opening to the family first</div>
+    <h2>We've been quietly building something for a long time.</h2>
+    <p>For years, LaWayra has been a place people came to, and then went home from. <span class="em">Now we're opening up a different way to belong — a community, a way of life, and for a small group, a long-term home on the land.</span></p>
+    <p>You already know what happens when the retreat ends. Daily life rushes back in. Old patterns wait at the door. The insights start to feel further away.</p>
+    <p>This is for the people who've already been here. Who felt something real. And who want a way to stay close to it — whether that's from your living room, a season with us in Colombia, or something more permanent.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION BREAK ═══════════════ -->
+<div class="break" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-pool.jpg?v=1');"></div>
+
+<!-- ═══════════════ WHY (THE GAP) ═══════════════ -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <h2>What we've learned after 2,500+ guests</h2>
+    <p class="why-subtitle">The ceremony opens the door. Integration is what carries you through it. A retreat alone, no matter how powerful, isn't enough to make the change last.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>What the medicine reveals</h3>
+        <ul>
+          <li>Self-awareness and a clearer sense of direction</li>
+          <li>Release of emotions long held below the surface</li>
+          <li>A shift in how you see habits, relationships, and identity</li>
+          <li>A softer relationship with anxiety, low moods, and old coping patterns</li>
+          <li>A nervous system that finally feels at home in the body</li>
+        </ul>
+      </div>
+      <div class="why-card">
+        <h3>What happens without integration</h3>
+        <ul>
+          <li>The initial clarity fades as daily life takes over</li>
+          <li>Old habits and coping patterns quietly return</li>
+          <li>Insights stay intellectual instead of becoming embodied</li>
+          <li>Emotional processing remains incomplete or unresolved</li>
+          <li>The experience becomes a memory instead of a turning point</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PILLARS ═══════════════ -->
+<section class="pillars">
+  <div class="pillars-inner">
+    <h2>four pillars that make the work last</h2>
+    <p class="pillars-subtitle">Everything inside the LaWayra family is built around what we've seen actually keeps people connected to themselves long after they leave the maloka.</p>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-photo" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-cacao.jpg?v=1');"></div>
+        <h3>A community of like-minded souls</h3>
+        <p>People who came for the same reasons you did, walking the path together.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-photo" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-yoga-group.jpg?v=1');"></div>
+        <h3>Regular practices that are easy to sustain</h3>
+        <p>Simple, grounded rituals that fit into the rhythm of your everyday life.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-photo" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-maloka.jpg?v=1');"></div>
+        <h3>Yearly retreats to keep the fire alive</h3>
+        <p>An annual return to the land, the maloka, and the medicine — together.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-photo" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-meditation.jpg?v=1');"></div>
+        <h3>Expert knowledge and active support</h3>
+        <p>Guidance from our facilitators and coaches whenever the path feels unclear.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHAT'S INSIDE ═══════════════ -->
+<section class="inside" id="inside">
+  <div class="inside-inner">
+    <h2>what's inside the family</h2>
+    <p class="inside-subtitle">A complete support container for the inner work — held weekly, not just once a year.</p>
+    <div class="inside-grid">
+      <div class="inside-card">
+        <div class="inside-icon">◆</div>
+        <div>
+          <h3>Weekly community calls</h3>
+          <p>Recurring circles to reconnect with the LaWayra spirit, share where you are on the path, and feel held by people who get it.</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <div class="inside-icon">◆</div>
+        <div>
+          <h3>Integration calls</h3>
+          <p>Dedicated sessions to help you process what came up in ceremony and turn insight into embodied, lasting change.</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <div class="inside-icon">◆</div>
+        <div>
+          <h3>The integration course</h3>
+          <p>Our flagship self-paced course — designed to help you make sense of your experience and ground it into daily life.</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <div class="inside-icon">◆</div>
+        <div>
+          <h3>An annual return to LaWayra</h3>
+          <p>Family members are invited back to the maloka each year to sit again, deepen the work, and reconnect with the community.</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <div class="inside-icon">◆</div>
+        <div>
+          <h3>Sam's Ayahuasca Podcast</h3>
+          <p>Long-form conversations with guests like Gabor Maté, Wade Davis, Dennis McKenna, and Bia Labate — keep learning, keep connected.</p>
+        </div>
+      </div>
+      <div class="inside-card">
+        <div class="inside-icon">◆</div>
+        <div>
+          <h3>Curated integration resources</h3>
+          <p>Practices, readings, audio, and tools we've gathered from years of supporting guests through the in-between.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<section class="gallery">
+  <div class="gallery-inner">
+    <h2>life at LaWayra</h2>
+    <p class="gallery-subtitle">A glimpse of the land, the maloka, and the moments our community returns for, again and again.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-mountains.jpg?v=1');"></div>
+      <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-yoga-rest.jpg?v=1');"></div>
+      <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-ceremony.jpg?v=1');"></div>
+      <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-pool.jpg?v=1');"></div>
+      <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-cacao.jpg?v=1');"></div>
+      <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-maloka.jpg?v=1');"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ COACHES ═══════════════ -->
+<section class="coaches" id="coaches">
+  <div class="coaches-inner">
+    <h2>integration coaches, when you need deeper support</h2>
+    <p class="coaches-subtitle">Sometimes the path asks for one-on-one guidance. Our family has access to a hand-picked circle of coaches and therapists — each one trained in this work, each one trusted by Sam and our team.</p>
+    <div class="coaches-grid">
+      <div class="coach-card">
+        <h3>Monica</h3>
+        <div class="role">Head of Facilitation<br>Masters in Psychology &amp; Neuroscience</div>
+        <p>Monica brings a rare combination of clinical depth and direct ceremonial experience. Her work weaves psychodynamic and schema-informed therapy with inner child work, somatic practices, and mindfulness — supporting identity shifts, relational patterns, and the move from insight into embodied change.</p>
+      </div>
+      <div class="coach-card">
+        <h3>Ashley</h3>
+        <div class="role">Licensed Clinical Social Worker<br>Musical Therapist</div>
+        <p>Ashley has over fifteen years of experience working with complex trauma. Her trauma-trained, non-diagnostic approach draws on Parts Work, psychodynamic music therapy, and somatic release — with particular care for survivors of abuse, foster care, and those healing from cycles of addiction.</p>
+      </div>
+      <div class="coach-card">
+        <h3>Valerio</h3>
+        <div class="role">Integration Counselor<br>Somatic Experiencing &amp; IFS</div>
+        <p>Valerio's work is grounded in Internal Family Systems and Somatic Experiencing — honoring the wisdom of the body and the natural intelligence of the psyche. He focuses on relationships, attachment, nervous system regulation, and the shadow work that often follows transformative experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PATHWAYS ═══════════════ -->
+<section class="pathways" id="pathways">
+  <div class="pathways-inner">
+    <h2>ways to walk this path</h2>
+    <p class="pathways-subtitle">There's no single right way to step in. Some people want a steady weekly rhythm from home. Others feel called to come back and live the work for a season. And a small group of founding members are helping us build something more permanent here. Your call with our team is where we figure out which one fits.</p>
+    <div class="path-grid">
+      <div class="path-card featured">
+        <span class="path-tag">most accessible</span>
+        <h3>The Circle Subscription</h3>
+        <p class="path-lead">For staying connected from anywhere in the world. Weekly community, integration support, and a path back to the maloka.</p>
+        <ul>
+          <li>Weekly community &amp; integration calls</li>
+          <li>The full integration course</li>
+          <li>Sam's Ayahuasca Podcast &amp; resources</li>
+          <li>Annual return to LaWayra for the family</li>
+          <li>A community of people who get it</li>
+        </ul>
+        <a href="#book-call" class="path-cta">Book a Call to Learn More</a>
+      </div>
+      <div class="path-card">
+        <span class="path-tag">deeper immersion</span>
+        <h3>Coliving Stays at LaWayra</h3>
+        <p class="path-lead">For those called to live the medicine, not just visit. Limited spots each year for guests who want extended time with us in Colombia.</p>
+        <ul>
+          <li>Monthly, 3-month, 6-month &amp; yearlong stays</li>
+          <li>Ongoing ceremony access throughout</li>
+          <li>Living inside the LaWayra community</li>
+          <li>Direct support from facilitators</li>
+          <li>A handful of spots open each year</li>
+        </ul>
+        <a href="#book-call" class="path-cta">Talk to the Team About Coliving</a>
+      </div>
+      <div class="path-card">
+        <span class="path-tag">by application only</span>
+        <h3>A Long-Term Home at LaWayra</h3>
+        <p class="path-lead">Sam is hand-selecting a small number of founding members — for those who want to secure a place at LaWayra for the long run and help shape what we're building. Every spot is personally vetted and approved by Sam.</p>
+        <ul>
+          <li>Multi-year secured access to LaWayra</li>
+          <li>Ongoing community &amp; ceremony access</li>
+          <li>A handful of spots, by application</li>
+          <li>Visa eligibility on select tiers</li>
+          <li>Personally approved by Sam</li>
+        </ul>
+        <a href="#book-call" class="path-cta">Apply for Founding Access</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION BREAK ═══════════════ -->
+<div class="break" style="background-image: url('https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lw-photo-meditation.jpg?v=1');"></div>
+
+<!-- ═══════════════ FAMILY INVITATION ═══════════════ -->
+<section class="family" id="book-call">
+  <div class="family-inner">
+    <div class="family-label">The family gets first access</div>
+    <h2>You were here first. So you get in first.</h2>
+    <p>Because you've already sat with the medicine, we're opening the community to you <span class="highlight">before anyone else</span> — with founding-family pricing on every tier, from the Circle subscription to the long-term spots on the land.</p>
+    <p>The cleanest way to share the details is on a short call. Our team will walk you through how each option works, answer your questions, and help you see what feels right for where you are.</p>
+    <div class="cta-row">
+      <a href="#book-call" class="btn-amber">Book a Call With the Team</a>
+    </div>
+    <p class="cta-note">A 20-minute conversation. No pressure. Just honest answers.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <h2>questions guests usually ask</h2>
+    <div class="faq-item">
+      <h3>Is this only for people who've already been to LaWayra?</h3>
+      <p>For now, yes. We're opening to the family first — guests who've already sat with us — before anyone else. If you haven't been to a retreat yet but want to, reach out and we'll point you to the right place.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How much time does the Circle take each week?</h3>
+      <p>As much or as little as you need. Some members come to every call. Others drop in when life allows. The container is here — you set the rhythm.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What's the difference between Circle, Coliving, and Founding Member?</h3>
+      <p>Circle is for staying connected from home. Coliving is for a season with us on the land. Founding Member is for those who want to secure a long-term place at LaWayra and help us build what's next. Our team will walk you through each on the call.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What's the pricing?</h3>
+      <p>We share pricing on the call so we can match the right option to what you're looking for. Founding family gets the best access on every tier — the team will walk you through them.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Who runs the calls and coaching?</h3>
+      <p>Sam, Monica, and our wider team of facilitators and coaches. Everyone who holds space here has done the work themselves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FINAL CTA ═══════════════ -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2>the maloka isn't the only place we hold space</h2>
+    <p>If something inside you is saying it's time to come back into the circle — trust that feeling. Let's get on a call and see what feels right.</p>
+    <a href="#book-call" class="btn-amber">Book Your Call</a>
+    <p class="questions">Have a quick question first? <a href="https://wa.me/573012345678">Message us on WhatsApp</a>.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <img src="https://raw.githubusercontent.com/marcuswest-lab/lawayra-content-strategy/main/lawayra-logo-new.png?v=2" alt="LaWayra" class="footer-logo">
+  <p>LaWayra Ayahuasca Retreat &middot; Fredonia, Colombia &middot; connect. heal. grow.</p>
+</footer>
+
+</body>
+</html>
