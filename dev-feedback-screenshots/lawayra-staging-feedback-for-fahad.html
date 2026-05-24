@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LaWayra Staging Site — Developer Feedback (Consolidated)</title>
+<style>
+  /* Styles deliberately kept minimal so that copying into Google Docs
+     produces clean output (no dark backgrounds, no colored chips). */
+  body {
+    font-family: Arial, "Helvetica Neue", sans-serif;
+    color: #000;
+    background: #fff;
+    line-height: 1.5;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+    font-size: 14px;
+  }
+  h1 { font-size: 22px; margin: 0 0 12px; }
+  h2 {
+    font-size: 18px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #999;
+  }
+  h3 { font-size: 15px; margin-top: 22px; margin-bottom: 6px; }
+  h4 { font-size: 14px; margin-top: 16px; margin-bottom: 4px; }
+  p { margin: 6px 0; }
+  ul, ol { padding-left: 22px; margin: 6px 0 12px; }
+  li { margin-bottom: 8px; }
+  a { color: #1155cc; }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+  }
+  .caption {
+    font-size: 12px;
+    color: #555;
+    font-style: italic;
+    margin: -4px 0 12px;
+  }
+  .copy {
+    margin: 8px 0 12px;
+    padding: 8px 12px;
+    border-left: 3px solid #999;
+    font-style: italic;
+  }
+  .copy strong { font-style: normal; }
+  hr { border: none; border-top: 1px solid #ccc; margin: 24px 0; }
+</style>
+</head>
+<body>
+
+<h1>LaWayra Staging Site — Consolidated Developer Feedback</h1>
+
+<p><strong>For:</strong> Fahad</p>
+<p><strong>Staging URL:</strong> <a href="https://ayahuascaincolombia.com/staging/">https://ayahuascaincolombia.com/staging/</a></p>
+<p><strong>Marcus's 8-min walkthrough (Loom):</strong> <a href="https://www.loom.com/share/47686d2169ac4026b52af2fd228fcf11">https://www.loom.com/share/47686d2169ac4026b52af2fd228fcf11</a></p>
+
+<p>This document consolidates feedback from Marcus, Sarah, Gabor, and Emily. Duplicates have been merged. Each item lists the page, device (Desktop / Mobile / Both), and a clear action.</p>
+
+<h3>How to read this doc</h3>
+<ul>
+  <li><strong>[BOTH]</strong> = applies to desktop and mobile</li>
+  <li><strong>[DESKTOP]</strong> = desktop only</li>
+  <li><strong>[MOBILE]</strong> = mobile only</li>
+  <li><strong>[HIGH]</strong> = blocking / broken functionality</li>
+  <li><strong>[MEDIUM]</strong> = visible issue / important polish</li>
+  <li><strong>[LOW]</strong> = minor improvement / nice-to-have</li>
+</ul>
+
+<h3>Table of Contents</h3>
+<ol>
+  <li>Site-wide (all pages)</li>
+  <li>Navigation / Header</li>
+  <li>Homepage</li>
+  <li>Retreats / Events Page</li>
+  <li>Accommodation Page</li>
+  <li>Volunteer Page</li>
+  <li>Contact Page</li>
+  <li>Newsletter Section</li>
+  <li>Preparation Page</li>
+  <li>Resources / Blog (new section to build)</li>
+  <li>Email Capture (future)</li>
+</ol>
+
+<hr>
+
+<!-- 1. SITE-WIDE -->
+<h2>1. Site-wide (applies to all pages)</h2>
+
+<ul>
+  <li>
+    <strong>[HIGH] [BOTH] Site is loading very slowly.</strong> Please optimize page load speed (compress images, lazy-load, minify CSS/JS).
+    <em>— Sarah</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Logo is blurry.</strong> Please replace with a higher resolution version (SVG ideally, or 2x PNG).
+    <em>— Emily</em>
+    <img src="doc-images/retreats-page-typo.png" alt="Header showing blurry/missing logo placeholder">
+    <div class="caption">Logo area in the nav is rendering as a faint placeholder rectangle (same issue site-wide).</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Every CTA says "Book Now".</strong> Add a secondary, softer CTA option in key places for visitors who are not ready to book. Examples:
+    <ul>
+      <li>"Talk to someone who attended" (links to WhatsApp)</li>
+      <li>"Sign up for our newsletter"</li>
+      <li>"Download our preparation guide"</li>
+    </ul>
+    <em>— Emily</em>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 2. NAVIGATION -->
+<h2>2. Navigation / Header</h2>
+
+<ul>
+  <li>
+    <strong>[HIGH] [DESKTOP] Add a hamburger menu on desktop.</strong> Right now there is no easy way for desktop users to find pages like "Volunteer". Please add the same hamburger menu that exists on mobile.
+    <em>— Marcus</em>
+  </li>
+  <li>
+    <strong>[HIGH] [MOBILE] Hamburger menu does not work.</strong> Tapping the icon does nothing. Please fix so it opens the menu.
+    <em>— Marcus</em>
+    <img src="doc-images/mobile-home-top-no-hamburger.png" alt="Top of mobile homepage showing logo but no working hamburger menu">
+    <div class="caption">Top of the homepage on mobile (390px wide). The hamburger icon is either missing or non-functional.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] "Book Your Retreat" CTA in the header.</strong> Currently it just scrolls down the homepage. Please change it to link directly to the Retreats page: /staging/ayahuasca-events/
+    <em>— Emily</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Add a "Resources" or "Blog" link to the main navigation</strong> (the Blog section needs to be built first — see section 10).
+    <em>— Emily</em>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 3. HOMEPAGE -->
+<h2>3. Homepage</h2>
+<p><strong>URL:</strong> https://ayahuascaincolombia.com/staging/</p>
+
+<h3>3.1 Hero section ("Everyone Deserves A Safe Space To Heal")</h3>
+<ul>
+  <li>
+    <strong>[MEDIUM] [BOTH] "Best Ayahuasca Retreat" is too vague.</strong> Replace with credible, specific copy.
+    <div class="copy"><strong>Suggested:</strong> "South America's top-rated ayahuasca retreat — 755 five-star reviews, near Medellín."</div>
+    <em>— Emily</em>
+    <img src="doc-images/homepage-01-hero.png" alt="Homepage hero with weak headline and subheadline">
+    <div class="caption">Current hero on staging — "Best Ayahuasca Retreat" and the subheadline are both too vague.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Subheadline doesn't land.</strong> Current: "We're a community helping make ayahuasca feel accessible to everyone". Please change to one of these (Marcus to pick — default to option 2):
+    <div class="copy">
+      1. "We're a community built around safe, intentional ayahuasca experiences."<br>
+      2. "We're a community built around authentic, safe, and intentional ayahuasca experiences."<br>
+      3. "We're a community dedicated to safe, authentic, and intentional ayahuasca journeys."
+    </div>
+    <em>— Emily</em>
+  </li>
+</ul>
+
+<h3>3.2 Retreat information</h3>
+<ul>
+  <li>
+    <strong>[MEDIUM] [BOTH] Show retreat details earlier on the homepage.</strong> Visitors should quickly see the value and what's included. Show each retreat option (4-day, 7-day, 11-day) with a bullet list of inclusions, followed by available dates below.
+    <em>— Emily</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Add an "About the Property" section</strong> covering: outdoor gym, pool, creek, hammocks, solo-time tables, communal areas with books and activities.
+    <em>— Emily</em>
+  </li>
+  <li>
+    <strong>[LOW] [BOTH] Add "+" after prices</strong> (e.g. "$1,245+") because accommodation is added on top.
+    <em>— Emily</em>
+  </li>
+</ul>
+
+<h3>3.3 Testimonials section ("Don't Take Our Word For It")</h3>
+<ul>
+  <li>
+    <strong>[HIGH] [BOTH] The testimonial section is not formatted correctly</strong> — including the section below it with the icons. Please rebuild this section.
+    <em>— Sarah, Marcus</em>
+    <img src="doc-images/sarah-01-testimonial-formatting.png" alt="Testimonial section showing bad zoomed thumbnail and broken icons below">
+    <div class="caption">The testimonial thumbnail shows only a hoodie/chest (no face), and the section below has the same formatting problem with the icons.</div>
+  </li>
+  <li>
+    <strong>[HIGH] [DESKTOP] Testimonials section is too large.</strong> Make it smaller and use a horizontal carousel of vertical video cards (3 visible at a time, scrollable left/right with working arrows).
+    <em>— Marcus, Emily, Gabor</em>
+  </li>
+  <li>
+    <strong>[HIGH] [BOTH] Video thumbnails are bad.</strong> The preview image is too zoomed in — you can't see the person's face. Use clear thumbnails that show each person's face (ideally 3 thumbnails: two women, one man).
+    <em>— Gabor, Marcus, Emily</em>
+  </li>
+  <li>
+    <strong>[HIGH] [BOTH] Vertical video plays inside a horizontal modal background.</strong> When you click a testimonial video, the modal background is horizontal but the video itself is vertical. Use a vertical video player.
+    <em>— Gabor</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Add a caption under each video</strong> with: person's name, country/location, and a one-line outcome.
+    <div class="copy"><strong>Example:</strong> "Andrew, USA — 'I hadn't cried in 10 years. I cried for four days.'"</div>
+    <em>— Emily</em>
+  </li>
+  <li>
+    <strong>[HIGH] [DESKTOP] Arrows in the testimonials section do not scroll.</strong> They are visible but clicking them does nothing. Please make them functional.
+    <em>— Marcus</em>
+  </li>
+  <li>
+    <strong>[HIGH] [MOBILE] Mobile testimonials do not scroll either.</strong> The mobile version looks better visually than desktop (shows the whole thumbnail), but it is not scrollable. Please make it a working carousel. <em>If you cannot make it scroll, then hide testimonials on mobile only (keep them on desktop).</em>
+    <em>— Marcus</em>
+  </li>
+</ul>
+
+<h3>3.4 About the Team</h3>
+<ul>
+  <li>
+    <strong>[MEDIUM] [BOTH] Move "About the Team" section ABOVE "The Wisdom is Ancient"</strong> (team credibility should come before the science section).
+    <em>— Emily</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Mention Sam by name.</strong> People who find LaWayra through his podcast should see him here and make the connection.
+    <em>— Emily</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Surface team credentials.</strong> Note that team members hold degrees in neuroscience, work as music therapists, etc. Pull in as much credibility as possible.
+    <em>— Emily</em>
+  </li>
+</ul>
+
+<h3>3.5 "The Wisdom is Ancient" (science section)</h3>
+<ul>
+  <li>
+    <strong>[HIGH] [BOTH] This section is too long and has no clear takeaway.</strong> Replace the current 5 paragraphs with the condensed version below.
+    <em>— Gabor, Emily</em>
+    <div class="copy">
+      <strong>New Headline:</strong> Where ancient ceremony meets modern neuroscience<br><br>
+      <strong>New Subheadline:</strong> LaWayra is one of the only retreats in the world where you can witness your own healing — before and after, in data.<br><br>
+      <strong>New Body (replaces all 5 paragraphs):</strong><br>
+      We partner with researcher Luke Jensen from NewMind Technologies to map guests' brain activity using qEEG — a simple, non-invasive read of your brain's electrical patterns. Comparing maps before and after ceremony, the shifts are measurable: calmer nervous systems, stronger emotional regulation, greater clarity. What people feel but can't quite articulate, the science is beginning to confirm.<br><br>
+      Optional neurofeedback after your retreat helps the brain settle into those new patterns — so the work stays with you.<br><br>
+      <strong>New CTA:</strong> See what the research is finding →
+    </div>
+    <img src="doc-images/homepage-02-wisdom-ancient.png" alt="Wisdom is Ancient section showing 5 dense paragraphs">
+    <div class="caption">Current section has 5 long paragraphs about qEEG and Luke Jensen — no clear takeaway. Replace with the condensed copy above.</div>
+  </li>
+</ul>
+
+<h3>3.6 Location section</h3>
+<ul>
+  <li>
+    <strong>[HIGH] [DESKTOP] Map is missing.</strong> The map is not showing on desktop. Please make it appear.
+    <em>— Marcus</em>
+    <img src="doc-images/homepage-location-missing-map.png" alt="Location section at bottom of homepage with no visible map">
+    <div class="caption">Bottom of the homepage — the "Location" heading appears but no map below it.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Image appears to be missing next to "Location".</strong> Please add the location image.
+    <em>— Gabor</em>
+  </li>
+  <li>
+    <strong>[LOW] [BOTH] Make the location section clickable</strong> — it should link out to the location on Google Maps so people can click through.
+    <em>— Emily</em>
+  </li>
+</ul>
+
+<h3>3.7 Homepage — Mobile-only fixes</h3>
+<ul>
+  <li>
+    <strong>[MEDIUM] [MOBILE] Too much empty space above "Authentic Ancestral Medicine Retreat in Colombia".</strong> Big gap between the section before "Don't Take Our Word For It" and this title. Remove this empty space on mobile.
+    <em>— Marcus</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [MOBILE] Remove the decorative icons</strong> (mountains, jaguar, etc.) that appear between sections — specifically between "Authentic Ancestral Medicine Retreat in Colombia" and "Learn about the Medicine". <em>Apply this rule to ALL pages on mobile: hide all between-section decorative icons. Keep them on desktop.</em>
+    <em>— Marcus</em>
+    <img src="doc-images/mobile-home-icons-between.png" alt="Mobile homepage mid-section showing decorative icons taking up vertical space">
+    <div class="caption">Mobile homepage between sections — the decorative jaguar / snake / mountain icons take up too much vertical space. Hide them all on mobile, keep them on desktop.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [MOBILE] Space between the green section and "Upcoming Retreats" is too small.</strong> Add more padding/margin between them.
+    <em>— Marcus</em>
+  </li>
+  <li>
+    <strong>[LOW] [MOBILE] Center-align the FAQ text on mobile.</strong>
+    <em>— Marcus</em>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 4. RETREATS -->
+<h2>4. Retreats / Events Page</h2>
+<p><strong>URL:</strong> https://ayahuascaincolombia.com/staging/ayahuasca-events/</p>
+
+<ul>
+  <li>
+    <strong>[HIGH] [BOTH] Typo in page title: "Ayahausca Events" → should be "Ayahuasca Events"</strong> (missing the 'u' between 'h' and 'a').
+    <em>— Found during review</em>
+    <img src="doc-images/retreats-page-typo.png" alt="Page header showing Ayahausca Events typo">
+    <div class="caption">The page H1 says "Ayahausca Events" — should be "Ayahuasca Events".</div>
+  </li>
+  <li>
+    <strong>[HIGH] [BOTH] "From" prices on the list do not match the real prices.</strong> Please update so the "from" price displayed matches the actual lowest retreat price.
+    <em>— Gabor</em>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 5. ACCOMMODATION -->
+<h2>5. Accommodation Page</h2>
+
+<ul>
+  <li>
+    <strong>[MEDIUM] [BOTH] Image gallery formatting:</strong>
+    <ul>
+      <li>Remove the lines/borders around the pictures.</li>
+      <li>Leave space between the pictures.</li>
+      <li>Make the left/right arrows visible on either side so people can swipe through.</li>
+    </ul>
+    <em>— Sarah</em>
+    <img src="doc-images/sarah-02-accommodation-gallery.png" alt="Accommodation page gallery with lines around pictures and no visible arrows">
+    <div class="caption">"where you'll call home" / "private cabins" / "shared room" image rows. Notice the lines around each picture and no visible left/right arrows.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Remove the "Book Now" section at the bottom of the page.</strong> It is already in the footer — we don't need it twice.
+    <em>— Marcus</em>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 6. VOLUNTEER -->
+<h2>6. Volunteer Page</h2>
+
+<h4>Both Desktop &amp; Mobile</h4>
+<ul>
+  <li>
+    <strong>[HIGH] [BOTH] When clicking the buttons, the image doesn't change.</strong> The button click should swap the corresponding image. Please fix.
+    <em>— Sarah</em>
+    <img src="doc-images/sarah-03-volunteer-button-image.png" alt="Volunteer roles section with three buttons">
+    <div class="caption">"the roles we offer" with three buttons (ceremony volunteer, business volunteer, remote sales volunteer). Clicking each button should swap the image and body content on the left, but currently nothing changes.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] One of the content boxes is too big</strong> — it should be sized to fit its actual content (not stretched).
+    <em>— Sarah</em>
+    <img src="doc-images/sarah-04-volunteer-box-too-big.png" alt="Ready to step into service section — big green box with only 3 small buttons inside">
+    <div class="caption">The green "ready to step into service" box is huge but only contains 3 small buttons. Shrink the box to fit the content.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Too much space above "Ready to Step into Service".</strong> Reduce the gap between the title and the start of that section.
+    <em>— Marcus</em>
+    <img src="doc-images/volunteer-01-hero-spacing.png" alt="Top of volunteer page showing hero and spacing">
+    <div class="caption">Top of the Volunteer page — note the large empty area between the hero and the next section.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Fix button capitalization.</strong> Only the "A" in "Apply" should be capitalized. The rest of the words should be lowercase:
+    <ul>
+      <li>"Apply as Ceremony Volunteer" → <strong>"Apply as ceremony volunteer"</strong></li>
+      <li>"Apply as Business Volunteer" → <strong>"Apply as business volunteer"</strong></li>
+      <li>"Apply as Remote Sales Volunteer" → <strong>"Apply as remote sales volunteer"</strong></li>
+    </ul>
+    <em>— Marcus</em>
+  </li>
+</ul>
+
+<h4>Mobile only</h4>
+<ul>
+  <li>
+    <strong>[MEDIUM] [MOBILE] Center-align the top hero section.</strong> Keep the body content left-aligned.
+    <em>— Marcus</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [MOBILE] Fix inconsistent spacing</strong> — too much or too little space in several places. Make spacing consistent throughout the page.
+    <em>— Marcus</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [MOBILE] One headline needs to fit on a single line and be centered</strong> (currently wrapping incorrectly).
+    <em>— Marcus</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [MOBILE] Some text appears too far to the left.</strong> Please center it on mobile.
+    <em>— Marcus</em>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 7. CONTACT -->
+<h2>7. Contact Page</h2>
+
+<ul>
+  <li>
+    <strong>[MEDIUM] [BOTH] Change the background color to beige.</strong>
+    <em>— Sarah</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Too much empty space at the bottom of the page.</strong> Tighten the layout so there isn't an empty section at the bottom.
+    <em>— Marcus</em>
+  </li>
+  <li>
+    <strong>[HIGH] [BOTH] Add WhatsApp contact info.</strong> There is currently no WhatsApp contact info on this page. Please add WhatsApp contact details (number / link).
+    <em>— Marcus</em>
+    <img src="doc-images/contact-empty-space.png" alt="Contact page showing form with no WhatsApp info and large empty space below">
+    <div class="caption">Contact page — body mentions "WhatsApp is the fastest way to get a hold of us" but no actual WhatsApp link/number is shown. Also note the large empty area between the form and the footer.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Add the following content sections to the Contact page</strong> (exact copy below):
+    <em>— Sarah</em>
+    <div class="copy">
+      <strong>Section 1 heading:</strong> Still Have Questions? Contact us directly.<br><br>
+      <strong>Body:</strong> We're here to help.<br>
+      If you have any questions about bookings, payments, accommodation, transportation, or general information, feel free to reach out to our customer support team.<br><br>
+      Juli will be happy to assist you and guide you through the process with care and clarity.
+    </div>
+    <div class="copy">
+      <strong>Section 2 heading:</strong> Not Sure if LaWayra Is Right for You?<br><br>
+      <strong>Body:</strong> Choosing a retreat is a personal decision, and we want you to feel fully informed and supported.<br><br>
+      If you'd like to learn more about the retreat experience, the ceremonies, preparation, or whether this journey is aligned for you at this moment in your life, you can book a free consultation call with one of our team members.<br><br>
+      We're happy to answer your questions, hear your intentions, and help you decide if LaWayra is the right fit for your journey.<br><br>
+      <strong>Button text:</strong> Book Your Free Consultation Call
+    </div>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 8. NEWSLETTER -->
+<h2>8. Newsletter Section</h2>
+
+<ul>
+  <li>
+    <strong>[MEDIUM] [BOTH] Change the newsletter button color</strong> to the same yellow tone used by all the other buttons on the site (amber #E4A017).
+    <em>— Sarah</em>
+    <img src="doc-images/sarah-05-newsletter.png" alt="Newsletter page with green Submit button on dark olive background">
+    <div class="caption">Current newsletter page. Submit button is green (should be amber yellow), background is dark olive (should be beige), and there's no surrounding context about why to sign up.</div>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Change the background to beige.</strong>
+    <em>— Sarah</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Add the following content blocks</strong> next to / around the signup form:
+    <ul>
+      <li>Why to sign up</li>
+      <li>What the newsletter is about</li>
+      <li>What are the benefits</li>
+    </ul>
+    <em>(Copy for these three blocks will be provided separately by the LaWayra team.)</em>
+    <em>— Sarah</em>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 9. PREPARATION -->
+<h2>9. Preparation Page</h2>
+<p><strong>URL:</strong> https://ayahuascaincolombia.com/staging/preparation-for-the-retreat/</p>
+
+<ul>
+  <li>
+    <strong>[HIGH] [BOTH] The shortlinks / step links (01–016) are not working.</strong> Clicking the numbered steps does nothing. Please fix so each step link scrolls to / opens its content.
+    <em>— Gabor, Emily</em>
+    <img src="doc-images/preparation-broken-links.png" alt="Preparation page showing numbered step list on left and empty content panel on right">
+    <div class="caption">The "01–06" steps are visible on the left, but clicking them doesn't load anything into the empty panel on the right. Each numbered step should display its content when clicked.</div>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 10. BLOG / RESOURCES -->
+<h2>10. Resources / Blog Section (new — to build)</h2>
+
+<ul>
+  <li>
+    <strong>[MEDIUM] [BOTH] Build out a Resources / Blog section</strong> with two types of content:
+    <ul>
+      <li><strong>Educational content about ayahuasca</strong> — what it is, safety, what to expect, the science, etc. This moves hesitant visitors toward a decision.</li>
+      <li><strong>One post per Sam's podcast episode</strong> — so listeners who find the site can go deeper on topics they've already heard him discuss.</li>
+    </ul>
+    <em>— Emily</em>
+  </li>
+  <li>
+    <strong>[MEDIUM] [BOTH] Add a "Resources" or "Blog" link to the main navigation</strong> once the section exists.
+    <em>— Emily</em>
+  </li>
+</ul>
+
+<hr>
+
+<!-- 11. EMAIL -->
+<h2>11. Email Capture / Popup (future enhancement)</h2>
+
+<p><em>This is a future enhancement — not required in this round, but documented here for planning. Fahad: please confirm whether your current setup (e.g. Mailchimp / ConvertKit / Klaviyo) supports segmented popups before we scope this.</em></p>
+
+<ul>
+  <li>
+    Add an email capture popup that segments visitors by stage:
+    <ul>
+      <li><strong>Curious</strong> — Learning about ayahuasca before committing to anything.</li>
+      <li><strong>Considering</strong> — Ready to do it, choosing where and with whom.</li>
+      <li><strong>Returning</strong> — Done it before, looking to go deeper or stay connected.</li>
+    </ul>
+  </li>
+  <li>Each segment gets its own educational email flow. Example Curious flow (10–11 emails):
+    <ol>
+      <li>You asked about ayahuasca.</li>
+      <li>Here's where to start.</li>
+      <li>4,000 years old. Still misunderstood.</li>
+      <li>What to expect the night of a ceremony.</li>
+      <li>The question everyone has but not everyone asks.</li>
+      <li>What changes. And what doesn't.</li>
+      <li>There are a lot of retreats. Here's what makes us different.</li>
+      <li>In their own words.</li>
+      <li>A day-by-day look at the retreat.</li>
+      <li>Flights, costs, what to bring.</li>
+      <li>No pressure. But spots do fill up.</li>
+    </ol>
+  </li>
+</ul>
+
+<hr>
+
+<!-- LOOKS GOOD -->
+<h2>Looks Good (no changes needed)</h2>
+<ul>
+  <li>Overall design and copy direction</li>
+  <li>Booking page</li>
+  <li>Blog pages (existing layout, content to be expanded)</li>
+  <li>Desktop hero / "What We're All About" section</li>
+</ul>
+
+<hr>
+
+<p style="font-size: 12px; color: #777; text-align: center;">
+Compiled from feedback by Sarah, Gabor, Emily, and Marcus. Sam, Andrew, and Juan had no comments at time of compilation. Please reply with questions on any item that is unclear.
+</p>
+
+</body>
+</html>

@@ -47,4 +47,8 @@
 !lw-photo-ceremony.jpg
 !lw-photo-maloka.jpg
 !lw-photo-mountains.jpg
+
+# Allow staging-site feedback deliverable for Fahad
+!dev-feedback-screenshots/
+!dev-feedback-screenshots/**
 .mcp.json
