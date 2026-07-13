@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahmirs Beibalajevs — Marketing, Paid Ads &amp; SEO Consulting</title>
+<meta name="description" content="Sahmirs Beibalajevs helps businesses grow with performance marketing, paid advertising management, and SEO consulting.">
+<style>
+  :root{
+    --ink:#101418;
+    --muted:#5b6672;
+    --line:#e7eaee;
+    --bg:#ffffff;
+    --soft:#f6f8fa;
+    --brand:#2f6df6;
+    --brand-dark:#1f4fd1;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:inherit;text-decoration:none}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.02em}
+  .logo{
+    width:34px;height:34px;border-radius:9px;
+    background:linear-gradient(135deg,var(--brand),#7aa5ff);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:800;font-size:15px;
+  }
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:500}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-block;background:var(--brand);color:#fff;
+    padding:11px 20px;border-radius:10px;font-weight:600;font-size:15px;
+    transition:background .15s ease;border:none;cursor:pointer;
+  }
+  .btn:hover{background:var(--brand-dark)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{background:var(--soft)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* Hero */
+  .hero{padding:88px 0 72px;text-align:center}
+  .eyebrow{
+    display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--brand);
+    background:#eef3ff;padding:6px 14px;border-radius:999px;margin-bottom:22px;
+  }
+  h1{font-size:clamp(34px,5.5vw,56px);line-height:1.08;letter-spacing:-.03em;font-weight:800;max-width:900px;margin:0 auto}
+  .hero p{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:620px;margin:22px auto 34px}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* Trust bar */
+  .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--soft)}
+  .trust .wrap{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;padding:26px 24px}
+  .stat{text-align:center}
+  .stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em}
+  .stat span{font-size:14px;color:var(--muted)}
+
+  /* Sections */
+  section{padding:82px 0}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 52px}
+  .section-head h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.02em;font-weight:800}
+  .section-head p{color:var(--muted);margin-top:14px;font-size:17px}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{
+    border:1px solid var(--line);border-radius:var(--radius);padding:30px;
+    background:var(--bg);transition:box-shadow .2s ease,transform .2s ease;
+  }
+  .card:hover{box-shadow:0 12px 34px rgba(16,20,24,.07);transform:translateY(-2px)}
+  .card .ic{
+    width:46px;height:46px;border-radius:11px;background:#eef3ff;
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:22px;
+  }
+  .card h3{font-size:20px;margin-bottom:10px;letter-spacing:-.01em}
+  .card p{color:var(--muted);font-size:15px}
+  .card ul{list-style:none;margin-top:16px}
+  .card li{color:var(--muted);font-size:14.5px;padding-left:22px;position:relative;margin-bottom:7px}
+  .card li:before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:700}
+
+  /* Approach */
+  .approach{background:var(--soft)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:step}
+  @media(max-width:860px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .step .num{
+    width:36px;height:36px;border-radius:9px;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:16px;
+  }
+  .step h3{font-size:18px;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:15px}
+
+  /* CTA */
+  .cta{text-align:center}
+  .cta-box{
+    background:linear-gradient(135deg,#1f2937,#0f172a);
+    color:#fff;border-radius:22px;padding:64px 32px;
+  }
+  .cta-box h2{font-size:clamp(26px,4vw,36px);letter-spacing:-.02em;margin-bottom:14px}
+  .cta-box p{color:#c3ccd6;max-width:520px;margin:0 auto 30px;font-size:17px}
+  .cta-box .btn{background:#fff;color:var(--ink)}
+  .cta-box .btn:hover{background:#e9edf2}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:44px 0;color:var(--muted);font-size:14px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot a{color:var(--muted)}
+  .foot a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo">SB</div>
+      <span>Sahmirs Beibalajevs</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="btn">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Marketing · Paid Ads · SEO Consulting</span>
+      <h1>Marketing that turns ad spend into measurable growth.</h1>
+      <p>Sahmirs Beibalajevs helps businesses grow through performance marketing, paid advertising management, and SEO consulting — built around clear reporting and real results.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn">Start a project</a>
+        <a href="#services" class="btn btn-ghost">See services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <div class="trust">
+    <div class="wrap">
+      <div class="stat"><b>10+ yrs</b><span>Marketing experience</span></div>
+      <div class="stat"><b>Full-funnel</b><span>Ads &amp; organic growth</span></div>
+      <div class="stat"><b>Data-led</b><span>Transparent reporting</span></div>
+      <div class="stat"><b>Global</b><span>Remote-first delivery</span></div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What we do</h2>
+        <p>A focused set of services designed to help you acquire customers profitably and grow your visibility online.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="ic">📈</div>
+          <h3>Paid Advertising</h3>
+          <p>End-to-end management of paid campaigns across the platforms your customers actually use.</p>
+          <ul>
+            <li>Google &amp; Meta ad management</li>
+            <li>Campaign strategy &amp; setup</li>
+            <li>Creative testing &amp; optimization</li>
+            <li>Conversion tracking</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="ic">🔍</div>
+          <h3>SEO Consulting</h3>
+          <p>Practical, technical, and content-led SEO to grow qualified organic traffic over time.</p>
+          <ul>
+            <li>Technical SEO audits</li>
+            <li>Keyword &amp; content strategy</li>
+            <li>On-page optimization</li>
+            <li>Performance reporting</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="ic">🎯</div>
+          <h3>Marketing Strategy</h3>
+          <p>Positioning, messaging, and channel planning so every dollar works toward the same goal.</p>
+          <ul>
+            <li>Go-to-market planning</li>
+            <li>Funnel &amp; offer strategy</li>
+            <li>Analytics &amp; attribution</li>
+            <li>Ongoing consulting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section id="approach" class="approach">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How we work</h2>
+        <p>A simple, transparent process — no jargon, no vanity metrics, just growth you can measure.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Audit &amp; strategy</h3>
+          <p>We learn your business, review your current marketing, and build a clear plan with defined goals.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Build &amp; launch</h3>
+          <p>We set up campaigns, tracking, and optimizations — then launch with a focus on early wins.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Optimize &amp; report</h3>
+          <p>We test, refine, and share transparent reporting so you always know what's working and why.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About</h2>
+        <p>Sahmirs Beibalajevs is an independent marketing consultancy helping businesses grow through paid advertising, SEO, and marketing strategy. We work as an extension of your team — hands-on, accountable, and focused on the numbers that matter. Whether you're launching a new offer or scaling an existing one, we bring the strategy and execution to get you there.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <div class="cta-box">
+        <h2>Ready to grow?</h2>
+        <p>Tell us about your business and what you'd like to achieve. We'll get back to you to talk through how we can help.</p>
+        <a href="#contact" class="btn">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Have a project in mind or a question about our services? Reach out and we'll respond as soon as we can.</p>
+      </div>
+      <div style="text-align:center">
+        <a href="mailto:hello@facilitatorcourse.com" class="btn">hello@facilitatorcourse.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© <span id="yr"></span> Sahmirs Beibalajevs — Marketing, Paid Ads &amp; SEO Consulting</div>
+    <div><a href="#services">Services</a> &nbsp;·&nbsp; <a href="#about">About</a> &nbsp;·&nbsp; <a href="#contact">Contact</a></div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>

@@ -51,4 +51,7 @@
 # Allow staging-site feedback deliverable for Fahad
 !dev-feedback-screenshots/
 !dev-feedback-screenshots/**
+
+# Allow generic marketing-services landing page (Sahmirs Beibalajevs / Revolut)
+!facilitatorcourse-marketing-landing.html
 .mcp.json
