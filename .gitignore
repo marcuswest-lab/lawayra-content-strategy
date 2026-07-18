@@ -48,6 +48,11 @@
 !lw-photo-maloka.jpg
 !lw-photo-mountains.jpg
 
+# Allow Stripe-compliant membership page and emblem logo
+!lawayra-membership.html
+!lawayra-emblem-olive.png
+!lawayra-emblem-cream.png
+
 # Allow staging-site feedback deliverable for Fahad
 !dev-feedback-screenshots/
 !dev-feedback-screenshots/**
