@@ -337,6 +337,16 @@
     box-shadow: 0 2px 12px rgba(0,0,0,0.05);
     text-align: center;
   }
+  .coach-avatar {
+    width: 120px; height: 120px; border-radius: 50%;
+    object-fit: cover; margin: 0 auto 18px; display: block;
+    border: 3px solid var(--beige);
+  }
+  .coach-avatar.placeholder {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--sage); color: var(--cream);
+    font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 600;
+  }
   .coach-card h3 {
     font-size: 20px; font-weight: 700; color: var(--charcoal);
     margin-bottom: 6px;
@@ -744,16 +754,19 @@
     <p class="coaches-subtitle">Sometimes growth asks for one-on-one guidance. Members have access to a hand-picked circle of coaches and therapists — each one trained in this work, each one trusted by Sam and our team.</p>
     <div class="coaches-grid">
       <div class="coach-card">
+        <img src="https://marcuswest-lab.github.io/lawayra-content-strategy/monica-kronstain.png?v=1" alt="Monica" class="coach-avatar">
         <h3>Monica</h3>
         <div class="role">Head of Coaching<br>Masters in Psychology &amp; Neuroscience</div>
         <p>Monica brings a rare combination of clinical depth and lived experience. Her work weaves psychodynamic and schema-informed therapy with inner-child work, somatic practices, and mindfulness — supporting identity shifts, healthier relationships, and the move from insight into embodied change.</p>
       </div>
       <div class="coach-card">
+        <div class="coach-avatar placeholder">A</div>
         <h3>Ashley</h3>
         <div class="role">Licensed Clinical Social Worker<br>Music Therapist</div>
         <p>Ashley has over fifteen years of experience working with complex trauma. Her trauma-informed, non-diagnostic approach draws on Parts Work, psychodynamic music therapy, and somatic release — with particular care for survivors of abuse, foster care, and those healing from cycles of addiction.</p>
       </div>
       <div class="coach-card">
+        <div class="coach-avatar placeholder">V</div>
         <h3>Valerio</h3>
         <div class="role">Somatic Counselor<br>Somatic Experiencing &amp; IFS</div>
         <p>Valerio's work is grounded in Internal Family Systems and Somatic Experiencing — honoring the wisdom of the body and the natural intelligence of the psyche. He focuses on relationships, attachment, nervous system regulation, and the shadow work that often follows big life change.</p>
