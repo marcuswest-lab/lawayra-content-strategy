@@ -240,7 +240,10 @@
   .pillar-photo {
     width: calc(100% + 48px); height: 160px;
     margin: 0 -24px 20px;
-    background-size: cover; background-position: center;
+    background: var(--sage); overflow: hidden;
+  }
+  .pillar-photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
   }
   .pillar-card h3 {
     font-family: 'Poppins', sans-serif;
@@ -307,9 +310,12 @@
   }
   .gallery-item {
     aspect-ratio: 4/3; border-radius: 12px; overflow: hidden;
-    background-size: cover; background-position: center;
+    background: var(--sage);
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     transition: transform 0.3s;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
   }
   .gallery-item:hover { transform: scale(1.02); }
 
@@ -656,22 +662,22 @@
     <p class="pillars-subtitle">Everything inside the LaWayra community is built around what we've seen actually keeps people connected to themselves and moving forward over the long run.</p>
     <div class="pillar-grid">
       <div class="pillar-card">
-        <div class="pillar-photo" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-cacao.jpg?v=1');"></div>
+        <div class="pillar-photo"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-cacao.jpg?v=2" alt=""></div>
         <h3>A community of like-minded people</h3>
         <p>People who are walking the same path you are, growing together.</p>
       </div>
       <div class="pillar-card">
-        <div class="pillar-photo" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-yoga-group.jpg?v=1');"></div>
+        <div class="pillar-photo"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-yoga-group.jpg?v=2" alt=""></div>
         <h3>Simple practices you can sustain</h3>
         <p>Grounded daily habits and rituals that fit into the rhythm of real life.</p>
       </div>
       <div class="pillar-card">
-        <div class="pillar-photo" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-mountains.jpg?v=1');"></div>
+        <div class="pillar-photo"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-mountains.jpg?v=2" alt=""></div>
         <h3>Live sessions to stay inspired</h3>
         <p>Weekly live calls, workshops, and Q&amp;As to go deeper and reconnect with the community online.</p>
       </div>
       <div class="pillar-card">
-        <div class="pillar-photo" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-meditation.jpg?v=1');"></div>
+        <div class="pillar-photo"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-meditation.jpg?v=2" alt=""></div>
         <h3>Expert knowledge and active support</h3>
         <p>Guidance from our facilitators whenever the path ahead feels unclear.</p>
       </div>
@@ -716,8 +722,8 @@
       <div class="inside-card">
         <div class="inside-icon">◆</div>
         <div>
-          <h3>The LaWayra Podcast</h3>
-          <p>Long-form conversations on psychology, personal growth, and living a meaningful life — keep learning, keep connected.</p>
+          <h3>One free in-person gathering a year</h3>
+          <p>Every member is invited to one complimentary in-person community gathering each year — a chance to meet the people you grow with online, face to face.</p>
         </div>
       </div>
       <div class="inside-card">
@@ -737,12 +743,12 @@
     <h2>life in the community</h2>
     <p class="gallery-subtitle">A glimpse of the people, the practices, and the moments our community returns for, again and again.</p>
     <div class="gallery-grid">
-      <div class="gallery-item" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-mountains.jpg?v=1');"></div>
-      <div class="gallery-item" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-yoga-rest.jpg?v=1');"></div>
-      <div class="gallery-item" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-yoga-group.jpg?v=1');"></div>
-      <div class="gallery-item" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-pool.jpg?v=1');"></div>
-      <div class="gallery-item" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-cacao.jpg?v=1');"></div>
-      <div class="gallery-item" style="background-image: url('https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-meditation.jpg?v=1');"></div>
+      <div class="gallery-item"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-mountains.jpg?v=2" alt=""></div>
+      <div class="gallery-item"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-yoga-rest.jpg?v=2" alt=""></div>
+      <div class="gallery-item"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-yoga-group.jpg?v=2" alt=""></div>
+      <div class="gallery-item"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-pool.jpg?v=2" alt=""></div>
+      <div class="gallery-item"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-cacao.jpg?v=2" alt=""></div>
+      <div class="gallery-item"><img src="https://marcuswest-lab.github.io/lawayra-content-strategy/lw-photo-meditation.jpg?v=2" alt=""></div>
     </div>
   </div>
 </section>
@@ -791,7 +797,8 @@
           <li>Weekly group support sessions</li>
           <li>The full self-guided member series</li>
           <li>Live online workshops &amp; Q&amp;As</li>
-          <li>The LaWayra Podcast &amp; resource library</li>
+          <li>One free in-person gathering each year</li>
+          <li>Curated resource &amp; content library</li>
           <li>A private community of people who get it</li>
         </ul>
         <a href="#join" class="path-cta">Become a Member</a>
@@ -840,6 +847,10 @@
     <div class="faq-item">
       <h3>Who runs the calls and sessions?</h3>
       <p>Sam, Monica, and our wider team of guides. Everyone who holds space here has done the work themselves.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you offer in-person experiences too?</h3>
+      <p>Yes. Members get one complimentary in-person community gathering each year, and we host in-person experiences at our center in Colombia throughout the year. If you'd like to join us in person, <a href="mailto:admin@lawayra.com">reach out to the team</a> and we'll help you find the right dates.</p>
     </div>
   </div>
 </section>
