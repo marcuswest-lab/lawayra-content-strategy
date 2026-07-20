@@ -597,7 +597,7 @@
     <a href="#coaches">Our Guides</a>
     <a href="#faq">Questions</a>
   </nav>
-  <a href="#membership" class="header-cta" data-checkout>BECOME A MEMBER</a>
+  <a href="#membership" class="header-cta">BECOME A MEMBER</a>
 </header>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -606,7 +606,7 @@
   <h1>keep growing,<br>together</h1>
   <p class="hero-sub">A virtual membership community for people committed to their own growth — continuous support, meaningful connection, and real accountability, all online and built into your everyday. Join live from anywhere in the world.</p>
   <div class="hero-buttons">
-    <a href="#membership" class="btn-amber" data-checkout>Become a Member</a>
+    <a href="#membership" class="btn-amber">Become a Member</a>
     <a href="#why" class="btn-outline">See What's Inside</a>
   </div>
 </section>
@@ -784,24 +784,48 @@
 <!-- ═══════════════ MEMBERSHIP ═══════════════ -->
 <section class="pathways" id="membership">
   <div class="pathways-inner">
-    <h2>join the community</h2>
-    <p class="pathways-subtitle">One simple membership, entirely online. Everything you need to keep growing — a community that has your back, live support every week, and the tools to turn insight into lasting change. Join live from anywhere in the world.</p>
-    <div class="single-plan">
-      <div class="path-card featured">
-        <span class="path-tag">the circle membership</span>
-        <h3>The Circle Membership</h3>
+    <h2>choose your membership</h2>
+    <p class="pathways-subtitle">Three ways to be part of the community, all entirely online. Start where you are and move up whenever you're ready — every membership is billed monthly and you can cancel anytime, from anywhere in the world.</p>
+    <div class="path-grid">
+      <div class="path-card">
+        <span class="path-tag">community</span>
+        <h3>Community</h3>
         <p class="path-price">Monthly membership &middot; cancel anytime</p>
-        <p class="path-lead">A virtual home for people committed to their own growth — everything happens online, so you can take part from anywhere in the world.</p>
+        <p class="path-lead">The easiest way in. Stay connected to the community and keep learning at your own pace.</p>
         <ul>
+          <li>The private online community</li>
+          <li>The full self-guided member series</li>
+          <li>Curated resource &amp; content library</li>
+          <li>Monthly community call</li>
+        </ul>
+        <a href="#join" class="path-cta" data-checkout="community">Become a Member</a>
+      </div>
+      <div class="path-card featured">
+        <span class="path-tag">most popular</span>
+        <h3>Circle</h3>
+        <p class="path-price">Monthly membership &middot; cancel anytime</p>
+        <p class="path-lead">Our core membership — everything in Community, plus live weekly support to keep the momentum going.</p>
+        <ul>
+          <li>Everything in Community</li>
           <li>Weekly live community calls</li>
           <li>Weekly group support sessions</li>
-          <li>The full self-guided member series</li>
           <li>Live online workshops &amp; Q&amp;As</li>
           <li>One free in-person gathering each year</li>
-          <li>Curated resource &amp; content library</li>
-          <li>A private community of people who get it</li>
         </ul>
-        <a href="#join" class="path-cta" data-checkout>Become a Member</a>
+        <a href="#join" class="path-cta" data-checkout="circle">Become a Member</a>
+      </div>
+      <div class="path-card">
+        <span class="path-tag">circle + coaching</span>
+        <h3>Circle + Coaching</h3>
+        <p class="path-price">Monthly membership &middot; cancel anytime</p>
+        <p class="path-lead">For when growth asks for more personal support — everything in Circle, plus one-on-one time with our guides.</p>
+        <ul>
+          <li>Everything in Circle</li>
+          <li>Monthly 1:1 session with a guide</li>
+          <li>Priority access to Monica, Ashley &amp; Valerio</li>
+          <li>Personalized support between sessions</li>
+        </ul>
+        <a href="#join" class="path-cta" data-checkout="circle-coaching">Become a Member</a>
       </div>
     </div>
   </div>
@@ -815,8 +839,8 @@
   <div class="family-inner">
     <div class="family-label">Our community gets first access</div>
     <h2>You've been part of this from the start. So you get in first.</h2>
-    <p>Because you've already been part of the LaWayra community, we're opening the Circle Membership to you <span class="highlight">before anyone else</span> — with founding-member pricing locked in for as long as you stay.</p>
-    <p>Ready when you are. Join today, or book a quick call and our team will answer your questions and walk you through everything the membership includes.</p>
+    <p>Because you've already been part of the LaWayra community, we're opening these memberships to you <span class="highlight">before anyone else</span> — with founding-member pricing locked in for as long as you stay.</p>
+    <p>Ready when you are. Pick the membership that fits, or book a quick call and our team will help you choose and walk you through everything included.</p>
     <div class="cta-row">
       <a href="#join" class="btn-amber">Book a Call With the Team</a>
     </div>
@@ -841,8 +865,12 @@
       <p>Everything happens online. The live community calls, group sessions, workshops, and the member series are all virtual, so you can take part from anywhere in the world — all you need is an internet connection.</p>
     </div>
     <div class="faq-item">
+      <h3>What's the difference between the three memberships?</h3>
+      <p><strong>Community</strong> is the easiest way in — the private community, the self-guided series, and the resource library. <strong>Circle</strong> adds live weekly support: community calls, group sessions, and workshops. <strong>Circle + Coaching</strong> adds one-on-one time with our guides. You can move up or down anytime.</p>
+    </div>
+    <div class="faq-item">
       <h3>How does billing work? Can I cancel?</h3>
-      <p>The Circle Membership is billed monthly and you can cancel anytime — no long-term contract. Founding members keep their pricing locked in for as long as they stay.</p>
+      <p>Every membership is billed monthly and you can cancel anytime — no long-term contract. Founding members keep their pricing locked in for as long as they stay.</p>
     </div>
     <div class="faq-item">
       <h3>Who runs the calls and sessions?</h3>
@@ -879,19 +907,24 @@
 
 <script>
   /* ── Stripe checkout wiring ──────────────────────────────
-     When the payment link is ready, paste it below.
-     Every "Become a Member" button (data-checkout) will then
-     open Stripe checkout in a new tab. Until then, the buttons
-     scroll to the book-a-call section (their default href). */
-  var STRIPE_CHECKOUT_URL = ""; // e.g. "https://buy.stripe.com/xxxxxxxx"
+     Paste each tier's Stripe payment link below. Each "Become a
+     Member" button opens its tier's checkout in a new tab. Any
+     link left blank falls back to scrolling to the book-a-call
+     section, so nothing breaks while links are pending. */
+  var STRIPE_LINKS = {
+    community:        "", // e.g. "https://buy.stripe.com/xxxxxxxx"
+    circle:           "",
+    "circle-coaching": ""
+  };
 
-  if (STRIPE_CHECKOUT_URL) {
-    document.querySelectorAll('[data-checkout]').forEach(function (el) {
-      el.setAttribute('href', STRIPE_CHECKOUT_URL);
+  document.querySelectorAll('[data-checkout]').forEach(function (el) {
+    var url = STRIPE_LINKS[el.getAttribute('data-checkout')];
+    if (url) {
+      el.setAttribute('href', url);
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener');
-    });
-  }
+    }
+  });
 </script>
 
 </body>
