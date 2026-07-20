@@ -597,7 +597,7 @@
     <a href="#coaches">Our Guides</a>
     <a href="#faq">Questions</a>
   </nav>
-  <a href="#membership" class="header-cta">BECOME A MEMBER</a>
+  <a href="#membership" class="header-cta" data-checkout>BECOME A MEMBER</a>
 </header>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -606,7 +606,7 @@
   <h1>keep growing,<br>together</h1>
   <p class="hero-sub">A virtual membership community for people committed to their own growth — continuous support, meaningful connection, and real accountability, all online and built into your everyday. Join live from anywhere in the world.</p>
   <div class="hero-buttons">
-    <a href="#membership" class="btn-amber">Become a Member</a>
+    <a href="#membership" class="btn-amber" data-checkout>Become a Member</a>
     <a href="#why" class="btn-outline">See What's Inside</a>
   </div>
 </section>
@@ -801,7 +801,7 @@
           <li>Curated resource &amp; content library</li>
           <li>A private community of people who get it</li>
         </ul>
-        <a href="#join" class="path-cta">Become a Member</a>
+        <a href="#join" class="path-cta" data-checkout>Become a Member</a>
       </div>
     </div>
   </div>
@@ -876,6 +876,23 @@
   </div>
   <p class="fineprint">LaWayra &middot; An online membership community for personal growth<br>Questions about your membership? Email admin@lawayra.com &middot; The Circle Membership is billed monthly and can be cancelled anytime.</p>
 </footer>
+
+<script>
+  /* ── Stripe checkout wiring ──────────────────────────────
+     When the payment link is ready, paste it below.
+     Every "Become a Member" button (data-checkout) will then
+     open Stripe checkout in a new tab. Until then, the buttons
+     scroll to the book-a-call section (their default href). */
+  var STRIPE_CHECKOUT_URL = ""; // e.g. "https://buy.stripe.com/xxxxxxxx"
+
+  if (STRIPE_CHECKOUT_URL) {
+    document.querySelectorAll('[data-checkout]').forEach(function (el) {
+      el.setAttribute('href', STRIPE_CHECKOUT_URL);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    });
+  }
+</script>
 
 </body>
 </html>
